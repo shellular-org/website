@@ -1,0 +1,756 @@
+---
+// GitHub SVG icon inline for the secondary button
+---
+
+<audio id="bg-music" src="/music.mp3" loop preload="none"></audio>
+
+<div id="hero">
+  <canvas id="wave-canvas" aria-hidden="true"></canvas>
+
+  <div class="hero-content">
+    <div class="hero-copy">
+      <h1 class="reveal reveal-delay-1">Use your dev machine from your phone.</h1>
+      <p class="subtitle reveal reveal-delay-2">
+        Use Codex, Claude Code, or OpenCode on the machine you already develop on. Open terminals, edit files, run
+        commands, and keep shipping when you're away from your desk.
+      </p>
+      <div class="hero-btns reveal reveal-delay-3">
+        <a href="#install" class="btn-primary">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            aria-hidden="true"
+          >
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+          Get Shellular
+        </a>
+        <a href="https://github.com/foxbiz/shellular" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.185 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.203 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"
+            ></path>
+          </svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+    <aside class="hero-proof reveal reveal-delay-3" aria-label="Product summary">
+      <div class="hero-proof-header">
+        <span class="hero-proof-dot"></span>
+        <span class="hero-proof-title">Your coding setup, now pocket-sized</span>
+      </div>
+      <div class="hero-proof-body">
+        <p class="hero-proof-subtitle">
+          Turn your phone into a live window into your development machine so you can code, review, and fix things
+          wherever you are.
+        </p>
+        <ul class="hero-proof-list">
+          <li>Run Codex, Claude Code, and OpenCode from your phone.</li>
+          <li>Open terminals and project files you use at your desk.</li>
+          <li>Keep coding on the go without carrying your laptop everywhere.</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <canvas id="wave-overlay" aria-hidden="true"></canvas>
+
+  <div class="scroll-hint" aria-hidden="true">
+    scroll
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </div>
+
+  <button id="music-btn" aria-label="Play background music">
+    <svg id="music-icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"></path>
+    </svg>
+    <svg id="music-icon-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display: none">
+      <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+      <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+    </svg>
+  </button>
+</div>
+
+<style>
+  #hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow: hidden;
+    background: var(--sky-bg);
+  }
+
+  #hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10, 10, 12, 0.34) 0%, rgba(10, 10, 12, 0.18) 24%, rgba(10, 10, 12, 0.58) 100%),
+      radial-gradient(circle at center, rgba(13, 13, 15, 0.02), rgba(13, 13, 15, 0.58) 78%);
+    z-index: 12;
+    pointer-events: none;
+  }
+
+  #wave-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0.58;
+  }
+
+  #wave-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 30;
+    pointer-events: none;
+    opacity: 0.32;
+  }
+
+  /* ─── Layout ─────────────────────────────────────────────── */
+  .hero-content {
+    position: relative;
+    z-index: 40;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    align-items: center;
+    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 420px);
+    gap: clamp(24px, 5vw, 54px);
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 116px clamp(16px, 5vw, 48px) 104px;
+  }
+
+  .hero-copy {
+    text-align: left;
+    max-width: 700px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.7rem, 6vw, 5.4rem);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 18px;
+    max-width: 11.5ch;
+  }
+
+  .subtitle {
+    font-size: clamp(15px, 1.9vw, 19px);
+    color: rgba(236, 229, 218, 0.82);
+    max-width: 58ch;
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* ─── Proof card ─────────────────────────────────────────── */
+  .hero-proof {
+    border: 1px solid rgba(214, 194, 161, 0.18);
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(26, 26, 30, 0.78), rgba(16, 16, 19, 0.74)), rgba(14, 14, 17, 0.72);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    overflow: hidden;
+  }
+
+  .hero-proof-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 18px;
+    border-bottom: 1px solid rgba(214, 194, 161, 0.1);
+    color: rgba(245, 241, 232, 0.9);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero-proof-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 0 6px rgba(145, 197, 138, 0.14);
+    flex-shrink: 0;
+  }
+
+  .hero-proof-title {
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+  }
+
+  .hero-proof-body {
+    padding: 18px;
+    display: grid;
+    gap: 16px;
+  }
+
+  .hero-proof-subtitle {
+    color: rgb(236, 229, 218);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .hero-proof-list {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+  }
+
+  .hero-proof-list li {
+    position: relative;
+    padding-left: 18px;
+    color: rgba(245, 241, 232, 0.84);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .hero-proof-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ─── Scroll hint ────────────────────────────────────────── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: rgba(214, 194, 161, 0.42);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: bounce 2.4s infinite;
+    pointer-events: none;
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(8px);
+    }
+  }
+
+  /* ─── Music button ───────────────────────────────────────── */
+  #music-btn {
+    position: absolute;
+    bottom: 28px;
+    right: 28px;
+    z-index: 10;
+    background: rgba(24, 24, 27, 0.72);
+    border: 1px solid rgba(214, 194, 161, 0.2);
+    border-radius: 50%;
+    padding: 11px;
+    cursor: pointer;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      color 0.2s,
+      border-color 0.2s,
+      background 0.2s;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  #music-btn:hover {
+    color: var(--accent);
+    border-color: rgba(214, 194, 161, 0.42);
+    background: rgba(24, 24, 27, 0.92);
+  }
+
+  /* ─── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 980px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      padding-top: 112px;
+      padding-bottom: 110px;
+    }
+
+    .hero-proof {
+      max-width: 560px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .hero-copy h1 {
+      max-width: none;
+    }
+
+    #music-btn {
+      right: 18px;
+      bottom: 18px;
+    }
+
+    .scroll-hint {
+      bottom: 22px;
+    }
+  }
+</style>
+
+<!-- Wave engine — uses CDN import so we keep it inline to avoid Vite bundling -->
+<script type="module" is:inline>
+  import { prepareWithSegments, walkLineRanges } from "https://esm.sh/@chenglou/pretext@0.0.4";
+
+  // Code token buckets: 0=foam/crest (dense+bright) → 3=abyss (sparse+dim)
+  const BUCKETS = [
+    [
+      "{}",
+      "()",
+      "[]",
+      "<>",
+      "##",
+      "//",
+      "!=",
+      "==",
+      "=>",
+      "+=",
+      "&&",
+      "||",
+      "::",
+      "??",
+      "!",
+      "++",
+      "--",
+      "**",
+      "%%",
+      "@@",
+      "<<",
+      ">>",
+    ],
+    [
+      "function",
+      "return",
+      "const",
+      "import",
+      "export",
+      "async",
+      "await",
+      "class",
+      "extends",
+      "interface",
+      "typeof",
+      "readonly",
+      "private",
+      "public",
+      "static",
+      "declare",
+      "namespace",
+      "enum",
+      "override",
+      "abstract",
+    ],
+    [
+      "let",
+      "var",
+      "if",
+      "for",
+      "while",
+      "do",
+      "try",
+      "catch",
+      "throw",
+      "new",
+      "delete",
+      "yield",
+      "switch",
+      "case",
+      "break",
+      "null",
+      "true",
+      "false",
+      "void",
+      "never",
+      "any",
+      "string",
+      "number",
+      "boolean",
+      "unknown",
+    ],
+    [
+      "fn",
+      "ts",
+      "js",
+      "id",
+      "ok",
+      "px",
+      "ms",
+      "req",
+      "res",
+      "api",
+      "url",
+      "err",
+      "ctx",
+      "cfg",
+      "buf",
+      "ref",
+      "arr",
+      "map",
+      "src",
+      "dst",
+      "log",
+      "cmd",
+      ":",
+      ".",
+      ":",
+      ";",
+      "_",
+      "-",
+    ],
+  ];
+
+  const FONT = '13px "JetBrains Mono","Courier New",monospace';
+  const CELL_H = 20;
+  const TOKEN_GAP = 6;
+
+  // Wave layers — 5 overlapping sines for a realistic ocean shape
+  const WAVES = [
+    { amp: 38, freq: 0.009, speed: 0.45, phase: 0.0 },
+    { amp: 18, freq: 0.0175, speed: 0.72, phase: 1.1 },
+    { amp: 9, freq: 0.032, speed: 1.18, phase: 2.3 },
+    { amp: 4, freq: 0.054, speed: 1.85, phase: 0.7 },
+    { amp: 2, freq: 0.088, speed: 2.9, phase: 1.8 },
+  ];
+  const FOAM = { amp: 7, freq: 0.185, speed: 4.8, phase: 0.4 };
+
+  let canvas, ctx, W, H, DPR;
+  let oCanvas, oCtx;
+  let tokenWidths = new Map();
+  let rowTiles = [];
+  let baseY = 0;
+  let stars = [];
+  let elapsed = 0;
+  let lastTime = 0;
+  let measured = false;
+
+  function surfaceY(x, t) {
+    let y = baseY;
+    for (const w of WAVES) y += w.amp * Math.sin(x * w.freq + t * w.speed + w.phase);
+    return y;
+  }
+
+  function foamAt(x, t) {
+    return 0.5 + 0.5 * Math.sin(x * FOAM.freq + t * FOAM.speed + FOAM.phase);
+  }
+
+  async function measureTokens() {
+    for (const bucket of BUCKETS) {
+      for (const tok of bucket) {
+        const prepared = prepareWithSegments(tok + " ", FONT);
+        let w = 4;
+        walkLineRanges(prepared, 99999, (line) => {
+          w = line.width;
+        });
+        tokenWidths.set(tok, Math.max(w, 4));
+      }
+    }
+    measured = true;
+  }
+
+  function buildRowTiles() {
+    rowTiles = [];
+    const numRows = Math.ceil(H / CELL_H) + 2;
+    for (let row = 0; row < numRows; row++) {
+      const cellCY = row * CELL_H + CELL_H * 0.5;
+      const approxD = cellCY - baseY;
+      const speed = approxD < -60 ? 5 : approxD < 0 ? 12 + (1 + approxD / 60) * 40 : Math.max(5, 52 - approxD * 0.15);
+
+      const tokens = [],
+        cumWidths = [0];
+      let totalW = 0,
+        col = 0;
+      while (totalW < W * 2.5) {
+        const depthBias = Math.min(3, Math.max(0, Math.round((approxD + 60) / 60)));
+        const bi = Math.min(3, (depthBias + (col % 3 === 0 ? 0 : 1)) % 4);
+        const bucket = BUCKETS[bi];
+        const tok = bucket[(row * 11 + col * 13 + bi * 17) % bucket.length];
+        const tw = (tokenWidths.get(tok) || 10) + TOKEN_GAP;
+        tokens.push(tok);
+        totalW += tw;
+        cumWidths.push(totalW);
+        col++;
+      }
+      rowTiles.push({ tokens, cumWidths, totalW, speed });
+    }
+  }
+
+  function init() {
+    canvas = document.getElementById("wave-canvas");
+    ctx = canvas.getContext("2d");
+    oCanvas = document.getElementById("wave-overlay");
+    oCtx = oCanvas.getContext("2d");
+    resize();
+  }
+
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth;
+    H = canvas.clientHeight;
+    canvas.width = W * DPR;
+    canvas.height = H * DPR;
+    ctx.scale(DPR, DPR);
+    oCanvas.width = W * DPR;
+    oCanvas.height = H * DPR;
+    oCtx.scale(DPR, DPR);
+    baseY = H * 0.62;
+    stars = Array.from({ length: 95 }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H * 0.5,
+      r: Math.random() * 1.3 + 0.3,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.7 + Math.random() * 1.6,
+    }));
+    if (measured) buildRowTiles();
+  }
+
+  function drawTokenRow(renderCtx, row, t, repelEnabled) {
+    const { tokens, cumWidths, totalW, speed } = rowTiles[row];
+    const cellCY = row * CELL_H + CELL_H * 0.5;
+    if (cellCY > H + CELL_H) return false;
+
+    const scrollX = (elapsed * speed) % totalW;
+    let lo = 0,
+      hi = tokens.length - 1;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      cumWidths[mid + 1] < scrollX ? (lo = mid + 1) : (hi = mid);
+    }
+    let x = cumWidths[lo > 0 ? lo - 1 : 0] - scrollX;
+    let idx = lo > 0 ? lo - 1 : 0;
+
+    while (x < W + 20) {
+      const tok = tokens[((idx % tokens.length) + tokens.length) % tokens.length];
+      const tw = (tokenWidths.get(tok) || 10) + TOKEN_GAP;
+      const cx = x + tw * 0.5;
+      const depth = cellCY - surfaceY(cx, t);
+      const foam = foamAt(cx, t);
+
+      // Repulsion from center logo area
+      const rdx = cx,
+        rdy = cellCY;
+      const rdist = Math.sqrt(rdx * rdx + rdy * rdy);
+      const REPEL_R = 145;
+      const repelAlpha = Math.min(1, rdist / (REPEL_R * 0.4));
+      let rx = x,
+        ry = cellCY;
+      if (repelEnabled && rdist < REPEL_R) {
+        const f = 1 - rdist / REPEL_R;
+        const push = f * f * 55;
+        const nx = rdist > 0.5 ? rdx / rdist : 0;
+        const ny = rdist > 0.5 ? rdy / rdist : 1;
+        rx = x + nx * push * 0.4;
+        ry = cellCY + ny * push;
+      }
+
+      if (!repelEnabled) {
+        // Overlay pass: only draw below-surface tokens
+        if (depth >= 0) {
+          if (depth < 10) {
+            renderCtx.globalAlpha = 0.8 + foam * 0.2;
+            renderCtx.fillStyle = `rgb(${Math.round(212 + foam * 30)},${Math.round(192 + foam * 28)},${Math.round(165 + foam * 26)})`;
+          } else if (depth < 50) {
+            const d = (depth - 10) / 40;
+            renderCtx.globalAlpha = 0.8 - d * 0.3;
+            renderCtx.fillStyle = `rgb(${Math.round(163 - d * 35)},${Math.round(142 - d * 34)},${Math.round(119 - d * 26)})`;
+          } else if (depth < 130) {
+            const d = (depth - 50) / 80;
+            renderCtx.globalAlpha = 0.5 - d * 0.27;
+            renderCtx.fillStyle = `rgb(${Math.round(108 - d * 24)},${Math.round(92 - d * 26)},${Math.round(78 - d * 24)})`;
+          } else {
+            renderCtx.globalAlpha = 0.13;
+            renderCtx.fillStyle = "#2a2522";
+          }
+          renderCtx.fillText(tok, x, cellCY);
+          renderCtx.globalAlpha = 1;
+        }
+      } else {
+        // Main canvas pass
+        const loftBoost = (() => {
+          const aboveLogo = cellCY < 0 - 0 * 0.3;
+          const loftDX = Math.abs(cx);
+          const loftDY = Math.max(0 - cellCY);
+          const loftR = 110 + Math.sin(t * 0.6 + row * 0.4) * 20;
+          return aboveLogo && loftDX < loftR ? (1 - loftDX / loftR) * Math.max(0, 1 - loftDY / 320) * 0.72 : 0;
+        })();
+
+        if (depth < -70) {
+          const show = loftBoost > 0.08 ? ((idx * 71 + row * 31) & 0x7) === 0 : ((idx * 71 + row * 31) & 0xf) === 0;
+          if (show) {
+            renderCtx.globalAlpha = (0.07 + loftBoost * 0.38) * repelAlpha;
+            renderCtx.fillStyle = loftBoost > 0 ? `rgba(237,223,198,1)` : "#a89275";
+            renderCtx.fillText(tok, rx, ry);
+          }
+        } else if (depth < -22) {
+          renderCtx.globalAlpha = (0.04 + 0.07 * (1 - (-depth - 22) / 48) + loftBoost * 0.45) * repelAlpha;
+          renderCtx.fillStyle = loftBoost > 0.1 ? `rgba(244,233,214,1)` : "#b59f83";
+          renderCtx.fillText(tok, rx, ry);
+        } else if (depth < 0) {
+          const t01 = 1 - -depth / 22;
+          const f2 = foam * t01;
+          renderCtx.globalAlpha = (0.18 + f2 * 0.72) * repelAlpha;
+          renderCtx.fillStyle = `rgb(${Math.round(183 + f2 * 54)},${Math.round(165 + f2 * 52)},${Math.round(141 + f2 * 48)})`;
+          renderCtx.fillText(tok, rx, ry);
+        } else if (depth < 10) {
+          renderCtx.globalAlpha = (0.8 + foam * 0.2) * repelAlpha;
+          renderCtx.fillStyle = `rgb(${Math.round(212 + foam * 30)},${Math.round(192 + foam * 28)},${Math.round(165 + foam * 26)})`;
+          renderCtx.fillText(tok, rx, ry);
+        } else if (depth < 50) {
+          const d = (depth - 10) / 40;
+          renderCtx.globalAlpha = (0.8 - d * 0.3) * repelAlpha;
+          renderCtx.fillStyle = `rgb(${Math.round(163 - d * 35)},${Math.round(142 - d * 34)},${Math.round(119 - d * 26)})`;
+          renderCtx.fillText(tok, rx, ry);
+        } else if (depth < 130) {
+          const d = (depth - 50) / 80;
+          renderCtx.globalAlpha = (0.5 - d * 0.27) * repelAlpha;
+          renderCtx.fillStyle = `rgb(${Math.round(108 - d * 24)},${Math.round(92 - d * 26)},${Math.round(78 - d * 24)})`;
+          renderCtx.fillText(tok, rx, ry);
+        } else {
+          renderCtx.globalAlpha = 0.13 * repelAlpha;
+          renderCtx.fillStyle = "#2a2522";
+          renderCtx.fillText(tok, rx, ry);
+        }
+        renderCtx.globalAlpha = 1;
+      }
+
+      x += tw;
+      idx++;
+    }
+    return true;
+  }
+
+  function frame(ts) {
+    if (document.hidden) {
+      requestAnimationFrame(frame);
+      return;
+    }
+    const dt = Math.min((ts - lastTime) / 1000, 0.05);
+    lastTime = ts;
+    elapsed += dt;
+    const t = elapsed;
+
+    // Sky gradient
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, "#0d0d0f");
+    grad.addColorStop(0.42, "#141417");
+    grad.addColorStop(0.6, "#1a1816");
+    grad.addColorStop(1, "#0a0a0c");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    // Stars
+    for (const s of stars) {
+      if (s.y >= surfaceY(s.x, t) - 10) continue;
+      const a = (0.3 + 0.7 * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase))) * 0.65;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(241,231,214,${a.toFixed(3)})`;
+      ctx.fill();
+    }
+
+    // Main canvas token pass
+    if (measured) {
+      ctx.save();
+      ctx.textBaseline = "middle";
+      ctx.font = FONT;
+      for (let row = 0; row < rowTiles.length; row++) {
+        if (!drawTokenRow(ctx, row, t, true)) break;
+      }
+      ctx.restore();
+    }
+
+    // Overlay pass — tokens drawn on top of logo (submerged hull effect)
+    oCtx.clearRect(0, 0, W, H);
+    if (measured) {
+      oCtx.save();
+      oCtx.textBaseline = "middle";
+      oCtx.font = FONT;
+      for (let row = 0; row < rowTiles.length; row++) {
+        if (!drawTokenRow(oCtx, row, t, false)) break;
+      }
+      oCtx.restore();
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  // Music toggle
+  const bgMusic = document.getElementById("bg-music");
+  const musicBtn = document.getElementById("music-btn");
+  const playIcon = document.getElementById("music-icon-play");
+  const pauseIcon = document.getElementById("music-icon-pause");
+  bgMusic.volume = 0.7;
+
+  musicBtn.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      bgMusic.play();
+      playIcon.style.display = "none";
+      pauseIcon.style.display = "block";
+      musicBtn.setAttribute("aria-label", "Pause background music");
+    } else {
+      bgMusic.pause();
+      playIcon.style.display = "block";
+      pauseIcon.style.display = "none";
+      musicBtn.setAttribute("aria-label", "Play background music");
+    }
+  });
+
+  // Resize handler
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      resize();
+      if (measured) buildRowTiles();
+    }, 120);
+  });
+
+  // Boot
+  init();
+  await document.fonts.ready;
+  await measureTokens();
+  buildRowTiles();
+  lastTime = performance.now();
+  requestAnimationFrame(frame);
+</script>

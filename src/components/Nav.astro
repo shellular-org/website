@@ -1,0 +1,87 @@
+---
+import ShellularLogo from "./ShellularLogo.astro";
+---
+
+<nav id="nav">
+  <a class="brand" href="#">
+    <ShellularLogo size={30} />
+    Shellular
+  </a>
+  <div class="links">
+    <a href="#how">How it works</a>
+    <a href="#features">Features</a>
+    <button class="waitlist-nav" id="open-waitlist-btn">Join Waitlist</button>
+  </div>
+</nav>
+
+<style>
+  #nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(16px, 4vw, 48px);
+    height: 60px;
+    background: rgba(13, 13, 15, 0.62);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 17px;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 3vw, 32px);
+  }
+
+  .links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .links a:hover {
+    color: var(--accent);
+  }
+
+  .waitlist-nav {
+    background: var(--grad-accent);
+    color: #140f0a;
+    padding: 7px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: opacity 0.2s;
+  }
+
+  .waitlist-nav:hover {
+    opacity: 0.9;
+  }
+
+  @media (max-width: 600px) {
+    .links a:not(.waitlist-nav) {
+      display: none;
+    }
+  }
+</style>

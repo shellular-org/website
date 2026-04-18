@@ -1,11 +1,40 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Features from "../components/Features.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import InstallCTA from "../components/InstallCTA.astro";
+import Nav from "../components/Nav.astro";
+import WaitlistModal from "../components/WaitlistModal.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	<Welcome />
+	<Nav />
+	<main>
+		<Hero />
+		<HowItWorks />
+		<div class="ocean-divider"></div>
+		<Features />
+		<InstallCTA />
+	</main>
+	<Footer />
+	<WaitlistModal />
+
+	<script>
+		// Scroll-reveal via IntersectionObserver
+		const observer = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("visible");
+						observer.unobserve(entry.target);
+					}
+				}
+			},
+			{ threshold: 0.12 },
+		);
+
+		document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+	</script>
 </Layout>
