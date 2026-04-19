@@ -30,10 +30,15 @@
 /* ─── Base ───────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
+  height: 100%;
+  min-height: 100%;
 }
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
+  width: 100%;
+  min-height: 100%;
+  min-height: 100dvh;
   background:
     radial-gradient(circle at top, rgba(214, 194, 161, 0.1), transparent 30%),
     linear-gradient(180deg, #0d0d0f 0%, #101013 55%, #0a0a0c 100%);
