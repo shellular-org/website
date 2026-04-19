@@ -1,0 +1,261 @@
+---
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Privacy Policy — Shellular"
+  description="Shellular's privacy policy. We collect no personal data, require no sign-up, and all traffic between the app and your machine is end-to-end encrypted."
+>
+  <Nav />
+  <main class="legal-page">
+    <div class="legal-container">
+      <header class="legal-header">
+        <p class="section-label">Legal</p>
+        <h1>Privacy Policy</h1>
+        <p class="meta">Effective date: April 19, 2026 · Foxbiz Software Pvt Ltd</p>
+      </header>
+
+      <div class="legal-body">
+        <section>
+          <h2>1. Overview</h2>
+          <p>
+            Shellular ("we", "our", "us") is a remote development tool that connects your mobile device directly to your
+            own machine. We are committed to your privacy. This policy explains what data we collect (very little), how
+            it is used, and your rights.
+          </p>
+          <p>
+            <strong>Short version:</strong> We do not collect, store, or sell any personal information. No sign-up is required
+            to use Shellular.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Information We Do Not Collect</h2>
+          <p>We do not collect:</p>
+          <ul>
+            <li>Your name, email address, or any other personally identifiable information (PII).</li>
+            <li>Account credentials — Shellular has no account or sign-up system.</li>
+            <li>The contents of your filesystem, terminal sessions, or AI prompts.</li>
+            <li>Precise device location, contacts, photos, or any other sensitive device data.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>3. Information That May Be Processed Transiently</h2>
+          <p>
+            When you use Shellular, traffic between the Shellular mobile app and the CLI on your machine is relayed
+            through our servers at <code>api.shellular.dev</code>. This relay operates as a pass-through only:
+          </p>
+          <ul>
+            <li>
+              All relay traffic is <strong>end-to-end encrypted</strong> using libsodium. The relay server cannot read the
+              content of any message.
+            </li>
+            <li>
+              The pairing key is exchanged out-of-band via a QR code displayed in your terminal and scanned by the app —
+              the server never sees your pairing key.
+            </li>
+            <li>
+              We may retain standard server logs (IP addresses, timestamps, byte counts) for up to
+              <strong>30 days</strong> solely for abuse prevention and infrastructure monitoring. These logs are not shared
+              with third parties.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Local Data &amp; Device Permissions</h2>
+          <p>
+            The Shellular CLI runs on your own machine and accesses only the directory you explicitly specify with the <code
+              >--dir</code
+            > flag (defaulting to your home directory). Path-traversal outside that root is rejected. The CLI connects outbound
+            only — it opens no listening ports on your machine.
+          </p>
+          <p>
+            The Shellular mobile app stores your pairing key and session state locally on your device using the
+            platform's secure storage. This data never leaves your device except as part of the encrypted relay traffic
+            described above.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Analytics &amp; Crash Reporting</h2>
+          <p>
+            We do not use third-party analytics SDKs or advertising networks. We may collect anonymous, aggregated crash
+            reports (stack traces without any user-identifying information) to improve stability. You may opt out of
+            crash reporting in the app settings.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Third-Party Services</h2>
+          <p>
+            Shellular can optionally route AI prompts to third-party services such as OpenCode, Anthropic Claude, GitHub
+            Copilot, or OpenAI Codex depending on what is installed on your machine. These requests originate from the
+            CLI on <em>your machine</em> and are governed by the respective provider's privacy policies. Shellular does not
+            proxy or log these prompts.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Children's Privacy</h2>
+          <p>
+            Shellular is a developer tool not directed at children under 13 (or the applicable local age threshold). We
+            do not knowingly collect data from children. If you believe a child has provided personal data to us, please
+            contact us and we will delete it promptly.
+          </p>
+        </section>
+
+        <section>
+          <h2>8. Data Security</h2>
+          <p>
+            We use industry-standard measures to protect our relay infrastructure. Because all relay traffic is
+            end-to-end encrypted, even a full compromise of the relay server would not expose your terminal sessions,
+            files, or AI conversations.
+          </p>
+        </section>
+
+        <section>
+          <h2>9. Changes to This Policy</h2>
+          <p>
+            We may update this policy from time to time. The effective date at the top of this page will be updated
+            accordingly. Continued use of Shellular after a change constitutes acceptance of the revised policy.
+          </p>
+        </section>
+
+        <section>
+          <h2>10. Contact Us</h2>
+          <p>
+            Questions or concerns about this policy? Reach us at
+            <a href="mailto:contact@foxbiz.io">contact@foxbiz.io</a>.
+          </p>
+          <address>
+            Foxbiz Software Pvt Ltd<br />
+          </address>
+        </section>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page {
+    min-height: 80vh;
+    padding: 80px clamp(16px, 8vw, 80px) 64px;
+  }
+
+  .legal-container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .legal-header {
+    margin-bottom: 56px;
+  }
+
+  .legal-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+  }
+
+  .meta {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .legal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  section {
+    border-top: 1px solid var(--line-soft);
+    padding-top: 32px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  ul li {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  ul li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--accent2);
+  }
+
+  strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    background: rgba(214, 194, 161, 0.08);
+    border: 1px solid var(--card-border);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: var(--accent);
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    opacity: 0.8;
+  }
+
+  address {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-style: normal;
+    line-height: 1.8;
+    margin-top: 8px;
+  }
+</style>

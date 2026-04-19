@@ -10,31 +10,31 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	<Nav />
-	<main>
-		<Hero />
-		<HowItWorks />
-		<div class="ocean-divider"></div>
-		<Features />
-		<InstallCTA />
-	</main>
-	<Footer />
-	<WaitlistModal />
+  <Nav />
+  <main>
+    <Hero />
+    <HowItWorks />
+    <div class="ocean-divider"></div>
+    <Features />
+    <InstallCTA />
+  </main>
+  <Footer />
+  <WaitlistModal />
 
-	<script>
-		// Scroll-reveal via IntersectionObserver
-		const observer = new IntersectionObserver(
-			(entries) => {
-				for (const entry of entries) {
-					if (entry.isIntersecting) {
-						entry.target.classList.add("visible");
-						observer.unobserve(entry.target);
-					}
-				}
-			},
-			{ threshold: 0.12 },
-		);
+  <script>
+    // Scroll-reveal via IntersectionObserver
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.12 },
+    );
 
-		document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-	</script>
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
 </Layout>
