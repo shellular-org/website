@@ -11,48 +11,52 @@ interface Step {
 const steps: Step[] = [
   {
     num: 1,
-    title: "Start the CLI on your machine",
-    desc: "Run the CLI agent on your laptop, desktop, or cloud server. It starts the WebSocket relay and generates a session token.",
-    comment: "# works on macOS, Linux, Windows",
-    code: "npx shellular start",
+    title: 'Start the CLI on your machine',
+    desc: 'Run the CLI agent on your laptop, desktop, or cloud server. It starts the WebSocket relay and generates a session token.',
+    comment: '# works on macOS, Linux, Windows',
+    code: 'npx shellular start',
   },
   {
     num: 2,
-    title: "Connect from any device",
-    desc: "Scan the QR code or paste the URL into Shellular on your mobile. Enter the 8-char session token — you're connected.",
-    comment: "# or open directly in your browser",
-    code: "https://your-server:3000/&lt;token&gt;",
-    delay: "reveal-delay-1",
+    title: 'Connect from any client',
+    desc: "Open Shellular on iOS, Android, or the web app and scan the QR code. No manual code entering — one scan and you're in.",
+    comment: '# iOS · Android · Web — your choice',
+    code: '[■■ QR scan]  →  connected',
+    delay: 'reveal-delay-1',
   },
   {
     num: 3,
-    title: "Code, commit, ship",
-    desc: "Your full terminal and filesystem are live. Read files, run builds, commit code, and get AI help — all from your phone.",
-    comment: "# your entire dev stack, anywhere",
-    code: 'git commit -m "shipped from mobile"',
-    delay: "reveal-delay-2",
+    title: 'Access everything, anywhere',
+    desc: 'Full device access at your fingertips — terminals, projects & files, AI agent chats, browser via local proxy, port management, system monitor, and more.',
+    comment: '# your entire dev stack, anywhere',
+    code: 'terminals · files · AI · ports · proxy',
+    delay: 'reveal-delay-2',
   },
 ];
 ---
 
-<div id="how">
-  <div id="how-inner">
-    <h2 class="section-title reveal reveal-delay-1">Three steps to <span>code anywhere</span></h2>
-    <p class="section-sub reveal reveal-delay-2">No accounts. No cloud subscription. Just a local CLI and a browser.</p>
+<div id='how'>
+  <div id='how-inner'>
+    <h2 class='section-title reveal reveal-delay-1'>
+      Three steps to <span>code anywhere</span>
+    </h2>
+    <p class='section-sub reveal reveal-delay-2'>
+      No accounts. No cloud subscription. Just a local CLI and a browser.
+    </p>
 
-    <div class="steps">
+    <div class='steps'>
       {
         steps.map(({ num, title, desc, comment, code, delay }) => (
-          <div class={`step reveal ${delay ?? ""}`}>
-            <div class="step-header">
-              <div class="step-num">{num}</div>
-              <div class="step-meta">
-                <div class="step-title">{title}</div>
+          <div class={`step reveal ${delay ?? ''}`}>
+            <div class='step-header'>
+              <div class='step-num'>{num}</div>
+              <div class='step-meta'>
+                <div class='step-title'>{title}</div>
               </div>
             </div>
-            <p class="step-desc">{desc}</p>
-            <div class="code-block">
-              <div class="code-comment" set:html={comment} />
+            <p class='step-desc'>{desc}</p>
+            <div class='code-block'>
+              <div class='code-comment' set:html={comment} />
               <span set:html={code} />
             </div>
           </div>
@@ -85,13 +89,17 @@ const steps: Step[] = [
   }
 
   .steps::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 24px;
     right: 24px;
     top: 18px;
     height: 1px;
-    background: linear-gradient(90deg, rgba(214, 194, 161, 0.28), rgba(214, 194, 161, 0.08));
+    background: linear-gradient(
+      90deg,
+      rgba(214, 194, 161, 0.28),
+      rgba(214, 194, 161, 0.08)
+    );
     pointer-events: none;
   }
 
@@ -103,7 +111,13 @@ const steps: Step[] = [
     padding: 24px;
     border-radius: 22px;
     border: 1px solid rgba(214, 194, 161, 0.12);
-    background: linear-gradient(180deg, rgba(245, 241, 232, 0.045), rgba(245, 241, 232, 0.02)), rgba(14, 14, 17, 0.8);
+    background:
+      linear-gradient(
+        180deg,
+        rgba(245, 241, 232, 0.045),
+        rgba(245, 241, 232, 0.02)
+      ),
+      rgba(14, 14, 17, 0.8);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
     position: relative;
     overflow: hidden;
@@ -115,10 +129,14 @@ const steps: Step[] = [
   }
 
   .step::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top left, rgba(214, 194, 161, 0.12), transparent 42%);
+    background: radial-gradient(
+      circle at top left,
+      rgba(214, 194, 161, 0.12),
+      transparent 42%
+    );
     opacity: 0.9;
     pointer-events: none;
   }
@@ -176,7 +194,7 @@ const steps: Step[] = [
     border: 1px solid rgba(214, 194, 161, 0.12);
     border-radius: 10px;
     padding: 14px 18px;
-    font-family: "JetBrains Mono", "Courier New", monospace;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-size: 13px;
     color: var(--accent);
     margin-top: 4px;
@@ -186,7 +204,7 @@ const steps: Step[] = [
   }
 
   .code-block::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: 0;
