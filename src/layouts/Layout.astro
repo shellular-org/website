@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import faviconUrl from '../assets/logo.ico?url';
 
 interface Props {
 	title?: string;
@@ -26,6 +27,7 @@ const {
 			rel="stylesheet"
 		/>
 		<meta name="generator" content={Astro.generator} />
+		<link rel="icon" href={faviconUrl} type="image/x-icon" />
 	</head>
 	<body>
 		<slot />

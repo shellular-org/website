@@ -14,7 +14,7 @@ const steps: Step[] = [
     title: "Start the CLI on your machine",
     desc: "Run the CLI agent on your laptop, desktop, or cloud server. It starts the WebSocket relay and generates a session token.",
     comment: "# works on macOS, Linux, Windows",
-    code: "npx shellular-cli start",
+    code: "npx shellular start",
   },
   {
     num: 2,
@@ -159,6 +159,7 @@ const steps: Step[] = [
     font-weight: 700;
     color: var(--text-primary);
     letter-spacing: -0.02em;
+    text-align: left;
   }
 
   .step-desc {
@@ -167,6 +168,7 @@ const steps: Step[] = [
     line-height: 1.6;
     position: relative;
     z-index: 1;
+    text-align: left;
   }
 
   .code-block {
