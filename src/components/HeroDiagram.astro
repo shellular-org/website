@@ -766,130 +766,24 @@ import ShellularLogo from "./ShellularLogo.astro";
   }
 
   /* ═══════════════════════════════════════════════════════════
-     RESPONSIVE
+     RESPONSIVE — zoom shrinks layout box like an image
      ═══════════════════════════════════════════════════════════ */
   @media (max-width: 1100px) {
     .hero-diagram-wrapper {
+      zoom: 0.72;
       justify-self: center;
-      max-width: 600px;
     }
+  }
 
-    .diag-scene {
-      padding: 28px 18px;
-    }
-
-    /* Stack vertically on tablet/mobile */
-    .diag-flow {
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .diag-col-phone,
-    .diag-col-hub,
-    .diag-col-host {
-      width: 100%;
-    }
-
-    .diag-col-phone {
-      order: 1;
-    }
-
-    .diag-connector:first-of-type {
-      order: 2;
-    }
-
-    .diag-col-hub {
-      order: 3;
-    }
-
-    .diag-connector:last-of-type {
-      order: 4;
-    }
-
-    .diag-col-host {
-      order: 5;
-    }
-
-    /* Vertical beam connectors */
-    .diag-connector {
-      flex: 0 0 auto;
-      min-width: unset;
-      width: 100%;
-      padding: 6px 0;
-    }
-
-    .diag-beam {
-      width: 2px;
-      height: 36px;
-      margin: 0 auto;
-    }
-
-    .diag-beam-line {
-      background: linear-gradient(
-        180deg,
-        rgba(214, 194, 161, 0.04),
-        rgba(214, 194, 161, 0.28),
-        rgba(214, 194, 161, 0.04)
-      );
-    }
-
-    .diag-beam-particle {
-      width: 2px;
-      height: 8px;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: beam-travel-v 2s linear infinite;
-    }
-
-    @keyframes beam-travel-v {
-      0% {
-        top: -8px;
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        top: 100%;
-        opacity: 0;
-      }
-    }
-
-    /* Phone smaller on mobile */
-    .diag-phone-scene {
-      max-width: 110px;
-    }
-
-    .diag-hub-scene {
-      width: 56px;
-    }
-
-    .diag-tools {
-      grid-template-columns: repeat(3, 1fr);
+  @media (max-width: 700px) {
+    .hero-diagram-wrapper {
+      zoom: 0.55;
     }
   }
 
   @media (max-width: 480px) {
-    .diag-scene {
-      padding: 20px 12px;
-      border-radius: 18px;
-    }
-
-    .diag-phone-scene {
-      max-width: 90px;
-    }
-
-    .diag-tools {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .diag-connector-badge {
-      font-size: 7px;
-      padding: 3px 8px;
+    .hero-diagram-wrapper {
+      zoom: 0.42;
     }
   }
 </style>
