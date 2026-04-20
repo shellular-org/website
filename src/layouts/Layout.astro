@@ -1,35 +1,57 @@
 ---
 import "../styles/global.css";
-import faviconUrl from '../assets/logo.ico?url';
+import faviconUrl from "../assets/logo.ico?url";
+import bannerUrl from "../assets/banner.jpeg?url";
 
 interface Props {
-	title?: string;
-	description?: string;
+  title?: string;
+  description?: string;
+  ogImage?: string;
 }
 
 const {
-	title = "Shellular - Code, review and ship from anywhere.",
-	description = "Shellular connects your mobile device to your full development environment. Terminal access, filesystem, and AI-assisted coding — anywhere.",
+  title = "Shellular - Code, review and ship from anywhere.",
+  description = "Shellular connects your mobile device to your full development environment. Terminal access, filesystem, and AI-assisted coding — anywhere.",
+  ogImage,
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl = new URL(ogImage ?? bannerUrl, Astro.site).href;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{title}</title>
-		<meta name="description" content={description} />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
-			rel="stylesheet"
-		/>
-		<meta name="generator" content={Astro.generator} />
-		<link rel="icon" href={faviconUrl} type="image/x-icon" />
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:site_name" content="Shellular" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href={faviconUrl} type="image/x-icon" />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
