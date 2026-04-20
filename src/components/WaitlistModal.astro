@@ -215,10 +215,8 @@
 
 <script>
   const WAITLIST_KEY = "shellular_waitlist_submitted";
-  const WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/27277928/uj5a3yj/";
-
-  // zapier's webhook app is only available in premium plan, and is not meant for this usecase
-  // will replace this with proper backend before launch
+  const API_URL = new URL(import.meta.env.PUBLIC_API_URL || "https://api.shellular.dev");
+  API_URL.pathname = "/api/waitlist";
 
   const modal = document.getElementById("waitlist-modal")!;
   const openBtn = document.getElementById("open-waitlist-btn") as HTMLButtonElement;
@@ -260,15 +258,30 @@
     submitBtn.textContent = "Joining...";
 
     try {
-      await fetch(WEBHOOK_URL, {
+      const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, social: social || "Not provided" }),
-        mode: "no-cors",
+        body: JSON.stringify({ name, email, social: social || undefined }),
       });
 
+      if (!res.ok) throw new Error("Server error");
+
+      const data = await res.json();
+
+      if (data.alreadyJoined) {
+        localStorage.setItem(WAITLIST_KEY, JSON.stringify({ name, email, timestamp: new Date().toISOString() }));
+        openBtn.innerHTML = "&#x2713;&nbsp;&nbsp;You're on the waitlist!";
+        openBtn.disabled = true;
+        formContent.style.display = "none";
+        const successMsg = successContent.querySelector(".success-message")!;
+        successMsg.textContent = "You're already on the waitlist!";
+        successContent.style.display = "flex";
+        setTimeout(closeModal, 3000);
+        return;
+      }
+
       localStorage.setItem(WAITLIST_KEY, JSON.stringify({ name, email, timestamp: new Date().toISOString() }));
-      openBtn.textContent = "You're on the waitlist!";
+      openBtn.innerHTML = "&#x2713;&nbsp;&nbsp;You're on the waitlist!";
       openBtn.disabled = true;
 
       formContent.style.display = "none";
