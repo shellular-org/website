@@ -1,0 +1,258 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Shellular — Scan QR" description="Scan the QR code shown by the Shellular CLI to connect your device.">
+  <div id="status">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+    <p id="status-msg">Starting camera…</p>
+  </div>
+
+  <div id="viewfinder" style="display:none">
+    <video id="video" autoplay playsinline muted></video>
+    <div class="overlay">
+      <div class="bracket">
+        <span></span>
+        <div class="scanline"></div>
+      </div>
+    </div>
+    <div id="hint">Point at the QR code shown by the CLI</div>
+  </div>
+</Layout>
+
+<style>
+  body {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  #viewfinder {
+    position: relative;
+    width: 100vw;
+    height: 100dvh;
+  }
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .bracket {
+    position: relative;
+    width: min(72vw, 72vh);
+    height: min(72vw, 72vh);
+  }
+
+  .bracket::before,
+  .bracket::after,
+  .bracket > span::before,
+  .bracket > span::after {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-color: var(--accent);
+    border-style: solid;
+    opacity: 0.9;
+  }
+
+  .bracket::before {
+    top: 0;
+    left: 0;
+    border-width: 3px 0 0 3px;
+  }
+
+  .bracket::after {
+    top: 0;
+    right: 0;
+    border-width: 3px 3px 0 0;
+  }
+
+  .bracket > span::before {
+    bottom: 0;
+    left: 0;
+    border-width: 0 0 3px 3px;
+  }
+
+  .bracket > span::after {
+    bottom: 0;
+    right: 0;
+    border-width: 0 3px 3px 0;
+  }
+
+  .scanline {
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    animation: scan 2s ease-in-out infinite;
+  }
+
+  @keyframes scan {
+    0% {
+      top: 4px;
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      top: calc(100% - 6px);
+      opacity: 0.5;
+    }
+  }
+
+  #hint {
+    position: absolute;
+    bottom: max(32px, env(safe-area-inset-bottom, 32px));
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  #status {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: var(--sky-bg);
+    text-align: center;
+    padding: 32px;
+  }
+
+  #status.hidden {
+    display: none;
+  }
+
+  #status svg {
+    opacity: 0.5;
+    color: var(--accent);
+  }
+
+  #status p {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 280px;
+    line-height: 1.5;
+  }
+
+  #status button {
+    margin-top: 8px;
+    padding: 10px 24px;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    background-color: var(--surface-soft);
+    color: var(--text-primary);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  #status button:hover {
+    background: rgba(214, 194, 161, 0.1);
+  }
+
+  #status.success svg {
+    opacity: 1;
+    color: var(--success);
+  }
+
+  #status.success p {
+    color: var(--success);
+    font-size: 16px;
+    font-weight: 500;
+  }
+</style>
+
+<script>
+  const statusEl = document.getElementById("status")!;
+  const statusMsg = document.getElementById("status-msg")!;
+  const viewfinder = document.getElementById("viewfinder")!;
+  const video = document.getElementById("video") as HTMLVideoElement;
+
+  function showError(msg: string, retryable: boolean) {
+    statusMsg.textContent = msg;
+    if (retryable) {
+      const btn = document.createElement("button");
+      btn.textContent = "Try again";
+      btn.onclick = () => {
+        btn.remove();
+        start();
+      };
+      statusEl.appendChild(btn);
+    }
+  }
+
+  async function start() {
+    let stream: MediaStream;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: { ideal: "environment" } },
+        audio: false,
+      });
+    } catch {
+      showError("Camera access was denied. Please allow camera permission and try again.", true);
+      return;
+    }
+
+    if (!("BarcodeDetector" in window)) {
+      showError("Your browser does not support barcode detection. Please update Chrome.", false);
+      stream.getTracks().forEach((t) => t.stop());
+      return;
+    }
+
+    // @ts-ignore — BarcodeDetector is not in TS lib yet
+    const detector = new BarcodeDetector({ formats: ["qr_code"] });
+
+    video.srcObject = stream;
+    statusEl.classList.add("hidden");
+    viewfinder.style.display = "block";
+
+    let done = false;
+
+    async function tick() {
+      if (done) return;
+      try {
+        const results = await detector.detect(video);
+        if (results.length) {
+          const raw = results[0].rawValue;
+          window.location.href = `acode://shellular/connect/${encodeURIComponent(raw)}`;
+          done = true;
+        }
+      } catch {
+        /* frame not ready yet */
+      }
+      requestAnimationFrame(tick);
+    }
+
+    video.addEventListener("loadedmetadata", () => requestAnimationFrame(tick), { once: true });
+  }
+
+  start();
+</script>
