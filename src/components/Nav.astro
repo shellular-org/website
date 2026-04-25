@@ -1,24 +1,24 @@
 ---
-import ShellularLogo from './ShellularLogo.astro';
+import ShellularLogo from "./ShellularLogo.astro";
 
 interface Props {
   currentPath?: string;
 }
 
 const { currentPath = Astro.url.pathname } = Astro.props;
-const isHomePage = currentPath === '/';
+const isHomePage = currentPath === "/";
 ---
 
-<nav id='nav'>
-  <a class='brand' href='/'>
+<nav id="nav">
+  <a class="brand" href="/">
     <ShellularLogo size={30} />
     Shellular
   </a>
-  <div class='links'>
-    <a href={isHomePage ? '#how' : '/#how'}>How it works</a>
-    <a href={isHomePage ? '#features' : '/#features'}>Features</a>
-    <a href='/docs'>Docs</a>
-    <button class='waitlist-nav' id='open-waitlist-btn'>Join Waitlist</button>
+  <div class="links">
+    <a href={isHomePage ? "#how" : "/#how"}>How it works</a>
+    <a href={isHomePage ? "#features" : "/#features"}>Features</a>
+    <a href="/docs">Docs</a>
+    <button class="waitlist-nav" id="open-waitlist-btn">Join Waitlist</button>
   </div>
 </nav>
 
