@@ -3,7 +3,7 @@ interface Step {
   num: number;
   title: string;
   desc: string;
-  comment: string;
+  comment?: string;
   code: string;
   delay?: string;
 }
@@ -13,14 +13,14 @@ const steps: Step[] = [
     num: 1,
     title: "Start the CLI",
     desc: "Run the CLI agent on your laptop, desktop, or cloud server. It starts the WebSocket relay and generates a session token.",
-    comment: "# works on macOS, Linux, Windows",
+    // comment: "# works on macOS, Linux, Windows",
     code: "npx shellular",
   },
   {
     num: 2,
     title: "Connect from app",
     desc: "Open Shellular on iOS, Android, or the web app and scan the QR code. No manual code entering — one scan and you're in.",
-    comment: "# iOS · Android · Web — your choice",
+    // comment: "# iOS · Android · Web — your choice",
     code: "[■■ QR scan]  →  connected",
     delay: "reveal-delay-1",
   },
@@ -28,8 +28,8 @@ const steps: Step[] = [
     num: 3,
     title: "Ship",
     desc: "Full device access at your fingertips — terminals, projects, files, AI agents, browser and more.",
-    comment: "# your entire dev stack, anywhere",
-    code: "terminals · files · AI · ports · proxy",
+    // comment: "# your entire dev stack, anywhere",
+    code: "AI agents · terminals · files · ports",
     delay: "reveal-delay-2",
   },
 ];
@@ -54,7 +54,7 @@ const steps: Step[] = [
             </div>
             <p class="step-desc">{desc}</p>
             <div class="code-block">
-              <div class="code-comment" set:html={comment} />
+              {comment && <div class="code-comment" set:html={comment} />}
               <span set:html={code} />
             </div>
           </div>

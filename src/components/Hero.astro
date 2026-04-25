@@ -7,10 +7,22 @@ import HeroDiagram from "./HeroDiagram.astro";
 
   <div class="hero-content">
     <div class="hero-copy">
-      <h1 class="reveal reveal-delay-1">Use your dev machine from your phone.</h1>
+      <h1 class="reveal reveal-delay-1">
+        <span class="hero-copy-static">Use your</span>
+        <span class="hero-rotator" aria-label="dev machine, laptop, Mac mini, EC2 box, homelab, workstation">
+          <span class="hero-rotator-track" aria-hidden="true">
+            <span>Mac minis</span>
+            <span>laptop</span>
+            <span>Desktop</span>
+            <span>homelab</span>
+            <span>servers</span>
+            <span>GPU box</span>
+          </span>
+        </span>
+        <span class="hero-copy-static">from <span class="hero-copy-phone">your phone</span>.</span>
+      </h1>
       <p class="subtitle reveal reveal-delay-2">
-        Use Codex, Claude Code, or OpenCode on the machine you already develop on. Open terminals, edit files, run
-        commands, and keep shipping when you're away from your desk.
+        Claude Code, Codex, OpenCode, Pi — access your agents, terminals, files, and ports from your phone.
       </p>
       <div class="hero-btns reveal reveal-delay-3">
         <a href="#install" class="btn-primary">
@@ -165,23 +177,100 @@ import HeroDiagram from "./HeroDiagram.astro";
   }
 
   .hero-copy h1 {
+    display: grid;
+    justify-items: start;
+    row-gap: 0.06em;
     font-size: clamp(2.35rem, 4.6vw, 4.3rem);
     font-weight: 800;
     line-height: 1.04;
     letter-spacing: -0.04em;
-    background: var(--grad-text);
+    background: linear-gradient(180deg, rgba(250, 246, 240, 0.98) 0%, rgba(229, 219, 204, 0.9) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 18px;
+    text-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
     /* max-width: 11.8ch; */
+  }
+
+  .hero-copy-static {
+    display: inline-block;
+  }
+
+  .hero-copy-phone {
+    font-style: italic;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-rotator {
+    position: relative;
+    display: inline-flex;
+    align-items: flex-start;
+    color: #f1c98d;
+    /* width: clamp(8.2ch, 18vw, 10.8ch); */
+    width: 100%;
+    text-align: left;
+    min-width: 0;
+    height: 1.08em;
+    overflow: hidden;
+    vertical-align: top;
+    mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+    -webkit-text-fill-color: currentColor;
+    text-shadow:
+      0 0 18px rgba(241, 201, 141, 0.24),
+      0 10px 22px rgba(0, 0, 0, 0.18);
+  }
+
+  .hero-rotator-track {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    animation: hero-rotate-targets 16s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+  }
+
+  .hero-rotator-track > span {
+    display: block;
+    line-height: 1.08;
+    padding-bottom: 0.02em;
+    white-space: nowrap;
+  }
+
+  @keyframes hero-rotate-targets {
+    0%,
+    13% {
+      transform: translateY(0%);
+    }
+    16%,
+    29% {
+      transform: translateY(-16.6667%);
+    }
+    32%,
+    45% {
+      transform: translateY(-33.3333%);
+    }
+    48%,
+    61% {
+      transform: translateY(-50%);
+    }
+    64%,
+    77% {
+      transform: translateY(-66.6667%);
+    }
+    80%,
+    96% {
+      transform: translateY(-83.3333%);
+    }
+    100% {
+      transform: translateY(-83.3333%);
+    }
   }
 
   .subtitle {
     font-size: clamp(14px, 1.5vw, 17px);
-    color: rgba(236, 229, 218, 0.82);
-    max-width: 52ch;
-    line-height: 1.65;
+    color: rgba(240, 232, 219, 0.9);
+    max-width: 46ch;
+    line-height: 1.55;
+    text-wrap: balance;
     margin-bottom: 28px;
   }
 
@@ -292,6 +381,14 @@ import HeroDiagram from "./HeroDiagram.astro";
       margin: 0 auto;
     }
 
+    .hero-copy h1 {
+      justify-items: center;
+    }
+
+    .hero-rotator {
+      text-align: center;
+    }
+
     .hero-copy::before {
       display: none;
     }
@@ -306,6 +403,18 @@ import HeroDiagram from "./HeroDiagram.astro";
   }
 
   @media (max-width: 700px) {
+    .hero-copy h1 {
+      row-gap: 0.02em;
+      justify-items: center;
+    }
+
+    .hero-rotator {
+      width: min(100%, 9.6ch);
+      height: 1.1em;
+      mask-image: linear-gradient(180deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    }
+
     .scroll-hint {
       bottom: 22px;
     }
@@ -317,6 +426,22 @@ import HeroDiagram from "./HeroDiagram.astro";
     .app-badge {
       justify-content: center;
       width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-rotator {
+      min-width: 0;
+      height: auto;
+      mask-image: none;
+    }
+
+    .hero-rotator-track {
+      animation: none;
+    }
+
+    .hero-rotator-track > span:not(:first-child) {
+      display: none;
     }
   }
 </style>
