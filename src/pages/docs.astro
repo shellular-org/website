@@ -1,0 +1,481 @@
+---
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.astro";
+import Layout from "../layouts/Layout.astro";
+
+const commands = [
+  ["shellular", "Run Shellular in the foreground"],
+  ["shellular start", "Start the background host and print the QR code"],
+  ["shellular stop", "Stop the background host"],
+  ["shellular status", "Show host status, PID, restart count, and logs"],
+  ["shellular logs", "Stream background host logs"],
+  ["shellular clients", "Review and approve known client devices"],
+];
+
+const options = [
+  ["--server <url>", "wss://api.shellular.dev", "Relay server WebSocket URL"],
+  ["--dir <path>", "$HOME", "Root directory exposed to the client"],
+  [
+    "--unknown-clients <policy>",
+    "requires-approval",
+    "How unknown clients are handled: always-reject, always-allow, or requires-approval",
+  ],
+  ["--install-vs-plugin", "-", "Install the VS Code extension and exit"],
+];
+---
+
+<Layout title="Shellular CLI Docs" description="How to install, start, and manage the Shellular CLI host agent.">
+  <Nav currentPath={Astro.url.pathname} />
+  <main class="docs-page">
+    <div class="docs-shell">
+      <header class="docs-hero">
+        <p class="section-label">Docs</p>
+        <h1>Shellular CLI</h1>
+        <p class="hero-copy">
+          Run the host agent on your machine, scan the QR code from the Shellular app, and work against your own
+          terminal, files, ports, and AI tools from anywhere.
+        </p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#quick-start">Quick start</a>
+          <a class="btn-secondary" href="https://www.npmjs.com/package/shellular" target="_blank" rel="noreferrer"
+            >View package</a
+          >
+        </div>
+      </header>
+
+      <div class="docs-grid">
+        <aside class="docs-sidebar">
+          <div class="sidebar-card">
+            <p class="sidebar-label">On this page</p>
+            <a href="#overview">Overview</a>
+            <a href="#requirements">Requirements</a>
+            <a href="#quick-start">Quick start</a>
+            <a href="#background-mode">Background mode</a>
+            <a href="#commands">Commands</a>
+            <a href="#options">Options</a>
+            <a href="#client-approval">Unknown client approval</a>
+            <a href="#security">Security notes</a>
+          </div>
+        </aside>
+
+        <article class="docs-content">
+          <section id="overview">
+            <h2>Overview</h2>
+            <p>
+              Shellular CLI is the host agent for Shellular. It connects your dev machine to the Shellular relay so the
+              mobile app can reach your environment securely.
+            </p>
+            <div class="feature-list">
+              <div>
+                <strong>Terminal</strong>
+                <span>Full PTY sessions that survive CLI reconnects.</span>
+              </div>
+              <div>
+                <strong>Filesystem</strong>
+                <span>Browse, read, write, rename, and delete files inside the allowed root.</span>
+              </div>
+              <div>
+                <strong>Ports and proxying</strong>
+                <span>Inspect local ports and proxy HTTP or WebSocket traffic.</span>
+              </div>
+              <div>
+                <strong>System monitor and AI</strong>
+                <span>Stream CPU, memory, battery, and route prompts to available AI tools.</span>
+              </div>
+            </div>
+          </section>
+
+          <section id="requirements">
+            <h2>Requirements</h2>
+            <ul>
+              <li>Node.js 18 or newer</li>
+              <li>macOS, Linux, or Windows</li>
+              <li>The Shellular mobile app to scan the pairing QR code</li>
+            </ul>
+          </section>
+
+          <section id="quick-start">
+            <h2>Quick start</h2>
+            <p>Start the CLI directly with npx:</p>
+            <pre><code>npx shellular</code></pre>
+            <p>
+              The CLI prints a QR code in your terminal. Scan it with the Shellular app to pair your device and connect.
+            </p>
+            <p>By default, every unknown client must be approved in the terminal before it can connect.</p>
+          </section>
+
+          <section id="background-mode">
+            <h2>Background mode</h2>
+            <p>To keep Shellular running in the background:</p>
+            <pre><code>npx shellular start</code></pre>
+            <p>
+              In daemon mode, unknown clients are not approved interactively. Use
+              <code> shellular clients </code> to review pending devices and approve them.
+            </p>
+            <p>Stop the host when you are done:</p>
+            <pre><code>npx shellular stop</code></pre>
+            <div class="callout">
+              <strong>Note</strong>
+              <p>Only one instance of Shellular can run at a time per machine.</p>
+            </div>
+          </section>
+
+          <section id="commands">
+            <h2>Commands</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    commands.map(([command, description]) => (
+                      <tr>
+                        <td>
+                          <code>{command}</code>
+                        </td>
+                        <td>{description}</td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="options">
+            <h2>Options</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Flag</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    options.map(([flag, defaultValue, description]) => (
+                      <tr>
+                        <td>
+                          <code>{flag}</code>
+                        </td>
+                        <td>
+                          <code>{defaultValue}</code>
+                        </td>
+                        <td>{description}</td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="client-approval">
+            <h2>Unknown client approval</h2>
+            <p>
+              <code>--unknown-clients</code> only applies to devices that are not already in the local approvals file.
+            </p>
+            <ul>
+              <li>
+                <strong>requires-approval</strong> is the default. In foreground mode, the CLI asks for approval in the terminal.
+              </li>
+              <li>
+                In daemon mode, <strong>requires-approval</strong> records the client as pending and rejects the connection
+                until you approve it with <code>shellular clients</code>.
+              </li>
+              <li>
+                <strong>always-allow</strong> accepts unknown clients immediately and does not modify the approvals file.
+              </li>
+              <li>
+                <strong>always-reject</strong> rejects unknown clients immediately and does not modify the approvals file.
+              </li>
+            </ul>
+          </section>
+
+          <section id="security">
+            <h2>Security notes</h2>
+            <ul>
+              <li>All messages are end-to-end encrypted.</li>
+              <li>The pairing key is exchanged out-of-band through the QR code.</li>
+              <li>Files larger than 2 MB are rejected on read.</li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .docs-page {
+    padding: 92px clamp(16px, 5vw, 56px) 72px;
+  }
+
+  .docs-shell {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .docs-hero {
+    margin-bottom: 44px;
+    padding: clamp(28px, 5vw, 48px);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at top right, rgba(214, 194, 161, 0.13), transparent 36%),
+      linear-gradient(180deg, rgba(30, 30, 34, 0.9), rgba(17, 17, 20, 0.92));
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
+  }
+
+  .docs-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+    margin-bottom: 18px;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-copy {
+    max-width: 720px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+
+  .docs-grid {
+    display: grid;
+    grid-template-columns: minmax(210px, 260px) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+  }
+
+  .docs-sidebar {
+    position: sticky;
+    top: 84px;
+  }
+
+  .sidebar-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    border-radius: 22px;
+    border: 1px solid var(--card-border);
+    background: var(--surface-strong);
+  }
+
+  .sidebar-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent2);
+  }
+
+  .sidebar-card a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+  }
+
+  .sidebar-card a:hover {
+    color: var(--accent);
+  }
+
+  .docs-content {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .docs-content section {
+    padding: 28px;
+    border-radius: 24px;
+    border: 1px solid var(--line-soft);
+    background: rgba(20, 20, 24, 0.74);
+  }
+
+  .docs-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+  }
+
+  .docs-content p,
+  .docs-content li,
+  .docs-content td,
+  .docs-content th {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-muted);
+  }
+
+  .docs-content p + p,
+  .docs-content p + .callout,
+  .docs-content p + .table-wrap,
+  .docs-content p + ul,
+  .docs-content p + pre,
+  .docs-content pre + p,
+  .docs-content ul + p {
+    margin-top: 14px;
+  }
+
+  .docs-content ul {
+    padding-left: 20px;
+    display: grid;
+    gap: 8px;
+  }
+
+  .feature-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .feature-list div {
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(245, 241, 232, 0.03);
+    border: 1px solid rgba(214, 194, 161, 0.12);
+  }
+
+  .feature-list strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+  }
+
+  .feature-list span {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  pre {
+    overflow-x: auto;
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: #0a0b0d;
+    border: 1px solid rgba(214, 194, 161, 0.12);
+  }
+
+  code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  p code,
+  li code,
+  td code {
+    background: rgba(214, 194, 161, 0.08);
+    border: 1px solid var(--card-border);
+    padding: 2px 6px;
+    border-radius: 6px;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 14px 12px;
+    border-bottom: 1px solid rgba(214, 194, 161, 0.08);
+    vertical-align: top;
+  }
+
+  th {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .callout {
+    margin-top: 18px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    background: rgba(214, 194, 161, 0.06);
+    border: 1px solid rgba(214, 194, 161, 0.12);
+  }
+
+  .callout strong {
+    display: inline-block;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 920px) {
+    .docs-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .docs-sidebar {
+      position: static;
+    }
+
+    .sidebar-card {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 16px;
+    }
+
+    .sidebar-label {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .docs-page {
+      padding-top: 80px;
+    }
+
+    .docs-content section,
+    .docs-hero {
+      padding: 22px;
+      border-radius: 22px;
+    }
+
+    .feature-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .sidebar-card {
+      grid-template-columns: 1fr;
+    }
+
+    th,
+    td {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+</style>
