@@ -4,32 +4,47 @@ import Nav from "../components/Nav.astro";
 import Layout from "../layouts/Layout.astro";
 
 const commands = [
-  ["shellular", "Run Shellular in the foreground"],
-  ["shellular start", "Start the background host and print the QR code"],
-  ["shellular stop", "Stop the background host"],
-  ["shellular status", "Show host status, PID, restart count, and logs"],
-  ["shellular logs", "Stream background host logs"],
-  ["shellular clients", "Review and approve known client devices"],
+  { cmd: "shellular", desc: "Run Shellular in the foreground" },
+  { cmd: "shellular start", desc: "Start the background host and print the QR code" },
+  { cmd: "shellular stop", desc: "Stop the background host" },
+  { cmd: "shellular status", desc: "Show host status, PID, restart count, and logs" },
+  { cmd: "shellular logs", desc: "Stream background host logs" },
+  { cmd: "shellular clients", desc: "Review and approve known client devices" },
 ];
 
 const options = [
-  ["--server <url>", "wss://api.shellular.dev", "Relay server WebSocket URL"],
-  ["--dir <path>", "$HOME", "Root directory exposed to the client"],
-  [
-    "--unknown-clients <policy>",
-    "requires-approval",
-    "How unknown clients are handled: always-reject, always-allow, or requires-approval",
-  ],
-  ["--install-vs-plugin", "-", "Install the VS Code extension and exit"],
+  { flag: "--server <url>", def: "wss://api.shellular.dev", desc: "Relay server WebSocket URL" },
+  { flag: "--dir <path>", def: "$HOME", desc: "Root directory exposed to the client" },
+  {
+    flag: "--unknown-clients <policy>",
+    def: "requires-approval",
+    desc: "How unknown clients are handled: always-reject, always-allow, or requires-approval",
+  },
+  { flag: "--install-vs-plugin", def: "—", desc: "Install the VS Code extension and exit" },
+];
+
+const clientsOptions = [{ flag: "--delete <clientId>", desc: "Delete a known client from the store" }];
+
+const sections = [
+  { id: "overview", label: "Overview" },
+  { id: "requirements", label: "Requirements" },
+  { id: "quick-start", label: "Quick start" },
+  { id: "background-mode", label: "Background mode" },
+  { id: "commands", label: "Commands" },
+  { id: "options", label: "Options" },
+  { id: "client-approval", label: "Client approval" },
+  { id: "security", label: "Security" },
 ];
 ---
 
 <Layout title="Shellular CLI Docs" description="How to install, start, and manage the Shellular CLI host agent.">
   <Nav currentPath={Astro.url.pathname} />
+
   <main class="docs-page">
-    <div class="docs-shell">
-      <header class="docs-hero">
-        <p class="section-label">Docs</p>
+    <!-- Hero -->
+    <header class="docs-hero">
+      <div class="docs-hero-inner">
+        <p class="section-label">Documentation</p>
         <h1>Shellular CLI</h1>
         <p class="hero-copy">
           Run the host agent on your machine, scan the QR code from the Shellular app, and work against your own
@@ -38,208 +53,222 @@ const options = [
         <div class="hero-actions">
           <a class="btn-primary" href="#quick-start">Quick start</a>
           <a class="btn-secondary" href="https://www.npmjs.com/package/shellular" target="_blank" rel="noreferrer"
-            >View package</a
+            >npm package ↗</a
           >
         </div>
-      </header>
-
-      <div class="docs-grid">
-        <aside class="docs-sidebar">
-          <div class="sidebar-card">
-            <p class="sidebar-label">On this page</p>
-            <a href="#overview">Overview</a>
-            <a href="#requirements">Requirements</a>
-            <a href="#quick-start">Quick start</a>
-            <a href="#background-mode">Background mode</a>
-            <a href="#commands">Commands</a>
-            <a href="#options">Options</a>
-            <a href="#client-approval">Unknown client approval</a>
-            <a href="#security">Security notes</a>
-          </div>
-        </aside>
-
-        <article class="docs-content">
-          <section id="overview">
-            <h2>Overview</h2>
-            <p>
-              Shellular CLI is the host agent for Shellular. It connects your dev machine to the Shellular relay so the
-              mobile app can reach your environment securely.
-            </p>
-            <div class="feature-list">
-              <div>
-                <strong>Terminal</strong>
-                <span>Full PTY sessions that survive CLI reconnects.</span>
-              </div>
-              <div>
-                <strong>Filesystem</strong>
-                <span>Browse, read, write, rename, and delete files inside the allowed root.</span>
-              </div>
-              <div>
-                <strong>Ports and proxying</strong>
-                <span>Inspect local ports and proxy HTTP or WebSocket traffic.</span>
-              </div>
-              <div>
-                <strong>System monitor and AI</strong>
-                <span>Stream CPU, memory, battery, and route prompts to available AI tools.</span>
-              </div>
-            </div>
-          </section>
-
-          <section id="requirements">
-            <h2>Requirements</h2>
-            <ul>
-              <li>Node.js 18 or newer</li>
-              <li>macOS, Linux, or Windows</li>
-              <li>The Shellular mobile app to scan the pairing QR code</li>
-            </ul>
-          </section>
-
-          <section id="quick-start">
-            <h2>Quick start</h2>
-            <p>Start the CLI directly with npx:</p>
-            <pre><code>npx shellular</code></pre>
-            <p>
-              The CLI prints a QR code in your terminal. Scan it with the Shellular app to pair your device and connect.
-            </p>
-            <p>By default, every unknown client must be approved in the terminal before it can connect.</p>
-          </section>
-
-          <section id="background-mode">
-            <h2>Background mode</h2>
-            <p>To keep Shellular running in the background:</p>
-            <pre><code>npx shellular start</code></pre>
-            <p>
-              In daemon mode, unknown clients are not approved interactively. Use
-              <code> shellular clients </code> to review pending devices and approve them.
-            </p>
-            <p>Stop the host when you are done:</p>
-            <pre><code>npx shellular stop</code></pre>
-            <div class="callout">
-              <strong>Note</strong>
-              <p>Only one instance of Shellular can run at a time per machine.</p>
-            </div>
-          </section>
-
-          <section id="commands">
-            <h2>Commands</h2>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Command</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    commands.map(([command, description]) => (
-                      <tr>
-                        <td>
-                          <code>{command}</code>
-                        </td>
-                        <td>{description}</td>
-                      </tr>
-                    ))
-                  }
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section id="options">
-            <h2>Options</h2>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Flag</th>
-                    <th>Default</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    options.map(([flag, defaultValue, description]) => (
-                      <tr>
-                        <td>
-                          <code>{flag}</code>
-                        </td>
-                        <td>
-                          <code>{defaultValue}</code>
-                        </td>
-                        <td>{description}</td>
-                      </tr>
-                    ))
-                  }
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section id="client-approval">
-            <h2>Unknown client approval</h2>
-            <p>
-              <code>--unknown-clients</code> only applies to devices that are not already in the local approvals file.
-            </p>
-            <ul>
-              <li>
-                <strong>requires-approval</strong> is the default. In foreground mode, the CLI asks for approval in the terminal.
-              </li>
-              <li>
-                In daemon mode, <strong>requires-approval</strong> records the client as pending and rejects the connection
-                until you approve it with <code>shellular clients</code>.
-              </li>
-              <li>
-                <strong>always-allow</strong> accepts unknown clients immediately and does not modify the approvals file.
-              </li>
-              <li>
-                <strong>always-reject</strong> rejects unknown clients immediately and does not modify the approvals file.
-              </li>
-            </ul>
-          </section>
-
-          <section id="security">
-            <h2>Security notes</h2>
-            <ul>
-              <li>All messages are end-to-end encrypted.</li>
-              <li>The pairing key is exchanged out-of-band through the QR code.</li>
-              <li>Files larger than 2 MB are rejected on read.</li>
-            </ul>
-          </section>
-        </article>
       </div>
+    </header>
+
+    <!-- Sticky section nav -->
+    <nav class="section-nav" aria-label="Page sections">
+      <div class="section-nav-inner">
+        {
+          sections.map((s) => (
+            <a href={`#${s.id}`} class="section-pill">
+              {s.label}
+            </a>
+          ))
+        }
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="docs-body">
+      <section id="overview" class="doc-section">
+        <h2>Overview</h2>
+        <p>
+          Shellular CLI is the host agent for Shellular. It connects your dev machine to the Shellular relay so the
+          mobile app can reach your environment securely.
+        </p>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="feature-icon">⌨</span>
+            <strong>Terminal</strong>
+            <span>Full PTY sessions that survive CLI reconnects.</span>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🗂</span>
+            <strong>Filesystem</strong>
+            <span>Browse, read, write, rename, and delete files inside the allowed root.</span>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🔌</span>
+            <strong>Ports &amp; proxying</strong>
+            <span>Inspect local ports and proxy HTTP or WebSocket traffic.</span>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🤖</span>
+            <strong>System &amp; AI</strong>
+            <span>Stream CPU, memory, battery, and route prompts to available AI tools.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="requirements" class="doc-section">
+        <h2>Requirements</h2>
+        <ul class="check-list">
+          <li>Node.js 18 or newer</li>
+          <li>macOS, Linux, or Windows</li>
+          <li>The Shellular mobile app to scan the pairing QR code</li>
+        </ul>
+      </section>
+
+      <section id="quick-start" class="doc-section">
+        <h2>Quick start</h2>
+        <p>Start the CLI directly with npx — no install needed:</p>
+        <div class="code-block">
+          <span class="code-label">terminal</span>
+          <pre><code>npx shellular</code></pre>
+        </div>
+        <p>
+          The CLI prints a QR code in your terminal. Scan it with the Shellular app to pair your device and connect. By
+          default, every unknown client must be approved before it can connect.
+        </p>
+      </section>
+
+      <section id="background-mode" class="doc-section">
+        <h2>Background mode</h2>
+        <p>To keep Shellular running after you close your terminal:</p>
+        <div class="code-block">
+          <span class="code-label">terminal</span>
+          <pre><code>npx shellular start</code></pre>
+        </div>
+        <p>
+          In daemon mode, clients are not approved interactively. Run <code>shellular clients</code> to review pending devices
+          and approve them from any terminal.
+        </p>
+        <p>Stop the host when you are done:</p>
+        <div class="code-block">
+          <span class="code-label">terminal</span>
+          <pre><code>npx shellular stop</code></pre>
+        </div>
+        <div class="callout">
+          <strong>Note</strong>
+          <p>Only one instance of Shellular can run at a time per machine.</p>
+        </div>
+      </section>
+
+      <section id="commands" class="doc-section">
+        <h2>Commands</h2>
+        <div class="cmd-list">
+          {
+            commands.map(({ cmd, desc }) => (
+              <div class="cmd-row">
+                <code class="cmd-name">{cmd}</code>
+                <span class="cmd-desc">{desc}</span>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="options" class="doc-section">
+        <h2>Options</h2>
+        <p>Global flags that apply to all commands:</p>
+        <div class="opt-list">
+          {
+            options.map(({ flag, def, desc }) => (
+              <div class="opt-row">
+                <div class="opt-meta">
+                  <code class="opt-flag">{flag}</code>
+                  <span class="opt-default">
+                    default: <code>{def}</code>
+                  </span>
+                </div>
+                <span class="opt-desc">{desc}</span>
+              </div>
+            ))
+          }
+        </div>
+        <h3 class="subsection-title"><code>shellular clients</code> flags</h3>
+        <div class="opt-list">
+          {
+            clientsOptions.map(({ flag, desc }) => (
+              <div class="opt-row">
+                <div class="opt-meta">
+                  <code class="opt-flag">{flag}</code>
+                </div>
+                <span class="opt-desc">{desc}</span>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="client-approval" class="doc-section">
+        <h2>Unknown client approval</h2>
+        <p>
+          <code>--unknown-clients</code> only applies to devices not already in the local approvals file. Once a client is
+          approved or rejected it is remembered.
+        </p>
+        <div class="policy-list">
+          <div class="policy-row">
+            <code class="policy-name">requires-approval</code>
+            <p>
+              Default. In foreground mode the CLI asks interactively. In daemon mode the connection is held pending
+              until you run <code>shellular clients</code>.
+            </p>
+          </div>
+          <div class="policy-row">
+            <code class="policy-name">always-allow</code>
+            <p>Accepts unknown clients immediately without writing to the approvals file.</p>
+          </div>
+          <div class="policy-row">
+            <code class="policy-name">always-reject</code>
+            <p>Rejects unknown clients immediately without writing to the approvals file.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="security" class="doc-section">
+        <h2>Security notes</h2>
+        <ul class="check-list">
+          <li>All messages are end-to-end encrypted.</li>
+          <li>The pairing key is exchanged out-of-band through the QR code.</li>
+          <li>Files larger than 2 MB are rejected on read.</li>
+        </ul>
+      </section>
     </div>
   </main>
+
   <Footer />
 </Layout>
 
 <style>
+  /* ── Page shell ───────────────────────────────────────── */
   .docs-page {
-    padding: 92px clamp(16px, 5vw, 56px) 72px;
+    padding-top: 76px; /* clears Nav */
   }
 
-  .docs-shell {
-    max-width: 1180px;
-    margin: 0 auto;
-  }
-
+  /* ── Hero ─────────────────────────────────────────────── */
   .docs-hero {
-    margin-bottom: 44px;
-    padding: clamp(28px, 5vw, 48px);
-    border: 1px solid var(--card-border);
-    border-radius: 28px;
+    border-bottom: 1px solid var(--line-soft);
     background:
-      radial-gradient(circle at top right, rgba(214, 194, 161, 0.13), transparent 36%),
-      linear-gradient(180deg, rgba(30, 30, 34, 0.9), rgba(17, 17, 20, 0.92));
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
+      radial-gradient(ellipse 80% 60% at 60% 0%, rgba(214, 194, 161, 0.09), transparent 70%),
+      linear-gradient(180deg, rgba(20, 20, 24, 0.95), rgba(13, 13, 15, 0.98));
   }
 
-  .docs-hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+  .docs-hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: clamp(40px, 7vw, 80px) clamp(20px, 5vw, 48px) clamp(36px, 5vw, 60px);
+  }
+
+  .docs-hero-inner .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent2);
+    margin-bottom: 16px;
+  }
+
+  .docs-hero-inner h1 {
+    font-size: clamp(2.4rem, 6vw, 4rem);
     font-weight: 800;
     letter-spacing: -0.05em;
-    line-height: 0.95;
-    margin-bottom: 18px;
+    line-height: 1;
+    margin-bottom: 20px;
     background: var(--grad-text);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -247,139 +276,104 @@ const options = [
   }
 
   .hero-copy {
-    max-width: 720px;
-    font-size: 18px;
-    line-height: 1.7;
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.75;
     color: var(--text-muted);
+    max-width: 640px;
   }
 
   .hero-actions {
     display: flex;
-    gap: 14px;
+    gap: 12px;
     flex-wrap: wrap;
     margin-top: 28px;
   }
 
-  .docs-grid {
-    display: grid;
-    grid-template-columns: minmax(210px, 260px) minmax(0, 1fr);
-    gap: 28px;
-    align-items: start;
-  }
-
-  .docs-sidebar {
+  /* ── Section nav ──────────────────────────────────────── */
+  .section-nav {
     position: sticky;
-    top: 84px;
+    top: 60px; /* below Nav */
+    z-index: 40;
+    border-bottom: 1px solid var(--line-soft);
+    background: rgba(13, 13, 15, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
 
-  .sidebar-card {
+  .section-nav-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 48px);
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 20px;
-    border-radius: 22px;
-    border: 1px solid var(--card-border);
-    background: var(--surface-strong);
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .sidebar-label {
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent2);
+  .section-nav-inner::-webkit-scrollbar {
+    display: none;
   }
 
-  .sidebar-card a {
+  .section-pill {
+    flex-shrink: 0;
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 500;
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 14px;
-    line-height: 1.4;
-    transition: color 0.2s ease;
+    border-bottom: 2px solid transparent;
+    transition:
+      color 0.18s,
+      border-color 0.18s;
+    white-space: nowrap;
   }
 
-  .sidebar-card a:hover {
+  .section-pill:hover {
     color: var(--accent);
+    border-bottom-color: var(--accent2);
   }
 
-  .docs-content {
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
+  /* ── Docs body ────────────────────────────────────────── */
+  .docs-body {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 48px) 96px;
   }
 
-  .docs-content section {
-    padding: 28px;
-    border-radius: 24px;
-    border: 1px solid var(--line-soft);
-    background: rgba(20, 20, 24, 0.74);
+  /* ── Section ──────────────────────────────────────────── */
+  .doc-section {
+    padding: 48px 0 44px;
+    border-bottom: 1px solid var(--line-soft);
   }
 
-  .docs-content h2 {
-    font-size: 1.5rem;
-    margin-bottom: 14px;
-    color: var(--text-primary);
+  .doc-section:last-child {
+    border-bottom: none;
+  }
+
+  .doc-section h2 {
+    font-size: clamp(1.25rem, 3vw, 1.6rem);
+    font-weight: 700;
     letter-spacing: -0.03em;
-  }
-
-  .docs-content p,
-  .docs-content li,
-  .docs-content td,
-  .docs-content th {
-    font-size: 15px;
-    line-height: 1.75;
-    color: var(--text-muted);
-  }
-
-  .docs-content p + p,
-  .docs-content p + .callout,
-  .docs-content p + .table-wrap,
-  .docs-content p + ul,
-  .docs-content p + pre,
-  .docs-content pre + p,
-  .docs-content ul + p {
-    margin-top: 14px;
-  }
-
-  .docs-content ul {
-    padding-left: 20px;
-    display: grid;
-    gap: 8px;
-  }
-
-  .feature-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    margin-top: 18px;
-  }
-
-  .feature-list div {
-    padding: 16px;
-    border-radius: 18px;
-    background: rgba(245, 241, 232, 0.03);
-    border: 1px solid rgba(214, 194, 161, 0.12);
-  }
-
-  .feature-list strong {
-    display: block;
-    margin-bottom: 6px;
     color: var(--text-primary);
+    margin-bottom: 18px;
   }
 
-  .feature-list span {
+  .doc-section p {
+    font-size: 15px;
+    line-height: 1.8;
     color: var(--text-muted);
-    font-size: 14px;
-    line-height: 1.6;
   }
 
-  pre {
-    overflow-x: auto;
-    padding: 16px 18px;
-    border-radius: 16px;
-    background: #0a0b0d;
-    border: 1px solid rgba(214, 194, 161, 0.12);
+  .doc-section p + p,
+  .doc-section p + .code-block,
+  .doc-section .code-block + p,
+  .doc-section p + .callout,
+  .doc-section p + ul {
+    margin-top: 16px;
   }
 
+  /* ── Inline code ──────────────────────────────────────── */
   code {
     font-family: "JetBrains Mono", monospace;
     font-size: 13px;
@@ -387,95 +381,303 @@ const options = [
   }
 
   p code,
-  li code,
-  td code {
+  li code {
     background: rgba(214, 194, 161, 0.08);
     border: 1px solid var(--card-border);
-    padding: 2px 6px;
+    padding: 2px 7px;
     border-radius: 6px;
   }
 
-  .table-wrap {
-    overflow-x: auto;
+  /* ── Code block ───────────────────────────────────────── */
+  .code-block {
+    position: relative;
+    margin-top: 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(214, 194, 161, 0.14);
+    background: #08090b;
+    overflow: hidden;
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  th,
-  td {
-    text-align: left;
-    padding: 14px 12px;
-    border-bottom: 1px solid rgba(214, 194, 161, 0.08);
-    vertical-align: top;
-  }
-
-  th {
-    color: var(--text-primary);
+  .code-label {
+    display: block;
+    padding: 8px 16px;
+    font-size: 11px;
     font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    border-bottom: 1px solid rgba(214, 194, 161, 0.08);
   }
 
+  .code-block pre {
+    margin: 0;
+    padding: 18px 20px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+  }
+
+  .code-block pre code {
+    font-size: 14px;
+    color: var(--accent);
+  }
+
+  /* ── Check list ───────────────────────────────────────── */
+  .check-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .check-list li {
+    padding: 14px 16px 14px 44px;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    border-radius: 12px;
+    background: rgba(245, 241, 232, 0.03);
+    border: 1px solid rgba(214, 194, 161, 0.08);
+  }
+
+  .check-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    font-size: 13px;
+    color: var(--accent2);
+    font-weight: 700;
+  }
+
+  /* ── Feature grid ─────────────────────────────────────── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .feature-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px;
+    border-radius: 16px;
+    background: rgba(245, 241, 232, 0.03);
+    border: 1px solid rgba(214, 194, 161, 0.1);
+  }
+
+  .feature-icon {
+    font-size: 20px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .feature-card strong {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .feature-card span {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  /* ── Commands list ────────────────────────────────────── */
+  .cmd-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .cmd-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: rgba(245, 241, 232, 0.025);
+    border: 1px solid rgba(214, 194, 161, 0.08);
+    flex-wrap: wrap;
+  }
+
+  .cmd-name {
+    flex-shrink: 0;
+    font-size: 13px;
+    color: var(--accent);
+    background: rgba(214, 194, 161, 0.08);
+    border: 1px solid var(--card-border);
+    padding: 3px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+  .cmd-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* ── Options list ─────────────────────────────────────── */
+  .opt-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .opt-row {
+    padding: 16px 18px;
+    border-radius: 14px;
+    background: rgba(245, 241, 232, 0.025);
+    border: 1px solid rgba(214, 194, 161, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .opt-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .opt-flag {
+    font-size: 13px;
+    color: var(--accent);
+    background: rgba(214, 194, 161, 0.08);
+    border: 1px solid var(--card-border);
+    padding: 3px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+  .opt-default {
+    font-size: 12px;
+    color: var(--accent2);
+  }
+
+  .opt-default code {
+    font-size: 12px;
+    color: var(--accent2);
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .opt-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  .subsection-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin: 24px 0 10px;
+    letter-spacing: 0.01em;
+  }
+
+  .subsection-title code {
+    font-size: 13px;
+    color: var(--accent);
+    background: rgba(214, 194, 161, 0.08);
+    border: 1px solid var(--card-border);
+    padding: 2px 7px;
+    border-radius: 6px;
+  }
+
+  /* ── Policy list ──────────────────────────────────────── */
+  .policy-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .policy-row {
+    padding: 16px 18px;
+    border-radius: 14px;
+    background: rgba(245, 241, 232, 0.025);
+    border: 1px solid rgba(214, 194, 161, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .policy-name {
+    align-self: flex-start;
+    font-size: 13px;
+    color: var(--accent);
+    background: rgba(214, 194, 161, 0.08);
+    border: 1px solid var(--card-border);
+    padding: 3px 10px;
+    border-radius: 8px;
+  }
+
+  .policy-row p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  /* ── Callout ──────────────────────────────────────────── */
   .callout {
     margin-top: 18px;
     padding: 16px 18px;
-    border-radius: 18px;
-    background: rgba(214, 194, 161, 0.06);
-    border: 1px solid rgba(214, 194, 161, 0.12);
+    border-radius: 14px;
+    background: rgba(214, 194, 161, 0.05);
+    border: 1px solid rgba(214, 194, 161, 0.14);
   }
 
   .callout strong {
-    display: inline-block;
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
     margin-bottom: 6px;
-    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
-  @media (max-width: 920px) {
-    .docs-grid {
+  .callout p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  /* ── Responsive ───────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .feature-grid {
       grid-template-columns: 1fr;
     }
 
-    .docs-sidebar {
-      position: static;
+    .cmd-row {
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
     }
 
-    .sidebar-card {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px 16px;
+    .docs-hero-inner h1 {
+      font-size: 2rem;
     }
 
-    .sidebar-label {
-      grid-column: 1 / -1;
-    }
-  }
-
-  @media (max-width: 720px) {
-    .docs-page {
-      padding-top: 80px;
+    .section-pill {
+      padding: 12px 12px;
+      font-size: 12px;
     }
 
-    .docs-content section,
-    .docs-hero {
-      padding: 22px;
-      border-radius: 22px;
-    }
-
-    .feature-list {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 560px) {
-    .sidebar-card {
-      grid-template-columns: 1fr;
-    }
-
-    th,
-    td {
-      padding-left: 0;
-      padding-right: 0;
+    .doc-section {
+      padding: 36px 0 32px;
     }
   }
 </style>
