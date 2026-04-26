@@ -1,0 +1,142 @@
+---
+import { Lock, Shield, QrCode, UserCheck, FileX } from "@lucide/astro";
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+
+const points = [
+  {
+    Icon: Lock,
+    title: "End-to-end encrypted",
+    desc: "Every message between the app and your machine is encrypted end-to-end.",
+  },
+  {
+    Icon: Shield,
+    title: "TLS in transit",
+    desc: "All traffic runs over TLS — no unencrypted connections at all!",
+  },
+  {
+    Icon: QrCode,
+    title: "Out-of-band pairing",
+    desc: "The pairing key is exchanged through the QR code, never over the network.",
+  },
+  {
+    Icon: UserCheck,
+    title: "Explicit client approval",
+    desc: "Every new device must be approved by you on the host before it can connect.",
+  },
+  {
+    Icon: FileX,
+    title: "File size limits",
+    desc: "Files larger than 2 MB are rejected on read.",
+  },
+];
+---
+
+{
+  compact ? (
+    <ul class="sec-list">
+      {points.map(({ Icon, title, desc }) => (
+        <li class="sec-item">
+          <div class="sec-icon">
+            <Icon size={16} aria-hidden="true" />
+          </div>
+          <div class="sec-text">
+            <strong>{title}</strong>
+            <span>{desc}</span>
+          </div>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <section id="security">
+      <h2 class="section-title reveal reveal-delay-1">
+        Built secure
+        <>
+          <br />
+          <span>by default</span>
+        </>
+      </h2>
+      <ul class="sec-list reveal reveal-delay-3">
+        {points.map(({ Icon, title, desc }) => (
+          <li class="sec-item">
+            <div class="sec-icon">
+              <Icon size={16} aria-hidden="true" />
+            </div>
+            <div class="sec-text">
+              <strong>{title}</strong>
+              <span>{desc}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+<style>
+  /* ── Landing page wrapper ────────────────────────────── */
+  #security {
+    padding: clamp(70px, 10vw, 110px) clamp(16px, 8vw, 80px) clamp(60px, 8vw, 100px);
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  #security .sec-list {
+    margin-top: 40px;
+    text-align: left;
+  }
+
+  /* ── Shared list ─────────────────────────────────────── */
+  .sec-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .sec-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(245, 241, 232, 0.03);
+    border: 1px solid rgba(214, 194, 161, 0.08);
+  }
+
+  .sec-icon {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    color: var(--accent2);
+    border-radius: 8px;
+    background: rgba(214, 194, 161, 0.07);
+    border: 1px solid rgba(214, 194, 161, 0.1);
+    margin-top: 1px;
+  }
+
+  .sec-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .sec-text strong {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .sec-text span {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+</style>

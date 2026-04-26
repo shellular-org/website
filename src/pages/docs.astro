@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
+import Security from "../components/Security.astro";
 import Layout from "../layouts/Layout.astro";
 
 const commands = [
@@ -46,10 +47,27 @@ const sections = [
       <div class="docs-hero-inner">
         <p class="section-label">Documentation</p>
         <h1>Shellular CLI</h1>
-        <p class="hero-copy">
-          Run the host agent on your machine, scan the QR code from the Shellular app, and work against your own
-          terminal, files, ports, and AI tools from anywhere.
-        </p>
+
+        <div>
+          <h4 style="color: var(--text-muted); font-weight: normal;">Get started in just 3 steps:</h4>
+          <ol class="hero-steps">
+            <li>
+              Run <code>npx shellular</code>
+            </li>
+            <li>Scan the QR code with the Shellular app</li>
+            <li>Approve the device</li>
+          </ol>
+          <div class="hero-features">
+            <span>Terminal</span>
+            <span class="feature-highlight">Agents</span>
+            <span>Files</span>
+            <span>Git</span>
+            <span class="feature-highlight">Browser &amp; DevTools</span>
+            <span>Resource Monitor</span>
+            <span>Ports</span>
+          </div>
+        </div>
+
         <div class="hero-actions">
           <a class="btn-primary" href="#quick-start">Quick start</a>
           <a class="btn-secondary" href="https://www.npmjs.com/package/shellular" target="_blank" rel="noreferrer"
@@ -80,28 +98,6 @@ const sections = [
           Shellular CLI is the host agent for Shellular. It connects your dev machine to the Shellular relay so the
           mobile app can reach your environment securely.
         </p>
-        <div class="feature-grid">
-          <div class="feature-card">
-            <span class="feature-icon">⌨</span>
-            <strong>Terminal</strong>
-            <span>Full PTY sessions that survive CLI reconnects.</span>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🗂</span>
-            <strong>Filesystem</strong>
-            <span>Browse, read, write, rename, and delete files inside the allowed root.</span>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🔌</span>
-            <strong>Ports &amp; proxying</strong>
-            <span>Inspect local ports and proxy HTTP or WebSocket traffic.</span>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🤖</span>
-            <strong>System &amp; AI</strong>
-            <span>Stream CPU, memory, battery, and route prompts to available AI tools.</span>
-          </div>
-        </div>
       </section>
 
       <section id="requirements" class="doc-section">
@@ -221,12 +217,8 @@ const sections = [
       </section>
 
       <section id="security" class="doc-section">
-        <h2>Security notes</h2>
-        <ul class="check-list">
-          <li>All messages are end-to-end encrypted.</li>
-          <li>The pairing key is exchanged out-of-band through the QR code.</li>
-          <li>Files larger than 2 MB are rejected on read.</li>
-        </ul>
+        <h2>Security</h2>
+        <Security compact />
       </section>
     </div>
   </main>
@@ -237,15 +229,13 @@ const sections = [
 <style>
   /* ── Page shell ───────────────────────────────────────── */
   .docs-page {
-    padding-top: 76px; /* clears Nav */
+    padding-top: 60px; /* clears fixed Nav */
   }
 
   /* ── Hero ─────────────────────────────────────────────── */
   .docs-hero {
     border-bottom: 1px solid var(--line-soft);
-    background:
-      radial-gradient(ellipse 80% 60% at 60% 0%, rgba(214, 194, 161, 0.09), transparent 70%),
-      linear-gradient(180deg, rgba(20, 20, 24, 0.95), rgba(13, 13, 15, 0.98));
+    background: #0d0d0f;
   }
 
   .docs-hero-inner {
@@ -274,12 +264,64 @@ const sections = [
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  .hero-steps {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+    counter-reset: steps;
+  }
 
-  .hero-copy {
-    font-size: clamp(15px, 2vw, 18px);
-    line-height: 1.75;
+  .hero-steps li {
+    counter-increment: steps;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
     color: var(--text-muted);
-    max-width: 640px;
+    line-height: 1.5;
+  }
+
+  .hero-steps li::before {
+    content: counter(steps);
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(214, 194, 161, 0.1);
+    border: 1px solid var(--card-border);
+    display: inline-grid;
+    place-items: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent2);
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .hero-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .hero-features span {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: rgba(214, 194, 161, 0.05);
+    border: 1px solid rgba(214, 194, 161, 0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .hero-features .feature-highlight {
+    color: var(--accent);
+    background: rgba(214, 194, 161, 0.12);
+    border-color: rgba(214, 194, 161, 0.32);
+    font-weight: 600;
   }
 
   .hero-actions {
@@ -292,7 +334,7 @@ const sections = [
   /* ── Section nav ──────────────────────────────────────── */
   .section-nav {
     position: sticky;
-    top: 60px; /* below Nav */
+    top: 60px;
     z-index: 40;
     border-bottom: 1px solid var(--line-soft);
     background: rgba(13, 13, 15, 0.88);
@@ -452,42 +494,6 @@ const sections = [
     font-size: 13px;
     color: var(--accent2);
     font-weight: 700;
-  }
-
-  /* ── Feature grid ─────────────────────────────────────── */
-  .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 24px;
-  }
-
-  .feature-card {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 20px;
-    border-radius: 16px;
-    background: rgba(245, 241, 232, 0.03);
-    border: 1px solid rgba(214, 194, 161, 0.1);
-  }
-
-  .feature-icon {
-    font-size: 20px;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .feature-card strong {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-
-  .feature-card span {
-    font-size: 14px;
-    line-height: 1.65;
-    color: var(--text-muted);
   }
 
   /* ── Commands list ────────────────────────────────────── */
