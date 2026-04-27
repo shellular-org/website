@@ -1,27 +1,27 @@
 ---
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import Layout from '../layouts/Layout.astro';
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-  title='Contact Us — Shellular'
-  description='Contact Shellular and Foxbiz Software Private Limited for support, partnerships, or general questions.'>
+  title="Contact Us — Shellular"
+  description="Contact Shellular team for support, partnerships, or general questions."
+>
   <Nav />
-  <main class='legal-page'>
-    <div class='legal-container'>
-      <header class='legal-header'>
-        <p class='section-label'>Contact</p>
+  <main class="legal-page">
+    <div class="legal-container">
+      <header class="legal-header">
+        <p class="section-label">Contact</p>
         <h1>Contact Us</h1>
-        <p class='meta'>Shellular by Foxbiz Software Private Limited</p>
+        <p class="meta">Shellular</p>
       </header>
 
-      <div class='legal-body'>
+      <div class="legal-body">
         <section>
           <h2>Get In Touch</h2>
           <p>
-            Have a question, feedback, or a partnership idea? Reach out and we
-            will get back to you as soon as possible.
+            Have a question, feedback, or a partnership idea? Reach out and we will get back to you as soon as possible.
           </p>
         </section>
 
@@ -29,26 +29,9 @@ import Layout from '../layouts/Layout.astro';
           <h2>Email</h2>
           <ul>
             <li>
-              Primary: <a href='mailto:contact@shellular.dev'
-                >contact@shellular.dev</a
-              >
-            </li>
-            <li>
-              Alternate: <a href='mailto:apps@foxbiz.io'>apps@foxbiz.io</a>
+              <a href="mailto:team@shellular.dev">team@shellular.dev</a>
             </li>
           </ul>
-        </section>
-
-        <section>
-          <h2>Company</h2>
-          <address>Foxbiz Software Private Limited</address>
-          <p>
-            Website: <a
-              href='https://foxbiz.io'
-              target='_blank'
-              rel='noopener noreferrer'>foxbiz.io</a
-            >
-          </p>
         </section>
       </div>
     </div>
@@ -135,7 +118,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   ul li::before {
-    content: '–';
+    content: "–";
     position: absolute;
     left: 0;
     color: var(--accent2);
