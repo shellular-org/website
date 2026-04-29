@@ -1,5 +1,8 @@
 ---
 import HeroDiagram from "./HeroDiagram.astro";
+
+const APP_STORE_URL = "https://apps.apple.com/us/app/shellular/id6761985327";
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=io.foxbiz.shellular&pcampaignid=web_share";
 ---
 
 <div id="hero">
@@ -24,67 +27,50 @@ import HeroDiagram from "./HeroDiagram.astro";
       <p class="subtitle reveal reveal-delay-2">
         Claude Code, Codex, OpenCode, Pi — access your agents, terminals, files, and ports from your phone.
       </p>
-      <div class="hero-btns reveal reveal-delay-3">
-        <a href="#install" class="btn-primary">
+
+      <div class="app-badges reveal reveal-delay-4">
+        <a
+          href={APP_STORE_URL}
+          class="app-badge"
+          aria-label="Download on the App Store"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+            ></path>
+          </svg>
+          <div class="badge-text">
+            <span class="badge-label">Download on the</span>
+            <span class="badge-store">App Store</span>
+          </div>
+        </a>
+        <a
+          href={PLAY_STORE_URL}
+          class="app-badge"
+          aria-label="Get it on Google Play"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 640 640"
+            fill="currentColor"
+            width="20"
+            height="20"
             aria-hidden="true"
           >
-            <polyline points="4 17 10 11 4 5"></polyline>
-            <line x1="12" y1="19" x2="20" y2="19"></line>
-          </svg>
-          Get Shellular
-        </a>
-        <a href="https://github.com/shellular-org" class="btn-secondary" target="_blank" rel="noopener noreferrer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path
-              d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.185 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.203 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"
+              d="M389.6 298.3L168.9 77L449.7 238.2L389.6 298.3zM111.3 64C98.3 70.8 89.6 83.2 89.6 99.3L89.6 540.6C89.6 556.7 98.3 569.1 111.3 575.9L367.9 319.9L111.3 64zM536.5 289.6L477.6 255.5L411.9 320L477.6 384.5L537.7 350.4C555.7 336.1 555.7 303.9 536.5 289.6zM168.9 563L449.7 401.8L389.6 341.7L168.9 563z"
             ></path>
           </svg>
-          View on GitHub
+          <div class="badge-text">
+            <span class="badge-label">Get it on</span>
+            <span class="badge-store">Google Play</span>
+          </div>
         </a>
       </div>
-
-      <!-- <div class='app-badges reveal reveal-delay-4'>
-        <a href='#' class='app-badge' aria-label='Download on the App Store'>
-          <svg
-            width='20'
-            height='20'
-            viewBox='0 0 24 24'
-            fill='currentColor'
-            aria-hidden='true'>
-            <path
-              d='M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z'
-            ></path>
-          </svg>
-          <div class='badge-text'>
-            <span class='badge-label'>Download on the</span>
-            <span class='badge-store'>App Store</span>
-          </div>
-        </a>
-        <a href='#' class='app-badge' aria-label='Get it on Google Play'>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            viewBox='0 0 640 640'
-            fill='currentColor'
-            width='20'
-            height='20'
-            aria-hidden='true'>
-            ><path
-              d='M389.6 298.3L168.9 77L449.7 238.2L389.6 298.3zM111.3 64C98.3 70.8 89.6 83.2 89.6 99.3L89.6 540.6C89.6 556.7 98.3 569.1 111.3 575.9L367.9 319.9L111.3 64zM536.5 289.6L477.6 255.5L411.9 320L477.6 384.5L537.7 350.4C555.7 336.1 555.7 303.9 536.5 289.6zM168.9 563L449.7 401.8L389.6 341.7L168.9 563z'
-            ></path></svg
-          >
-          <div class='badge-text'>
-            <span class='badge-label'>Get it on</span>
-            <span class='badge-store'>Google Play</span>
-          </div>
-        </a>
-      </div> -->
     </div>
 
     <HeroDiagram />
@@ -211,10 +197,10 @@ import HeroDiagram from "./HeroDiagram.astro";
     width: 100%;
     text-align: left;
     min-width: 0;
-    height: 1.08em;
+    height: 1.1em;
     overflow: hidden;
     vertical-align: top;
-    mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+    /* mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 86%, transparent 100%); */
     -webkit-text-fill-color: currentColor;
     text-shadow:
       0 0 18px rgba(241, 201, 141, 0.24),
@@ -230,7 +216,7 @@ import HeroDiagram from "./HeroDiagram.astro";
 
   .hero-rotator-track > span {
     display: block;
-    line-height: 1.08;
+    line-height: 1.1em;
     padding-bottom: 0.02em;
     white-space: nowrap;
   }
@@ -272,16 +258,6 @@ import HeroDiagram from "./HeroDiagram.astro";
     line-height: 1.55;
     text-wrap: balance;
     margin-bottom: 28px;
-  }
-
-  .hero-btns {
-    display: flex;
-    gap: 12px;
-    flex-wrap: nowrap;
-  }
-
-  .hero-btns a {
-    white-space: nowrap;
   }
 
   /* ─── App store badges ───────────────────────────────────── */
@@ -395,10 +371,6 @@ import HeroDiagram from "./HeroDiagram.astro";
 
     .subtitle {
       margin: 0 auto 28px;
-    }
-
-    .hero-btns {
-      justify-content: center;
     }
   }
 
