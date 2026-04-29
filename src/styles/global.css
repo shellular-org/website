@@ -14,11 +14,11 @@
 	--accent2: #8a745c;
 	--text-primary: #f5f1e8;
 	--text-muted: rgba(222, 214, 200, 0.66);
-	--card-bg: rgba(24, 24, 27, 0.74);
+	--card-bg: rgb(24, 24, 27);
 	--card-border: rgba(214, 194, 161, 0.14);
-	--line-soft: rgba(214, 194, 161, 0.1);
-	--surface-strong: rgba(27, 27, 31, 0.9);
-	--surface-soft: rgba(245, 241, 232, 0.05);
+	--line-soft: rgba(214, 194, 161, 0.2);
+	--surface-strong: rgb(27, 27, 31);
+	--surface-soft: rgb(245, 241, 232);
 	--success: #91c58a;
 
 	/* Gradient shorthands */
@@ -37,7 +37,6 @@ html {
 body {
 	font-family: "Inter", system-ui, sans-serif;
 	width: 100%;
-	min-height: 100%;
 	min-height: 100dvh;
 	background: #0d0d0f;
 	color: var(--text-primary);
