@@ -18,6 +18,7 @@ const isHomePage = currentPath === "/";
     <a href={isHomePage ? "#how" : "/#how"}>How it works</a>
     <a href={isHomePage ? "#features" : "/#features"}>Features</a>
     <a href="/docs">Docs</a>
+    <a class="download-nav" href={isHomePage ? "#install" : "/#install"}>Download</a>
   </div>
 </nav>
 
@@ -67,15 +68,7 @@ const isHomePage = currentPath === "/";
     color: var(--accent);
   }
 
-  .store-nav {
-    color: var(--text-primary);
-    border: 1px solid rgba(214, 194, 161, 0.2);
-    padding: 7px 14px;
-    border-radius: 20px;
-    background: rgba(245, 241, 232, 0.05);
-  }
-
-  .store-nav-primary {
+  .links .download-nav {
     background: var(--grad-accent);
     color: #140f0a;
     padding: 7px 18px;
@@ -89,13 +82,13 @@ const isHomePage = currentPath === "/";
     border: none;
   }
 
-  .store-nav-primary:hover {
+  .links .download-nav:hover {
     color: #140f0a;
     opacity: 0.9;
   }
 
   @media (max-width: 600px) {
-    .links a:not(.store-nav-primary) {
+    .links a:not(.download-nav) {
       display: none;
     }
   }

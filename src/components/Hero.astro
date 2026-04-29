@@ -14,9 +14,9 @@ const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=io.foxbiz.
         <span class="hero-copy-static">Use your</span>
         <span class="hero-rotator" aria-label="dev machine, laptop, Mac mini, EC2 box, homelab, workstation">
           <span class="hero-rotator-track" aria-hidden="true">
-            <span>Mac minis</span>
+            <span>Mac mini</span>
             <span>laptop</span>
-            <span>Desktop</span>
+            <span>desktop</span>
             <span>homelab</span>
             <span>servers</span>
             <span>GPU box</span>
@@ -25,10 +25,10 @@ const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=io.foxbiz.
         <span class="hero-copy-static">from <span class="hero-copy-phone">your phone</span>.</span>
       </h1>
       <p class="subtitle reveal reveal-delay-2">
-        Claude Code, Codex, OpenCode, Pi — access your agents, terminals, files, and ports from your phone.
+        Claude Code, Codex, OpenCode, and more. Access your agents, terminals, files, and ports from your phone.
       </p>
 
-      <div class="app-badges reveal reveal-delay-4">
+      <div class="app-badges reveal reveal-delay-3">
         <a
           href={APP_STORE_URL}
           class="app-badge"
@@ -254,10 +254,10 @@ const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=io.foxbiz.
   .subtitle {
     font-size: clamp(14px, 1.5vw, 17px);
     color: rgba(240, 232, 219, 0.9);
-    max-width: 46ch;
+    max-width: 48ch;
     line-height: 1.55;
     text-wrap: balance;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
 
   /* ─── App store badges ───────────────────────────────────── */
@@ -265,7 +265,7 @@ const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=io.foxbiz.
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 0;
   }
 
   .app-badge {
@@ -275,7 +275,7 @@ const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=io.foxbiz.
     padding: 10px 18px;
     background-color: rgba(245, 241, 232, 0.05);
     border: 1px solid rgba(214, 194, 161, 0.22);
-    border-radius: 12px;
+    border-radius: 8px;
     text-decoration: none;
     color: var(--text-primary);
     backdrop-filter: blur(10px);
@@ -394,6 +394,7 @@ const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=io.foxbiz.
     .app-badges {
       justify-content: center;
     }
+
   }
 
   @media (prefers-reduced-motion: reduce) {
