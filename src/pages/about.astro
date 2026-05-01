@@ -8,9 +8,22 @@ const team = [
   { name: "Biraj", url: "https://github.com/biraj21", avatarUrl: "https://github.com/biraj21.png" },
   { name: "Raunaj Raj", url: "https://github.com/bajrangCoder", avatarUrl: "https://github.com/bajrangCoder.png" },
 ];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "About Shellular",
+  description: "Learn about Shellular and the team building mobile-first remote development workflows.",
+  url: "https://shellular.dev/about",
+};
 ---
 
-<Layout title="About Shellular" description="Learn about Shellular and the founding team.">
+<Layout
+  title="About Shellular | Team and Product Overview"
+  description="Learn what Shellular does, who is building it, and how the product brings terminal, files, browser tooling, and AI agents to your phone."
+  keywords={["about Shellular", "Shellular team", "remote development app", "developer workflow"]}
+  structuredData={structuredData}
+>
   <Nav currentPath={Astro.url.pathname} />
 
   <main class="about-page">

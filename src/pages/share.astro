@@ -9,7 +9,11 @@ const qrUrl = (url: string) =>
   `https://api.qrserver.com/v1/create-qr-code/?size=360x360&margin=18&data=${encodeURIComponent(url)}`;
 ---
 
-<Layout title="Share Shellular" description="Share Shellular with a direct App Store or Google Play link and QR code.">
+<Layout
+  title="Share Shellular"
+  description="Share Shellular with a direct App Store or Google Play link and a QR code for iPhone or Android."
+  noindex={true}
+>
   <Nav currentPath={Astro.url.pathname} />
 
   <main class="share-page">

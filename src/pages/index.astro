@@ -7,9 +7,46 @@ import InstallCTA from "@/components/InstallCTA.astro";
 import Nav from "@/components/Nav.astro";
 import Security from "@/components/Security.astro";
 import Layout from "@/layouts/Layout.astro";
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Shellular",
+    url: "https://shellular.dev",
+    logo: "https://shellular.dev/favicon.ico",
+    email: "team@shellular.dev",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Shellular",
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "iOS, Android, macOS, Linux, Windows",
+    url: "https://shellular.dev",
+    description:
+      "Shellular lets you access your development machine from your phone, including terminal, files, ports, Git workflows, and AI coding agents.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Shellular",
+    url: "https://shellular.dev",
+  },
+];
 ---
 
-<Layout>
+<Layout
+  title="Shellular | Remote Development From Your Phone"
+  description="Shellular gives you secure remote access to your development machine from your phone, with terminal, your AI agents like Claude Code, Codex, OpenCode, Pi & more, and also files, git, ports and browser with DevTools."
+  keywords={["remote development", "developer tools", "mobile terminal", "AI coding agents", "remote CLI", "Shellular"]}
+  structuredData={structuredData}
+>
   <Nav />
   <main>
     <Hero />

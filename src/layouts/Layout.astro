@@ -1,56 +1,87 @@
 ---
-import '@/styles/global.css';
-import faviconUrl from '@/assets/logo.ico?url';
-import bannerUrl from '@/assets/banner.jpeg?url';
+import "@/styles/global.css";
+import "@/styles/global.css";
+import faviconUrl from "@/assets/logo.ico?url";
+import bannerImage from "@/assets/banner.jpeg";
 
 interface Props {
   title?: string;
   description?: string;
+  keywords?: string[];
   ogImage?: string;
+  ogType?: "website" | "article";
+  noindex?: boolean;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
-  title = 'Shellular - Code, review and ship from anywhere.',
-  description = 'Shellular connects your mobile device to your full development environment. Terminal access, filesystem, and AI-assisted coding — anywhere.',
+  title = "Shellular - Remote control for your AI agents & terminals",
+  description = "Access your Codex, Claude Code, OpenCode, terminals, files, and ports from your phone.",
+  keywords = [],
   ogImage,
+  ogType = "website",
+  noindex = false,
+  structuredData = [],
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
-const ogImageUrl = new URL(ogImage ?? bannerUrl, Astro.site).href;
+const ogImageUrl = new URL(ogImage ?? bannerImage.src, Astro.site).href;
+const robotsContent = noindex
+  ? "noindex, nofollow"
+  : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+const resolvedStructuredData = Array.isArray(structuredData) ? structuredData : [structuredData];
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang="en">
   <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <meta name='description' content={description} />
-    <link rel='canonical' href={canonicalUrl} />
-    <link rel='sitemap' href='/sitemap-index.xml' />
+
+    <meta name="description" content={description} />
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
+    <meta name="robots" content={robotsContent} />
+    <meta name="googlebot" content={robotsContent} />
+    <meta name="theme-color" content="#0d0d0f" />
+    <meta name="author" content="Shellular" />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph -->
-    <meta property='og:type' content='website' />
-    <meta property='og:url' content={canonicalUrl} />
-    <meta property='og:title' content={title} />
-    <meta property='og:description' content={description} />
-    <meta property='og:image' content={ogImageUrl} />
-    <meta property='og:site_name' content='Shellular' />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content={String(bannerImage.width)} />
+    <meta property="og:image:height" content={String(bannerImage.height)} />
+    <meta property="og:image:alt" content="Shellular preview showing mobile-first remote development workflows." />
+    <meta property="og:site_name" content="Shellular" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Card -->
-    <meta name='twitter:card' content='summary_large_image' />
-    <meta name='twitter:title' content={title} />
-    <meta name='twitter:description' content={description} />
-    <meta name='twitter:image' content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content="Shellular preview showing mobile-first remote development workflows." />
 
-    <link rel='preconnect' href='https://fonts.googleapis.com' />
-    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap'
-      rel='stylesheet'
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
     />
-    <meta name='generator' content={Astro.generator} />
-    <link rel='icon' href={faviconUrl} type='image/x-icon' />
+
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href={faviconUrl} type="image/x-icon" />
+    {
+      resolvedStructuredData.map((entry) =>
+        entry && Object.keys(entry).length > 0 ? (
+          <script type="application/ld+json" set:html={JSON.stringify(entry)} />
+        ) : null,
+      )
+    }
   </head>
   <body>
     <slot />

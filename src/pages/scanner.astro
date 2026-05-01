@@ -2,7 +2,11 @@
 import Layout from "@/layouts/Layout.astro";
 ---
 
-<Layout title="Shellular — Scan QR" description="Scan the QR code shown by the Shellular CLI to connect your device.">
+<Layout
+  title="Shellular QR Scanner"
+  description="Scan the QR code shown by the Shellular CLI to connect your device."
+  noindex={true}
+>
   <div id="status">
     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <circle cx="12" cy="12" r="10"></circle>
