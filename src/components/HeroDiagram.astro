@@ -151,7 +151,7 @@ import ShellularLogo from "./ShellularLogo.astro";
     padding: 32px 24px;
     border-radius: 24px;
     overflow: hidden;
-    border: 1px solid rgba(214, 194, 161, 0.09);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.09);
     background: linear-gradient(170deg, rgba(18, 18, 22, 0.96) 0%, rgba(10, 10, 13, 0.98) 100%);
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.04) inset,
@@ -203,7 +203,7 @@ import ShellularLogo from "./ShellularLogo.astro";
     aspect-ratio: 1;
     left: 30%;
     top: 20%;
-    background: radial-gradient(circle, rgba(214, 194, 161, 0.1), transparent 60%);
+    background: radial-gradient(circle, rgba(var(--brand-gold-rgb), 0.1), transparent 60%);
     filter: blur(50px);
     animation: glow-c 7s ease-in-out infinite alternate;
   }
@@ -278,7 +278,7 @@ import ShellularLogo from "./ShellularLogo.astro";
     position: absolute;
     inset: -20%;
     border-radius: 40%;
-    background: radial-gradient(circle, rgba(214, 194, 161, 0.14), transparent 60%);
+    background: radial-gradient(circle, rgba(var(--brand-gold-rgb), 0.14), transparent 60%);
     filter: blur(24px);
     animation: halo-breathe 5s ease-in-out infinite;
     pointer-events: none;
@@ -314,16 +314,16 @@ import ShellularLogo from "./ShellularLogo.astro";
   .diag-phone {
     position: relative;
     width: 100%;
-    aspect-ratio: 9 / 19.5;
+    aspect-ratio: 9 / 18.5;
     border-radius: 16px;
     overflow: hidden;
-    background: #08080a;
+    background: #141419;
     border: clamp(3px, 0.6vw, 6px) solid rgba(28, 28, 32, 0.98);
     box-shadow:
       0 30px 60px -10px rgba(0, 0, 0, 0.7),
-      0 0 0 1px rgba(214, 194, 161, 0.12),
+      0 0 0 1px rgba(var(--brand-gold-rgb), 0.12),
       inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 0 50px -5px rgba(214, 194, 161, 0.08);
+      0 0 50px -5px rgba(var(--brand-gold-rgb), 0.08);
   }
 
   .diag-phone-notch {
@@ -363,7 +363,7 @@ import ShellularLogo from "./ShellularLogo.astro";
     margin-top: 14px;
     font-size: clamp(9px, 1.1vw, 11px);
     font-weight: 700;
-    color: rgba(214, 194, 161, 0.55);
+    color: var(--accent);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     white-space: nowrap;
@@ -379,9 +379,14 @@ import ShellularLogo from "./ShellularLogo.astro";
   .diag-beam-line {
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(214, 194, 161, 0.04), rgba(214, 194, 161, 0.28), rgba(214, 194, 161, 0.04));
+    background: linear-gradient(
+      90deg,
+      rgba(var(--brand-gold-rgb), 0.04),
+      rgba(var(--brand-gold-rgb), 0.28),
+      rgba(var(--brand-gold-rgb), 0.04)
+    );
     border-radius: 2px;
-    box-shadow: 0 0 12px rgba(214, 194, 161, 0.08);
+    box-shadow: 0 0 12px rgba(var(--brand-gold-rgb), 0.08);
   }
 
   .diag-beam-particle {
@@ -391,10 +396,10 @@ import ShellularLogo from "./ShellularLogo.astro";
     width: 8px;
     height: 2px;
     border-radius: 2px;
-    background: rgba(214, 194, 161, 0.9);
+    background: rgba(var(--brand-gold-rgb), 0.9);
     box-shadow:
-      0 0 8px rgba(214, 194, 161, 0.6),
-      0 0 20px rgba(214, 194, 161, 0.2);
+      0 0 8px rgba(var(--brand-gold-rgb), 0.6),
+      0 0 20px rgba(var(--brand-gold-rgb), 0.2);
     transform: translateY(-50%);
     animation: beam-travel 2s linear infinite;
   }
@@ -429,13 +434,13 @@ import ShellularLogo from "./ShellularLogo.astro";
     gap: 6px;
     padding: 4px 10px;
     border-radius: 999px;
-    border: 1px solid rgba(214, 194, 161, 0.1);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.1);
     background: rgba(10, 10, 12, 0.7);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     font-size: clamp(7px, 0.85vw, 9px);
     font-weight: 700;
-    color: rgba(214, 194, 161, 0.55);
+    color: rgba(var(--brand-gold-rgb), 0.55);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     white-space: nowrap;
@@ -445,19 +450,19 @@ import ShellularLogo from "./ShellularLogo.astro";
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #91c58a;
-    box-shadow: 0 0 6px rgba(145, 197, 138, 0.6);
+    background: var(--brand-success);
+    box-shadow: 0 0 6px rgba(var(--brand-success-rgb), 0.6);
     animation: dot-pulse 2s ease-in-out infinite;
   }
 
   @keyframes dot-pulse {
     0%,
     100% {
-      box-shadow: 0 0 4px rgba(145, 197, 138, 0.4);
+      box-shadow: 0 0 4px rgba(var(--brand-success-rgb), 0.4);
       transform: scale(1);
     }
     50% {
-      box-shadow: 0 0 10px rgba(145, 197, 138, 0.8);
+      box-shadow: 0 0 10px rgba(var(--brand-success-rgb), 0.8);
       transform: scale(1.2);
     }
   }
@@ -473,7 +478,7 @@ import ShellularLogo from "./ShellularLogo.astro";
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 1px solid rgba(214, 194, 161, 0.08);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.08);
     animation: pulse-ring 4s ease-out infinite;
     pointer-events: none;
   }
@@ -503,12 +508,13 @@ import ShellularLogo from "./ShellularLogo.astro";
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background: linear-gradient(145deg, rgba(214, 194, 161, 0.14), rgba(214, 194, 161, 0.04));
-    border: 1px solid rgba(214, 194, 161, 0.22);
+    color: var(--accent);
+    background: linear-gradient(145deg, rgba(var(--brand-gold-rgb), 0.14), rgba(var(--brand-gold-rgb), 0.04));
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.22);
     box-shadow:
       0 16px 40px -8px rgba(0, 0, 0, 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 0 40px -4px rgba(214, 194, 161, 0.1);
+      0 0 40px -4px rgba(var(--brand-gold-rgb), 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     animation: core-glow 3s ease-in-out infinite;
@@ -520,13 +526,13 @@ import ShellularLogo from "./ShellularLogo.astro";
       box-shadow:
         0 16px 40px -8px rgba(0, 0, 0, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        0 0 40px -4px rgba(214, 194, 161, 0.1);
+        0 0 40px -4px rgba(var(--brand-gold-rgb), 0.1);
     }
     50% {
       box-shadow:
         0 16px 40px -8px rgba(0, 0, 0, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        0 0 60px 0px rgba(214, 194, 161, 0.18);
+        0 0 60px 0px rgba(var(--brand-gold-rgb), 0.18);
     }
   }
 
@@ -543,7 +549,7 @@ import ShellularLogo from "./ShellularLogo.astro";
     text-align: center;
     font-size: 8px;
     font-weight: 600;
-    color: rgba(214, 194, 161, 0.8);
+    color: rgba(var(--brand-gold-rgb), 0.8);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-top: 3px;
@@ -554,9 +560,10 @@ import ShellularLogo from "./ShellularLogo.astro";
     position: relative;
     width: 100%;
     border-radius: 20px;
-    border: 1px solid rgba(214, 194, 161, 0.1);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.1);
     background:
-      linear-gradient(180deg, rgba(214, 194, 161, 0.04) 0%, rgba(214, 194, 161, 0.01) 100%), rgba(13, 13, 16, 0.75);
+      linear-gradient(180deg, rgba(var(--brand-gold-rgb), 0.04) 0%, rgba(var(--brand-gold-rgb), 0.01) 100%),
+      rgba(13, 13, 16, 0.75);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     box-shadow:
@@ -573,9 +580,9 @@ import ShellularLogo from "./ShellularLogo.astro";
     background: linear-gradient(
       105deg,
       transparent 40%,
-      rgba(214, 194, 161, 0.04) 45%,
-      rgba(214, 194, 161, 0.08) 50%,
-      rgba(214, 194, 161, 0.04) 55%,
+      rgba(var(--brand-gold-rgb), 0.04) 45%,
+      rgba(var(--brand-gold-rgb), 0.08) 50%,
+      rgba(var(--brand-gold-rgb), 0.04) 55%,
       transparent 60%
     );
     background-size: 300% 100%;
@@ -600,7 +607,7 @@ import ShellularLogo from "./ShellularLogo.astro";
     left: 16px;
     right: 16px;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(214, 194, 161, 0.16), transparent);
+    background: linear-gradient(90deg, transparent, rgba(var(--brand-gold-rgb), 0.16), transparent);
   }
 
   .diag-host-head {
@@ -615,12 +622,12 @@ import ShellularLogo from "./ShellularLogo.astro";
     font-weight: 800;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(214, 194, 161, 0.65);
+    color: var(--accent);
   }
 
   .diag-host-sub {
     font-size: clamp(9px, 1vw, 11px);
-    color: rgba(245, 241, 232, 0.3);
+    color: rgba(var(--brand-cream-rgb), 0.3);
     line-height: 1.4;
   }
 
@@ -675,12 +682,12 @@ import ShellularLogo from "./ShellularLogo.astro";
   }
 
   .diag-tool:hover {
-    border-color: rgba(214, 194, 161, 0.14);
-    background: rgba(214, 194, 161, 0.05);
+    border-color: rgba(var(--brand-gold-rgb), 0.14);
+    background: rgba(var(--brand-gold-rgb), 0.05);
     transform: translateY(-3px) scale(1.02);
     box-shadow:
       0 12px 28px rgba(0, 0, 0, 0.2),
-      0 0 20px rgba(214, 194, 161, 0.04);
+      0 0 20px rgba(var(--brand-gold-rgb), 0.04);
   }
 
   .diag-tool-glyph {
@@ -689,7 +696,7 @@ import ShellularLogo from "./ShellularLogo.astro";
     display: grid;
     place-items: center;
     border-radius: clamp(8px, 1.2vw, 14px);
-    border: 1px solid rgba(214, 194, 161, 0.08);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.08);
     background: rgba(255, 255, 255, 0.025);
     transition:
       border-color 0.3s,
@@ -705,13 +712,13 @@ import ShellularLogo from "./ShellularLogo.astro";
   .diag-tool > span {
     font-size: clamp(8px, 1vw, 10.5px);
     font-weight: 600;
-    color: rgba(245, 241, 232, 0.5);
+    color: rgba(var(--brand-cream-rgb), 0.5);
     white-space: nowrap;
     transition: color 0.3s;
   }
 
   .diag-tool:hover > span {
-    color: rgba(245, 241, 232, 0.8);
+    color: rgba(var(--brand-cream-rgb), 0.8);
   }
 
   /* Tool colour accents */
@@ -750,19 +757,19 @@ import ShellularLogo from "./ShellularLogo.astro";
   }
 
   .diag-tool--opencode .diag-tool-glyph {
-    border-color: rgba(214, 194, 161, 0.14);
-    background: rgba(214, 194, 161, 0.05);
+    border-color: rgba(var(--brand-gold-rgb), 0.14);
+    background: rgba(var(--brand-gold-rgb), 0.05);
   }
   .diag-tool--opencode:hover .diag-tool-glyph {
-    box-shadow: 0 0 16px rgba(214, 194, 161, 0.08);
+    box-shadow: 0 0 16px rgba(var(--brand-gold-rgb), 0.08);
   }
 
   .diag-tool--copilot .diag-tool-glyph {
-    border-color: rgba(214, 194, 161, 0.14);
-    background: rgba(214, 194, 161, 0.05);
+    border-color: rgba(var(--brand-gold-rgb), 0.14);
+    background: rgba(var(--brand-gold-rgb), 0.05);
   }
   .diag-tool--copilot:hover .diag-tool-glyph {
-    box-shadow: 0 0 16px rgba(214, 194, 161, 0.08);
+    box-shadow: 0 0 16px rgba(var(--brand-gold-rgb), 0.08);
   }
 
   /* ═══════════════════════════════════════════════════════════

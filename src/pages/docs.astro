@@ -235,7 +235,7 @@ const sections = [
   /* ── Hero ─────────────────────────────────────────────── */
   .docs-hero {
     border-bottom: 1px solid var(--line-soft);
-    background: #0d0d0f;
+    background: var(--brand-bg);
   }
 
   .docs-hero-inner {
@@ -290,7 +290,7 @@ const sections = [
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: rgba(214, 194, 161, 0.1);
+    background: rgba(var(--brand-gold-rgb), 0.1);
     border: 1px solid var(--card-border);
     display: inline-grid;
     place-items: center;
@@ -311,16 +311,16 @@ const sections = [
     font-size: 12px;
     font-weight: 500;
     color: var(--text-muted);
-    background: rgba(214, 194, 161, 0.05);
-    border: 1px solid rgba(214, 194, 161, 0.1);
+    background: rgba(var(--brand-gold-rgb), 0.05);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.1);
     padding: 4px 12px;
     border-radius: 20px;
   }
 
   .hero-features .feature-highlight {
     color: var(--accent);
-    background: rgba(214, 194, 161, 0.12);
-    border-color: rgba(214, 194, 161, 0.32);
+    background: rgba(var(--brand-gold-rgb), 0.12);
+    border-color: rgba(var(--brand-gold-rgb), 0.32);
     font-weight: 600;
   }
 
@@ -337,7 +337,7 @@ const sections = [
     top: 60px;
     z-index: 40;
     border-bottom: 1px solid var(--line-soft);
-    background: rgba(13, 13, 15, 0.88);
+    background: rgba(var(--brand-bg-rgb), 0.88);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
   }
@@ -424,7 +424,7 @@ const sections = [
 
   p code,
   li code {
-    background: rgba(214, 194, 161, 0.08);
+    background: rgba(var(--brand-gold-rgb), 0.08);
     border: 1px solid var(--card-border);
     padding: 2px 7px;
     border-radius: 6px;
@@ -435,8 +435,8 @@ const sections = [
     position: relative;
     margin-top: 16px;
     border-radius: 16px;
-    border: 1px solid rgba(214, 194, 161, 0.14);
-    background: #08090b;
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.14);
+    background: var(--brand-bg-deep);
     overflow: hidden;
   }
 
@@ -448,7 +448,7 @@ const sections = [
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--accent2);
-    border-bottom: 1px solid rgba(214, 194, 161, 0.08);
+    border-bottom: 1px solid rgba(var(--brand-gold-rgb), 0.08);
   }
 
   .code-block pre {
@@ -482,8 +482,8 @@ const sections = [
     line-height: 1.6;
     color: var(--text-muted);
     border-radius: 12px;
-    background: rgba(245, 241, 232, 0.03);
-    border: 1px solid rgba(214, 194, 161, 0.08);
+    background: rgba(var(--brand-cream-rgb), 0.03);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.08);
   }
 
   .check-list li::before {
@@ -509,8 +509,8 @@ const sections = [
     gap: 16px;
     padding: 14px 18px;
     border-radius: 12px;
-    background: rgba(245, 241, 232, 0.025);
-    border: 1px solid rgba(214, 194, 161, 0.08);
+    background: rgba(var(--brand-cream-rgb), 0.025);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.08);
     flex-wrap: wrap;
   }
 
@@ -518,7 +518,7 @@ const sections = [
     flex-shrink: 0;
     font-size: 13px;
     color: var(--accent);
-    background: rgba(214, 194, 161, 0.08);
+    background: rgba(var(--brand-gold-rgb), 0.08);
     border: 1px solid var(--card-border);
     padding: 3px 10px;
     border-radius: 8px;
@@ -541,8 +541,8 @@ const sections = [
   .opt-row {
     padding: 16px 18px;
     border-radius: 14px;
-    background: rgba(245, 241, 232, 0.025);
-    border: 1px solid rgba(214, 194, 161, 0.08);
+    background: rgba(var(--brand-cream-rgb), 0.025);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.08);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -558,7 +558,7 @@ const sections = [
   .opt-flag {
     font-size: 13px;
     color: var(--accent);
-    background: rgba(214, 194, 161, 0.08);
+    background: rgba(var(--brand-gold-rgb), 0.08);
     border: 1px solid var(--card-border);
     padding: 3px 10px;
     border-radius: 8px;
@@ -595,7 +595,7 @@ const sections = [
   .subsection-title code {
     font-size: 13px;
     color: var(--accent);
-    background: rgba(214, 194, 161, 0.08);
+    background: rgba(var(--brand-gold-rgb), 0.08);
     border: 1px solid var(--card-border);
     padding: 2px 7px;
     border-radius: 6px;
@@ -611,8 +611,8 @@ const sections = [
   .policy-row {
     padding: 16px 18px;
     border-radius: 14px;
-    background: rgba(245, 241, 232, 0.025);
-    border: 1px solid rgba(214, 194, 161, 0.08);
+    background: rgba(var(--brand-cream-rgb), 0.025);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.08);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -622,7 +622,7 @@ const sections = [
     align-self: flex-start;
     font-size: 13px;
     color: var(--accent);
-    background: rgba(214, 194, 161, 0.08);
+    background: rgba(var(--brand-gold-rgb), 0.08);
     border: 1px solid var(--card-border);
     padding: 3px 10px;
     border-radius: 8px;
@@ -640,8 +640,8 @@ const sections = [
     margin-top: 18px;
     padding: 16px 18px;
     border-radius: 14px;
-    background: rgba(214, 194, 161, 0.05);
-    border: 1px solid rgba(214, 194, 161, 0.14);
+    background: rgba(var(--brand-gold-rgb), 0.05);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.14);
   }
 
   .callout strong {

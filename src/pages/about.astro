@@ -30,6 +30,7 @@ const team = [
           <span>File System</span>
           <span>Git</span>
         </div>
+        <a class="brand-link" href="/brand">Brand colors and logos</a>
       </div>
     </header>
 
@@ -67,7 +68,7 @@ const team = [
 
   .about-hero {
     border-bottom: 1px solid var(--line-soft);
-    background: radial-gradient(1200px 360px at 50% -50%, rgba(214, 194, 161, 0.14), transparent), #0d0d0f;
+    background: radial-gradient(1200px 360px at 50% -50%, rgba(var(--brand-gold-rgb), 0.14), transparent), var(--brand-bg);
   }
 
   .about-hero-inner {
@@ -118,20 +119,33 @@ const team = [
     gap: 8px;
   }
 
+  .brand-link {
+    display: inline-flex;
+    margin-top: 20px;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .brand-link:hover {
+    text-decoration: underline;
+  }
+
   .hero-capabilities span {
     font-size: 12px;
     font-weight: 500;
     color: var(--text-muted);
-    background: rgba(214, 194, 161, 0.05);
-    border: 1px solid rgba(214, 194, 161, 0.11);
+    background: rgba(var(--brand-gold-rgb), 0.05);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.11);
     padding: 5px 12px;
     border-radius: 999px;
   }
 
   .hero-capabilities .feature-highlight {
     color: var(--accent);
-    background: rgba(214, 194, 161, 0.14);
-    border-color: rgba(214, 194, 161, 0.32);
+    background: rgba(var(--brand-gold-rgb), 0.14);
+    border-color: rgba(var(--brand-gold-rgb), 0.32);
     font-weight: 600;
   }
 
@@ -179,8 +193,8 @@ const team = [
     padding: 18px;
     border-radius: 16px;
     text-decoration: none;
-    background: rgba(245, 241, 232, 0.03);
-    border: 1px solid rgba(214, 194, 161, 0.12);
+    background: rgba(var(--brand-cream-rgb), 0.03);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.12);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.02),
       0 10px 24px rgba(0, 0, 0, 0.2);
@@ -196,7 +210,7 @@ const team = [
     height: 48px;
     border-radius: 50%;
     object-fit: cover;
-    border: 1px solid rgba(214, 194, 161, 0.24);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.24);
   }
 
   .team-meta {
@@ -208,8 +222,8 @@ const team = [
 
   .team-card:hover {
     transform: translateY(-3px);
-    border-color: rgba(214, 194, 161, 0.28);
-    background: rgba(214, 194, 161, 0.065);
+    border-color: rgba(var(--brand-gold-rgb), 0.28);
+    background: rgba(var(--brand-gold-rgb), 0.065);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.03),
       0 16px 34px rgba(0, 0, 0, 0.28);

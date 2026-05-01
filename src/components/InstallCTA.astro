@@ -36,7 +36,7 @@ const INSTALL_CMD = "npx shellular";
     align-items: center;
     gap: 16px;
     background: rgba(14, 14, 17, 0.94);
-    border: 1px solid rgba(214, 194, 161, 0.16);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.16);
     border-radius: 14px;
     padding: 16px 24px;
     margin: 32px 0 36px;
@@ -51,8 +51,8 @@ const INSTALL_CMD = "npx shellular";
   }
 
   .copy-btn {
-    background: rgba(214, 194, 161, 0.08);
-    border: 1px solid rgba(214, 194, 161, 0.18);
+    background: rgba(var(--brand-gold-rgb), 0.08);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.18);
     color: var(--accent);
     padding: 6px 14px;
     border-radius: 8px;
@@ -65,12 +65,12 @@ const INSTALL_CMD = "npx shellular";
   }
 
   .copy-btn:hover {
-    background: rgba(214, 194, 161, 0.14);
+    background: rgba(var(--brand-gold-rgb), 0.14);
   }
 
   .copy-btn.copied {
     color: var(--success);
-    border-color: rgba(145, 197, 138, 0.32);
+    border-color: rgba(var(--brand-success-rgb), 0.32);
   }
 </style>
 

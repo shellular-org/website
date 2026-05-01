@@ -1,0 +1,268 @@
+---
+import ShellularLogo from "@/components/ShellularLogo.astro";
+import Footer from "@/components/Footer.astro";
+import Nav from "@/components/Nav.astro";
+import Layout from "@/layouts/Layout.astro";
+import logoPng from "@/assets/logo.png";
+import logoSvg from "@/assets/logo.svg?url";
+
+const colors = [
+  { name: "Ink", token: "--brand-ink" },
+  { name: "Background", token: "--brand-bg" },
+  { name: "Deep Background", token: "--brand-bg-deep" },
+  { name: "Surface", token: "--brand-surface" },
+  { name: "Strong Surface", token: "--brand-surface-strong" },
+  { name: "Cream", token: "--brand-cream" },
+  { name: "Soft Cream", token: "--brand-cream-soft" },
+  { name: "Gold", token: "--brand-gold" },
+  { name: "Highlight", token: "--brand-highlight" },
+  { name: "Bronze", token: "--brand-bronze" },
+  { name: "Success", token: "--brand-success" },
+];
+---
+
+<Layout title="Shellular Brand" description="Shellular logos, color tokens, and brand assets.">
+  <Nav currentPath={Astro.url.pathname} />
+
+  <main class="brand-page">
+    <header class="brand-hero">
+      <p class="section-label">Brand</p>
+      <h1>Shellular brand assets</h1>
+      <p>
+        Use these colors and logos when referencing Shellular in docs, launch posts, app listings, and integrations.
+      </p>
+    </header>
+
+    <section class="brand-section" aria-labelledby="brand-colors">
+      <div class="section-head">
+        <h2 id="brand-colors">Colors</h2>
+      </div>
+
+      <div class="color-grid" data-color-grid>
+        {
+          colors.map(({ name, token }) => (
+            <article class="color-card">
+              <div class="color-swatch" style={`background: var(${token});`} aria-hidden="true" />
+              <div>
+                <h3>{name}</h3>
+                <code>{token}</code>
+                <span class="color-value" data-token={token}>
+                  var({token})
+                </span>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="brand-section" aria-labelledby="brand-logos">
+      <div class="section-head">
+        <h2 id="brand-logos">Logos</h2>
+        <p>Use the SVG for product surfaces and the PNG when a platform needs a raster image.</p>
+      </div>
+
+      <div class="logo-grid">
+        <article class="logo-card logo-card-dark">
+          <div class="logo-preview">
+            <ShellularLogo size={96} />
+            <span>Shellular</span>
+          </div>
+          <div class="asset-meta">
+            <h3>SVG</h3>
+            <a href={logoSvg} download>Download</a>
+          </div>
+        </article>
+
+        <article class="logo-card logo-card-light">
+          <div class="logo-preview">
+            <img src={logoPng.src} width="96" height="96" alt="Shellular app icon" loading="lazy" />
+            <span>App icon</span>
+          </div>
+          <div class="asset-meta">
+            <h3>PNG</h3>
+            <a href={logoPng.src} download>Download</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .brand-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 120px clamp(18px, 5vw, 48px) 64px;
+  }
+
+  .brand-hero {
+    max-width: 760px;
+    margin-bottom: 44px;
+  }
+
+  h1 {
+    font-size: clamp(2.3rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 18px;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .brand-hero p,
+  .section-head p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  .brand-section {
+    padding: 34px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 18px;
+  }
+
+  h2 {
+    color: var(--text-primary);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    letter-spacing: -0.03em;
+  }
+
+  code {
+    color: var(--accent);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+  }
+
+  .color-grid,
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .color-card,
+  .logo-card {
+    border: 1px solid var(--card-border);
+    background: var(--surface-muted);
+    border-radius: 8px;
+  }
+
+  .color-card {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    overflow: hidden;
+    min-height: 112px;
+  }
+
+  .color-swatch {
+    min-height: 112px;
+    border-right: 1px solid var(--card-border);
+  }
+
+  .color-card > div:last-child {
+    padding: 18px;
+    display: grid;
+    align-content: center;
+    gap: 7px;
+  }
+
+  h3 {
+    color: var(--text-primary);
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+
+  .color-value {
+    color: var(--text-muted);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+  }
+
+  .logo-card {
+    overflow: hidden;
+  }
+
+  .logo-preview {
+    min-height: 220px;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 14px;
+  }
+
+  .logo-card-dark .logo-preview {
+    background: var(--brand-bg);
+    color: var(--accent);
+  }
+
+  .logo-card-light .logo-preview {
+    background: var(--surface-soft);
+    color: var(--brand-ink);
+  }
+
+  .logo-preview span {
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .logo-preview img {
+    border-radius: 22px;
+  }
+
+  .asset-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-top: 1px solid var(--card-border);
+  }
+
+  .asset-meta a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 760px) {
+    .section-head {
+      display: block;
+    }
+
+    .section-head p {
+      margin-top: 8px;
+    }
+
+    .color-grid,
+    .logo-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const values = document.querySelectorAll<HTMLElement>(".color-value[data-token]");
+  const rootStyles = getComputedStyle(document.documentElement);
+
+  values.forEach((value) => {
+    const token = value.dataset.token;
+    if (!token) return;
+    const computedValue = rootStyles.getPropertyValue(token).trim();
+    if (computedValue) value.textContent = computedValue;
+  });
+</script>
