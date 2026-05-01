@@ -1,17 +1,29 @@
 ---
+import AppBadges from "./AppBadges.astro";
+
 const INSTALL_CMD = "npx shellular";
 ---
 
 <section id="install">
-  <div class="section-label reveal">Ready to start?</div>
-  <h2 class="section-title reveal reveal-delay-1">One command.<br /><span>Ship from anywhere.</span></h2>
-  <p class="section-sub reveal reveal-delay-2">Run the CLI on the machine you want to control.</p>
+  <div class="section-label reveal">Get started</div>
+  <h2 class="section-title reveal reveal-delay-1">Install the app, then connect <span>your machine</span></h2>
+  <p class="section-sub reveal reveal-delay-2">
+    Start with the mobile app, then run the host on the computer you want to reach.
+  </p>
 
   <div class="install-center">
-    <div class="install-box reveal reveal-delay-3">
-      <span class="prompt" aria-hidden="true">$</span>
-      <span>{INSTALL_CMD}</span>
-      <button class="copy-btn" id="copy-btn" data-cmd={INSTALL_CMD}>Copy</button>
+    <div class="install-actions reveal reveal-delay-3">
+      <p class="install-actions-copy">1. Install Shellular on your phone.</p>
+      <AppBadges />
+    </div>
+
+    <div class="install-command reveal reveal-delay-4">
+      <p class="install-actions-copy">2. Run the host on the machine you want to control.</p>
+      <div class="install-box">
+        <span class="prompt" aria-hidden="true">$</span>
+        <span>{INSTALL_CMD}</span>
+        <button class="copy-btn" id="copy-btn" data-cmd={INSTALL_CMD}>Copy</button>
+      </div>
     </div>
   </div>
 </section>
@@ -29,6 +41,7 @@ const INSTALL_CMD = "npx shellular";
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 28px;
   }
 
   .install-box {
@@ -39,7 +52,6 @@ const INSTALL_CMD = "npx shellular";
     border: 1px solid rgba(var(--brand-gold-rgb), 0.16);
     border-radius: 14px;
     padding: 16px 24px;
-    margin: 32px 0 36px;
     font-family: "JetBrains Mono", monospace;
     font-size: 15px;
     color: var(--accent);
@@ -71,6 +83,38 @@ const INSTALL_CMD = "npx shellular";
   .copy-btn.copied {
     color: var(--success);
     border-color: rgba(var(--brand-success-rgb), 0.32);
+  }
+
+  .install-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .install-command {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .install-actions-copy {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 560px) {
+    .install-box {
+      width: 100%;
+      max-width: 100%;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      font-size: 14px;
+    }
   }
 </style>
 

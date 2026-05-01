@@ -75,6 +75,24 @@ body {
 	overflow-x: hidden;
 }
 
+a {
+	color: inherit;
+}
+
+.inline-link {
+	color: var(--accent);
+	text-decoration: none;
+	text-underline-offset: 0.18em;
+	transition:
+		color 0.2s,
+		text-decoration-color 0.2s;
+}
+
+.inline-link:hover {
+	color: var(--brand-highlight);
+	text-decoration: underline;
+}
+
 /* ─── Shared buttons ─────────────────────────────────────── */
 .btn-primary {
 	display: inline-flex;

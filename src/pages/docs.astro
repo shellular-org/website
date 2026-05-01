@@ -21,7 +21,6 @@ const options = [
     def: "requires-approval",
     desc: "How unknown clients are handled: always-reject, always-allow, or requires-approval",
   },
-  { flag: "--install-vs-plugin", def: "—", desc: "Install the VS Code extension and exit" },
 ];
 
 const clientsOptions = [{ flag: "--delete <clientId>", desc: "Delete a known client from the store" }];
@@ -102,12 +101,17 @@ const sections = [
           Shellular CLI is the host agent for Shellular. It connects your dev machine to the Shellular relay so the
           mobile app can reach your environment securely.
         </p>
+        <p>
+          If you are comparing mobile remote development setups, read
+          <a class="inline-link" href="/shellular-vs-claude-remote-control">Shellular vs Claude Remote Control</a>
+          for the short version of where Shellular fits.
+        </p>
       </section>
 
       <section id="requirements" class="doc-section">
         <h2>Requirements</h2>
         <ul class="check-list">
-          <li>Node.js 18 or newer</li>
+          <li>Node.js v20.20.2 or newer</li>
           <li>macOS, Linux, or Windows</li>
           <li>The Shellular mobile app to scan the pairing QR code</li>
         </ul>

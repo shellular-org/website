@@ -43,7 +43,16 @@ const structuredData = {
           <span>File System</span>
           <span>Git</span>
         </div>
-        <a class="brand-link" href="/brand">Brand colors and logos</a>
+        <div class="hero-actions">
+          <a class="hero-link-card hero-link-card-primary" href="/brand">
+            <span class="hero-link-label">Brand</span>
+            <span class="hero-link-title">Colors and logos</span>
+          </a>
+          <a class="hero-link-card" href="/shellular-vs-claude-remote-control">
+            <span class="hero-link-label">Compare</span>
+            <span class="hero-link-title">Vs Claude Remote Control</span>
+          </a>
+        </div>
       </div>
     </header>
 
@@ -81,7 +90,8 @@ const structuredData = {
 
   .about-hero {
     border-bottom: 1px solid var(--line-soft);
-    background: radial-gradient(1200px 360px at 50% -50%, rgba(var(--brand-gold-rgb), 0.14), transparent), var(--brand-bg);
+    background:
+      radial-gradient(1200px 360px at 50% -50%, rgba(var(--brand-gold-rgb), 0.14), transparent), var(--brand-bg);
   }
 
   .about-hero-inner {
@@ -132,17 +142,52 @@ const structuredData = {
     gap: 8px;
   }
 
-  .brand-link {
-    display: inline-flex;
-    margin-top: 20px;
-    color: var(--accent);
-    font-size: 13px;
-    font-weight: 700;
-    text-decoration: none;
+  .hero-actions {
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
-  .brand-link:hover {
-    text-decoration: underline;
+  .hero-link-card {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 190px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    text-decoration: none;
+    background: rgba(var(--brand-cream-rgb), 0.03);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.12);
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .hero-link-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(var(--brand-gold-rgb), 0.28);
+    background: rgba(var(--brand-gold-rgb), 0.06);
+  }
+
+  .hero-link-card-primary {
+    background: rgba(var(--brand-gold-rgb), 0.08);
+  }
+
+  .hero-link-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+  }
+
+  .hero-link-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.35;
   }
 
   .hero-capabilities span {
@@ -258,6 +303,14 @@ const structuredData = {
   }
 
   @media (max-width: 760px) {
+    .hero-actions {
+      flex-direction: column;
+    }
+
+    .hero-link-card {
+      min-width: 0;
+    }
+
     .team-grid {
       grid-template-columns: 1fr;
     }

@@ -37,11 +37,10 @@ const steps: Step[] = [
 
 <div id="how">
   <div id="how-inner">
-    <h2 class="section-title reveal reveal-delay-1">
-      Three steps to <span>ship anywhere</span>
-    </h2>
+    <div class="section-label reveal">How it works</div>
+    <h2 class="section-title reveal reveal-delay-1">Set up Shellular in <span>three steps</span></h2>
     <p class="section-sub reveal reveal-delay-2">
-      No accounts. No cloud subscription. Just a local CLI and the mobile app.
+      Install the app, start the host on your machine, and connect to the environment you already use.
     </p>
 
     <div class="steps">
@@ -77,6 +76,10 @@ const steps: Step[] = [
     max-width: 1100px;
     margin: 0 auto;
     padding: clamp(60px, 8vw, 100px) clamp(16px, 8vw, 80px);
+  }
+
+  #how-inner > .section-label {
+    text-align: center;
   }
 
   .steps {
