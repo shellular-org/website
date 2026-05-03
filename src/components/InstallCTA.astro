@@ -5,11 +5,7 @@ const INSTALL_CMD = "npx shellular";
 ---
 
 <section id="install">
-  <div class="section-label reveal">Get started</div>
-  <h2 class="section-title reveal reveal-delay-1">Install the app, then connect <span>your machine</span></h2>
-  <p class="section-sub reveal reveal-delay-2">
-    Start with the mobile app, then run the host on the computer you want to reach.
-  </p>
+  <h2 class="section-title reveal reveal-delay-1">Get started <span>in under a minute</span></h2>
 
   <div class="install-center">
     <div class="install-actions reveal reveal-delay-3">
@@ -18,7 +14,7 @@ const INSTALL_CMD = "npx shellular";
     </div>
 
     <div class="install-command reveal reveal-delay-4">
-      <p class="install-actions-copy">2. Run the host on the machine you want to control.</p>
+      <p class="install-actions-copy">2. Run this on your dev machine.</p>
       <div class="install-box">
         <span class="prompt" aria-hidden="true">$</span>
         <span>{INSTALL_CMD}</span>
@@ -38,10 +34,41 @@ const INSTALL_CMD = "npx shellular";
 
   .install-center {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 28px;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .install-actions,
+  .install-command {
+    flex: 1 1;
+    max-width: 440px;
+    position: relative;
+  }
+
+  .install-actions::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60%;
+    background: rgba(var(--brand-gold-rgb), 0.15);
+  }
+
+  @media (max-width: 640px) {
+    .install-center {
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .install-actions::after {
+      display: none;
+    }
   }
 
   .install-box {
@@ -90,6 +117,11 @@ const INSTALL_CMD = "npx shellular";
     flex-direction: column;
     align-items: center;
     gap: 14px;
+    padding: 24px;
+  }
+
+  .install-actions :global(.app-badges) {
+    justify-content: center;
   }
 
   .install-command {
@@ -97,6 +129,7 @@ const INSTALL_CMD = "npx shellular";
     flex-direction: column;
     align-items: center;
     gap: 14px;
+    padding: 24px;
   }
 
   .install-actions-copy {
