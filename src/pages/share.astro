@@ -19,7 +19,6 @@ const qrUrl = (url: string) =>
   <main class="share-page">
     <section class="share-shell">
       <div class="share-copy">
-        <p class="section-label">Share</p>
         <h1>Send Shellular to someone nearby.</h1>
         <p>Choose their phone type and scan the QR code to open the right store listing.</p>
 
@@ -47,7 +46,13 @@ const qrUrl = (url: string) =>
         data-android-qr={qrUrl(PLAY_STORE_URL)}
       >
         <div class="qr-frame">
-          <img src={qrUrl(APP_STORE_URL)} width="360" height="360" alt="QR code for Shellular on the App Store" data-qr />
+          <img
+            src={qrUrl(APP_STORE_URL)}
+            width="360"
+            height="360"
+            alt="QR code for Shellular on the App Store"
+            data-qr
+          />
         </div>
         <div class="qr-meta">
           <span data-store-name>App Store</span>
@@ -88,13 +93,6 @@ const qrUrl = (url: string) =>
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-  }
-
-  .share-copy > p:not(.section-label) {
-    color: var(--text-muted);
-    line-height: 1.7;
-    font-size: 16px;
-    max-width: 54ch;
   }
 
   .platform-toggle {
