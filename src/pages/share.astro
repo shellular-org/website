@@ -1,5 +1,5 @@
 ---
-import { Smartphone, TabletSmartphone } from "@lucide/astro";
+import AppBadges from "@/components/AppBadges.astro";
 import Footer from "@/components/Footer.astro";
 import Nav from "@/components/Nav.astro";
 import Layout from "@/layouts/Layout.astro";
@@ -10,8 +10,8 @@ const qrUrl = (url: string) =>
 ---
 
 <Layout
-  title="Share Shellular"
-  description="Share Shellular with a direct App Store or Google Play link and a QR code for iPhone or Android."
+  title="Get Shellular"
+  description="Download Shellular on iPhone or Android — scan the QR code to open the App Store or Google Play listing."
   noindex={true}
 >
   <Nav currentPath={Astro.url.pathname} />
@@ -19,31 +19,29 @@ const qrUrl = (url: string) =>
   <main class="share-page">
     <section class="share-shell">
       <div class="share-copy">
-        <h1>Send Shellular to someone nearby.</h1>
-        <p>Choose their phone type and scan the QR code to open the right store listing.</p>
+        <p class="eyebrow">Your entire dev environment, on your phone.</p>
+        <h1>Try Shellular on your phone.</h1>
+        <p>Terminal, AI agents, files, ports & Git — all from your phone. Choose your platform and scan the QR code.</p>
 
         <div class="platform-toggle" role="radiogroup" aria-label="Choose platform">
-          <button class="platform-button active" type="button" data-platform="ios" role="radio" aria-checked="true">
-            <Smartphone size={18} aria-hidden="true" />
-            iOS
-          </button>
-          <button class="platform-button" type="button" data-platform="android" role="radio" aria-checked="false">
-            <TabletSmartphone size={18} aria-hidden="true" />
-            Android
-          </button>
+          <button class="platform-button active" type="button" data-platform="ios" role="radio" aria-checked="true"
+            >iPhone</button
+          >
+          <button class="platform-button" type="button" data-platform="android" role="radio" aria-checked="false"
+            >Android</button
+          >
         </div>
 
-        <a class="install-button" href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" data-install-link>
-          Open App Store
-        </a>
+        <AppBadges show="ios" />
+        <AppBadges show="android" className="hidden" />
       </div>
 
       <div
         class="qr-panel"
-        data-ios-url={APP_STORE_URL}
-        data-android-url={PLAY_STORE_URL}
         data-ios-qr={qrUrl(APP_STORE_URL)}
         data-android-qr={qrUrl(PLAY_STORE_URL)}
+        data-ios-url={APP_STORE_URL}
+        data-android-url={PLAY_STORE_URL}
       >
         <div class="qr-frame">
           <img
@@ -82,11 +80,20 @@ const qrUrl = (url: string) =>
     align-items: center;
   }
 
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
   h1 {
     max-width: 10ch;
     font-size: clamp(2.5rem, 6vw, 4.8rem);
     font-weight: 800;
-    line-height: 0.98;
+    line-height: 1.05;
     letter-spacing: -0.05em;
     margin-bottom: 20px;
     background: var(--grad-text);
@@ -128,19 +135,12 @@ const qrUrl = (url: string) =>
     color: var(--brand-ink);
   }
 
-  .install-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px;
-    min-width: 178px;
-    padding: 0 22px;
-    border-radius: 999px;
-    background: var(--grad-accent-btn);
-    color: var(--brand-ink);
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 14px;
+  .share-copy :global(.app-badges) {
+    margin-top: 28px;
+  }
+
+  .share-copy :global(.app-badges.hidden) {
+    display: none;
   }
 
   .qr-panel {
@@ -153,7 +153,6 @@ const qrUrl = (url: string) =>
   .qr-frame {
     background: var(--surface-soft);
     border-radius: 8px;
-    padding: clamp(14px, 3vw, 22px);
   }
 
   .qr-frame img {
@@ -205,58 +204,51 @@ const qrUrl = (url: string) =>
   const panel = document.querySelector<HTMLElement>(".qr-panel");
   const buttons = document.querySelectorAll<HTMLButtonElement>(".platform-button[data-platform]");
   const qr = document.querySelector<HTMLImageElement>("[data-qr]");
-  const installLink = document.querySelector<HTMLAnchorElement>("[data-install-link]");
   const plainLink = document.querySelector<HTMLAnchorElement>("[data-plain-link]");
   const storeName = document.querySelector<HTMLElement>("[data-store-name]");
 
-  const platformContent = {
+  const content = {
     ios: {
-      url: panel?.dataset.iosUrl ?? "",
       qr: panel?.dataset.iosQr ?? "",
+      url: panel?.dataset.iosUrl ?? "",
       label: "App Store",
-      cta: "Open App Store",
       alt: "QR code for Shellular on the App Store",
     },
     android: {
-      url: panel?.dataset.androidUrl ?? "",
       qr: panel?.dataset.androidQr ?? "",
+      url: panel?.dataset.androidUrl ?? "",
       label: "Google Play",
-      cta: "Open Google Play",
       alt: "QR code for Shellular on Google Play",
     },
   };
 
-  const setPlatform = (platform: keyof typeof platformContent) => {
-    const content = platformContent[platform];
+  const badges = document.querySelectorAll<HTMLElement>(".share-copy .app-badges");
 
-    buttons.forEach((button) => {
-      const isActive = button.dataset.platform === platform;
-      button.classList.toggle("active", isActive);
-      button.setAttribute("aria-checked", String(isActive));
+  const setPlatform = (platform: keyof typeof content) => {
+    const c = content[platform];
+    buttons.forEach((btn) => {
+      const active = btn.dataset.platform === platform;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-checked", String(active));
     });
-
+    badges.forEach((badge, i) => {
+      badge.classList.toggle("hidden", platform === "ios" ? i !== 0 : i !== 1);
+    });
     if (qr) {
-      qr.src = content.qr;
-      qr.alt = content.alt;
+      qr.src = c.qr;
+      qr.alt = c.alt;
     }
-
-    if (installLink) {
-      installLink.href = content.url;
-      installLink.textContent = content.cta;
-    }
-
     if (plainLink) {
-      plainLink.href = content.url;
-      plainLink.textContent = content.url;
+      plainLink.href = c.url;
+      plainLink.textContent = c.url;
     }
-
-    if (storeName) storeName.textContent = content.label;
+    if (storeName) storeName.textContent = c.label;
   };
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const platform = button.dataset.platform;
-      if (platform === "ios" || platform === "android") setPlatform(platform);
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const p = btn.dataset.platform;
+      if (p === "ios" || p === "android") setPlatform(p);
     });
   });
 </script>
