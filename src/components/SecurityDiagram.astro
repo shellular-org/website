@@ -1,0 +1,209 @@
+---
+import { Smartphone, Cloud, Monitor } from "@lucide/astro";
+---
+
+<div class="sec-diagram-wrap">
+  <div
+    class="sec-diagram"
+    aria-label="Bidirectional encrypted data flow: phone and machine both connect to relay server"
+  >
+    <!-- Phone node -->
+    <div class="diag-node diag-node--endpoint">
+      <div class="diag-node-icon diag-node-icon--gold">
+        <Smartphone size={22} aria-hidden="true" />
+      </div>
+      <div class="diag-node-label">Your Phone</div>
+    </div>
+
+    <!-- Bidirectional connector -->
+    <div class="diag-connector">
+      <div class="diag-track">
+        <div class="diag-rail diag-rail--top">
+          <svg class="diag-arrowhead" width="8" height="10" viewBox="0 0 8 10" aria-hidden="true"
+            ><path d="M8 0 L0 5 L8 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"
+            ></path></svg
+          >
+          <div class="diag-rail-line"></div>
+        </div>
+        <div class="diag-rail diag-rail--bottom">
+          <div class="diag-rail-line"></div>
+          <svg class="diag-arrowhead" width="8" height="10" viewBox="0 0 8 10" aria-hidden="true"
+            ><path d="M0 0 L8 5 L0 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"
+            ></path></svg
+          >
+        </div>
+      </div>
+      <div class="diag-badge">E2E</div>
+    </div>
+
+    <!-- Relay node -->
+    <div class="diag-node diag-node--endpoint">
+      <div class="diag-node-icon diag-node-icon--gold">
+        <Cloud size={22} aria-hidden="true" />
+      </div>
+      <div class="diag-node-label">Relay Server</div>
+    </div>
+
+    <!-- Bidirectional connector -->
+    <div class="diag-connector">
+      <div class="diag-track">
+        <div class="diag-rail diag-rail--top">
+          <svg class="diag-arrowhead" width="8" height="10" viewBox="0 0 8 10" aria-hidden="true"
+            ><path d="M8 0 L0 5 L8 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"
+            ></path></svg
+          >
+          <div class="diag-rail-line"></div>
+        </div>
+        <div class="diag-rail diag-rail--bottom">
+          <div class="diag-rail-line"></div>
+          <svg class="diag-arrowhead" width="8" height="10" viewBox="0 0 8 10" aria-hidden="true"
+            ><path d="M0 0 L8 5 L0 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"
+            ></path></svg
+          >
+        </div>
+      </div>
+      <div class="diag-badge">E2E</div>
+    </div>
+
+    <!-- Machine node -->
+    <div class="diag-node diag-node--endpoint">
+      <div class="diag-node-icon diag-node-icon--gold">
+        <Monitor size={22} aria-hidden="true" />
+      </div>
+      <div class="diag-node-label">Your Machine</div>
+    </div>
+  </div>
+
+  <p class="diag-caption">
+    All traffic is end-to-end encrypted — the relay never sees your data. The relay server is{" "}
+    <a href="https://github.com/shellular-org/server" target="_blank" rel="noopener" class="inline-link">open source</a
+    >.
+  </p>
+</div>
+
+<style>
+  .sec-diagram-wrap {
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .sec-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  /* ── All nodes are borderless/backgroundless ── */
+  .diag-node--endpoint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 0 8px;
+    min-width: 90px;
+  }
+
+  /* ── Unified gold icon ── */
+  .diag-node-icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+  }
+
+  .diag-node-icon--gold {
+    background: rgba(var(--brand-gold-rgb), 0.1);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.24);
+    color: var(--accent);
+    box-shadow:
+      0 0 20px rgba(var(--brand-gold-rgb), 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .diag-node-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* ── Connectors ── */
+  .diag-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 0 4px;
+  }
+
+  .diag-track {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .diag-rail {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .diag-rail-line {
+    width: 60px;
+    height: 1px;
+    background-color: rgba(var(--brand-gold-rgb), 0.55);
+  }
+
+  .diag-arrowhead {
+    flex-shrink: 0;
+    color: rgba(var(--brand-gold-rgb), 0.55);
+  }
+
+  /* ── Badge ── */
+  .diag-badge {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(var(--brand-gold-rgb), 0.65);
+    background: rgba(var(--brand-gold-rgb), 0.07);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.14);
+    border-radius: 20px;
+    padding: 2px 8px;
+    white-space: nowrap;
+  }
+
+  /* ── Caption ── */
+  .diag-caption {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.6;
+    margin: 0 0 36px;
+  }
+
+  /* ── Responsive scaling ── */
+  @media (max-width: 600px) {
+    .sec-diagram-wrap {
+      zoom: 0.82;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .sec-diagram-wrap {
+      zoom: 0.65;
+    }
+  }
+
+  @media (max-width: 340px) {
+    .sec-diagram-wrap {
+      zoom: 0.52;
+    }
+  }
+</style>

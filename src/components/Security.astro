@@ -1,5 +1,6 @@
 ---
-import { Lock, Shield, QrCode, UserCheck, FileX } from "@lucide/astro";
+import { HardDrive, Lock, Smartphone, Shield, UserCheck } from "@lucide/astro";
+import SecurityDiagram from "./SecurityDiagram.astro";
 
 interface Props {
   compact?: boolean;
@@ -11,7 +12,7 @@ const points = [
   {
     Icon: Lock,
     title: "End-to-end encrypted",
-    desc: "Every message between the app and your machine is encrypted end-to-end.",
+    desc: "Data is encrypted on your device before it hits our server, and decrypted only on your phone. The relay just passes it through.",
   },
   {
     Icon: Shield,
@@ -19,19 +20,14 @@ const points = [
     desc: "All traffic runs over TLS — no unencrypted connections at all!",
   },
   {
-    Icon: QrCode,
-    title: "Out-of-band pairing",
-    desc: "The pairing key is exchanged through the QR code, never over the network.",
+    Icon: Smartphone,
+    title: "Only your devices can connect",
+    desc: "Pairing is done by scanning a QR code, which contains the key. The key is never transmitted through any network.",
   },
   {
     Icon: UserCheck,
     title: "Explicit client approval",
     desc: "Every new device must be approved by you on the host before it can connect.",
-  },
-  {
-    Icon: FileX,
-    title: "File size limits",
-    desc: "Files larger than 2 MB are rejected on read.",
   },
 ];
 ---
@@ -40,14 +36,14 @@ const points = [
   compact ? (
     <ul class="sec-list">
       {points.map(({ Icon, title, desc }) => (
-        <li class="sec-item">
-          <div class="sec-icon">
-            <Icon size={16} aria-hidden="true" />
+        <li class="sec-card">
+          <div class="sec-card-header">
+            <div class="sec-card-icon">
+              <Icon size={18} aria-hidden="true" />
+            </div>
+            <div class="sec-card-title">{title}</div>
           </div>
-          <div class="sec-text">
-            <strong>{title}</strong>
-            <span>{desc}</span>
-          </div>
+          <div class="sec-card-desc">{desc}</div>
         </li>
       ))}
     </ul>
@@ -56,16 +52,21 @@ const points = [
       <h2 class="section-title reveal reveal-delay-1">
         <span>Secure</span> by default
       </h2>
+
+      <div class="reveal reveal-delay-3">
+        <SecurityDiagram />
+      </div>
+
       <ul class="sec-list reveal reveal-delay-3">
         {points.map(({ Icon, title, desc }) => (
-          <li class="sec-item">
-            <div class="sec-icon">
-              <Icon size={16} aria-hidden="true" />
+          <li class="sec-card">
+            <div class="sec-card-header">
+              <div class="sec-card-icon">
+                <Icon size={18} aria-hidden="true" />
+              </div>
+              <div class="sec-card-title">{title}</div>
             </div>
-            <div class="sec-text">
-              <strong>{title}</strong>
-              <span>{desc}</span>
-            </div>
+            <div class="sec-card-desc">{desc}</div>
           </li>
         ))}
       </ul>
@@ -87,52 +88,65 @@ const points = [
     text-align: left;
   }
 
-  /* ── Shared list ─────────────────────────────────────── */
+  /* ── Shared list ────────────────────────────────────── */
   .sec-list {
     list-style: none;
     padding: 0;
-    display: grid;
-    gap: 10px;
-  }
-
-  .sec-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 14px 16px;
-    border-radius: 12px;
-    background: rgba(var(--brand-cream-rgb), 0.03);
-    border: 1px solid rgba(var(--brand-gold-rgb), 0.08);
-  }
-
-  .sec-icon {
-    flex-shrink: 0;
-    width: 30px;
-    height: 30px;
-    display: grid;
-    place-items: center;
-    color: var(--accent2);
-    border-radius: 8px;
-    background: rgba(var(--brand-gold-rgb), 0.07);
-    border: 1px solid rgba(var(--brand-gold-rgb), 0.1);
-    margin-top: 1px;
-  }
-
-  .sec-text {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 14px;
   }
 
-  .sec-text strong {
-    font-size: 14px;
+  /* ── Card — mirrors Features.astro .feat-card ────────── */
+  .sec-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition:
+      border-color 0.25s,
+      transform 0.25s,
+      box-shadow 0.25s;
+  }
+
+  .sec-card:hover {
+    border-color: rgba(var(--brand-gold-rgb), 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+  }
+
+  .sec-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sec-card-icon {
+    /* width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(var(--brand-gold-rgb), 0.15), rgba(var(--brand-bronze-rgb), 0.12));
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center; */
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .sec-card-title {
+    font-size: 16px;
     font-weight: 600;
     color: var(--text-primary);
+    /* line-height: 1.3; */
   }
 
-  .sec-text span {
-    font-size: 13px;
-    line-height: 1.6;
+  .sec-card-desc {
+    font-size: 14px;
     color: var(--text-muted);
+    line-height: 1.7;
   }
 </style>
