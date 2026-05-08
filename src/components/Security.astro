@@ -21,12 +21,12 @@ const points = [
   },
   {
     Icon: Smartphone,
-    title: "Only your devices can connect",
-    desc: "Pairing is done by scanning a QR code, which contains the key. The key is never transmitted through any network.",
+    title: "Key never leaves your device",
+    desc: "Pairing is done by scanning a QR code, which contains the encryption key. It is never transmitted through any network.",
   },
   {
     Icon: UserCheck,
-    title: "Explicit client approval",
+    title: "Only your devices can connect",
     desc: "Every new device must be approved by you on the host before it can connect.",
   },
 ];
@@ -92,9 +92,15 @@ const points = [
   .sec-list {
     list-style: none;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  @media (max-width: 600px) {
+    .sec-list {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* ── Card — mirrors Features.astro .feat-card ────────── */
@@ -102,10 +108,10 @@ const points = [
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 16px;
-    padding: 14px 16px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 14px;
     transition:
       border-color 0.25s,
       transform 0.25s,
@@ -121,27 +127,27 @@ const points = [
   .sec-card-header {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
   }
 
   .sec-card-icon {
-    /* width: 24px;
-    height: 24px;
-    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     background: linear-gradient(135deg, rgba(var(--brand-gold-rgb), 0.15), rgba(var(--brand-bronze-rgb), 0.12));
     border: 1px solid rgba(var(--brand-gold-rgb), 0.18);
     display: flex;
     align-items: center;
-    justify-content: center; */
+    justify-content: center;
     color: var(--accent);
     flex-shrink: 0;
   }
 
   .sec-card-title {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-primary);
-    /* line-height: 1.3; */
+    line-height: 1.3;
   }
 
   .sec-card-desc {
