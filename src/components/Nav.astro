@@ -1,5 +1,6 @@
 ---
 import ShellularLogo from "./ShellularLogo.astro";
+import { ENTERPRISE_CALENDAR_URL } from "@/data/appLinks";
 
 interface Props {
   currentPath?: string;
@@ -10,15 +11,21 @@ const isHomePage = currentPath === "/";
 ---
 
 <nav id="nav">
-  <a class="brand" href="/">
-    <ShellularLogo size={30} />
-    Shellular
-  </a>
-  <div class="links">
-    <a href={isHomePage ? "#features" : "/#features"}>Features</a>
-    <a href={isHomePage ? "#security" : "/#security"}>Security</a>
-    <a href="/docs">Docs</a>
-    <a class="download-nav" href={isHomePage ? "#get-started" : "/#get-started"}>Get Started</a>
+  <div class="nav-container">
+    <a class="brand" href="/">
+      <ShellularLogo size={30} />
+      <span class="brand-text">
+        Shellular
+        <span class="beta-badge">beta</span>
+      </span>
+    </a>
+    <div class="links">
+      <a href={isHomePage ? "#features" : "/#features"}>Features</a>
+      <a href={isHomePage ? "#security" : "/#security"}>Security</a>
+      <a href="/docs">Docs</a>
+      <a href={ENTERPRISE_CALENDAR_URL} target="_blank" rel="noopener noreferrer">Enterprise</a>
+      <a class="download-nav" href={isHomePage ? "#get-started" : "/#get-started"}>Get Started</a>
+    </div>
   </div>
 </nav>
 
@@ -29,15 +36,21 @@ const isHomePage = currentPath === "/";
     left: 0;
     right: 0;
     z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 clamp(16px, 4vw, 48px);
     height: 60px;
     background: rgba(var(--brand-bg-rgb), 0.62);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line-soft);
+  }
+
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 5vw, 48px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .brand {
@@ -52,6 +65,23 @@ const isHomePage = currentPath === "/";
 
   .brand :global(svg) {
     color: var(--accent);
+  }
+
+  .brand-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .beta-badge {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--brand-ink);
+    background: var(--grad-accent);
+    padding: 2px 6px;
+    border-radius: 4px;
   }
 
   .links {
