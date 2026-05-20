@@ -1,723 +1,779 @@
 ---
 import AppBadges from "./AppBadges.astro";
-import HeroDiagram from "./HeroDiagram.astro";
 ---
 
-<div id="hero">
-  <canvas id="wave-canvas" aria-hidden="true"></canvas>
+<section id="hero">
+  <!-- Decorative clouds -->
+  <svg class="cloud cloud-1" viewBox="0 0 200 80" aria-hidden="true">
+    <path
+      d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
+      fill="#ffffff"
+      opacity="0.92"
+    ></path>
+  </svg>
+  <svg class="cloud cloud-2" viewBox="0 0 200 80" aria-hidden="true">
+    <path
+      d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
+      fill="#ffffff"
+      opacity="0.78"
+    ></path>
+  </svg>
+  <svg class="cloud cloud-3" viewBox="0 0 200 80" aria-hidden="true">
+    <path
+      d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
+      fill="#ffffff"
+      opacity="0.88"
+    ></path>
+  </svg>
+  <svg class="cloud cloud-4" viewBox="0 0 200 80" aria-hidden="true">
+    <path
+      d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
+      fill="#ffffff"
+      opacity="0.7"
+    ></path>
+  </svg>
 
   <div class="hero-content">
-    <div class="hero-copy">
-      <h1 class="reveal reveal-delay-1">
-        <span class="hero-copy-static">Use your</span>
-        <span class="hero-rotator" aria-label="dev machine, laptop, Mac mini, EC2 box, homelab, workstation">
-          <span class="hero-rotator-track" aria-hidden="true">
-            <span>Laptop</span>
-            <span>Agents</span>
-            <span>Mac mini</span>
-            <span>Desktop</span>
-            <span>Homelab</span>
-            <span>Servers</span>
-          </span>
-        </span>
-        <span class="hero-copy-static">from <span class="hero-copy-phone">your phone</span>.</span>
-      </h1>
-      <p class="subtitle reveal reveal-delay-2">
-        Your full dev environment — agents, terminal, files, ports — in your pocket. Claude Code, Codex, OpenCode, and
-        more.
-      </p>
+    <span class="hero-eyebrow reveal">
+      <span class="dot"></span>
+      Now in public beta
+    </span>
 
-      <AppBadges className="reveal reveal-delay-3" />
+    <h1 class="hero-title reveal reveal-delay-1">
+      Your dev machine,
+      <span class="hero-italic">in your pocket.</span>
+    </h1>
+
+    <p class="hero-sub reveal reveal-delay-2">
+      Run Claude Code, Codex, OpenCode and your full terminal from your phone.
+      Real environment, real repos, real ports — no sync, no copy, no compromise.
+    </p>
+
+    <div class="hero-ctas reveal reveal-delay-3">
+      <a href="#get-started" class="btn-primary">
+        Get started — it's free
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M13 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      <a href="#features" class="btn-secondary">See how it works</a>
     </div>
 
-    <HeroDiagram />
-  </div>
+    <div class="hero-proof reveal reveal-delay-4">
+      <div class="avatars" aria-hidden="true">
+        <span class="avatar">AC</span>
+        <span class="avatar">LD</span>
+        <span class="avatar">SW</span>
+        <span class="avatar">+</span>
+      </div>
+      <p>Trusted by developers shipping from cafes, couches, and crowded trains.</p>
+    </div>
 
-  <canvas id="wave-overlay" aria-hidden="true"></canvas>
-
-  <div class="scroll-hint" aria-hidden="true">
-    scroll
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <polyline points="6 9 12 15 18 9"></polyline>
-    </svg>
+    <div class="hero-visual reveal reveal-delay-5">
+      <div class="phone-frame">
+        <div class="phone-notch" aria-hidden="true"></div>
+        <div class="phone-screen" aria-label="Shellular running on phone">
+          <!-- Status bar -->
+          <div class="ps-status" aria-hidden="true">
+            <span class="ps-time">9:41</span>
+            <span class="ps-status-right">
+              <span class="ps-signal"></span>
+              <span class="ps-wifi">
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+                  <path d="M7 9.5a1 1 0 100-2 1 1 0 000 2zM2 5l1 1a5.7 5.7 0 018 0l1-1A7.1 7.1 0 002 5zm-2-2l1 1a8.5 8.5 0 0112 0l1-1A9.9 9.9 0 000 3z" fill="currentColor"/>
+                </svg>
+              </span>
+              <span class="ps-battery"></span>
+            </span>
+          </div>
+          <!-- Session header -->
+          <div class="ps-header">
+            <div class="ps-host">
+              <span class="ps-host-dot"></span>
+              mac-studio
+            </div>
+            <div class="ps-tabs">
+              <span class="ps-tab ps-tab--active">claude</span>
+              <span class="ps-tab">term</span>
+              <span class="ps-tab">:3000</span>
+            </div>
+          </div>
+          <!-- Terminal body -->
+          <div class="ps-term">
+            <div class="ps-line">
+              <span class="ps-prompt">~/apps/checkout</span>
+              <span class="ps-arrow">›</span>
+              <span class="ps-cmd">claude</span>
+            </div>
+            <div class="ps-block">
+              <div class="ps-block-head">
+                <span class="ps-block-icon"></span>
+                Claude Code
+                <span class="ps-block-status">● online</span>
+              </div>
+              <div class="ps-block-body">
+                <span class="ps-msg">Fixed the race in <code>useCart</code>. Tests passing.</span>
+                <span class="ps-msg ps-msg--mine">ship it</span>
+              </div>
+            </div>
+            <div class="ps-line">
+              <span class="ps-prompt">~/apps/checkout</span>
+              <span class="ps-arrow">›</span>
+              <span class="ps-cmd">git push</span>
+              <span class="ps-cursor" aria-hidden="true"></span>
+            </div>
+          </div>
+          <!-- Bottom toolbar -->
+          <div class="ps-toolbar" aria-hidden="true">
+            <span class="ps-key">esc</span>
+            <span class="ps-key">tab</span>
+            <span class="ps-key">^c</span>
+            <span class="ps-key ps-key--wide">⌘</span>
+          </div>
+        </div>
+      </div>
+      <!-- Floating UI chip 1 -->
+      <div class="floating-chip chip-left" aria-hidden="true">
+        <div class="chip-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+        </div>
+        <div>
+          <div class="chip-title">Live terminal</div>
+          <div class="chip-sub">npm run dev — port 3000</div>
+        </div>
+      </div>
+      <!-- Floating UI chip 2 -->
+      <div class="floating-chip chip-right" aria-hidden="true">
+        <div class="chip-icon chip-icon-green">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="8 12 11 15 16 9"></polyline>
+          </svg>
+        </div>
+        <div>
+          <div class="chip-title">Claude Code</div>
+          <div class="chip-sub">running on mac-studio</div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
 <style>
   #hero {
     position: relative;
     width: 100%;
-    min-height: 100vh;
-    min-height: 100svh;
     overflow: hidden;
-    background: var(--sky-bg);
+    background: linear-gradient(180deg, var(--sky-300) 0%, var(--sky-300) 55%, var(--cream-300) 100%);
+    padding: 140px 24px 60px;
   }
 
+  /* Soft sun halo behind the headline */
   #hero::before {
     content: "";
     position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(180deg, rgba(10, 10, 12, 0.34) 0%, rgba(10, 10, 12, 0.18) 24%, rgba(10, 10, 12, 0.58) 100%),
-      radial-gradient(circle at center, rgba(var(--brand-bg-rgb), 0.02), rgba(var(--brand-bg-rgb), 0.58) 78%);
-    z-index: 12;
-    pointer-events: none;
-  }
-
-  #wave-canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    opacity: 0.58;
-  }
-
-  #wave-overlay {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    z-index: 30;
-    pointer-events: none;
-    opacity: 0.32;
-  }
-
-  /* ─── Layout ─────────────────────────────────────────────── */
-  .hero-content {
-    position: relative;
-    z-index: 40;
-    min-height: 100vh;
-    min-height: 100svh;
-    display: grid;
-    align-items: center;
-    grid-template-columns: minmax(360px, 0.98fr) minmax(0, 1.12fr);
-    gap: clamp(28px, 3vw, 44px);
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 116px clamp(16px, 5vw, 48px) 104px;
-  }
-
-  .hero-copy {
-    text-align: left;
-    max-width: 640px;
-    position: relative;
-  }
-
-  .hero-copy::before {
-    content: "";
-    position: absolute;
-    inset: -100px -80px -80px -100px;
-    background: radial-gradient(
-      ellipse at 28% 42%,
-      rgba(10, 10, 12, 0.92) 0%,
-      rgba(10, 10, 12, 0.64) 38%,
-      transparent 68%
-    );
-    pointer-events: none;
-    z-index: -1;
-  }
-
-  .hero-copy h1 {
-    display: grid;
-    justify-items: start;
-    row-gap: 0.06em;
-    font-size: clamp(2.35rem, 4.6vw, 4.3rem);
-    font-weight: 800;
-    line-height: 1.04;
-    letter-spacing: -0.04em;
-    background: linear-gradient(180deg, rgba(250, 246, 240, 0.98) 0%, rgba(229, 219, 204, 0.9) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 18px;
-    text-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
-    /* max-width: 11.8ch; */
-  }
-
-  .hero-copy-static {
-    display: inline-block;
-  }
-
-  .hero-copy-phone {
-    font-style: italic;
-    letter-spacing: -0.03em;
-  }
-
-  .hero-rotator {
-    position: relative;
-    display: inline-flex;
-    align-items: flex-start;
-    color: var(--brand-highlight);
-    /* width: clamp(8.2ch, 18vw, 10.8ch); */
-    width: 100%;
-    text-align: left;
-    min-width: 0;
-    height: 1.1em;
-    overflow: hidden;
-    vertical-align: top;
-    /* mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 86%, transparent 100%); */
-    -webkit-text-fill-color: currentColor;
-    text-shadow:
-      0 0 18px rgba(var(--brand-highlight-rgb), 0.24),
-      0 10px 22px rgba(0, 0, 0, 0.18);
-  }
-
-  .hero-rotator-track {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    animation: hero-rotate-targets 15s cubic-bezier(0.7, 0, 0.3, 1) infinite;
-  }
-
-  .hero-rotator-track > span {
-    display: block;
-    line-height: 1.1em;
-    padding-bottom: 0.02em;
-    white-space: nowrap;
-  }
-
-  @keyframes hero-rotate-targets {
-    0%,
-    13% {
-      transform: translateY(0%);
-    }
-    16%,
-    29% {
-      transform: translateY(-16.6667%);
-    }
-    32%,
-    45% {
-      transform: translateY(-33.3333%);
-    }
-    48%,
-    61% {
-      transform: translateY(-50%);
-    }
-    64%,
-    77% {
-      transform: translateY(-66.6667%);
-    }
-    80%,
-    96% {
-      transform: translateY(-83.3333%);
-    }
-    100% {
-      transform: translateY(-83.3333%);
-    }
-  }
-
-  .subtitle {
-    font-size: clamp(14px, 1.5vw, 17px);
-    color: rgba(240, 232, 219, 0.9);
-    max-width: 48ch;
-    line-height: 1.55;
-    text-wrap: balance;
-    margin-bottom: 24px;
-  }
-
-  /* ─── Scroll hint ────────────────────────────────────────── */
-  .scroll-hint {
-    position: absolute;
-    bottom: 28px;
+    top: 8%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    color: rgba(var(--brand-gold-rgb));
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    animation: bounce 2.4s infinite;
+    width: min(700px, 90vw);
+    height: 420px;
+    background:
+      radial-gradient(ellipse at center, rgba(255, 244, 220, 0.55) 0%, rgba(255, 244, 220, 0) 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Subtle horizon haze just above the cream */
+  #hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 180px;
+    background: linear-gradient(180deg, transparent 0%, rgba(244, 230, 218, 0.4) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cloud {
+    position: absolute;
+    width: 240px;
+    height: 96px;
     pointer-events: none;
   }
 
-  @keyframes bounce {
-    0%,
-    100% {
-      transform: translateX(-50%) translateY(0);
-    }
-    50% {
-      transform: translateX(-50%) translateY(8px);
-    }
+  .cloud-1 {
+    top: 14%;
+    left: 4%;
+    width: 220px;
+    animation: drift-slow 32s ease-in-out infinite alternate;
   }
 
-  /* ─── Responsive ─────────────────────────────────────────── */
-  @media (max-width: 1100px) {
-    .hero-content {
-      grid-template-columns: 1fr;
-      min-height: auto;
-      padding-top: 96px;
-      padding-bottom: 60px;
-      gap: clamp(24px, 4vw, 36px);
-      align-items: start;
-    }
+  .cloud-2 {
+    top: 22%;
+    right: 6%;
+    width: 280px;
+    animation: drift-medium 40s ease-in-out infinite alternate;
+  }
 
-    .hero-copy {
-      text-align: center;
-      max-width: 660px;
-      margin: 0 auto;
-    }
+  .cloud-3 {
+    top: 52%;
+    left: 14%;
+    width: 180px;
+    animation: drift-fast 26s ease-in-out infinite alternate;
+  }
 
-    .hero-copy h1 {
-      justify-items: center;
-    }
+  .cloud-4 {
+    top: 38%;
+    right: 22%;
+    width: 140px;
+    animation: drift-slow 36s ease-in-out infinite alternate;
+  }
 
-    .hero-rotator {
-      text-align: center;
-    }
+  @keyframes drift-slow {
+    from { transform: translateX(0); }
+    to   { transform: translateX(60px); }
+  }
+  @keyframes drift-medium {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-80px); }
+  }
+  @keyframes drift-fast {
+    from { transform: translateX(-30px); }
+    to   { transform: translateX(50px); }
+  }
 
-    .hero-copy::before {
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(26, 22, 21, 0.08);
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-700);
+    margin-bottom: 24px;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    box-shadow: 0 0 0 4px rgba(14, 161, 88, 0.18);
+  }
+
+  .hero-title {
+    font-family: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+    font-size: clamp(2.6rem, 6.4vw, 5.4rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    color: var(--ink-900);
+    max-width: 16ch;
+    margin-bottom: 22px;
+    text-wrap: balance;
+  }
+
+  .hero-italic {
+    display: block;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--ink-600);
+  }
+
+  .hero-sub {
+    font-size: clamp(15px, 1.6vw, 18px);
+    color: var(--ink-700);
+    line-height: 1.55;
+    max-width: 58ch;
+    margin-bottom: 34px;
+    text-wrap: pretty;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+
+  .hero-proof {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 64px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-proof p {
+    font-size: 13px;
+    color: var(--ink-600);
+    font-weight: 500;
+  }
+
+  .avatars {
+    display: inline-flex;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--cream-100);
+    background: linear-gradient(135deg, #d6c2a1, #8a745c);
+    margin-left: -10px;
+    box-shadow: 0 2px 8px rgba(26, 22, 21, 0.16);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  }
+
+  .avatar:nth-child(1) { background: linear-gradient(135deg, #84b9ef, #156cc2); margin-left: 0; }
+  .avatar:nth-child(2) { background: linear-gradient(135deg, #efd6a3, #cf8d13); color: rgba(58, 38, 8, 0.85); text-shadow: none; }
+  .avatar:nth-child(3) { background: linear-gradient(135deg, #e07d52, #754d29); }
+  .avatar:nth-child(4) {
+    background: var(--cream-100);
+    color: var(--ink-700);
+    text-shadow: none;
+    font-size: 14px;
+  }
+
+  /* ── Phone visual ── */
+  .hero-visual {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 320 / 640;
+    margin: 0 auto;
+  }
+
+  .phone-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #2a2421 0%, var(--ink-900) 100%);
+    border-radius: 44px;
+    padding: 12px;
+    box-shadow:
+      0 30px 80px rgba(26, 22, 21, 0.32),
+      0 12px 30px rgba(26, 22, 21, 0.2),
+      inset 0 0 0 1.5px rgba(255, 255, 255, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    transform: rotate(-2deg);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-visual:hover .phone-frame {
+    transform: rotate(0deg) translateY(-4px);
+  }
+
+  /* soft ground shadow */
+  .hero-visual::after {
+    content: "";
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: -16px;
+    height: 22px;
+    background: radial-gradient(ellipse at center, rgba(26, 22, 21, 0.22), transparent 70%);
+    filter: blur(6px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .phone-notch {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 22px;
+    background: var(--ink-900);
+    border-radius: 14px;
+    z-index: 2;
+  }
+
+  .phone-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    border: none;
+    background: linear-gradient(180deg, #f8f3ec 0%, #f1ebe5 100%);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    color: var(--ink-900);
+  }
+
+  .ps-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-900);
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+
+  .ps-status-right {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink-900);
+  }
+
+  .ps-signal {
+    width: 14px;
+    height: 8px;
+    background:
+      linear-gradient(to top, var(--ink-900) 30%, transparent 30%) 0 / 2.5px 100% no-repeat,
+      linear-gradient(to top, var(--ink-900) 50%, transparent 50%) 4px / 2.5px 100% no-repeat,
+      linear-gradient(to top, var(--ink-900) 70%, transparent 70%) 8px / 2.5px 100% no-repeat,
+      linear-gradient(to top, var(--ink-900) 90%, transparent 90%) 12px / 2.5px 100% no-repeat;
+    background-color: transparent;
+  }
+
+  .ps-battery {
+    width: 22px;
+    height: 10px;
+    border: 1px solid var(--ink-900);
+    border-radius: 2px;
+    position: relative;
+    padding: 1px;
+  }
+
+  .ps-battery::before {
+    content: "";
+    display: block;
+    width: 78%;
+    height: 100%;
+    background: var(--ink-900);
+    border-radius: 1px;
+  }
+
+  .ps-battery::after {
+    content: "";
+    position: absolute;
+    right: -3px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 4px;
+    background: var(--ink-900);
+    border-radius: 0 1px 1px 0;
+  }
+
+  .ps-header {
+    padding: 8px 18px 10px;
+    border-bottom: 1px solid rgba(26, 22, 21, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .ps-host {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-900);
+  }
+
+  .ps-host-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    box-shadow: 0 0 0 3px rgba(14, 161, 88, 0.18);
+    animation: pulse-soft 2.6s ease-in-out infinite;
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(14, 161, 88, 0.18); }
+    50%      { box-shadow: 0 0 0 5px rgba(14, 161, 88, 0.08); }
+  }
+
+  .ps-tabs {
+    display: flex;
+    gap: 6px;
+  }
+
+  .ps-tab {
+    padding: 4px 9px;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--ink-500);
+    background: transparent;
+    border-radius: 7px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    letter-spacing: 0.01em;
+  }
+
+  .ps-tab--active {
+    background: var(--ink-900);
+    color: var(--cream-100);
+  }
+
+  .ps-term {
+    flex: 1;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 11px;
+    line-height: 1.4;
+    overflow: hidden;
+  }
+
+  .ps-line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .ps-prompt {
+    color: var(--accent-blue);
+    font-weight: 600;
+  }
+
+  .ps-arrow {
+    color: var(--accent-orange);
+    font-weight: 700;
+  }
+
+  .ps-cmd {
+    color: var(--ink-900);
+    font-weight: 600;
+  }
+
+  .ps-cursor {
+    width: 6px;
+    height: 11px;
+    background: var(--ink-900);
+    margin-left: 2px;
+    animation: blink 1.1s steps(2) infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .ps-block {
+    background: var(--surface);
+    border: 1px solid rgba(26, 22, 21, 0.08);
+    border-radius: 10px;
+    padding: 9px 11px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    box-shadow: 0 4px 14px rgba(26, 22, 21, 0.05);
+  }
+
+  .ps-block-head {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--ink-900);
+  }
+
+  .ps-block-icon {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, var(--accent-orange), #e07d52);
+    box-shadow: 0 1px 3px rgba(201, 80, 46, 0.4);
+  }
+
+  .ps-block-status {
+    margin-left: auto;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--accent-green);
+    letter-spacing: 0.04em;
+  }
+
+  .ps-block-body {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .ps-msg {
+    font-size: 10.5px;
+    color: var(--ink-700);
+    line-height: 1.5;
+    padding: 6px 9px;
+    background: var(--cream-100);
+    border-radius: 8px;
+    align-self: flex-start;
+    max-width: 92%;
+  }
+
+  .ps-msg code {
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    background: rgba(21, 108, 194, 0.1);
+    color: var(--accent-blue);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 10px;
+  }
+
+  .ps-msg--mine {
+    align-self: flex-end;
+    background: var(--ink-900);
+    color: var(--cream-100);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 600;
+  }
+
+  .ps-toolbar {
+    display: flex;
+    gap: 6px;
+    padding: 8px 14px 14px;
+    border-top: 1px solid rgba(26, 22, 21, 0.06);
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  .ps-key {
+    flex: 1;
+    text-align: center;
+    padding: 7px 0;
+    background: var(--surface);
+    border: 1px solid rgba(26, 22, 21, 0.08);
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--ink-700);
+    font-family: "Fragment Mono", monospace;
+    box-shadow: 0 1px 0 rgba(26, 22, 21, 0.04);
+  }
+
+  .ps-key--wide {
+    flex: 1.4;
+    background: var(--ink-900);
+    color: var(--cream-100);
+    border-color: var(--ink-900);
+  }
+
+  .floating-chip {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(26, 22, 21, 0.06);
+    border-radius: 14px;
+    box-shadow: 0 14px 36px rgba(26, 22, 21, 0.14);
+    backdrop-filter: blur(8px);
+    z-index: 3;
+    text-align: left;
+  }
+
+  .chip-left {
+    top: 14%;
+    left: -36%;
+    animation: float-y-l 6s ease-in-out infinite alternate;
+  }
+
+  .chip-right {
+    top: 62%;
+    right: -40%;
+    animation: float-y-r 7s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes float-y-l {
+    from { transform: translateY(-6px) rotate(-2deg); }
+    to   { transform: translateY(8px)  rotate(-2deg); }
+  }
+
+  @keyframes float-y-r {
+    from { transform: translateY(-6px) rotate(2deg); }
+    to   { transform: translateY(8px)  rotate(2deg); }
+  }
+
+  .chip-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    background: var(--sky-100);
+    color: var(--accent-blue);
+  }
+
+  .chip-icon-green {
+    background: rgba(14, 161, 88, 0.14);
+    color: var(--accent-green);
+  }
+
+  .chip-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink-900);
+  }
+
+  .chip-sub {
+    font-size: 11px;
+    color: var(--ink-500);
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .floating-chip {
       display: none;
     }
 
-    .subtitle {
-      margin: 0 auto 28px;
+    .hero-visual {
+      max-width: 260px;
     }
   }
 
-  @media (max-width: 700px) {
-    .hero-copy h1 {
-      row-gap: 0.02em;
-      justify-items: center;
+  @media (max-width: 600px) {
+    #hero {
+      padding-top: 110px;
     }
 
-    .hero-rotator {
-      width: min(100%, 9.6ch);
-      height: 1.1em;
-      mask-image: linear-gradient(180deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-    }
-
-    .scroll-hint {
-      bottom: 22px;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-rotator {
-      min-width: 0;
-      height: auto;
-      mask-image: none;
-    }
-
-    .hero-rotator-track {
-      animation: none;
-    }
-
-    .hero-rotator-track > span:not(:first-child) {
-      display: none;
-    }
+    .cloud-4 { display: none; }
   }
 </style>
-
-<!-- Wave engine — uses CDN import so we keep it inline to avoid Vite bundling -->
-<script type="module" is:inline>
-  import { prepareWithSegments, walkLineRanges } from "https://esm.sh/@chenglou/pretext@0.0.4";
-
-  // Code token buckets: 0=foam/crest (dense+bright) → 3=abyss (sparse+dim)
-  const BUCKETS = [
-    [
-      "{}",
-      "()",
-      "[]",
-      "<>",
-      "##",
-      "//",
-      "!=",
-      "==",
-      "=>",
-      "+=",
-      "&&",
-      "||",
-      "::",
-      "??",
-      "!",
-      "++",
-      "--",
-      "**",
-      "%%",
-      "@@",
-      "<<",
-      ">>",
-    ],
-    [
-      "function",
-      "return",
-      "const",
-      "import",
-      "export",
-      "async",
-      "await",
-      "class",
-      "extends",
-      "interface",
-      "typeof",
-      "readonly",
-      "private",
-      "public",
-      "static",
-      "declare",
-      "namespace",
-      "enum",
-      "override",
-      "abstract",
-    ],
-    [
-      "let",
-      "var",
-      "if",
-      "for",
-      "while",
-      "do",
-      "try",
-      "catch",
-      "throw",
-      "new",
-      "delete",
-      "yield",
-      "switch",
-      "case",
-      "break",
-      "null",
-      "true",
-      "false",
-      "void",
-      "never",
-      "any",
-      "string",
-      "number",
-      "boolean",
-      "unknown",
-    ],
-    [
-      "fn",
-      "ts",
-      "js",
-      "id",
-      "ok",
-      "px",
-      "ms",
-      "req",
-      "res",
-      "api",
-      "url",
-      "err",
-      "ctx",
-      "cfg",
-      "buf",
-      "ref",
-      "arr",
-      "map",
-      "src",
-      "dst",
-      "log",
-      "cmd",
-      ":",
-      ".",
-      ":",
-      ";",
-      "_",
-      "-",
-    ],
-  ];
-
-  const FONT = '13px "JetBrains Mono","Courier New",monospace';
-  const CELL_H = 20;
-  const TOKEN_GAP = 6;
-  const rootStyles = getComputedStyle(document.documentElement);
-  const cssColor = (token, fallback) => rootStyles.getPropertyValue(token).trim() || fallback;
-  const brandBg = cssColor("--brand-bg", "#0d0d0f");
-
-  // Wave layers — 5 overlapping sines for a realistic ocean shape
-  const WAVES = [
-    { amp: 38, freq: 0.009, speed: 0.45, phase: 0.0 },
-    { amp: 18, freq: 0.0175, speed: 0.72, phase: 1.1 },
-    { amp: 9, freq: 0.032, speed: 1.18, phase: 2.3 },
-    { amp: 4, freq: 0.054, speed: 1.85, phase: 0.7 },
-    { amp: 2, freq: 0.088, speed: 2.9, phase: 1.8 },
-  ];
-  const FOAM = { amp: 7, freq: 0.185, speed: 4.8, phase: 0.4 };
-
-  let canvas, ctx, W, H, DPR;
-  let oCanvas, oCtx;
-  let tokenWidths = new Map();
-  let rowTiles = [];
-  let baseY = 0;
-  let stars = [];
-  let elapsed = 0;
-  let lastTime = 0;
-  let measured = false;
-
-  function surfaceY(x, t) {
-    let y = baseY;
-    for (const w of WAVES) y += w.amp * Math.sin(x * w.freq + t * w.speed + w.phase);
-    return y;
-  }
-
-  function foamAt(x, t) {
-    return 0.5 + 0.5 * Math.sin(x * FOAM.freq + t * FOAM.speed + FOAM.phase);
-  }
-
-  async function measureTokens() {
-    for (const bucket of BUCKETS) {
-      for (const tok of bucket) {
-        const prepared = prepareWithSegments(tok + " ", FONT);
-        let w = 4;
-        walkLineRanges(prepared, 99999, (line) => {
-          w = line.width;
-        });
-        tokenWidths.set(tok, Math.max(w, 4));
-      }
-    }
-    measured = true;
-  }
-
-  function buildRowTiles() {
-    rowTiles = [];
-    const numRows = Math.ceil(H / CELL_H) + 2;
-    for (let row = 0; row < numRows; row++) {
-      const cellCY = row * CELL_H + CELL_H * 0.5;
-      const approxD = cellCY - baseY;
-      const speed = approxD < -60 ? 5 : approxD < 0 ? 12 + (1 + approxD / 60) * 40 : Math.max(5, 52 - approxD * 0.15);
-
-      const tokens = [],
-        cumWidths = [0];
-      let totalW = 0,
-        col = 0;
-      while (totalW < W * 2.5) {
-        const depthBias = Math.min(3, Math.max(0, Math.round((approxD + 60) / 60)));
-        const bi = Math.min(3, (depthBias + (col % 3 === 0 ? 0 : 1)) % 4);
-        const bucket = BUCKETS[bi];
-        const tok = bucket[(row * 11 + col * 13 + bi * 17) % bucket.length];
-        const tw = (tokenWidths.get(tok) || 10) + TOKEN_GAP;
-        tokens.push(tok);
-        totalW += tw;
-        cumWidths.push(totalW);
-        col++;
-      }
-      rowTiles.push({ tokens, cumWidths, totalW, speed });
-    }
-  }
-
-  function init() {
-    canvas = document.getElementById("wave-canvas");
-    ctx = canvas.getContext("2d");
-    oCanvas = document.getElementById("wave-overlay");
-    oCtx = oCanvas.getContext("2d");
-    resize();
-  }
-
-  function resize() {
-    DPR = Math.min(window.devicePixelRatio || 1, 2);
-    W = canvas.clientWidth;
-    H = canvas.clientHeight;
-    canvas.width = W * DPR;
-    canvas.height = H * DPR;
-    ctx.scale(DPR, DPR);
-    oCanvas.width = W * DPR;
-    oCanvas.height = H * DPR;
-    oCtx.scale(DPR, DPR);
-    baseY = H * 0.62;
-    stars = Array.from({ length: 95 }, () => ({
-      x: Math.random() * W,
-      y: Math.random() * H * 0.5,
-      r: Math.random() * 1.3 + 0.3,
-      phase: Math.random() * Math.PI * 2,
-      speed: 0.7 + Math.random() * 1.6,
-    }));
-    if (measured) buildRowTiles();
-  }
-
-  function drawTokenRow(renderCtx, row, t, repelEnabled) {
-    const { tokens, cumWidths, totalW, speed } = rowTiles[row];
-    const cellCY = row * CELL_H + CELL_H * 0.5;
-    if (cellCY > H + CELL_H) return false;
-
-    const scrollX = (elapsed * speed) % totalW;
-    let lo = 0,
-      hi = tokens.length - 1;
-    while (lo < hi) {
-      const mid = (lo + hi) >> 1;
-      cumWidths[mid + 1] < scrollX ? (lo = mid + 1) : (hi = mid);
-    }
-    let x = cumWidths[lo > 0 ? lo - 1 : 0] - scrollX;
-    let idx = lo > 0 ? lo - 1 : 0;
-
-    while (x < W + 20) {
-      const tok = tokens[((idx % tokens.length) + tokens.length) % tokens.length];
-      const tw = (tokenWidths.get(tok) || 10) + TOKEN_GAP;
-      const cx = x + tw * 0.5;
-      const depth = cellCY - surfaceY(cx, t);
-      const foam = foamAt(cx, t);
-
-      // Repulsion from center logo area
-      const rdx = cx,
-        rdy = cellCY;
-      const rdist = Math.sqrt(rdx * rdx + rdy * rdy);
-      const REPEL_R = 145;
-      const repelAlpha = Math.min(1, rdist / (REPEL_R * 0.4));
-      let rx = x,
-        ry = cellCY;
-      if (repelEnabled && rdist < REPEL_R) {
-        const f = 1 - rdist / REPEL_R;
-        const push = f * f * 55;
-        const nx = rdist > 0.5 ? rdx / rdist : 0;
-        const ny = rdist > 0.5 ? rdy / rdist : 1;
-        rx = x + nx * push * 0.4;
-        ry = cellCY + ny * push;
-      }
-
-      if (!repelEnabled) {
-        // Overlay pass: only draw below-surface tokens
-        if (depth >= 0) {
-          if (depth < 10) {
-            renderCtx.globalAlpha = 0.8 + foam * 0.2;
-            renderCtx.fillStyle = `rgb(${Math.round(212 + foam * 30)},${Math.round(192 + foam * 28)},${Math.round(165 + foam * 26)})`;
-          } else if (depth < 50) {
-            const d = (depth - 10) / 40;
-            renderCtx.globalAlpha = 0.8 - d * 0.3;
-            renderCtx.fillStyle = `rgb(${Math.round(163 - d * 35)},${Math.round(142 - d * 34)},${Math.round(119 - d * 26)})`;
-          } else if (depth < 130) {
-            const d = (depth - 50) / 80;
-            renderCtx.globalAlpha = 0.5 - d * 0.27;
-            renderCtx.fillStyle = `rgb(${Math.round(108 - d * 24)},${Math.round(92 - d * 26)},${Math.round(78 - d * 24)})`;
-          } else {
-            renderCtx.globalAlpha = 0.13;
-            renderCtx.fillStyle = "#2a2522";
-          }
-          renderCtx.fillText(tok, x, cellCY);
-          renderCtx.globalAlpha = 1;
-        }
-      } else {
-        // Main canvas pass
-        const loftBoost = (() => {
-          const aboveLogo = cellCY < 0 - 0 * 0.3;
-          const loftDX = Math.abs(cx);
-          const loftDY = Math.max(0 - cellCY);
-          const loftR = 110 + Math.sin(t * 0.6 + row * 0.4) * 20;
-          return aboveLogo && loftDX < loftR ? (1 - loftDX / loftR) * Math.max(0, 1 - loftDY / 320) * 0.72 : 0;
-        })();
-
-        if (depth < -70) {
-          const show = loftBoost > 0.08 ? ((idx * 71 + row * 31) & 0x7) === 0 : ((idx * 71 + row * 31) & 0xf) === 0;
-          if (show) {
-            renderCtx.globalAlpha = (0.07 + loftBoost * 0.38) * repelAlpha;
-            renderCtx.fillStyle = loftBoost > 0 ? `rgba(237,223,198,1)` : "#a89275";
-            renderCtx.fillText(tok, rx, ry);
-          }
-        } else if (depth < -22) {
-          renderCtx.globalAlpha = (0.04 + 0.07 * (1 - (-depth - 22) / 48) + loftBoost * 0.45) * repelAlpha;
-          renderCtx.fillStyle = loftBoost > 0.1 ? `rgba(244,233,214,1)` : "#b59f83";
-          renderCtx.fillText(tok, rx, ry);
-        } else if (depth < 0) {
-          const t01 = 1 - -depth / 22;
-          const f2 = foam * t01;
-          renderCtx.globalAlpha = (0.18 + f2 * 0.72) * repelAlpha;
-          renderCtx.fillStyle = `rgb(${Math.round(183 + f2 * 54)},${Math.round(165 + f2 * 52)},${Math.round(141 + f2 * 48)})`;
-          renderCtx.fillText(tok, rx, ry);
-        } else if (depth < 10) {
-          renderCtx.globalAlpha = (0.8 + foam * 0.2) * repelAlpha;
-          renderCtx.fillStyle = `rgb(${Math.round(212 + foam * 30)},${Math.round(192 + foam * 28)},${Math.round(165 + foam * 26)})`;
-          renderCtx.fillText(tok, rx, ry);
-        } else if (depth < 50) {
-          const d = (depth - 10) / 40;
-          renderCtx.globalAlpha = (0.8 - d * 0.3) * repelAlpha;
-          renderCtx.fillStyle = `rgb(${Math.round(163 - d * 35)},${Math.round(142 - d * 34)},${Math.round(119 - d * 26)})`;
-          renderCtx.fillText(tok, rx, ry);
-        } else if (depth < 130) {
-          const d = (depth - 50) / 80;
-          renderCtx.globalAlpha = (0.5 - d * 0.27) * repelAlpha;
-          renderCtx.fillStyle = `rgb(${Math.round(108 - d * 24)},${Math.round(92 - d * 26)},${Math.round(78 - d * 24)})`;
-          renderCtx.fillText(tok, rx, ry);
-        } else {
-          renderCtx.globalAlpha = 0.13 * repelAlpha;
-          renderCtx.fillStyle = "#2a2522";
-          renderCtx.fillText(tok, rx, ry);
-        }
-        renderCtx.globalAlpha = 1;
-      }
-
-      x += tw;
-      idx++;
-    }
-    return true;
-  }
-
-  function frame(ts) {
-    if (document.hidden) {
-      requestAnimationFrame(frame);
-      return;
-    }
-    const dt = Math.min((ts - lastTime) / 1000, 0.05);
-    lastTime = ts;
-    elapsed += dt;
-    const t = elapsed;
-
-    // Sky gradient
-    const grad = ctx.createLinearGradient(0, 0, 0, H);
-    grad.addColorStop(0, brandBg);
-    grad.addColorStop(0.42, "#141417");
-    grad.addColorStop(0.6, "#1a1816");
-    grad.addColorStop(1, "#0a0a0c");
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, W, H);
-
-    // Stars
-    for (const s of stars) {
-      if (s.y >= surfaceY(s.x, t) - 10) continue;
-      const a = (0.3 + 0.7 * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase))) * 0.65;
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(241,231,214,${a.toFixed(3)})`;
-      ctx.fill();
-    }
-
-    // Main canvas token pass
-    if (measured) {
-      ctx.save();
-      ctx.textBaseline = "middle";
-      ctx.font = FONT;
-      for (let row = 0; row < rowTiles.length; row++) {
-        if (!drawTokenRow(ctx, row, t, true)) break;
-      }
-      ctx.restore();
-    }
-
-    // Overlay pass — tokens drawn on top of logo (submerged hull effect)
-    oCtx.clearRect(0, 0, W, H);
-    if (measured) {
-      oCtx.save();
-      oCtx.textBaseline = "middle";
-      oCtx.font = FONT;
-      for (let row = 0; row < rowTiles.length; row++) {
-        if (!drawTokenRow(oCtx, row, t, false)) break;
-      }
-      oCtx.restore();
-    }
-
-    requestAnimationFrame(frame);
-  }
-
-  // Resize handler
-  let resizeTimer;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      resize();
-      if (measured) buildRowTiles();
-    }, 120);
-  });
-
-  // Boot
-  init();
-  await document.fonts.ready;
-  await measureTokens();
-  buildRowTiles();
-  lastTime = performance.now();
-  requestAnimationFrame(frame);
-</script>

@@ -1,0 +1,225 @@
+---
+interface Quote {
+  body: string;
+  name: string;
+  role: string;
+  avatarBg: string;
+  initials: string;
+  accent: "blue" | "gold" | "orange";
+}
+
+const quotes: Quote[] = [
+  {
+    body:
+      "I shipped a hotfix on the train. Pulled up Claude Code on my phone, ran the test suite, pushed. My laptop never left the bag.",
+    name: "Amos Chen",
+    role: "Staff Engineer, Vault",
+    avatarBg: "linear-gradient(135deg, #84b9ef, #156cc2)",
+    initials: "AC",
+    accent: "blue",
+  },
+  {
+    body:
+      "The terminal is the real deal — not a toy. tmux, vim, the whole muscle memory. Feels like an SSH client with a designer's eye.",
+    name: "Leah Daniel",
+    role: "Indie Hacker",
+    avatarBg: "linear-gradient(135deg, #efd6a3, #cf8d13)",
+    initials: "LD",
+    accent: "gold",
+  },
+  {
+    body:
+      "Being able to babysit a long-running Codex run from anywhere has changed how I work. I'm not chained to my desk anymore.",
+    name: "Sergio Walker",
+    role: "Founder, Tactile",
+    avatarBg: "linear-gradient(135deg, #e07d52, #754d29)",
+    initials: "SW",
+    accent: "orange",
+  },
+];
+---
+
+<section id="testimonials">
+  <div class="t-inner">
+    <div class="t-header">
+      <span class="section-eyebrow reveal">
+        <span class="dot"></span>
+        Loved by developers
+      </span>
+      <h2 class="section-title reveal reveal-delay-1">
+        Real workflows,
+        <span>not demos.</span>
+      </h2>
+    </div>
+
+    <div class="t-grid">
+      {
+        quotes.map((q, i) => (
+          <figure class={`t-card t-card--${q.accent} reveal reveal-delay-${i + 1}`}>
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <blockquote>{q.body}</blockquote>
+            <figcaption>
+              <span class="t-avatar" style={`background:${q.avatarBg}`} aria-hidden="true">
+                {q.initials}
+              </span>
+              <span class="t-meta">
+                <span class="t-name">{q.name}</span>
+                <span class="t-role">{q.role}</span>
+              </span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  #testimonials {
+    background: var(--cream-100);
+    padding: clamp(80px, 11vw, 130px) clamp(16px, 6vw, 64px);
+  }
+
+  .t-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .t-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .t-header .section-eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-orange);
+  }
+
+  .t-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+  }
+
+  .t-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .t-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--sky-300);
+    opacity: 0.7;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .t-card--blue::before   { background: var(--accent-blue); }
+  .t-card--gold::before   { background: var(--accent-gold); }
+  .t-card--orange::before { background: var(--accent-orange); }
+
+  .t-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-strong);
+  }
+
+  .quote-mark {
+    font-family: "Plus Jakarta Sans", "Georgia", serif;
+    font-size: 64px;
+    line-height: 0.6;
+    color: var(--sky-300);
+    height: 30px;
+    display: inline-block;
+    font-weight: 800;
+    user-select: none;
+  }
+
+  .t-card--blue   .quote-mark { color: rgba(21, 108, 194, 0.35); }
+  .t-card--gold   .quote-mark { color: rgba(207, 141, 19, 0.35); }
+  .t-card--orange .quote-mark { color: rgba(201, 80, 46, 0.35); }
+
+  blockquote {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-700);
+    font-weight: 500;
+    text-wrap: pretty;
+    flex: 1;
+  }
+
+  blockquote::before {
+    content: open-quote;
+    margin-right: 1px;
+  }
+
+  blockquote::after {
+    content: close-quote;
+    margin-left: 1px;
+  }
+
+  figcaption {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+
+  .t-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: inset 0 0 0 2px var(--cream-100), 0 4px 10px rgba(26, 22, 21, 0.08);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+    letter-spacing: 0.02em;
+  }
+
+  .t-card--gold .t-avatar {
+    color: rgba(58, 38, 8, 0.85);
+    text-shadow: none;
+  }
+
+  .t-meta {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .t-name {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink-900);
+  }
+
+  .t-role {
+    font-size: 12.5px;
+    color: var(--ink-500);
+    margin-top: 2px;
+  }
+</style>

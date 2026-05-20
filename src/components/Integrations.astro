@@ -1,0 +1,200 @@
+---
+import claudeCode from "@/assets/claudecode-color.svg";
+import codex from "@/assets/codex-color.svg";
+import openCode from "@/assets/opencode.svg";
+import copilot from "@/assets/githubcopilot.svg";
+import { Terminal, GitBranch, Server, FileCode2, Globe2, Layers } from "@lucide/astro";
+
+const partners = [
+  { label: "Claude Code", img: claudeCode.src },
+  { label: "Codex", img: codex.src },
+  { label: "OpenCode", img: openCode.src },
+  { label: "Copilot", img: copilot.src },
+];
+
+const tools = [
+  { Icon: Terminal, label: "tmux / zellij" },
+  { Icon: GitBranch, label: "git" },
+  { Icon: Server, label: "any shell" },
+  { Icon: FileCode2, label: "neovim / helix" },
+  { Icon: Globe2, label: "localhost tunnels" },
+  { Icon: Layers, label: "your dotfiles" },
+];
+---
+
+<section id="integrations">
+  <div class="i-inner">
+    <div class="i-header">
+      <span class="section-eyebrow reveal">
+        <span class="dot"></span>
+        Integrations
+      </span>
+      <h2 class="section-title reveal reveal-delay-1">
+        Works with the tools
+        <span>you already use.</span>
+      </h2>
+      <p class="section-sub reveal reveal-delay-2">
+        Shellular doesn't replace your dev environment — it forwards it. Whatever runs on your
+        machine, runs on your phone.
+      </p>
+    </div>
+
+    <div class="agents reveal reveal-delay-3">
+      {
+        partners.map((p) => (
+          <div class="agent-card">
+            <img src={p.img} alt="" width="40" height="40" aria-hidden="true" />
+            <span>{p.label}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="tools reveal reveal-delay-4">
+      {
+        tools.map(({ Icon, label }) => (
+          <div class="tool-chip">
+            <Icon size={16} aria-hidden="true" />
+            <span>{label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  #integrations {
+    background: linear-gradient(180deg, var(--cream-100) 0%, var(--sky-100) 50%, var(--cream-100) 100%);
+    padding: clamp(80px, 11vw, 130px) clamp(16px, 6vw, 64px);
+    position: relative;
+  }
+
+  /* Subtle horizon line above the section */
+  #integrations::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(640px, 80vw);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(21, 108, 194, 0.18), transparent);
+  }
+
+  .i-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .i-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .i-header .section-eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+  }
+
+  .agents {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .agent-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .agent-card::after {
+    /* sliding sheen on hover */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.55) 50%, transparent 60%);
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+  }
+
+  .agent-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(21, 108, 194, 0.3);
+  }
+
+  .agent-card:hover::after {
+    transform: translateX(120%);
+  }
+
+  .agent-card img {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .agent-card:hover img {
+    transform: scale(1.08) rotate(-3deg);
+  }
+
+  .agent-card span {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink-900);
+    letter-spacing: -0.01em;
+  }
+
+  .tools {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .tool-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-700);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.18s, border-color 0.18s, color 0.18s;
+  }
+
+  .tool-chip:hover {
+    transform: translateY(-2px);
+    border-color: rgba(21, 108, 194, 0.3);
+    color: var(--ink-900);
+  }
+
+  .tool-chip svg {
+    color: var(--ink-500);
+    transition: color 0.18s;
+  }
+
+  .tool-chip:hover svg {
+    color: var(--accent-blue);
+  }
+</style>

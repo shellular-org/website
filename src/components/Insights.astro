@@ -1,0 +1,424 @@
+---
+type Cover = "field" | "engineering" | "guide";
+
+interface Post {
+  category: string;
+  title: string;
+  author: string;
+  readTime: string;
+  href: string;
+  cover: Cover;
+  featured?: boolean;
+}
+
+const posts: Post[] = [
+  {
+    category: "Field notes",
+    title: "Shipping production code from a phone — what actually works in 2026",
+    author: "The Shellular team",
+    readTime: "8 min read",
+    href: "/docs",
+    cover: "field",
+    featured: true,
+  },
+  {
+    category: "Engineering",
+    title: "How we encrypt your dev environment end-to-end",
+    author: "Security team",
+    readTime: "5 min read",
+    href: "/docs",
+    cover: "engineering",
+  },
+  {
+    category: "Guide",
+    title: "Five tmux tricks that change mobile development",
+    author: "Community",
+    readTime: "4 min read",
+    href: "/docs",
+    cover: "guide",
+  },
+];
+---
+
+<section id="insights">
+  <div class="ins-inner">
+    <div class="ins-header">
+      <span class="section-eyebrow reveal">
+        <span class="dot"></span>
+        Insights
+      </span>
+      <h2 class="section-title reveal reveal-delay-1">
+        Mobile dev,
+        <span>done right.</span>
+      </h2>
+      <p class="section-sub reveal reveal-delay-2">
+        Tips, deep dives, and stories from teams shipping with Shellular.
+      </p>
+    </div>
+
+    <div class="ins-grid">
+      {
+        posts.map((p, i) => (
+          <a href={p.href} class={`ins-card ${p.featured ? "ins-card--featured" : ""} reveal reveal-delay-${i + 1}`}>
+            <div class={`ins-thumb ins-thumb--${p.cover}`} aria-hidden="true">
+              {p.cover === "field" && (
+                <div class="cov cov-field">
+                  <div class="cov-phone">
+                    <div class="cov-phone-screen">
+                      <div class="cov-line cov-line--prompt">~/ship</div>
+                      <div class="cov-line cov-line--cmd">git push origin main</div>
+                      <div class="cov-line cov-line--ok">✓ shipped from a train</div>
+                    </div>
+                  </div>
+                  <div class="cov-cloud cov-cloud--a"></div>
+                  <div class="cov-cloud cov-cloud--b"></div>
+                </div>
+              )}
+              {p.cover === "engineering" && (
+                <div class="cov cov-eng">
+                  <div class="cov-lock">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                      <rect x="4" y="11" width="16" height="10" rx="2.5" />
+                      <path d="M8 11V7a4 4 0 018 0v4" />
+                    </svg>
+                  </div>
+                  <div class="cov-keys">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
+              )}
+              {p.cover === "guide" && (
+                <div class="cov cov-guide">
+                  <div class="cov-grid">
+                    <div class="cov-pane cov-pane--a"></div>
+                    <div class="cov-pane cov-pane--b"></div>
+                    <div class="cov-pane cov-pane--c"></div>
+                    <div class="cov-pane cov-pane--d"></div>
+                  </div>
+                  <div class="cov-num">5</div>
+                </div>
+              )}
+            </div>
+            <div class="ins-body">
+              <span class="ins-category">{p.category}</span>
+              <h3 class="ins-title">{p.title}</h3>
+              <div class="ins-meta">
+                <span>{p.author}</span>
+                <span class="dot-sep" aria-hidden="true">·</span>
+                <span>{p.readTime}</span>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  #insights {
+    background: var(--cream-100);
+    padding: clamp(80px, 11vw, 130px) clamp(16px, 6vw, 64px);
+  }
+
+  .ins-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ins-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .ins-header .section-eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+  }
+
+  .ins-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 22px;
+  }
+
+  .ins-card {
+    text-decoration: none;
+    color: inherit;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+
+  .ins-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-strong);
+  }
+
+  .ins-card--featured {
+    grid-row: span 1;
+  }
+
+  .ins-thumb {
+    aspect-ratio: 16 / 10;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ins-card--featured .ins-thumb {
+    aspect-ratio: 16 / 9;
+  }
+
+  .ins-thumb--field {
+    background: linear-gradient(160deg, var(--sky-300) 0%, var(--sky-100) 100%);
+  }
+
+  .ins-thumb--engineering {
+    background: linear-gradient(160deg, #1f1a18 0%, #2a221e 100%);
+    color: var(--cream-100);
+  }
+
+  .ins-thumb--guide {
+    background: linear-gradient(160deg, var(--cream-300) 0%, var(--cream-200) 100%);
+  }
+
+  /* ── Field notes cover ── */
+  .cov {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cov-phone {
+    position: relative;
+    z-index: 2;
+    width: 110px;
+    height: 80%;
+    max-height: 200px;
+    background: var(--ink-900);
+    border-radius: 18px;
+    padding: 8px;
+    box-shadow: 0 14px 30px rgba(26, 22, 21, 0.3);
+    transform: rotate(-6deg);
+  }
+
+  .cov-phone-screen {
+    width: 100%;
+    height: 100%;
+    background: var(--cream-100);
+    border-radius: 12px;
+    padding: 14px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-family: "Fragment Mono", monospace;
+    font-size: 9.5px;
+  }
+
+  .cov-line--prompt { color: var(--accent-blue); }
+  .cov-line--cmd    { color: var(--ink-900); font-weight: 600; }
+  .cov-line--ok     { color: var(--accent-green); margin-top: auto; }
+
+  .cov-cloud {
+    position: absolute;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+    filter: blur(0.5px);
+  }
+
+  .cov-cloud--a {
+    width: 90px;
+    height: 30px;
+    top: 18%;
+    left: 6%;
+  }
+
+  .cov-cloud--b {
+    width: 60px;
+    height: 22px;
+    bottom: 18%;
+    right: 8%;
+    background: rgba(255, 255, 255, 0.55);
+  }
+
+  /* ── Engineering cover ── */
+  .cov-eng {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cov-lock {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(132, 185, 239, 0.18);
+    border: 1px solid rgba(132, 185, 239, 0.3);
+    display: grid;
+    place-items: center;
+    color: var(--sky-300);
+    box-shadow: 0 0 40px rgba(132, 185, 239, 0.2);
+    z-index: 2;
+  }
+
+  .cov-lock svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .cov-keys {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+    width: 70%;
+    z-index: 2;
+  }
+
+  .cov-keys span {
+    height: 2px;
+    background: rgba(132, 185, 239, 0.35);
+    border-radius: 2px;
+  }
+
+  .cov-keys span:nth-child(2n) { background: rgba(207, 141, 19, 0.4); }
+  .cov-keys span:nth-child(3n) { background: rgba(132, 185, 239, 0.6); }
+
+  /* ── Guide cover ── */
+  .cov-guide { padding: 18px; }
+
+  .cov-grid {
+    width: 80%;
+    height: 75%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 6px;
+    border: 2px solid var(--ink-900);
+    padding: 6px;
+    border-radius: 6px;
+    background: var(--ink-900);
+  }
+
+  .cov-pane {
+    background: var(--cream-100);
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .cov-pane::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 30%;
+    height: 2px;
+    background: var(--ink-500);
+    border-radius: 1px;
+  }
+
+  .cov-pane::after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 6px;
+    right: 50%;
+    height: 2px;
+    background: var(--ink-200);
+    border-radius: 1px;
+  }
+
+  .cov-pane--a::before { background: var(--accent-blue); }
+  .cov-pane--c::before { background: var(--accent-orange); }
+  .cov-pane--d::before { background: var(--accent-green); }
+
+  .cov-num {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--ink-900);
+    opacity: 0.12;
+    line-height: 1;
+  }
+
+  .ins-body {
+    padding: 22px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .ins-category {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+  }
+
+  .ins-title {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--ink-900);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .ins-card--featured .ins-title {
+    font-size: 22px;
+  }
+
+  .ins-meta {
+    margin-top: auto;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 12.5px;
+    color: var(--ink-500);
+  }
+
+  .dot-sep {
+    color: var(--ink-200);
+  }
+
+  @media (max-width: 900px) {
+    .ins-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .ins-card--featured {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .ins-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ins-card--featured {
+      grid-column: span 1;
+    }
+  }
+</style>

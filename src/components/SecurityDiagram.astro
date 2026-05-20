@@ -117,19 +117,19 @@ import { Smartphone, Cloud, Monitor } from "@lucide/astro";
   }
 
   .diag-node-icon--gold {
-    background: rgba(var(--brand-gold-rgb), 0.1);
-    border: 1px solid rgba(var(--brand-gold-rgb), 0.24);
-    color: var(--accent);
+    background: var(--sky-100);
+    border: 1px solid rgba(21, 108, 194, 0.18);
+    color: var(--accent-blue);
     box-shadow:
-      0 0 20px rgba(var(--brand-gold-rgb), 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      0 0 20px rgba(21, 108, 194, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 
   .diag-node-label {
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.04em;
-    color: var(--accent);
+    color: var(--ink-700);
     white-space: nowrap;
   }
 
@@ -157,12 +157,12 @@ import { Smartphone, Cloud, Monitor } from "@lucide/astro";
   .diag-rail-line {
     width: 60px;
     height: 1px;
-    background-color: rgba(var(--brand-gold-rgb), 0.55);
+    background-color: rgba(26, 22, 21, 0.32);
   }
 
   .diag-arrowhead {
     flex-shrink: 0;
-    color: rgba(var(--brand-gold-rgb), 0.55);
+    color: rgba(26, 22, 21, 0.32);
   }
 
   /* ── Badge ── */
@@ -171,9 +171,9 @@ import { Smartphone, Cloud, Monitor } from "@lucide/astro";
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(var(--brand-gold-rgb), 0.65);
-    background: rgba(var(--brand-gold-rgb), 0.07);
-    border: 1px solid rgba(var(--brand-gold-rgb), 0.14);
+    color: var(--accent-green);
+    background: rgba(14, 161, 88, 0.1);
+    border: 1px solid rgba(14, 161, 88, 0.2);
     border-radius: 20px;
     padding: 2px 8px;
     white-space: nowrap;
@@ -181,11 +181,12 @@ import { Smartphone, Cloud, Monitor } from "@lucide/astro";
 
   /* ── Caption ── */
   .diag-caption {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--text-muted);
     text-align: center;
     line-height: 1.6;
     margin: 0 0 36px;
+    max-width: 52ch;
   }
 
   /* ── Responsive scaling ── */

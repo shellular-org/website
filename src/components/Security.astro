@@ -1,5 +1,5 @@
 ---
-import { HardDrive, Lock, Smartphone, Shield, UserCheck } from "@lucide/astro";
+import { Lock, Smartphone, Shield, UserCheck } from "@lucide/astro";
 import SecurityDiagram from "./SecurityDiagram.astro";
 
 interface Props {
@@ -17,12 +17,12 @@ const points = [
   {
     Icon: Shield,
     title: "TLS in transit",
-    desc: "All traffic runs over TLS — no unencrypted connections at all!",
+    desc: "All traffic runs over TLS — no unencrypted connections at all.",
   },
   {
     Icon: Smartphone,
     title: "Key never leaves your device",
-    desc: "Pairing is done by scanning a QR code, which contains the encryption key. It is never transmitted through any network.",
+    desc: "Pairing is done by scanning a QR code that contains the encryption key. It's never transmitted through any network.",
   },
   {
     Icon: UserCheck,
@@ -49,15 +49,25 @@ const points = [
     </ul>
   ) : (
     <section id="security">
-      <h2 class="section-title reveal reveal-delay-1">
-        <span>Secure</span> by default
-      </h2>
+      <div class="security-header">
+        <span class="section-eyebrow reveal">
+          <span class="dot"></span>
+          Security
+        </span>
+        <h2 class="section-title reveal reveal-delay-1">
+          Secure
+          <span>by default.</span>
+        </h2>
+        <p class="section-sub reveal reveal-delay-2">
+          Your code is your business. We architected Shellular so even we can't read it.
+        </p>
+      </div>
 
       <div class="reveal reveal-delay-3">
         <SecurityDiagram />
       </div>
 
-      <ul class="sec-list reveal reveal-delay-3">
+      <ul class="sec-list reveal reveal-delay-4">
         {points.map(({ Icon, title, desc }) => (
           <li class="sec-card">
             <div class="sec-card-header">
@@ -75,12 +85,19 @@ const points = [
 }
 
 <style>
-  /* ── Landing page wrapper ────────────────────────────── */
   #security {
-    padding: clamp(70px, 10vw, 110px) clamp(16px, 8vw, 80px) clamp(60px, 8vw, 100px);
-    max-width: 860px;
+    padding: clamp(80px, 11vw, 130px) clamp(16px, 6vw, 64px);
+    max-width: 1000px;
     margin: 0 auto;
     text-align: center;
+    background: var(--cream-100);
+  }
+
+  .security-header .section-eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-green);
   }
 
   #security .sec-list {
@@ -88,7 +105,6 @@ const points = [
     text-align: left;
   }
 
-  /* ── Shared list ────────────────────────────────────── */
   .sec-list {
     list-style: none;
     padding: 0;
@@ -103,25 +119,25 @@ const points = [
     }
   }
 
-  /* ── Card — mirrors Features.astro .feat-card ────────── */
   .sec-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
     padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
     transition:
       border-color 0.25s,
       transform 0.25s,
       box-shadow 0.25s;
+    box-shadow: var(--shadow-sm);
   }
 
   .sec-card:hover {
-    border-color: rgba(var(--brand-gold-rgb), 0.3);
+    border-color: var(--border-strong);
     transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+    box-shadow: var(--shadow-md);
   }
 
   .sec-card-header {
@@ -134,25 +150,27 @@ const points = [
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background: linear-gradient(135deg, rgba(var(--brand-gold-rgb), 0.15), rgba(var(--brand-bronze-rgb), 0.12));
-    border: 1px solid rgba(var(--brand-gold-rgb), 0.18);
+    background: var(--sky-100);
+    border: 1px solid rgba(21, 108, 194, 0.16);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--accent);
+    color: var(--accent-blue);
     flex-shrink: 0;
   }
 
   .sec-card-title {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
     font-size: 16px;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--ink-900);
     line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
   .sec-card-desc {
     font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.7;
+    color: var(--ink-500);
+    line-height: 1.65;
   }
 </style>
