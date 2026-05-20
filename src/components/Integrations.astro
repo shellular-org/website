@@ -3,22 +3,25 @@ import claudeCode from "@/assets/claudecode-color.svg";
 import codex from "@/assets/codex-color.svg";
 import openCode from "@/assets/opencode.svg";
 import copilot from "@/assets/githubcopilot.svg";
-import { Terminal, GitBranch, Server, FileCode2, Globe2, Layers } from "@lucide/astro";
+import hermesAgent from "@/assets/hermesagent.svg";
+
+import { Terminal, GitBranch, ChartArea, FileCodeCornerIcon, GlobeIcon, Layers, SparkleIcon } from "@lucide/astro";
 
 const partners = [
   { label: "Claude Code", img: claudeCode.src },
   { label: "Codex", img: codex.src },
   { label: "OpenCode", img: openCode.src },
   { label: "Copilot", img: copilot.src },
+  { label: "Hermes Agent", img: hermesAgent.src },
 ];
 
 const tools = [
-  { Icon: Terminal, label: "tmux / zellij" },
+  { Icon: SparkleIcon, label: "5+ agents" },
+  { Icon: Terminal, label: "terminal" },
   { Icon: GitBranch, label: "git" },
-  { Icon: Server, label: "any shell" },
-  { Icon: FileCode2, label: "neovim / helix" },
-  { Icon: Globe2, label: "localhost tunnels" },
-  { Icon: Layers, label: "your dotfiles" },
+  { Icon: FileCodeCornerIcon, label: "code editor" },
+  { Icon: GlobeIcon, label: "localhost tunnels" },
+  { Icon: ChartArea, label: "resource monitoring" },
 ];
 ---
 

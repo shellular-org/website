@@ -10,27 +10,19 @@ interface Quote {
 
 const quotes: Quote[] = [
   {
-    body: "I shipped a hotfix on the train. Pulled up Claude Code on my phone, ran the test suite, pushed. My laptop never left the bag.",
-    name: "Amos Chen",
-    role: "Staff Engineer, Vault",
+    body: "I've been using Shellular for active development and testing — mostly backend. Being able to spin up multiple Claude sessions is what makes it for me.",
+    name: "Raj Sheth",
+    role: "Software Engineer, Ema",
     avatarBg: "linear-gradient(135deg, #84b9ef, #156cc2)",
-    initials: "AC",
+    initials: "RS",
     accent: "blue",
   },
   {
-    body: "The terminal is the real deal — not a toy. tmux, vim, the whole muscle memory. Feels like an SSH client with a designer's eye.",
-    name: "Leah Daniel",
-    role: "Indie Hacker",
-    avatarBg: "linear-gradient(135deg, #efd6a3, #cf8d13)",
-    initials: "LD",
-    accent: "gold",
-  },
-  {
-    body: "Being able to babysit a long-running Codex run from anywhere has changed how I work. I'm not chained to my desk anymore.",
-    name: "Sergio Walker",
-    role: "Founder, Tactile",
+    body: "I use Shellular to watch model training jobs on my GPU server, and to keep my Codex and Claude Code sessions going while I'm out. Not having to carry the laptop is the best part.",
+    name: "Anindyadeep Sannigrahi",
+    role: "Co-Founder, LiteFold",
     avatarBg: "linear-gradient(135deg, #e07d52, #754d29)",
-    initials: "SW",
+    initials: "AS",
     accent: "orange",
   },
 ];
@@ -89,6 +81,8 @@ const quotes: Quote[] = [
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 22px;
+    max-width: 880px;
+    margin: 0 auto;
   }
 
   .t-card {
