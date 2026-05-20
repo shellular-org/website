@@ -1,8 +1,9 @@
 ---
+import CtaBanner from "@/components/CtaBanner.astro";
 import Features from "@/components/Features.astro";
 import Footer from "@/components/Footer.astro";
-import Hero from "@/components/Hero.astro";
 import GetStarted from "@/components/GetStarted.astro";
+import Hero from "@/components/Hero.astro";
 import Integrations from "@/components/Integrations.astro";
 import Nav from "@/components/Nav.astro";
 import Security from "@/components/Security.astro";
@@ -10,35 +11,35 @@ import Testimonials from "@/components/Testimonials.astro";
 import Layout from "@/layouts/Layout.astro";
 
 const structuredData = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Shellular",
-    url: "https://shellular.dev",
-    logo: "https://shellular.dev/favicon.ico",
-    email: "team@shellular.dev",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Shellular",
-    applicationCategory: "DeveloperApplication",
-    operatingSystem: "iOS, Android, macOS, Linux, Windows",
-    url: "https://shellular.dev",
-    description:
-      "Shellular lets you access your development machine from your phone, including terminal, files, ports, Git workflows, and AI coding agents.",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Shellular",
-    url: "https://shellular.dev",
-  },
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		name: "Shellular",
+		url: "https://shellular.dev",
+		logo: "https://shellular.dev/favicon.ico",
+		email: "team@shellular.dev",
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "SoftwareApplication",
+		name: "Shellular",
+		applicationCategory: "DeveloperApplication",
+		operatingSystem: "iOS, Android, macOS, Linux, Windows",
+		url: "https://shellular.dev",
+		description:
+			"Shellular lets you access your development machine from your phone, including terminal, files, ports, Git workflows, and AI coding agents.",
+		offers: {
+			"@type": "Offer",
+			price: "0",
+			priceCurrency: "USD",
+		},
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		name: "Shellular",
+		url: "https://shellular.dev",
+	},
 ];
 ---
 
@@ -84,6 +85,7 @@ const structuredData = [
     <GetStarted />
     <Testimonials />
   </main>
+  <CtaBanner />
   <Footer />
 
   <style>

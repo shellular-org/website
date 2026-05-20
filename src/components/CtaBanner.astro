@@ -1,0 +1,109 @@
+---
+---
+
+<section class="cta-banner">
+  <div class="cta-clouds" aria-hidden="true">
+    <svg class="cta-cloud cta-cloud-1" viewBox="0 0 200 80">
+      <path
+        d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
+        fill="#ffffff"
+        opacity="0.85"></path>
+    </svg>
+    <svg class="cta-cloud cta-cloud-2" viewBox="0 0 200 80">
+      <path
+        d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
+        fill="#ffffff"
+        opacity="0.7"></path>
+    </svg>
+  </div>
+  <div class="cta-inner">
+    <h2 class="cta-title reveal">
+      Ready to take your stack
+      <span>with you?</span>
+    </h2>
+    <div class="cta-actions reveal reveal-delay-2">
+      <a href="#get-started" class="btn-primary">
+        Get started
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14M13 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      <a href="/docs" class="btn-secondary">Read the docs</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-banner {
+    position: relative;
+    background: linear-gradient(180deg, var(--sky-100) 0%, var(--sky-300) 100%);
+    padding: clamp(80px, 12vw, 140px) clamp(16px, 6vw, 64px);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .cta-clouds {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .cta-cloud {
+    position: absolute;
+    width: 240px;
+    height: 96px;
+  }
+
+  .cta-cloud-1 {
+    top: 18%;
+    left: 6%;
+  }
+
+  .cta-cloud-2 {
+    top: 12%;
+    right: 8%;
+    width: 200px;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--ink-900);
+    text-wrap: balance;
+    margin-bottom: 18px;
+  }
+
+  .cta-title span {
+    display: block;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--brand-gold-deep);
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

@@ -1,34 +1,36 @@
 ---
 import "@/styles/global.css";
-import faviconUrl from "@/assets/logo.ico?url";
 import bannerImage from "@/assets/banner.jpeg";
+import faviconUrl from "@/assets/logo.ico?url";
 
 interface Props {
-  title?: string;
-  description?: string;
-  keywords?: string[];
-  ogImage?: string;
-  ogType?: "website" | "article";
-  noindex?: boolean;
-  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+	title?: string;
+	description?: string;
+	keywords?: string[];
+	ogImage?: string;
+	ogType?: "website" | "article";
+	noindex?: boolean;
+	structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
-  title = "Shellular - Remote control for your AI agents & terminals",
-  description = "Access your Codex, Claude Code, OpenCode, terminals, files, and ports from your phone.",
-  keywords = [],
-  ogImage,
-  ogType = "website",
-  noindex = false,
-  structuredData = [],
+	title = "Shellular - Remote control for your AI agents & terminals",
+	description = "Access your Codex, Claude Code, OpenCode, terminals, files, and ports from your phone.",
+	keywords = [],
+	ogImage,
+	ogType = "website",
+	noindex = false,
+	structuredData = [],
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL(ogImage ?? bannerImage.src, Astro.site).href;
 const robotsContent = noindex
-  ? "noindex, nofollow"
-  : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
-const resolvedStructuredData = Array.isArray(structuredData) ? structuredData : [structuredData];
+	? "noindex, nofollow"
+	: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+const resolvedStructuredData = Array.isArray(structuredData)
+	? structuredData
+	: [structuredData];
 ---
 
 <!doctype html>

@@ -4,45 +4,56 @@ import Nav from "@/components/Nav.astro";
 import Layout from "@/layouts/Layout.astro";
 
 const comparisonRows = [
-  {
-    label: "AI support",
-    shellular: "Works with Claude Code, Codex, OpenCode, Pi, and the rest of your setup.",
-    codex: "Tied to Codex. No support for other agents or tools.",
-  },
-  {
-    label: "What you can do remotely",
-    shellular: "Terminal control, file browsing, Git operations, browser sessions, DevTools, and agent management.",
-    codex: "Steer active Codex threads: review outputs, approve commands, change models, start new tasks.",
-  },
-  {
-    label: "Terminal access",
-    shellular: "Full remote terminal — run any command, restart services, inspect logs directly.",
-    codex: "Read-only: view terminal output Codex produces. You cannot run commands yourself.",
-  },
-  {
-    label: "Filesystem access",
-    shellular: "Browse and edit your actual project files directly. No sync, no copy.",
-    codex: "See diffs and test results that Codex generates. No direct file browsing or editing.",
-  },
-  {
-    label: "Browser & DevTools",
-    shellular: "Open local apps remotely, inspect pages, debug — from your phone.",
-    codex: "View screenshots Codex captures. No direct browser or DevTools access.",
-  },
-  {
-    label: "Security model",
-    shellular: "End-to-end encrypted. Key never leaves your device. Pairing via QR code only.",
-    codex: "Secure relay managed by OpenAI. Session state synced through your ChatGPT account.",
-  },
+	{
+		label: "AI support",
+		shellular:
+			"Works with Claude Code, Codex, OpenCode, Pi, and the rest of your setup.",
+		codex: "Tied to Codex. No support for other agents or tools.",
+	},
+	{
+		label: "What you can do remotely",
+		shellular:
+			"Terminal control, file browsing, Git operations, browser sessions, DevTools, and agent management.",
+		codex:
+			"Steer active Codex threads: review outputs, approve commands, change models, start new tasks.",
+	},
+	{
+		label: "Terminal access",
+		shellular:
+			"Full remote terminal — run any command, restart services, inspect logs directly.",
+		codex:
+			"Read-only: view terminal output Codex produces. You cannot run commands yourself.",
+	},
+	{
+		label: "Filesystem access",
+		shellular:
+			"Browse and edit your actual project files directly. No sync, no copy.",
+		codex:
+			"See diffs and test results that Codex generates. No direct file browsing or editing.",
+	},
+	{
+		label: "Browser & DevTools",
+		shellular:
+			"Open local apps remotely, inspect pages, debug — from your phone.",
+		codex:
+			"View screenshots Codex captures. No direct browser or DevTools access.",
+	},
+	{
+		label: "Security model",
+		shellular:
+			"End-to-end encrypted. Key never leaves your device. Pairing via QR code only.",
+		codex:
+			"Secure relay managed by OpenAI. Session state synced through your ChatGPT account.",
+	},
 ];
 
 const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  name: "Shellular vs Codex Mobile",
-  description:
-    "Compare Shellular and Codex Mobile for remote development from your phone. See how terminal access, filesystem control, browser tooling, and multi-agent support stack up.",
-  url: "https://shellular.dev/shellular-vs-codex-mobile",
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	name: "Shellular vs Codex Mobile",
+	description:
+		"Compare Shellular and Codex Mobile for remote development from your phone. See how terminal access, filesystem control, browser tooling, and multi-agent support stack up.",
+	url: "https://shellular.dev/shellular-vs-codex-mobile",
 };
 ---
 

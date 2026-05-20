@@ -1,10 +1,10 @@
 ---
 interface Props {
-  size?: number;
-  /** "gold" (default) — flat brand gold. "mono" — plain currentColor. */
-  variant?: "gold" | "mono";
-  /** Background context. "light" = no glow (clean on cream/white). "dark" = soft glow. */
-  context?: "light" | "dark";
+	size?: number;
+	/** "gold" (default) — flat brand gold. "mono" — plain currentColor. */
+	variant?: "gold" | "mono";
+	/** Background context. "light" = no glow (clean on cream/white). "dark" = soft glow. */
+	context?: "light" | "dark";
 }
 
 const { size = 30, variant = "gold", context = "light" } = Astro.props;

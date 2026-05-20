@@ -4,30 +4,34 @@ import Nav from "@/components/Nav.astro";
 import Layout from "@/layouts/Layout.astro";
 
 const comparisonRows = [
-  {
-    label: "AI support",
-    shellular: "Works with Claude Code, Codex, OpenCode, Pi, and the rest of your setup.",
-    claude: "Built around a running Claude Code session.",
-  },
-  {
-    label: "Scope",
-    shellular: "Operate across terminals, files, Git, ports, and browser tooling on your machine.",
-    claude: "Primarily continues the environment of the active Claude Code session.",
-  },
-  {
-    label: "Interface",
-    shellular: "Remote command center with terminal, filesystem, browser, and agent controls.",
-    claude: "Remote chat interface for Claude Code sessions on web or mobile.",
-  },
+	{
+		label: "AI support",
+		shellular:
+			"Works with Claude Code, Codex, OpenCode, Pi, and the rest of your setup.",
+		claude: "Built around a running Claude Code session.",
+	},
+	{
+		label: "Scope",
+		shellular:
+			"Operate across terminals, files, Git, ports, and browser tooling on your machine.",
+		claude:
+			"Primarily continues the environment of the active Claude Code session.",
+	},
+	{
+		label: "Interface",
+		shellular:
+			"Remote command center with terminal, filesystem, browser, and agent controls.",
+		claude: "Remote chat interface for Claude Code sessions on web or mobile.",
+	},
 ];
 
 const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  name: "Shellular vs Claude Remote Control",
-  description:
-    "Compare Shellular and Claude Remote Control for mobile remote development, agent workflows, filesystem access, and browser tooling.",
-  url: "https://shellular.dev/shellular-vs-claude-remote-control",
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	name: "Shellular vs Claude Remote Control",
+	description:
+		"Compare Shellular and Claude Remote Control for mobile remote development, agent workflows, filesystem access, and browser tooling.",
+	url: "https://shellular.dev/shellular-vs-claude-remote-control",
 };
 ---
 

@@ -4,17 +4,30 @@ import Nav from "@/components/Nav.astro";
 import Layout from "@/layouts/Layout.astro";
 
 const team = [
-  { name: "Ajit Kumar", url: "https://github.com/deadlyjack", avatarUrl: "https://github.com/deadlyjack.png" },
-  { name: "Biraj", url: "https://github.com/biraj21", avatarUrl: "https://github.com/biraj21.png" },
-  { name: "Raunak Raj", url: "https://github.com/bajrangCoder", avatarUrl: "https://github.com/bajrangCoder.png" },
+	{
+		name: "Ajit Kumar",
+		url: "https://github.com/deadlyjack",
+		avatarUrl: "https://github.com/deadlyjack.png",
+	},
+	{
+		name: "Biraj",
+		url: "https://github.com/biraj21",
+		avatarUrl: "https://github.com/biraj21.png",
+	},
+	{
+		name: "Raunak Raj",
+		url: "https://github.com/bajrangCoder",
+		avatarUrl: "https://github.com/bajrangCoder.png",
+	},
 ];
 
 const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "AboutPage",
-  name: "About Shellular",
-  description: "Learn about Shellular and the team building mobile-first remote development workflows.",
-  url: "https://shellular.dev/about",
+	"@context": "https://schema.org",
+	"@type": "AboutPage",
+	name: "About Shellular",
+	description:
+		"Learn about Shellular and the team building mobile-first remote development workflows.",
+	url: "https://shellular.dev/about",
 };
 ---
 
@@ -29,7 +42,7 @@ const structuredData = {
   <main class="about-page">
     <header class="about-hero">
       <div class="about-hero-inner">
-        <h1>About Shellular</h1>
+        <h1>About <span class="h1-italic">Shellular.</span></h1>
         <p>
           Shellular is your remote command center for modern development. Spin up and supervise AI agents, execute
           terminal commands, inspect browser behavior with DevTools, browse your file system, and ship confidently with
@@ -57,7 +70,7 @@ const structuredData = {
 
     <section class="about-section">
       <div class="about-inner">
-        <h2 id="meet-humans">Meet The Humans of Shellular</h2>
+        <h2 id="meet-humans">Meet <span class="h2-italic">the humans.</span></h2>
         <p class="section-copy">
           We are building Shellular so distributed teams can move faster with agent-powered workflows while keeping full
           visibility and control over every environment.
@@ -85,55 +98,79 @@ const structuredData = {
 <style>
   .about-page {
     padding-top: 60px;
+    background: var(--cream-100);
   }
 
+  /* ── Hero ─────────────────────────────────────────────── */
   .about-hero {
-    border-bottom: 1px solid var(--line-soft);
+    position: relative;
+    overflow: hidden;
     background:
-      radial-gradient(1200px 360px at 50% -50%, rgba(var(--brand-gold-rgb), 0.14), transparent), var(--brand-bg);
+      radial-gradient(ellipse 80% 70% at 50% -20%, rgba(255, 240, 210, 0.55) 0%, transparent 60%),
+      linear-gradient(180deg, var(--sky-100) 0%, var(--cream-100) 100%);
+    border-bottom: 1px solid var(--border);
   }
 
   .about-hero-inner {
+    position: relative;
     max-width: 860px;
     margin: 0 auto;
-    padding: clamp(44px, 8vw, 90px) clamp(20px, 5vw, 48px) clamp(34px, 5vw, 54px);
-  }
-
-  .about-inner {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 46px clamp(20px, 5vw, 48px);
+    padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 48px) clamp(48px, 6vw, 80px);
+    z-index: 1;
   }
 
   h1 {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
     font-size: clamp(2.4rem, 6vw, 4rem);
     font-weight: 800;
-    letter-spacing: -0.05em;
-    line-height: 1;
-    margin-bottom: 18px;
-    background: var(--grad-text);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+    margin-bottom: 22px;
+    color: var(--ink-900);
+  }
+
+  .h1-italic,
+  .h2-italic {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--brand-gold-deep);
   }
 
   .about-hero p,
   .section-copy {
-    color: var(--text-muted);
-    font-size: 15px;
-    line-height: 1.8;
+    color: var(--ink-700);
+    font-size: 16px;
+    line-height: 1.7;
     max-width: 70ch;
   }
 
   .hero-capabilities {
-    margin-top: 20px;
+    margin-top: 24px;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
   }
 
+  .hero-capabilities span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-700);
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(26, 22, 21, 0.06);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.02em;
+  }
+
+  .hero-capabilities .feature-highlight {
+    color: var(--brand-gold-ink);
+    background: rgba(var(--brand-gold-rgb), 0.18);
+    border-color: rgba(var(--brand-gold-rgb), 0.36);
+    font-weight: 700;
+  }
+
   .hero-actions {
-    margin-top: 22px;
+    margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
@@ -142,171 +179,157 @@ const structuredData = {
   .hero-link-card {
     display: inline-flex;
     flex-direction: column;
-    gap: 4px;
-    min-width: 190px;
-    padding: 14px 16px;
-    border-radius: 16px;
+    gap: 5px;
+    min-width: 220px;
+    padding: 16px 18px;
+    border-radius: var(--radius-md);
     text-decoration: none;
-    background: rgba(var(--brand-cream-rgb), 0.03);
-    border: 1px solid rgba(var(--brand-gold-rgb), 0.12);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
     transition:
-      transform 0.2s ease,
-      border-color 0.2s ease,
-      background-color 0.2s ease;
+      transform 0.22s ease,
+      border-color 0.22s ease,
+      background-color 0.22s ease,
+      box-shadow 0.22s ease;
   }
 
   .hero-link-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(var(--brand-gold-rgb), 0.28);
-    background: rgba(var(--brand-gold-rgb), 0.06);
+    transform: translateY(-3px);
+    border-color: var(--brand-gold);
+    box-shadow: var(--shadow-md);
   }
 
   .hero-link-card-primary {
-    background: rgba(var(--brand-gold-rgb), 0.08);
+    background: linear-gradient(135deg, rgba(var(--brand-gold-rgb), 0.16), rgba(var(--brand-gold-rgb), 0.06));
+    border-color: rgba(var(--brand-gold-rgb), 0.3);
   }
 
   .hero-link-label {
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
     font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    font-weight: 500;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--accent2);
+    color: var(--brand-gold-deep);
   }
 
   .hero-link-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.35;
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink-900);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
-  .hero-capabilities span {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text-muted);
-    background: rgba(var(--brand-gold-rgb), 0.05);
-    border: 1px solid rgba(var(--brand-gold-rgb), 0.11);
-    padding: 5px 12px;
-    border-radius: 999px;
-  }
-
-  .hero-capabilities .feature-highlight {
-    color: var(--accent);
-    background: rgba(var(--brand-gold-rgb), 0.14);
-    border-color: rgba(var(--brand-gold-rgb), 0.32);
-    font-weight: 600;
-  }
-
-  .section-pill {
-    flex-shrink: 0;
-    padding: 13px 16px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-muted);
-    text-decoration: none;
-    border-bottom: 2px solid transparent;
-    transition:
-      color 0.18s,
-      border-color 0.18s;
-  }
-
-  .section-pill:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent2);
-  }
-
+  /* ── Team section ─────────────────────────────────────── */
   .about-section {
-    border-bottom: 1px solid var(--line-soft);
+    background: var(--cream-100);
+  }
+
+  .about-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: clamp(56px, 8vw, 90px) clamp(20px, 5vw, 48px) clamp(72px, 10vw, 120px);
   }
 
   h2 {
-    font-size: clamp(1.25rem, 3vw, 1.6rem);
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
     font-weight: 700;
     letter-spacing: -0.03em;
-    color: var(--text-primary);
-    margin-bottom: 12px;
+    color: var(--ink-900);
+    margin-bottom: 14px;
+    line-height: 1.1;
   }
 
   .team-grid {
-    margin-top: 22px;
+    margin-top: 36px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
+    gap: 16px;
   }
 
   .team-card {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 18px;
-    border-radius: 16px;
+    padding: 20px;
+    border-radius: var(--radius-lg);
     text-decoration: none;
-    background: rgba(var(--brand-cream-rgb), 0.03);
-    border: 1px solid rgba(var(--brand-gold-rgb), 0.12);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.02),
-      0 10px 24px rgba(0, 0, 0, 0.2);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
     transition:
-      transform 0.2s ease,
-      border-color 0.2s ease,
-      background-color 0.2s ease,
-      box-shadow 0.2s ease;
+      transform 0.22s ease,
+      border-color 0.22s ease,
+      box-shadow 0.22s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .team-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--brand-gold);
+    opacity: 0;
+    transition: opacity 0.22s ease;
+  }
+
+  .team-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(var(--brand-gold-rgb), 0.45);
+    box-shadow: var(--shadow-md);
+  }
+
+  .team-card:hover::before {
+    opacity: 1;
   }
 
   .team-avatar {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     object-fit: cover;
-    border: 1px solid rgba(var(--brand-gold-rgb), 0.24);
+    flex-shrink: 0;
+    border: 2px solid var(--cream-100);
+    box-shadow: 0 2px 10px rgba(26, 22, 21, 0.1);
   }
 
   .team-meta {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
     min-width: 0;
   }
 
-  .team-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(var(--brand-gold-rgb), 0.28);
-    background: rgba(var(--brand-gold-rgb), 0.065);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.03),
-      0 16px 34px rgba(0, 0, 0, 0.28);
-  }
-
   .team-name {
-    color: var(--text-primary);
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    color: var(--ink-900);
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.2;
+    letter-spacing: -0.01em;
   }
 
   .team-link {
-    color: var(--accent2);
-    font-size: 12px;
-    letter-spacing: 0.06em;
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    color: var(--brand-gold-deep);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     line-height: 1.2;
   }
 
   @media (max-width: 760px) {
-    .hero-actions {
-      flex-direction: column;
-    }
-
-    .hero-link-card {
-      min-width: 0;
-    }
-
-    .team-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .about-inner {
-      padding: 38px clamp(20px, 5vw, 48px);
-    }
+    .hero-actions { flex-direction: column; }
+    .hero-link-card { min-width: 0; }
+    .team-grid { grid-template-columns: 1fr; }
   }
 </style>

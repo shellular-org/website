@@ -1,27 +1,33 @@
 ---
-import claudeCode from "@/assets/claudecode-color.svg";
-import codex from "@/assets/codex-color.svg";
-import openCode from "@/assets/opencode.svg";
-import copilot from "@/assets/githubcopilot.svg";
-import hermesAgent from "@/assets/hermesagent.svg";
+import {
+	ChartArea,
+	FileCodeCornerIcon,
+	GitBranch,
+	GlobeIcon,
+	SparkleIcon,
+	Terminal,
+} from "@lucide/astro";
+import claudeCode from "@/assets/agents/claudecode-color.svg";
+import codex from "@/assets/agents/codex-color.svg";
+import copilot from "@/assets/agents/githubcopilot.svg";
+import hermesAgent from "@/assets/agents/hermesagent.svg";
+import openCode from "@/assets/agents/opencode.svg";
 
-import { Terminal, GitBranch, ChartArea, FileCodeCornerIcon, GlobeIcon, Layers, SparkleIcon } from "@lucide/astro";
-
-const partners = [
-  { label: "Claude Code", img: claudeCode.src },
-  { label: "Codex", img: codex.src },
-  { label: "OpenCode", img: openCode.src },
-  { label: "Copilot", img: copilot.src },
-  { label: "Hermes Agent", img: hermesAgent.src },
+const agents = [
+	{ label: "Claude Code", img: claudeCode.src },
+	{ label: "Codex", img: codex.src },
+	{ label: "OpenCode", img: openCode.src },
+	{ label: "Copilot", img: copilot.src },
+	{ label: "Hermes Agent", img: hermesAgent.src },
 ];
 
 const tools = [
-  { Icon: SparkleIcon, label: "agents" },
-  { Icon: Terminal, label: "terminal" },
-  { Icon: GlobeIcon, label: "localhost tunnel" },
-  { Icon: GitBranch, label: "git" },
-  { Icon: FileCodeCornerIcon, label: "code editor" },
-  { Icon: ChartArea, label: "resource monitoring" },
+	{ Icon: SparkleIcon, label: "agents" },
+	{ Icon: Terminal, label: "terminal" },
+	{ Icon: GlobeIcon, label: "localhost tunnel" },
+	{ Icon: GitBranch, label: "git" },
+	{ Icon: FileCodeCornerIcon, label: "code editor" },
+	{ Icon: ChartArea, label: "resource monitoring" },
 ];
 ---
 
@@ -40,7 +46,7 @@ const tools = [
 
     <div class="agents reveal reveal-delay-3">
       {
-        partners.map((p) => (
+        agents.map((p) => (
           <div class="agent-card">
             <img src={p.img} alt="" width="40" height="40" aria-hidden="true" />
             <span>{p.label}</span>

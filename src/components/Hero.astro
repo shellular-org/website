@@ -1,5 +1,7 @@
 ---
-import AppBadges from "./AppBadges.astro";
+import { Image } from "astro:assets";
+import { BotMessageSquareIcon, GlobeIcon, TerminalIcon } from "@lucide/astro";
+import appHomeScreenshot from "@/assets/app-home-ss.jpg";
 ---
 
 <section id="hero">
@@ -98,7 +100,7 @@ import AppBadges from "./AppBadges.astro";
         rel="noopener noreferrer"
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M8 5v14l11-7z"/>
+          <path d="M8 5v14l11-7z"></path>
         </svg>
         Watch the demo
       </a>
@@ -115,110 +117,47 @@ import AppBadges from "./AppBadges.astro";
     <div class="hero-visual reveal reveal-delay-5">
       <div class="phone-frame">
         <div class="phone-notch" aria-hidden="true"></div>
-        <div class="phone-screen" aria-label="Shellular running on phone">
-          <!-- Status bar -->
-          <div class="ps-status" aria-hidden="true">
-            <span class="ps-time">9:41</span>
-            <span class="ps-status-right">
-              <span class="ps-signal"></span>
-              <span class="ps-wifi">
-                <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-                  <path
-                    d="M7 9.5a1 1 0 100-2 1 1 0 000 2zM2 5l1 1a5.7 5.7 0 018 0l1-1A7.1 7.1 0 002 5zm-2-2l1 1a8.5 8.5 0 0112 0l1-1A9.9 9.9 0 000 3z"
-                    fill="currentColor"></path>
-                </svg>
-              </span>
-              <span class="ps-battery"></span>
-            </span>
-          </div>
-          <!-- Session header -->
-          <div class="ps-header">
-            <div class="ps-host">
-              <span class="ps-host-dot"></span>
-              mac-studio
-            </div>
-            <div class="ps-tabs">
-              <span class="ps-tab ps-tab--active">claude</span>
-              <span class="ps-tab">term</span>
-              <span class="ps-tab">:3000</span>
-            </div>
-          </div>
-          <!-- Terminal body -->
-          <div class="ps-term">
-            <div class="ps-line">
-              <span class="ps-prompt">~/apps/checkout</span>
-              <span class="ps-arrow">›</span>
-              <span class="ps-cmd">claude</span>
-            </div>
-            <div class="ps-block">
-              <div class="ps-block-head">
-                <span class="ps-block-icon"></span>
-                Claude Code
-                <span class="ps-block-status">● online</span>
-              </div>
-              <div class="ps-block-body">
-                <span class="ps-msg">Fixed the race in <code>useCart</code>. Tests passing.</span>
-                <span class="ps-msg ps-msg--mine">ship it</span>
-              </div>
-            </div>
-            <div class="ps-line">
-              <span class="ps-prompt">~/apps/checkout</span>
-              <span class="ps-arrow">›</span>
-              <span class="ps-cmd">git push</span>
-              <span class="ps-cursor" aria-hidden="true"></span>
-            </div>
-          </div>
-          <!-- Bottom toolbar -->
-          <div class="ps-toolbar" aria-hidden="true">
-            <span class="ps-key">esc</span>
-            <span class="ps-key">tab</span>
-            <span class="ps-key">^c</span>
-            <span class="ps-key ps-key--wide">⌘</span>
-          </div>
+        <div class="phone-screen">
+          <Image
+            src={appHomeScreenshot}
+            alt="Shellular app home screen showing active sessions on the host machine."
+            widths={[360, 540, 720]}
+            sizes="(max-width: 900px) 240px, 320px"
+            class="phone-screenshot"
+            loading="eager"
+          />
         </div>
       </div>
-      <!-- Floating UI chip 1 -->
+      <!-- Floating chip — terminal -->
       <div class="floating-chip chip-left" aria-hidden="true">
-        <div class="chip-icon">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <polyline points="4 17 10 11 4 5"></polyline>
-            <line x1="12" y1="19" x2="20" y2="19"></line>
-          </svg>
+        <div class="chip-icon chip-icon-blue">
+          <TerminalIcon size={18} />
         </div>
         <div>
           <div class="chip-title">Live terminal</div>
-          <div class="chip-sub">npm run dev — port 3000</div>
+          <div class="chip-sub">pnpm dev — :3000</div>
         </div>
       </div>
-      <!-- Floating UI chip 2 -->
+
+      <!-- Floating chip — agent -->
       <div class="floating-chip chip-right" aria-hidden="true">
         <div class="chip-icon chip-icon-green">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="8 12 11 15 16 9"></polyline>
-          </svg>
+          <BotMessageSquareIcon size={18} />
         </div>
         <div>
           <div class="chip-title">Claude Code</div>
           <div class="chip-sub">running on mac-studio</div>
+        </div>
+      </div>
+
+      <!-- Floating chip — localhost / browser -->
+      <div class="floating-chip chip-bottom" aria-hidden="true">
+        <div class="chip-icon chip-icon-gold">
+          <GlobeIcon size={18} />
+        </div>
+        <div>
+          <div class="chip-title">Open localhost</div>
+          <div class="chip-sub">localhost:3000 ↗</div>
         </div>
       </div>
     </div>
@@ -494,7 +433,8 @@ import AppBadges from "./AppBadges.astro";
     position: relative;
     width: 100%;
     max-width: 320px;
-    aspect-ratio: 320 / 640;
+    /* Match the real screenshot — 1080 × 2340 */
+    aspect-ratio: 1080 / 2340;
     margin: 0 auto;
   }
 
@@ -533,15 +473,7 @@ import AppBadges from "./AppBadges.astro";
   }
 
   .phone-notch {
-    position: absolute;
-    top: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90px;
-    height: 22px;
-    background: var(--ink-900);
-    border-radius: 14px;
-    z-index: 2;
+    display: none;
   }
 
   .phone-screen {
@@ -549,278 +481,16 @@ import AppBadges from "./AppBadges.astro";
     width: 100%;
     height: 100%;
     border-radius: 32px;
-    border: none;
-    background: linear-gradient(180deg, #f8f3ec 0%, #f1ebe5 100%);
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    font-family: "Fragment Mono", "JetBrains Mono", monospace;
-    color: var(--ink-900);
+    background: #14110f;
   }
 
-  .ps-status {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 22px 6px;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--ink-900);
-    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  }
-
-  .ps-status-right {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--ink-900);
-  }
-
-  .ps-signal {
-    width: 14px;
-    height: 8px;
-    background:
-      linear-gradient(to top, var(--ink-900) 30%, transparent 30%) 0 / 2.5px 100% no-repeat,
-      linear-gradient(to top, var(--ink-900) 50%, transparent 50%) 4px / 2.5px 100% no-repeat,
-      linear-gradient(to top, var(--ink-900) 70%, transparent 70%) 8px / 2.5px 100% no-repeat,
-      linear-gradient(to top, var(--ink-900) 90%, transparent 90%) 12px / 2.5px 100% no-repeat;
-    background-color: transparent;
-  }
-
-  .ps-battery {
-    width: 22px;
-    height: 10px;
-    border: 1px solid var(--ink-900);
-    border-radius: 2px;
-    position: relative;
-    padding: 1px;
-  }
-
-  .ps-battery::before {
-    content: "";
-    display: block;
-    width: 78%;
+  .phone-screenshot {
+    width: 100%;
     height: 100%;
-    background: var(--ink-900);
-    border-radius: 1px;
-  }
-
-  .ps-battery::after {
-    content: "";
-    position: absolute;
-    right: -3px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 2px;
-    height: 4px;
-    background: var(--ink-900);
-    border-radius: 0 1px 1px 0;
-  }
-
-  .ps-header {
-    padding: 8px 18px 10px;
-    border-bottom: 1px solid rgba(26, 22, 21, 0.08);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.5);
-  }
-
-  .ps-host {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--ink-900);
-  }
-
-  .ps-host-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent-green);
-    box-shadow: 0 0 0 3px rgba(14, 161, 88, 0.18);
-    animation: pulse-soft 2.6s ease-in-out infinite;
-  }
-
-  @keyframes pulse-soft {
-    0%,
-    100% {
-      box-shadow: 0 0 0 3px rgba(14, 161, 88, 0.18);
-    }
-    50% {
-      box-shadow: 0 0 0 5px rgba(14, 161, 88, 0.08);
-    }
-  }
-
-  .ps-tabs {
-    display: flex;
-    gap: 6px;
-  }
-
-  .ps-tab {
-    padding: 4px 9px;
-    font-size: 10.5px;
-    font-weight: 600;
-    color: var(--ink-500);
-    background: transparent;
-    border-radius: 7px;
-    font-family: "Plus Jakarta Sans", sans-serif;
-    letter-spacing: 0.01em;
-  }
-
-  .ps-tab--active {
-    background: var(--ink-900);
-    color: var(--cream-100);
-  }
-
-  .ps-term {
-    flex: 1;
-    padding: 14px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    font-size: 11px;
-    line-height: 1.4;
-    overflow: hidden;
-  }
-
-  .ps-line {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-
-  .ps-prompt {
-    color: var(--accent-blue);
-    font-weight: 600;
-  }
-
-  .ps-arrow {
-    color: var(--accent-orange);
-    font-weight: 700;
-  }
-
-  .ps-cmd {
-    color: var(--ink-900);
-    font-weight: 600;
-  }
-
-  .ps-cursor {
-    width: 6px;
-    height: 11px;
-    background: var(--ink-900);
-    margin-left: 2px;
-    animation: blink 1.1s steps(2) infinite;
-  }
-
-  @keyframes blink {
-    50% {
-      opacity: 0;
-    }
-  }
-
-  .ps-block {
-    background: var(--surface);
-    border: 1px solid rgba(26, 22, 21, 0.08);
-    border-radius: 10px;
-    padding: 9px 11px;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    box-shadow: 0 4px 14px rgba(26, 22, 21, 0.05);
-  }
-
-  .ps-block-head {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 10.5px;
-    font-weight: 700;
-    color: var(--ink-900);
-  }
-
-  .ps-block-icon {
-    width: 14px;
-    height: 14px;
-    border-radius: 4px;
-    background: linear-gradient(135deg, var(--accent-orange), #e07d52);
-    box-shadow: 0 1px 3px rgba(201, 80, 46, 0.4);
-  }
-
-  .ps-block-status {
-    margin-left: auto;
-    font-size: 9px;
-    font-weight: 600;
-    color: var(--accent-green);
-    letter-spacing: 0.04em;
-  }
-
-  .ps-block-body {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .ps-msg {
-    font-size: 10.5px;
-    color: var(--ink-700);
-    line-height: 1.5;
-    padding: 6px 9px;
-    background: var(--cream-100);
-    border-radius: 8px;
-    align-self: flex-start;
-    max-width: 92%;
-  }
-
-  .ps-msg code {
-    font-family: "Fragment Mono", "JetBrains Mono", monospace;
-    background: rgba(21, 108, 194, 0.1);
-    color: var(--accent-blue);
-    padding: 1px 4px;
-    border-radius: 3px;
-    font-size: 10px;
-  }
-
-  .ps-msg--mine {
-    align-self: flex-end;
-    background: var(--ink-900);
-    color: var(--cream-100);
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-weight: 600;
-  }
-
-  .ps-toolbar {
-    display: flex;
-    gap: 6px;
-    padding: 8px 14px 14px;
-    border-top: 1px solid rgba(26, 22, 21, 0.06);
-    background: rgba(255, 255, 255, 0.4);
-  }
-
-  .ps-key {
-    flex: 1;
-    text-align: center;
-    padding: 7px 0;
-    background: var(--surface);
-    border: 1px solid rgba(26, 22, 21, 0.08);
-    border-radius: 6px;
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--ink-700);
-    font-family: "Fragment Mono", monospace;
-    box-shadow: 0 1px 0 rgba(26, 22, 21, 0.04);
-  }
-
-  .ps-key--wide {
-    flex: 1.4;
-    background: var(--ink-900);
-    color: var(--cream-100);
-    border-color: var(--ink-900);
+    display: block;
+    object-fit: cover;
+    object-position: center top;
   }
 
   .floating-chip {
@@ -841,15 +511,21 @@ import AppBadges from "./AppBadges.astro";
   }
 
   .chip-left {
-    top: 14%;
+    top: 12%;
     left: -36%;
     animation: float-y-l 6s ease-in-out infinite alternate;
   }
 
   .chip-right {
-    top: 62%;
+    top: 48%;
     right: -40%;
     animation: float-y-r 7s ease-in-out infinite alternate-reverse;
+  }
+
+  .chip-bottom {
+    bottom: 6%;
+    left: -28%;
+    animation: float-y-b 6.5s ease-in-out infinite alternate;
   }
 
   @keyframes float-y-l {
@@ -870,12 +546,24 @@ import AppBadges from "./AppBadges.astro";
     }
   }
 
+  @keyframes float-y-b {
+    from {
+      transform: translateY(-4px) rotate(-1deg);
+    }
+    to {
+      transform: translateY(10px) rotate(-1deg);
+    }
+  }
+
   .chip-icon {
     width: 32px;
     height: 32px;
     border-radius: 8px;
     display: grid;
     place-items: center;
+  }
+
+  .chip-icon-blue {
     background: var(--sky-100);
     color: var(--accent-blue);
   }
@@ -883,6 +571,11 @@ import AppBadges from "./AppBadges.astro";
   .chip-icon-green {
     background: rgba(14, 161, 88, 0.14);
     color: var(--accent-green);
+  }
+
+  .chip-icon-gold {
+    background: rgba(var(--brand-gold-rgb), 0.2);
+    color: var(--brand-gold-ink);
   }
 
   .chip-title {

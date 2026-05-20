@@ -1,12 +1,12 @@
 {
-  "android": {
-    "version": "0.0.16",
-    "versionCode": 16,
-    "storeUrl": "https://play.google.com/store/apps/details?id=io.foxbiz.shellular"
-  },
-  "ios": {
-    "version": "0.0.16",
-    "versionCode": 16,
-    "storeUrl": "https://apps.apple.com/us/app/shellular/id6761985327"
-  }
+	"android": {
+		"version": "0.0.17",
+		"versionCode": 17,
+		"storeUrl": "https://play.google.com/store/apps/details?id=io.foxbiz.shellular"
+	},
+	"ios": {
+		"version": "0.0.17",
+		"versionCode": 17,
+		"storeUrl": "https://apps.apple.com/us/app/shellular/id6761985327"
+	}
 }

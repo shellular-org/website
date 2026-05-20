@@ -2,11 +2,11 @@
 import AppBadges from "@/components/AppBadges.astro";
 import Footer from "@/components/Footer.astro";
 import Nav from "@/components/Nav.astro";
-import Layout from "@/layouts/Layout.astro";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@/data/appLinks";
+import Layout from "@/layouts/Layout.astro";
 
 const qrUrl = (url: string) =>
-  `https://api.qrserver.com/v1/create-qr-code/?size=360x360&margin=18&data=${encodeURIComponent(url)}`;
+	`https://api.qrserver.com/v1/create-qr-code/?size=360x360&margin=18&data=${encodeURIComponent(url)}`;
 ---
 
 <Layout

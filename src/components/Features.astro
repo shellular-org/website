@@ -1,51 +1,63 @@
 ---
-import { Bot, FolderCode, Globe, FileTerminal } from "@lucide/astro";
-import codexIcon from "@/assets/codex-color.svg";
+import { Bot, FileTerminal, FolderCode, Globe } from "@lucide/astro";
+import codexIcon from "@/assets/agents/codex-color.svg";
 
 interface Feature {
-  Icon: typeof Bot;
-  eyebrow: string;
-  title: string;
-  desc: string;
-  bullets: string[];
-  flip?: boolean;
+	Icon: typeof Bot;
+	eyebrow: string;
+	title: string;
+	desc: string;
+	bullets: string[];
+	flip?: boolean;
 }
 
 const features: Feature[] = [
-  {
-    Icon: Bot,
-    eyebrow: "Agents",
-    title: "Run the AI agents you already use",
-    desc: "Claude Code, Codex, OpenCode and the rest — running where your code already lives, controllable from your couch.",
-    bullets: [
-      "Full agent UI from your phone",
-      "No copying context between devices",
-      "Pick up the exact session you left",
-    ],
-  },
-  {
-    Icon: FileTerminal,
-    eyebrow: "Terminal",
-    title: "A real terminal in your pocket",
-    desc: "Run commands, restart services, tail logs. Not a sandbox, not a fake shell — the same machine you'd sit down to.",
-    bullets: ["Full TTY, full PATH", "Session keeps state across reconnects", "Touch-optimized chord shortcuts"],
-    flip: true,
-  },
-  {
-    Icon: Globe,
-    eyebrow: "Localhost",
-    title: "Open your local apps from anywhere",
-    desc: "Tunneled access to whatever's running on your machine — dev servers, dashboards, internal tools — without exposing them to the world.",
-    bullets: ["Browse localhost from your phone", "DevTools just work", "Encrypted & private"],
-  },
-  {
-    Icon: FolderCode,
-    eyebrow: "Files",
-    title: "The same repos, the same files",
-    desc: 'Touch your actual project files — no sync conflicts, no "mobile version". Edit, commit, push, all on the source machine.',
-    bullets: ["Real git, on the real repo", "Stage hunks from your thumb", "Open in any editor you have"],
-    flip: true,
-  },
+	{
+		Icon: Bot,
+		eyebrow: "Agents",
+		title: "Run the AI agents you already use",
+		desc: "Claude Code, Codex, OpenCode and the rest — running where your code already lives, controllable from your couch.",
+		bullets: [
+			"Full agent UI from your phone",
+			"No copying context between devices",
+			"Pick up the exact session you left",
+		],
+	},
+	{
+		Icon: FileTerminal,
+		eyebrow: "Terminal",
+		title: "A real terminal in your pocket",
+		desc: "Run commands, restart services, tail logs. Not a sandbox, not a fake shell — the same machine you'd sit down to.",
+		bullets: [
+			"Full TTY, full PATH",
+			"Session keeps state across reconnects",
+			"Touch-optimized chord shortcuts",
+		],
+		flip: true,
+	},
+	{
+		Icon: Globe,
+		eyebrow: "Localhost",
+		title: "Open your local apps from anywhere",
+		desc: "Tunneled access to whatever's running on your machine — dev servers, dashboards, internal tools — without exposing them to the world.",
+		bullets: [
+			"Browse localhost from your phone",
+			"DevTools just work",
+			"Encrypted & private",
+		],
+	},
+	{
+		Icon: FolderCode,
+		eyebrow: "Files",
+		title: "The same repos, the same files",
+		desc: 'Touch your actual project files — no sync conflicts, no "mobile version". Edit, commit, push, all on the source machine.',
+		bullets: [
+			"Real git, on the real repo",
+			"Supports  TypeScipt, Python, Go & more.",
+			"Stage hunks from your thumb",
+		],
+		flip: true,
+	},
 ];
 ---
 
