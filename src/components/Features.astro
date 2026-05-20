@@ -1,5 +1,6 @@
 ---
 import { Bot, FolderCode, Globe, FileTerminal } from "@lucide/astro";
+import codexIcon from "@/assets/codex-color.svg";
 
 interface Feature {
   Icon: typeof Bot;
@@ -101,7 +102,7 @@ const features: Feature[] = [
                     <div class="vis-bubble vis-bubble--mine">refactor checkout to use cart hook</div>
                     <div class="vis-bubble vis-bubble--agent">
                       <div class="vis-agent-head">
-                        <span class="vis-agent-avatar" /> Claude Code
+                        <img class="vis-agent-avatar" src={codexIcon.src} alt="" width="16" height="16" /> Codex
                       </div>
                       <div class="vis-agent-body">
                         <div class="vis-typing">
@@ -298,8 +299,8 @@ const features: Feature[] = [
     align-items: center;
     gap: 8px;
     padding: 6px 12px;
-    background: var(--sky-100);
-    color: var(--accent-blue);
+    background: rgba(var(--brand-gold-rgb), 0.18);
+    color: var(--brand-gold-ink);
     border-radius: var(--radius-pill);
     font-size: 12px;
     font-weight: 700;
@@ -449,9 +450,8 @@ const features: Feature[] = [
   .vis-agent-avatar {
     width: 16px;
     height: 16px;
-    border-radius: 5px;
-    background: linear-gradient(135deg, var(--accent-orange), #e07d52);
-    box-shadow: 0 1px 3px rgba(201, 80, 46, 0.35);
+    flex-shrink: 0;
+    display: inline-block;
   }
 
   .vis-agent-body {
