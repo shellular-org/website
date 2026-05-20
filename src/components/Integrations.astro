@@ -113,17 +113,28 @@ const tools = [
       border-color 0.2s;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
   }
 
   .agent-card::after {
-    /* sliding sheen on hover */
+    /* sliding sheen on hover — sits behind content via z-index */
     content: "";
     position: absolute;
     inset: 0;
     background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.55) 50%, transparent 60%);
     transform: translateX(-120%);
-    transition: transform 0.6s ease;
     pointer-events: none;
+    opacity: 0;
+    z-index: 0;
+  }
+
+  .agent-card:hover::after {
+    /* only animate on hover-in; instant reset on hover-out (opacity stays 0) */
+    transform: translateX(120%);
+    opacity: 1;
+    transition:
+      transform 0.7s ease,
+      opacity 0s linear;
   }
 
   .agent-card:hover {
@@ -132,8 +143,10 @@ const tools = [
     border-color: rgba(21, 108, 194, 0.3);
   }
 
-  .agent-card:hover::after {
-    transform: translateX(120%);
+  .agent-card img,
+  .agent-card span {
+    position: relative;
+    z-index: 1;
   }
 
   .agent-card img {
@@ -183,7 +196,7 @@ const tools = [
 
   .tool-chip:hover {
     transform: translateY(-2px);
-    border-color: rgba(21, 108, 194, 0.3);
+    border-color: var(--brand-gold);
     color: var(--ink-900);
   }
 
@@ -193,6 +206,6 @@ const tools = [
   }
 
   .tool-chip:hover svg {
-    color: var(--accent-blue);
+    color: var(--brand-gold-deep);
   }
 </style>
