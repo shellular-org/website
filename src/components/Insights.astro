@@ -268,12 +268,14 @@ const posts: Post[] = [
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    background: rgba(132, 185, 239, 0.18);
-    border: 1px solid rgba(132, 185, 239, 0.3);
+    background: radial-gradient(circle at 35% 30%, rgba(240, 227, 197, 0.5), rgba(214, 194, 161, 0.18) 70%);
+    border: 1px solid rgba(214, 194, 161, 0.5);
     display: grid;
     place-items: center;
-    color: var(--sky-300);
-    box-shadow: 0 0 40px rgba(132, 185, 239, 0.2);
+    color: var(--brand-gold);
+    box-shadow:
+      0 0 40px var(--brand-gold-glow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
     z-index: 2;
   }
 
@@ -292,12 +294,12 @@ const posts: Post[] = [
 
   .cov-keys span {
     height: 2px;
-    background: rgba(132, 185, 239, 0.35);
+    background: rgba(214, 194, 161, 0.35);
     border-radius: 2px;
   }
 
-  .cov-keys span:nth-child(2n) { background: rgba(207, 141, 19, 0.4); }
-  .cov-keys span:nth-child(3n) { background: rgba(132, 185, 239, 0.6); }
+  .cov-keys span:nth-child(2n) { background: rgba(214, 194, 161, 0.7); }
+  .cov-keys span:nth-child(3n) { background: rgba(132, 185, 239, 0.45); }
 
   /* ── Guide cover ── */
   .cov-guide { padding: 18px; }

@@ -130,7 +130,9 @@ const quotes: Quote[] = [
   }
 
   .t-card--blue::before   { background: var(--accent-blue); }
-  .t-card--gold::before   { background: var(--accent-gold); }
+  .t-card--gold::before   {
+    background: linear-gradient(90deg, var(--brand-gold-soft), var(--brand-gold), var(--brand-gold-deep));
+  }
   .t-card--orange::before { background: var(--accent-orange); }
 
   .t-card:hover {
