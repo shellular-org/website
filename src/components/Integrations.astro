@@ -25,17 +25,13 @@ const tools = [
 <section id="integrations">
   <div class="i-inner">
     <div class="i-header">
-      <span class="section-eyebrow reveal">
-        <span class="dot"></span>
-        Integrations
-      </span>
       <h2 class="section-title reveal reveal-delay-1">
         Works with the tools
         <span>you already use.</span>
       </h2>
       <p class="section-sub reveal reveal-delay-2">
-        Shellular doesn't replace your dev environment — it forwards it. Whatever runs on your
-        machine, runs on your phone.
+        Shellular doesn't replace your dev environment — it forwards it. Whatever runs on your machine, runs on your
+        phone.
       </p>
     </div>
 
@@ -92,13 +88,6 @@ const tools = [
     margin-bottom: 48px;
   }
 
-  .i-header .section-eyebrow .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent-blue);
-  }
-
   .agents {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -115,7 +104,10 @@ const tools = [
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s,
+      border-color 0.2s;
     position: relative;
     overflow: hidden;
   }
@@ -180,7 +172,10 @@ const tools = [
     font-weight: 500;
     color: var(--ink-700);
     box-shadow: var(--shadow-sm);
-    transition: transform 0.18s, border-color 0.18s, color 0.18s;
+    transition:
+      transform 0.18s,
+      border-color 0.18s,
+      color 0.18s;
   }
 
   .tool-chip:hover {

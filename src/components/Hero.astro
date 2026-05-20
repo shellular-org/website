@@ -11,13 +11,24 @@ import AppBadges from "./AppBadges.astro";
     <svg viewBox="0 0 1440 240" preserveAspectRatio="none">
       <defs>
         <linearGradient id="hero-contour-fade" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"  stop-color="rgba(107, 85, 48, 0)" />
-          <stop offset="50%" stop-color="rgba(107, 85, 48, 0.35)" />
-          <stop offset="100%" stop-color="rgba(107, 85, 48, 0)" />
+          <stop offset="0%" stop-color="rgba(107, 85, 48, 0)"></stop>
+          <stop offset="50%" stop-color="rgba(107, 85, 48, 0.35)"></stop>
+          <stop offset="100%" stop-color="rgba(107, 85, 48, 0)"></stop>
         </linearGradient>
       </defs>
-      <path d="M0 160 C 240 130 480 195 720 160 S 1200 130 1440 160" fill="none" stroke="url(#hero-contour-fade)" stroke-width="1" stroke-dasharray="3 7" />
-      <path d="M0 195 C 280 165 520 230 760 195 S 1220 165 1440 195" fill="none" stroke="url(#hero-contour-fade)" stroke-width="1" stroke-dasharray="2 8" opacity="0.7" />
+      <path
+        d="M0 160 C 240 130 480 195 720 160 S 1200 130 1440 160"
+        fill="none"
+        stroke="url(#hero-contour-fade)"
+        stroke-width="1"
+        stroke-dasharray="3 7"></path>
+      <path
+        d="M0 195 C 280 165 520 230 760 195 S 1220 165 1440 195"
+        fill="none"
+        stroke="url(#hero-contour-fade)"
+        stroke-width="1"
+        stroke-dasharray="2 8"
+        opacity="0.7"></path>
     </svg>
   </div>
 
@@ -26,29 +37,25 @@ import AppBadges from "./AppBadges.astro";
     <path
       d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
       fill="#ffffff"
-      opacity="0.92"
-    ></path>
+      opacity="0.92"></path>
   </svg>
   <svg class="cloud cloud-2" viewBox="0 0 200 80" aria-hidden="true">
     <path
       d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
       fill="#ffffff"
-      opacity="0.78"
-    ></path>
+      opacity="0.78"></path>
   </svg>
   <svg class="cloud cloud-3" viewBox="0 0 200 80" aria-hidden="true">
     <path
       d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
       fill="#ffffff"
-      opacity="0.88"
-    ></path>
+      opacity="0.88"></path>
   </svg>
   <svg class="cloud cloud-4" viewBox="0 0 200 80" aria-hidden="true">
     <path
       d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
       fill="#ffffff"
-      opacity="0.7"
-    ></path>
+      opacity="0.7"></path>
   </svg>
 
   <div class="hero-content">
@@ -63,14 +70,24 @@ import AppBadges from "./AppBadges.astro";
     </h1>
 
     <p class="hero-sub reveal reveal-delay-2">
-      Run Claude Code, Codex, OpenCode and your full terminal from your phone.
-      Real environment, real repos, real ports — no sync, no copy, no compromise.
+      Run Claude Code, Codex, OpenCode and your full terminal from your phone. Real environment, real repos, real ports
+      — no sync, no copy, no compromise.
     </p>
 
     <div class="hero-ctas reveal reveal-delay-3">
       <a href="#get-started" class="btn-primary">
-        Get started — it's free
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        Start now
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
           <path d="M5 12h14M13 5l7 7-7 7"></path>
         </svg>
       </a>
@@ -98,7 +115,9 @@ import AppBadges from "./AppBadges.astro";
               <span class="ps-signal"></span>
               <span class="ps-wifi">
                 <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-                  <path d="M7 9.5a1 1 0 100-2 1 1 0 000 2zM2 5l1 1a5.7 5.7 0 018 0l1-1A7.1 7.1 0 002 5zm-2-2l1 1a8.5 8.5 0 0112 0l1-1A9.9 9.9 0 000 3z" fill="currentColor"/>
+                  <path
+                    d="M7 9.5a1 1 0 100-2 1 1 0 000 2zM2 5l1 1a5.7 5.7 0 018 0l1-1A7.1 7.1 0 002 5zm-2-2l1 1a8.5 8.5 0 0112 0l1-1A9.9 9.9 0 000 3z"
+                    fill="currentColor"></path>
                 </svg>
               </span>
               <span class="ps-battery"></span>
@@ -153,7 +172,16 @@ import AppBadges from "./AppBadges.astro";
       <!-- Floating UI chip 1 -->
       <div class="floating-chip chip-left" aria-hidden="true">
         <div class="chip-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <polyline points="4 17 10 11 4 5"></polyline>
             <line x1="12" y1="19" x2="20" y2="19"></line>
           </svg>
@@ -166,7 +194,16 @@ import AppBadges from "./AppBadges.astro";
       <!-- Floating UI chip 2 -->
       <div class="floating-chip chip-right" aria-hidden="true">
         <div class="chip-icon chip-icon-green">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <circle cx="12" cy="12" r="10"></circle>
             <polyline points="8 12 11 15 16 9"></polyline>
           </svg>
@@ -190,11 +227,7 @@ import AppBadges from "./AppBadges.astro";
       radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255, 240, 210, 0.55) 0%, rgba(255, 240, 210, 0) 60%),
       radial-gradient(ellipse 60% 80% at 10% 0%, rgba(255, 222, 173, 0.28) 0%, rgba(255, 222, 173, 0) 55%),
       radial-gradient(ellipse 60% 80% at 90% 5%, rgba(132, 185, 239, 0.45) 0%, rgba(132, 185, 239, 0) 55%),
-      linear-gradient(180deg,
-        #7eb0dd 0%,
-        var(--sky-300) 22%,
-        var(--sky-300) 55%,
-        var(--cream-300) 100%);
+      linear-gradient(180deg, #7eb0dd 0%, var(--sky-300) 22%, var(--sky-300) 55%, var(--cream-300) 100%);
     padding: 140px 24px 60px;
   }
 
@@ -207,8 +240,7 @@ import AppBadges from "./AppBadges.astro";
     transform: translateX(-50%);
     width: min(820px, 95vw);
     height: 460px;
-    background:
-      radial-gradient(ellipse at center, rgba(255, 244, 220, 0.6) 0%, rgba(255, 244, 220, 0) 60%);
+    background: radial-gradient(ellipse at center, rgba(255, 244, 220, 0.6) 0%, rgba(255, 244, 220, 0) 60%);
     pointer-events: none;
     z-index: 0;
   }
@@ -233,20 +265,19 @@ import AppBadges from "./AppBadges.astro";
     pointer-events: none;
     z-index: 0;
     opacity: 0.55;
-    background:
-      conic-gradient(
-        from 200deg at 50% -10%,
-        transparent 0deg,
-        rgba(255, 244, 220, 0.18) 12deg,
-        transparent 24deg,
-        transparent 40deg,
-        rgba(255, 244, 220, 0.14) 52deg,
-        transparent 64deg,
-        transparent 90deg,
-        rgba(255, 244, 220, 0.1) 100deg,
-        transparent 110deg,
-        transparent 360deg
-      );
+    background: conic-gradient(
+      from 200deg at 50% -10%,
+      transparent 0deg,
+      rgba(255, 244, 220, 0.18) 12deg,
+      transparent 24deg,
+      transparent 40deg,
+      rgba(255, 244, 220, 0.14) 52deg,
+      transparent 64deg,
+      transparent 90deg,
+      rgba(255, 244, 220, 0.1) 100deg,
+      transparent 110deg,
+      transparent 360deg
+    );
     mask-image: linear-gradient(180deg, black 0%, transparent 70%);
     -webkit-mask-image: linear-gradient(180deg, black 0%, transparent 70%);
   }
@@ -305,16 +336,28 @@ import AppBadges from "./AppBadges.astro";
   }
 
   @keyframes drift-slow {
-    from { transform: translateX(0); }
-    to   { transform: translateX(60px); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(60px);
+    }
   }
   @keyframes drift-medium {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-80px); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-80px);
+    }
   }
   @keyframes drift-fast {
-    from { transform: translateX(-30px); }
-    to   { transform: translateX(50px); }
+    from {
+      transform: translateX(-30px);
+    }
+    to {
+      transform: translateX(50px);
+    }
   }
 
   .hero-content {
@@ -430,9 +473,18 @@ import AppBadges from "./AppBadges.astro";
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   }
 
-  .avatar:nth-child(1) { background: linear-gradient(135deg, #84b9ef, #156cc2); margin-left: 0; }
-  .avatar:nth-child(2) { background: linear-gradient(135deg, #efd6a3, #cf8d13); color: rgba(58, 38, 8, 0.85); text-shadow: none; }
-  .avatar:nth-child(3) { background: linear-gradient(135deg, #e07d52, #754d29); }
+  .avatar:nth-child(1) {
+    background: linear-gradient(135deg, #84b9ef, #156cc2);
+    margin-left: 0;
+  }
+  .avatar:nth-child(2) {
+    background: linear-gradient(135deg, #efd6a3, #cf8d13);
+    color: rgba(58, 38, 8, 0.85);
+    text-shadow: none;
+  }
+  .avatar:nth-child(3) {
+    background: linear-gradient(135deg, #e07d52, #754d29);
+  }
   .avatar:nth-child(4) {
     background: var(--cream-100);
     color: var(--ink-700);
@@ -597,8 +649,13 @@ import AppBadges from "./AppBadges.astro";
   }
 
   @keyframes pulse-soft {
-    0%, 100% { box-shadow: 0 0 0 3px rgba(14, 161, 88, 0.18); }
-    50%      { box-shadow: 0 0 0 5px rgba(14, 161, 88, 0.08); }
+    0%,
+    100% {
+      box-shadow: 0 0 0 3px rgba(14, 161, 88, 0.18);
+    }
+    50% {
+      box-shadow: 0 0 0 5px rgba(14, 161, 88, 0.08);
+    }
   }
 
   .ps-tabs {
@@ -664,7 +721,9 @@ import AppBadges from "./AppBadges.astro";
   }
 
   @keyframes blink {
-    50% { opacity: 0; }
+    50% {
+      opacity: 0;
+    }
   }
 
   .ps-block {
@@ -797,13 +856,21 @@ import AppBadges from "./AppBadges.astro";
   }
 
   @keyframes float-y-l {
-    from { transform: translateY(-6px) rotate(-2deg); }
-    to   { transform: translateY(8px)  rotate(-2deg); }
+    from {
+      transform: translateY(-6px) rotate(-2deg);
+    }
+    to {
+      transform: translateY(8px) rotate(-2deg);
+    }
   }
 
   @keyframes float-y-r {
-    from { transform: translateY(-6px) rotate(2deg); }
-    to   { transform: translateY(8px)  rotate(2deg); }
+    from {
+      transform: translateY(-6px) rotate(2deg);
+    }
+    to {
+      transform: translateY(8px) rotate(2deg);
+    }
   }
 
   .chip-icon {
@@ -849,6 +916,8 @@ import AppBadges from "./AppBadges.astro";
       padding-top: 110px;
     }
 
-    .cloud-4 { display: none; }
+    .cloud-4 {
+      display: none;
+    }
   }
 </style>

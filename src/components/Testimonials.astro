@@ -10,8 +10,7 @@ interface Quote {
 
 const quotes: Quote[] = [
   {
-    body:
-      "I shipped a hotfix on the train. Pulled up Claude Code on my phone, ran the test suite, pushed. My laptop never left the bag.",
+    body: "I shipped a hotfix on the train. Pulled up Claude Code on my phone, ran the test suite, pushed. My laptop never left the bag.",
     name: "Amos Chen",
     role: "Staff Engineer, Vault",
     avatarBg: "linear-gradient(135deg, #84b9ef, #156cc2)",
@@ -19,8 +18,7 @@ const quotes: Quote[] = [
     accent: "blue",
   },
   {
-    body:
-      "The terminal is the real deal — not a toy. tmux, vim, the whole muscle memory. Feels like an SSH client with a designer's eye.",
+    body: "The terminal is the real deal — not a toy. tmux, vim, the whole muscle memory. Feels like an SSH client with a designer's eye.",
     name: "Leah Daniel",
     role: "Indie Hacker",
     avatarBg: "linear-gradient(135deg, #efd6a3, #cf8d13)",
@@ -28,8 +26,7 @@ const quotes: Quote[] = [
     accent: "gold",
   },
   {
-    body:
-      "Being able to babysit a long-running Codex run from anywhere has changed how I work. I'm not chained to my desk anymore.",
+    body: "Being able to babysit a long-running Codex run from anywhere has changed how I work. I'm not chained to my desk anymore.",
     name: "Sergio Walker",
     role: "Founder, Tactile",
     avatarBg: "linear-gradient(135deg, #e07d52, #754d29)",
@@ -42,10 +39,6 @@ const quotes: Quote[] = [
 <section id="testimonials">
   <div class="t-inner">
     <div class="t-header">
-      <span class="section-eyebrow reveal">
-        <span class="dot"></span>
-        Loved by developers
-      </span>
       <h2 class="section-title reveal reveal-delay-1">
         Real workflows,
         <span>not demos.</span>
@@ -56,7 +49,9 @@ const quotes: Quote[] = [
       {
         quotes.map((q, i) => (
           <figure class={`t-card t-card--${q.accent} reveal reveal-delay-${i + 1}`}>
-            <span class="quote-mark" aria-hidden="true">“</span>
+            <span class="quote-mark" aria-hidden="true">
+              “
+            </span>
             <blockquote>{q.body}</blockquote>
             <figcaption>
               <span class="t-avatar" style={`background:${q.avatarBg}`} aria-hidden="true">
@@ -90,13 +85,6 @@ const quotes: Quote[] = [
     margin-bottom: 56px;
   }
 
-  .t-header .section-eyebrow .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent-orange);
-  }
-
   .t-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -112,7 +100,10 @@ const quotes: Quote[] = [
     flex-direction: column;
     gap: 18px;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    transition:
+      transform 0.25s,
+      box-shadow 0.25s,
+      border-color 0.25s;
     position: relative;
     overflow: hidden;
   }
@@ -129,11 +120,15 @@ const quotes: Quote[] = [
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   }
 
-  .t-card--blue::before   { background: var(--accent-blue); }
-  .t-card--gold::before   {
+  .t-card--blue::before {
+    background: var(--accent-blue);
+  }
+  .t-card--gold::before {
     background: linear-gradient(90deg, var(--brand-gold-soft), var(--brand-gold), var(--brand-gold-deep));
   }
-  .t-card--orange::before { background: var(--accent-orange); }
+  .t-card--orange::before {
+    background: var(--accent-orange);
+  }
 
   .t-card:hover {
     transform: translateY(-4px);
@@ -152,9 +147,15 @@ const quotes: Quote[] = [
     user-select: none;
   }
 
-  .t-card--blue   .quote-mark { color: rgba(21, 108, 194, 0.35); }
-  .t-card--gold   .quote-mark { color: rgba(207, 141, 19, 0.35); }
-  .t-card--orange .quote-mark { color: rgba(201, 80, 46, 0.35); }
+  .t-card--blue .quote-mark {
+    color: rgba(21, 108, 194, 0.35);
+  }
+  .t-card--gold .quote-mark {
+    color: rgba(207, 141, 19, 0.35);
+  }
+  .t-card--orange .quote-mark {
+    color: rgba(201, 80, 46, 0.35);
+  }
 
   blockquote {
     font-size: 16px;
@@ -189,7 +190,9 @@ const quotes: Quote[] = [
     height: 42px;
     border-radius: 50%;
     flex-shrink: 0;
-    box-shadow: inset 0 0 0 2px var(--cream-100), 0 4px 10px rgba(26, 22, 21, 0.08);
+    box-shadow:
+      inset 0 0 0 2px var(--cream-100),
+      0 4px 10px rgba(26, 22, 21, 0.08);
     display: inline-flex;
     align-items: center;
     justify-content: center;

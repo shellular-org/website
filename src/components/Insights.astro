@@ -43,17 +43,11 @@ const posts: Post[] = [
 <section id="insights">
   <div class="ins-inner">
     <div class="ins-header">
-      <span class="section-eyebrow reveal">
-        <span class="dot"></span>
-        Insights
-      </span>
       <h2 class="section-title reveal reveal-delay-1">
         Mobile dev,
         <span>done right.</span>
       </h2>
-      <p class="section-sub reveal reveal-delay-2">
-        Tips, deep dives, and stories from teams shipping with Shellular.
-      </p>
+      <p class="section-sub reveal reveal-delay-2">Tips, deep dives, and stories from teams shipping with Shellular.</p>
     </div>
 
     <div class="ins-grid">
@@ -70,8 +64,8 @@ const posts: Post[] = [
                       <div class="cov-line cov-line--ok">✓ shipped from a train</div>
                     </div>
                   </div>
-                  <div class="cov-cloud cov-cloud--a"></div>
-                  <div class="cov-cloud cov-cloud--b"></div>
+                  <div class="cov-cloud cov-cloud--a" />
+                  <div class="cov-cloud cov-cloud--b" />
                 </div>
               )}
               {p.cover === "engineering" && (
@@ -83,18 +77,24 @@ const posts: Post[] = [
                     </svg>
                   </div>
                   <div class="cov-keys">
-                    <span></span><span></span><span></span><span></span>
-                    <span></span><span></span><span></span><span></span>
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
                   </div>
                 </div>
               )}
               {p.cover === "guide" && (
                 <div class="cov cov-guide">
                   <div class="cov-grid">
-                    <div class="cov-pane cov-pane--a"></div>
-                    <div class="cov-pane cov-pane--b"></div>
-                    <div class="cov-pane cov-pane--c"></div>
-                    <div class="cov-pane cov-pane--d"></div>
+                    <div class="cov-pane cov-pane--a" />
+                    <div class="cov-pane cov-pane--b" />
+                    <div class="cov-pane cov-pane--c" />
+                    <div class="cov-pane cov-pane--d" />
                   </div>
                   <div class="cov-num">5</div>
                 </div>
@@ -105,7 +105,9 @@ const posts: Post[] = [
               <h3 class="ins-title">{p.title}</h3>
               <div class="ins-meta">
                 <span>{p.author}</span>
-                <span class="dot-sep" aria-hidden="true">·</span>
+                <span class="dot-sep" aria-hidden="true">
+                  ·
+                </span>
                 <span>{p.readTime}</span>
               </div>
             </div>
@@ -132,13 +134,6 @@ const posts: Post[] = [
     margin-bottom: 56px;
   }
 
-  .ins-header .section-eyebrow .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent-gold);
-  }
-
   .ins-grid {
     display: grid;
     grid-template-columns: 1.6fr 1fr 1fr;
@@ -155,7 +150,10 @@ const posts: Post[] = [
     display: flex;
     flex-direction: column;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    transition:
+      transform 0.25s,
+      box-shadow 0.25s,
+      border-color 0.25s;
   }
 
   .ins-card:hover {
@@ -232,9 +230,17 @@ const posts: Post[] = [
     font-size: 9.5px;
   }
 
-  .cov-line--prompt { color: var(--accent-blue); }
-  .cov-line--cmd    { color: var(--ink-900); font-weight: 600; }
-  .cov-line--ok     { color: var(--accent-green); margin-top: auto; }
+  .cov-line--prompt {
+    color: var(--accent-blue);
+  }
+  .cov-line--cmd {
+    color: var(--ink-900);
+    font-weight: 600;
+  }
+  .cov-line--ok {
+    color: var(--accent-green);
+    margin-top: auto;
+  }
 
   .cov-cloud {
     position: absolute;
@@ -298,11 +304,17 @@ const posts: Post[] = [
     border-radius: 2px;
   }
 
-  .cov-keys span:nth-child(2n) { background: rgba(214, 194, 161, 0.7); }
-  .cov-keys span:nth-child(3n) { background: rgba(132, 185, 239, 0.45); }
+  .cov-keys span:nth-child(2n) {
+    background: rgba(214, 194, 161, 0.7);
+  }
+  .cov-keys span:nth-child(3n) {
+    background: rgba(132, 185, 239, 0.45);
+  }
 
   /* ── Guide cover ── */
-  .cov-guide { padding: 18px; }
+  .cov-guide {
+    padding: 18px;
+  }
 
   .cov-grid {
     width: 80%;
@@ -345,9 +357,15 @@ const posts: Post[] = [
     border-radius: 1px;
   }
 
-  .cov-pane--a::before { background: var(--accent-blue); }
-  .cov-pane--c::before { background: var(--accent-orange); }
-  .cov-pane--d::before { background: var(--accent-green); }
+  .cov-pane--a::before {
+    background: var(--accent-blue);
+  }
+  .cov-pane--c::before {
+    background: var(--accent-orange);
+  }
+  .cov-pane--d::before {
+    background: var(--accent-green);
+  }
 
   .cov-num {
     position: absolute;
