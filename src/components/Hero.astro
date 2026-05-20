@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { BotMessageSquareIcon, GlobeIcon, TerminalIcon } from "@lucide/astro";
+import { ArrowRightIcon, BotMessageSquareIcon, GlobeIcon, PlayIcon, TerminalIcon } from "@lucide/astro";
 import appHomeScreenshot from "@/assets/app-home-ss.jpg";
 ---
 
@@ -79,19 +79,7 @@ import appHomeScreenshot from "@/assets/app-home-ss.jpg";
     <div class="hero-ctas reveal reveal-delay-3">
       <a href="#get-started" class="btn-primary">
         Start now
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M5 12h14M13 5l7 7-7 7"></path>
-        </svg>
+        <ArrowRightIcon size={16} aria-hidden="true" />
       </a>
       <a
         href="https://youtu.be/I42X_6VHJ2I?si=yU_yHQNOJgE1tn2j"
@@ -99,9 +87,7 @@ import appHomeScreenshot from "@/assets/app-home-ss.jpg";
         target="_blank"
         rel="noopener noreferrer"
       >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M8 5v14l11-7z"></path>
-        </svg>
+        <PlayIcon size={14} fill="currentColor" aria-hidden="true" />
         Watch the demo
       </a>
     </div>
@@ -169,27 +155,48 @@ import appHomeScreenshot from "@/assets/app-home-ss.jpg";
     position: relative;
     width: 100%;
     overflow: hidden;
-    /* Layered sky: deeper at the top edge, brightens, then warms into cream */
+    /* Layered morning sky: warm sun glow, cool deep-blue corners, aurora wash,
+       then a horizon that arrives within the first viewport. */
     background:
-      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255, 240, 210, 0.55) 0%, rgba(255, 240, 210, 0) 60%),
-      radial-gradient(ellipse 60% 80% at 10% 0%, rgba(255, 222, 173, 0.28) 0%, rgba(255, 222, 173, 0) 55%),
-      radial-gradient(ellipse 60% 80% at 90% 5%, rgba(132, 185, 239, 0.45) 0%, rgba(132, 185, 239, 0) 55%),
-      linear-gradient(180deg, #7eb0dd 0%, var(--sky-300) 22%, var(--sky-300) 55%, var(--cream-300) 100%);
+      /* Warm sun core — high & centered, brightens the headline area */
+      radial-gradient(ellipse 55% 38% at 50% 8%, rgba(255, 236, 196, 0.7) 0%, rgba(255, 236, 196, 0) 65%),
+      /* Soft peach diffusion around the sun */
+      radial-gradient(ellipse 80% 55% at 50% 18%, rgba(255, 214, 170, 0.32) 0%, rgba(255, 214, 170, 0) 70%),
+      /* Cool deep-blue top-left corner for depth */
+      radial-gradient(ellipse 55% 70% at 0% 0%, rgba(58, 120, 180, 0.55) 0%, rgba(58, 120, 180, 0) 60%),
+      /* Cool deep-blue top-right corner */
+      radial-gradient(ellipse 55% 70% at 100% 0%, rgba(58, 120, 180, 0.5) 0%, rgba(58, 120, 180, 0) 60%),
+      /* Aurora wash — subtle violet/rose drift mid-sky */
+      radial-gradient(ellipse 90% 45% at 25% 35%, rgba(200, 165, 215, 0.18) 0%, rgba(200, 165, 215, 0) 65%),
+      radial-gradient(ellipse 90% 45% at 80% 30%, rgba(247, 195, 175, 0.22) 0%, rgba(247, 195, 175, 0) 65%),
+      /* Compressed vertical: blue → warm horizon arrives by ~65vh so it shows above the fold */
+      linear-gradient(
+        180deg,
+        #6ea4d4 0%,
+        #88b7df 18%,
+        var(--sky-300) 38%,
+        #c7d4dc 55%,
+        var(--cream-400) 72%,
+        var(--cream-300) 100%
+      );
     padding: 140px 24px 60px;
   }
 
-  /* Soft sun halo behind the headline */
+  /* Soft sun halo behind the headline — concentrated warm light bloom */
   #hero::before {
     content: "";
     position: absolute;
-    top: 8%;
+    top: 4%;
     left: 50%;
     transform: translateX(-50%);
-    width: min(820px, 95vw);
-    height: 460px;
-    background: radial-gradient(ellipse at center, rgba(255, 244, 220, 0.6) 0%, rgba(255, 244, 220, 0) 60%);
+    width: min(1000px, 110vw);
+    height: 560px;
+    background:
+      radial-gradient(ellipse 40% 60% at center, rgba(255, 248, 230, 0.55) 0%, rgba(255, 248, 230, 0) 55%),
+      radial-gradient(ellipse 70% 80% at center, rgba(255, 226, 184, 0.28) 0%, rgba(255, 226, 184, 0) 65%);
     pointer-events: none;
     z-index: 0;
+    filter: blur(2px);
   }
 
   /* Subtle horizon haze just above the cream */
@@ -211,22 +218,25 @@ import appHomeScreenshot from "@/assets/app-home-ss.jpg";
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.55;
+    opacity: 0.7;
     background: conic-gradient(
-      from 200deg at 50% -10%,
+      from 195deg at 50% -8%,
       transparent 0deg,
-      rgba(255, 244, 220, 0.18) 12deg,
-      transparent 24deg,
-      transparent 40deg,
-      rgba(255, 244, 220, 0.14) 52deg,
-      transparent 64deg,
-      transparent 90deg,
-      rgba(255, 244, 220, 0.1) 100deg,
-      transparent 110deg,
+      rgba(255, 244, 220, 0.22) 10deg,
+      transparent 22deg,
+      transparent 36deg,
+      rgba(255, 244, 220, 0.16) 48deg,
+      transparent 60deg,
+      transparent 78deg,
+      rgba(255, 244, 220, 0.18) 90deg,
+      transparent 102deg,
+      transparent 120deg,
+      rgba(255, 244, 220, 0.12) 132deg,
+      transparent 144deg,
       transparent 360deg
     );
-    mask-image: linear-gradient(180deg, black 0%, transparent 70%);
-    -webkit-mask-image: linear-gradient(180deg, black 0%, transparent 70%);
+    mask-image: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.6) 40%, transparent 75%);
+    -webkit-mask-image: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.6) 40%, transparent 75%);
   }
 
   /* Topographic contour — faint dashed arcs at the bottom suggesting horizon */
