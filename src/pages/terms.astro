@@ -1,0 +1,358 @@
+---
+import Footer from "@/components/Footer.astro";
+import Nav from "@/components/Nav.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout
+  title="Shellular Terms of Service"
+  description="Terms of Service for Shellular — the remote development tool by Shellular."
+  keywords={["Shellular terms", "Shellular terms of service", "developer tool terms"]}
+>
+  <Nav />
+  <main class="legal-page">
+    <div class="legal-container">
+      <header class="legal-header">
+        <h1>Terms of Service</h1>
+        <p class="meta">Effective date: April 19, 2026 · Shellular</p>
+      </header>
+
+      <div class="legal-body">
+        <section>
+          <h2 data-num="01">Acceptance of Terms</h2>
+          <p>
+            By downloading, installing, or using the Shellular mobile app, the Shellular CLI (<code>shellular</code>),
+            or any related services (collectively, the "Service"), you agree to be bound by these Terms of Service
+            ("Terms"). If you do not agree, do not use the Service.
+          </p>
+          <p>The Service is provided by Shellular ("Company", "we", "us", "our").</p>
+        </section>
+
+        <section>
+          <h2 data-num="02">Description of the Service</h2>
+          <p>
+            Shellular is a developer tool that allows you to connect a mobile device to a development machine you own or
+            are authorised to access. The Service comprises:
+          </p>
+          <ul>
+            <li>
+              <strong>Shellular CLI</strong> — a host agent you run on your machine that exposes terminal, filesystem, port
+              management, and system-monitoring capabilities over an encrypted relay.
+            </li>
+            <li>
+              <strong>Shellular App</strong> — the mobile application you use to connect to a running CLI instance.
+            </li>
+            <li>
+              <strong>Relay Infrastructure</strong> — servers that facilitate encrypted pass-through communication between
+              the app and the CLI.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 data-num="03">Eligibility</h2>
+          <p>
+            You must be at least 13 years old (or the minimum age required by your country's laws) to use the Service.
+            By using the Service you represent that you meet this requirement.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="04">Permitted Use</h2>
+          <p>
+            You may use the Service only to access machines that you own or have explicit, authorised permission to
+            access. You agree to use the Service in compliance with all applicable laws and regulations.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="05">Prohibited Conduct</h2>
+          <p>You agree not to:</p>
+          <ul>
+            <li>Use the Service to access any machine without authorisation.</li>
+            <li>Use the Service to transmit malware, ransomware, or any other malicious code.</li>
+            <li>
+              Attempt to reverse-engineer, decompile, or tamper with the relay infrastructure or the encryption layer.
+            </li>
+            <li>
+              Use the Service in any way that could damage, overload, or impair the relay servers or interfere with
+              other users' access.
+            </li>
+            <li>
+              Resell, sublicense, or provide access to the relay infrastructure to third parties without our written
+              consent.
+            </li>
+            <li>
+              Use the Service for any unlawful purpose, including but not limited to exfiltrating data, conducting
+              cyberattacks, or facilitating unauthorized surveillance.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 data-num="06">Intellectual Property</h2>
+          <p>
+            The Shellular name, logo, and app interface are owned by Shellular. The CLI source code is released under
+            its open-source licence (see the repository for details). Nothing in these Terms grants you rights in our
+            trademarks or branding.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="07">Privacy</h2>
+          <p>
+            Your use of the Service is also governed by our
+            <a href="/privacy">Privacy Policy</a>, which is incorporated into these Terms by reference. As described
+            there, we collect no personal data and all relay traffic is end-to-end encrypted.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="08">Third-Party Services</h2>
+          <p>
+            Shellular may integrate with third-party AI providers (Anthropic, OpenAI, GitHub, etc.) and your use of
+            those integrations is subject to the respective provider's terms and privacy policies. We have no control
+            over and assume no responsibility for third-party services.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="09">Disclaimer of Warranties</h2>
+          <p>
+            THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED,
+            INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+            NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED, ERROR-FREE, OR SECURE.
+          </p>
+          <p>
+            You are solely responsible for the security of the machine(s) you connect via Shellular, including keeping
+            the CLI updated, controlling who has physical access to your QR code, and managing the <code>--dir</code> root
+            appropriately.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="10">Limitation of Liability</h2>
+          <p>
+            TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, Shellular AND ITS OFFICERS, EMPLOYEES, AND AFFILIATES
+            WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT
+            NOT LIMITED TO LOSS OF DATA, LOSS OF PROFITS, OR UNAUTHORISED ACCESS TO YOUR MACHINE, ARISING OUT OF OR IN
+            CONNECTION WITH YOUR USE OF THE SERVICE, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+          </p>
+          <p>
+            OUR TOTAL AGGREGATE LIABILITY TO YOU FOR ANY CLAIMS ARISING UNDER THESE TERMS WILL NOT EXCEED THE AMOUNT YOU
+            PAID US IN THE 12 MONTHS PRECEDING THE CLAIM (OR USD 10 IF YOU HAVE NOT MADE ANY PAYMENTS).
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="11">Indemnification</h2>
+          <p>
+            You agree to indemnify and hold harmless Shellular and its officers, directors, employees, and agents from
+            any claims, damages, or expenses (including reasonable legal fees) arising from: (a) your use of the
+            Service; (b) your violation of these Terms; or (c) your violation of any third-party rights.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="12">Modifications to the Service and Terms</h2>
+          <p>
+            We reserve the right to modify or discontinue the Service (or any part of it) at any time with or without
+            notice. We may also update these Terms. The effective date at the top of this page will reflect the latest
+            revision. Continued use after a revision constitutes acceptance of the updated Terms.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="13">Governing Law</h2>
+          <p>
+            These Terms are governed by the laws of India, without regard to conflict-of-law principles. Any disputes
+            arising under these Terms shall be subject to the exclusive jurisdiction of the courts located in India.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="14">Contact</h2>
+          <p>
+            For questions about these Terms, contact us at
+            <a href="mailto:team@shellular.dev">team@shellular.dev</a>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page {
+    position: relative;
+    min-height: 80vh;
+    padding: 140px clamp(16px, 6vw, 64px) 96px;
+    background: var(--cream-100);
+    overflow: hidden;
+  }
+
+  .legal-page::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 360px;
+    background:
+      radial-gradient(ellipse 80% 70% at 50% -10%, rgba(255, 240, 210, 0.5) 0%, transparent 60%),
+      linear-gradient(180deg, var(--sky-100) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .legal-container {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  .legal-header {
+    margin-bottom: 56px;
+    text-align: center;
+  }
+
+  .legal-header h1 {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.04;
+    color: var(--ink-900);
+    margin-bottom: 14px;
+  }
+
+  .meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(26, 22, 21, 0.06);
+    border-radius: var(--radius-pill);
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-700);
+    letter-spacing: 0.02em;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+
+  .legal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: clamp(24px, 4vw, 36px);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.25s ease;
+  }
+
+  section:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  h2 {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink-900);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  h2::before {
+    content: attr(data-num);
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--brand-gold-deep);
+    padding: 3px 8px;
+    background: rgba(var(--brand-gold-rgb), 0.14);
+    border-radius: 6px;
+  }
+
+  p {
+    font-size: 15px;
+    color: var(--ink-700);
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  ul li {
+    font-size: 15px;
+    color: var(--ink-700);
+    line-height: 1.7;
+    padding-left: 22px;
+    position: relative;
+  }
+
+  ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 10px;
+    height: 1px;
+    background: var(--brand-gold-deep);
+  }
+
+  strong {
+    color: var(--ink-900);
+    font-weight: 700;
+  }
+
+  code {
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 13px;
+    background: rgba(var(--brand-gold-rgb), 0.14);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.28);
+    padding: 1px 7px;
+    border-radius: 5px;
+    color: var(--brand-gold-ink);
+  }
+
+  a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(21, 108, 194, 0.3);
+    transition:
+      color 0.18s ease,
+      border-color 0.18s ease;
+  }
+
+  a:hover {
+    color: var(--accent-orange);
+    border-bottom-color: var(--accent-orange);
+  }
+
+  @media (max-width: 600px) {
+    h2 {
+      flex-wrap: wrap;
+    }
+  }
+</style>

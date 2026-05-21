@@ -1,0 +1,950 @@
+---
+import androidCcScreenshot from "@/assets/android-cc-ss.jpeg";
+import claudeCodeIcon from "@/assets/claudecode-color.svg";
+import codexIcon from "@/assets/codex-color.svg";
+import githubCopilotIcon from "@/assets/githubcopilot.svg";
+import opencodeIcon from "@/assets/opencode.svg";
+import ShellularLogo from "./ShellularLogo.astro";
+---
+
+<div
+  class='hero-diagram-wrapper reveal reveal-delay-3'
+  aria-label='Architecture diagram'>
+  <div class='diag-scene'>
+    <!-- Layered ambient glow -->
+    <div class='diag-glow diag-glow-warm'></div>
+    <div class='diag-glow diag-glow-cool'></div>
+    <div class='diag-glow diag-glow-accent'></div>
+
+    <!-- Animated dot-grid canvas -->
+    <canvas id='diag-particles' class='diag-particles' aria-hidden='true'
+    ></canvas>
+
+    <!-- ─── Flow layout ────────────────────────────────── -->
+    <div class='diag-flow'>
+      <!-- ─── Phone column ──────────────────────────────── -->
+      <div class='diag-col diag-col-phone'>
+        <div class='diag-phone-scene'>
+          <div class='diag-phone-halo'></div>
+          <div class='diag-phone-float'>
+            <div class='diag-phone'>
+              <div class='diag-phone-notch'></div>
+              <img
+                src={androidCcScreenshot.src}
+                alt='Shellular mobile app showing Claude Code running'
+                class='diag-phone-screen'
+                loading='eager'
+              />
+              <div class='diag-phone-reflection'></div>
+            </div>
+          </div>
+        </div>
+        <span class='diag-label-tag'>Your Phone</span>
+      </div>
+
+      <!-- ─── Connection 1 ──────────────────────────────── -->
+      <div class='diag-connector'>
+        <div class='diag-beam'>
+          <div class='diag-beam-line'></div>
+          <div class='diag-beam-particle diag-beam-particle-1'></div>
+          <div class='diag-beam-particle diag-beam-particle-2'></div>
+          <div class='diag-beam-particle diag-beam-particle-3'></div>
+        </div>
+      </div>
+
+      <!-- ─── Shellular hub ─────────────────────────────── -->
+      <div class='diag-col diag-col-hub'>
+        <div class='diag-hub-scene'>
+          <div class='diag-hub-pulse diag-hub-pulse-3'></div>
+          <div class='diag-hub-pulse diag-hub-pulse-2'></div>
+          <div class='diag-hub-pulse diag-hub-pulse-1'></div>
+          <div class='diag-hub-core'>
+            <ShellularLogo size={45} />
+          </div>
+        </div>
+        <!-- <span class="diag-hub-name">Shellular</span> -->
+        <span class='diag-hub-sub'>E2E Encrypted</span>
+      </div>
+
+      <!-- ─── Connection 2 ──────────────────────────────── -->
+      <div class='diag-connector'>
+        <div class='diag-beam'>
+          <div class='diag-beam-line'></div>
+          <div
+            class='diag-beam-particle diag-beam-particle-1'
+            style='animation-delay: 0.3s;'>
+          </div>
+          <div
+            class='diag-beam-particle diag-beam-particle-2'
+            style='animation-delay: 1.1s;'>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Host column ───────────────────────────────── -->
+      <div class='diag-col diag-col-host'>
+        <div class='diag-host-card'>
+          <div class='diag-host-card-shine'></div>
+          <div class='diag-host-head'>
+            <span class='diag-host-title'>Your Machine</span>
+            <span class='diag-host-sub'>Laptop, Mac Mini, Desktop, Homelab</span
+            >
+          </div>
+          <div class='diag-tools'>
+            <div class='diag-tool diag-tool--terminal' data-stagger='1'>
+              <div class='diag-tool-glyph'>
+                <svg
+                  width='18'
+                  height='18'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  aria-hidden='true'>
+                  <path
+                    d='M4 17l6-5-6-5M14 17h6'
+                    stroke='currentColor'
+                    stroke-width='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'></path>
+                </svg>
+              </div>
+              <span>Terminal</span>
+            </div>
+            <div class='diag-tool diag-tool--files' data-stagger='2'>
+              <div class='diag-tool-glyph'>
+                <svg
+                  width='18'
+                  height='18'
+                  viewBox='0 0 24 24'
+                  fill='currentColor'
+                  aria-hidden='true'>
+                  <path
+                    d='M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z'
+                  ></path>
+                </svg>
+              </div>
+              <span>Files</span>
+            </div>
+            <div class='diag-tool diag-tool--claude' data-stagger='3'>
+              <div class='diag-tool-glyph'>
+                <img src={claudeCodeIcon.src} alt='' aria-hidden='true' />
+              </div>
+              <span>Claude Code</span>
+            </div>
+            <div class='diag-tool diag-tool--codex' data-stagger='4'>
+              <div class='diag-tool-glyph'>
+                <img src={codexIcon.src} alt='' aria-hidden='true' />
+              </div>
+              <span>Codex</span>
+            </div>
+            <div class='diag-tool diag-tool--opencode' data-stagger='5'>
+              <div class='diag-tool-glyph'>
+                <img src={opencodeIcon.src} alt='' aria-hidden='true' />
+              </div>
+              <span>OpenCode</span>
+            </div>
+            <div class='diag-tool diag-tool--copilot' data-stagger='6'>
+              <div class='diag-tool-glyph'>
+                <img src={githubCopilotIcon.src} alt='' aria-hidden='true' />
+              </div>
+              <span>Copilot</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ═══════════════════════════════════════════════════════════
+     HERO DIAGRAM — fully responsive, no fixed dimensions
+     ═══════════════════════════════════════════════════════════ */
+
+  .hero-diagram-wrapper {
+    width: 100%;
+    position: relative;
+    justify-self: end;
+  }
+
+  /* ─── Scene ──────────────────────────────────────────────── */
+  .diag-scene {
+    position: relative;
+    width: 100%;
+    padding: 32px 24px;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.09);
+    background: linear-gradient(
+      170deg,
+      rgba(18, 18, 22, 0.96) 0%,
+      rgba(10, 10, 13, 0.98) 100%
+    );
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.04) inset,
+      0 60px 120px -30px rgba(0, 0, 0, 0.55),
+      0 0 0 1px rgba(0, 0, 0, 0.2);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* ─── Particle canvas ────────────────────────────────────── */
+  .diag-particles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  /* ─── Ambient glows ──────────────────────────────────────── */
+  .diag-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  .diag-glow-warm {
+    width: 40%;
+    aspect-ratio: 1;
+    left: -5%;
+    top: -10%;
+    background: radial-gradient(
+      circle,
+      rgba(217, 119, 87, 0.18),
+      transparent 65%
+    );
+    filter: blur(60px);
+    animation: glow-a 9s ease-in-out infinite alternate;
+  }
+
+  .diag-glow-cool {
+    width: 50%;
+    aspect-ratio: 1;
+    right: -10%;
+    bottom: -15%;
+    background: radial-gradient(
+      circle,
+      rgba(122, 184, 217, 0.12),
+      transparent 60%
+    );
+    filter: blur(70px);
+    animation: glow-b 11s ease-in-out infinite alternate-reverse;
+  }
+
+  .diag-glow-accent {
+    width: 30%;
+    aspect-ratio: 1;
+    left: 30%;
+    top: 20%;
+    background: radial-gradient(
+      circle,
+      rgba(var(--brand-gold-rgb), 0.1),
+      transparent 60%
+    );
+    filter: blur(50px);
+    animation: glow-c 7s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow-a {
+    to {
+      transform: translate(30px, 20px) scale(1.1);
+    }
+  }
+  @keyframes glow-b {
+    to {
+      transform: translate(-20px, -30px) scale(1.15);
+    }
+  }
+  @keyframes glow-c {
+    to {
+      transform: translate(15px, -10px) scale(0.9);
+    }
+  }
+
+  /* ─── Flow layout (the main horizontal strip) ────────────── */
+  .diag-flow {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+  }
+
+  .diag-col {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .diag-col-phone {
+    width: 18%;
+    min-width: 100px;
+  }
+
+  .diag-col-hub {
+    width: 12%;
+    min-width: 72px;
+  }
+
+  .diag-col-host {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .diag-connector {
+    flex: 0 1 10%;
+    min-width: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+  }
+
+  /* ─── Phone ──────────────────────────────────────────────── */
+  .diag-phone-scene {
+    position: relative;
+    width: 100%;
+    max-width: 140px;
+    margin: 0 auto;
+  }
+
+  .diag-phone-halo {
+    position: absolute;
+    inset: -20%;
+    border-radius: 40%;
+    background: radial-gradient(
+      circle,
+      rgba(var(--brand-gold-rgb), 0.14),
+      transparent 60%
+    );
+    filter: blur(24px);
+    animation: halo-breathe 5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes halo-breathe {
+    0%,
+    100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+  }
+
+  .diag-phone-float {
+    position: relative;
+    animation: float-y 6s ease-in-out infinite;
+  }
+
+  @keyframes float-y {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .diag-phone {
+    position: relative;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #141419;
+    border: clamp(3px, 0.6vw, 6px) solid rgba(28, 28, 32, 0.98);
+    box-shadow:
+      0 30px 60px -10px rgba(0, 0, 0, 0.7),
+      0 0 0 1px rgba(var(--brand-gold-rgb), 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 0 50px -5px rgba(var(--brand-gold-rgb), 0.08);
+  }
+
+  .diag-phone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 5%;
+    background: rgba(20, 20, 24, 0.98);
+    border-radius: 0 0 clamp(6px, 1.5vw, 12px) clamp(6px, 1.5vw, 12px);
+    z-index: 3;
+  }
+
+  .diag-phone-screen {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .diag-phone-reflection {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      transparent 22%,
+      transparent 78%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+    pointer-events: none;
+  }
+
+  .diag-label-tag {
+    margin-top: 14px;
+    font-size: clamp(9px, 1.1vw, 11px);
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ─── Beam connector ─────────────────────────────────────── */
+  .diag-beam {
+    position: relative;
+    width: 100%;
+    height: 2px;
+  }
+
+  .diag-beam-line {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(var(--brand-gold-rgb), 0.04),
+      rgba(var(--brand-gold-rgb), 0.28),
+      rgba(var(--brand-gold-rgb), 0.04)
+    );
+    border-radius: 2px;
+    box-shadow: 0 0 12px rgba(var(--brand-gold-rgb), 0.08);
+  }
+
+  .diag-beam-particle {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 8px;
+    height: 2px;
+    border-radius: 2px;
+    background: rgba(var(--brand-gold-rgb), 0.9);
+    box-shadow:
+      0 0 8px rgba(var(--brand-gold-rgb), 0.6),
+      0 0 20px rgba(var(--brand-gold-rgb), 0.2);
+    transform: translateY(-50%);
+    animation: beam-travel 2s linear infinite;
+  }
+
+  .diag-beam-particle-2 {
+    animation-delay: 0.7s;
+  }
+  .diag-beam-particle-3 {
+    animation-delay: 1.4s;
+  }
+
+  @keyframes beam-travel {
+    0% {
+      left: -8px;
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
+
+  .diag-connector-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.1);
+    background: rgba(10, 10, 12, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-size: clamp(7px, 0.85vw, 9px);
+    font-weight: 700;
+    color: rgba(var(--brand-gold-rgb), 0.55);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .diag-badge-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--brand-success);
+    box-shadow: 0 0 6px rgba(var(--brand-success-rgb), 0.6);
+    animation: dot-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dot-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 4px rgba(var(--brand-success-rgb), 0.4);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 10px rgba(var(--brand-success-rgb), 0.8);
+      transform: scale(1.2);
+    }
+  }
+
+  /* ─── Shellular hub ──────────────────────────────────────── */
+  .diag-hub-scene {
+    position: relative;
+    width: clamp(56px, 7vw, 72px);
+    aspect-ratio: 1;
+  }
+
+  .diag-hub-pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.08);
+    animation: pulse-ring 4s ease-out infinite;
+    pointer-events: none;
+  }
+
+  .diag-hub-pulse-2 {
+    animation-delay: 1.3s;
+  }
+
+  .diag-hub-pulse-3 {
+    animation-delay: 2.6s;
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+
+  .diag-hub-core {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--accent);
+    background: linear-gradient(
+      145deg,
+      rgba(var(--brand-gold-rgb), 0.14),
+      rgba(var(--brand-gold-rgb), 0.04)
+    );
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.22);
+    box-shadow:
+      0 16px 40px -8px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 0 40px -4px rgba(var(--brand-gold-rgb), 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: core-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes core-glow {
+    0%,
+    100% {
+      box-shadow:
+        0 16px 40px -8px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 0 40px -4px rgba(var(--brand-gold-rgb), 0.1);
+    }
+    50% {
+      box-shadow:
+        0 16px 40px -8px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 0 60px 0px rgba(var(--brand-gold-rgb), 0.18);
+    }
+  }
+
+  .diag-hub-name {
+    margin-top: 10px;
+    font-size: clamp(11px, 1.3vw, 14px);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .diag-hub-sub {
+    font-size: clamp(7px, 0.85vw, 9px);
+    text-align: center;
+    font-size: 8px;
+    font-weight: 600;
+    color: rgba(var(--brand-gold-rgb), 0.8);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  /* ─── Host card ──────────────────────────────────────────── */
+  .diag-host-card {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.1);
+    background:
+      linear-gradient(
+        180deg,
+        rgba(var(--brand-gold-rgb), 0.04) 0%,
+        rgba(var(--brand-gold-rgb), 0.01) 100%
+      ),
+      rgba(13, 13, 16, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 28px 56px -12px rgba(0, 0, 0, 0.35);
+    padding: clamp(14px, 2vw, 22px);
+    overflow: hidden;
+  }
+
+  /* Animated shine sweep on the card */
+  .diag-host-card-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(var(--brand-gold-rgb), 0.04) 45%,
+      rgba(var(--brand-gold-rgb), 0.08) 50%,
+      rgba(var(--brand-gold-rgb), 0.04) 55%,
+      transparent 60%
+    );
+    background-size: 300% 100%;
+    animation: card-shine 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes card-shine {
+    0%,
+    100% {
+      background-position: 200% 0;
+    }
+    50% {
+      background-position: -100% 0;
+    }
+  }
+
+  .diag-host-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(var(--brand-gold-rgb), 0.16),
+      transparent
+    );
+  }
+
+  .diag-host-head {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: clamp(10px, 1.5vw, 16px);
+  }
+
+  .diag-host-title {
+    font-size: clamp(9px, 1.1vw, 11px);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .diag-host-sub {
+    font-size: clamp(9px, 1vw, 11px);
+    color: rgba(var(--brand-cream-rgb), 0.3);
+    line-height: 1.4;
+  }
+
+  /* ─── Tool grid ──────────────────────────────────────────── */
+  .diag-tools {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(6px, 0.8vw, 10px);
+  }
+
+  .diag-tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(5px, 0.7vw, 8px);
+    padding: clamp(10px, 1.4vw, 16px) clamp(4px, 0.5vw, 8px)
+      clamp(8px, 1.2vw, 14px);
+    border-radius: clamp(10px, 1.5vw, 16px);
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.015);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+    /* Staggered entrance */
+    opacity: 0;
+    transform: translateY(12px);
+    animation: tool-appear 0.5s ease-out forwards;
+  }
+
+  .diag-tool[data-stagger='1'] {
+    animation-delay: 0.1s;
+  }
+  .diag-tool[data-stagger='2'] {
+    animation-delay: 0.18s;
+  }
+  .diag-tool[data-stagger='3'] {
+    animation-delay: 0.26s;
+  }
+  .diag-tool[data-stagger='4'] {
+    animation-delay: 0.34s;
+  }
+  .diag-tool[data-stagger='5'] {
+    animation-delay: 0.42s;
+  }
+  .diag-tool[data-stagger='6'] {
+    animation-delay: 0.5s;
+  }
+
+  @keyframes tool-appear {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .diag-tool:hover {
+    border-color: rgba(var(--brand-gold-rgb), 0.14);
+    background: rgba(var(--brand-gold-rgb), 0.05);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+      0 12px 28px rgba(0, 0, 0, 0.2),
+      0 0 20px rgba(var(--brand-gold-rgb), 0.04);
+  }
+
+  .diag-tool-glyph {
+    width: clamp(30px, 3.8vw, 42px);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border-radius: clamp(8px, 1.2vw, 14px);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.08);
+    background: rgba(255, 255, 255, 0.025);
+    transition:
+      border-color 0.3s,
+      box-shadow 0.3s;
+  }
+
+  .diag-tool-glyph img {
+    width: clamp(16px, 2vw, 22px);
+    height: clamp(16px, 2vw, 22px);
+    display: block;
+  }
+
+  .diag-tool > span {
+    font-size: clamp(8px, 1vw, 10.5px);
+    font-weight: 600;
+    color: rgba(var(--brand-cream-rgb), 0.5);
+    white-space: nowrap;
+    transition: color 0.3s;
+  }
+
+  .diag-tool:hover > span {
+    color: rgba(var(--brand-cream-rgb), 0.8);
+  }
+
+  /* Tool colour accents */
+  .diag-tool--terminal .diag-tool-glyph {
+    border-color: rgba(122, 184, 217, 0.18);
+    background: rgba(122, 184, 217, 0.07);
+    color: rgba(122, 184, 217, 0.9);
+  }
+  .diag-tool--terminal:hover .diag-tool-glyph {
+    box-shadow: 0 0 16px rgba(122, 184, 217, 0.12);
+  }
+
+  .diag-tool--files .diag-tool-glyph {
+    border-color: rgba(197, 138, 170, 0.18);
+    background: rgba(197, 138, 170, 0.07);
+    color: rgba(197, 138, 170, 0.9);
+  }
+  .diag-tool--files:hover .diag-tool-glyph {
+    box-shadow: 0 0 16px rgba(197, 138, 170, 0.12);
+  }
+
+  .diag-tool--claude .diag-tool-glyph {
+    border-color: rgba(217, 119, 87, 0.18);
+    background: rgba(217, 119, 87, 0.07);
+  }
+  .diag-tool--claude:hover .diag-tool-glyph {
+    box-shadow: 0 0 16px rgba(217, 119, 87, 0.12);
+  }
+
+  .diag-tool--codex .diag-tool-glyph {
+    border-color: rgba(100, 130, 255, 0.18);
+    background: rgba(100, 130, 255, 0.07);
+  }
+  .diag-tool--codex:hover .diag-tool-glyph {
+    box-shadow: 0 0 16px rgba(100, 130, 255, 0.12);
+  }
+
+  .diag-tool--opencode .diag-tool-glyph {
+    border-color: rgba(var(--brand-gold-rgb), 0.14);
+    background: rgba(var(--brand-gold-rgb), 0.05);
+  }
+  .diag-tool--opencode:hover .diag-tool-glyph {
+    box-shadow: 0 0 16px rgba(var(--brand-gold-rgb), 0.08);
+  }
+
+  .diag-tool--copilot .diag-tool-glyph {
+    border-color: rgba(var(--brand-gold-rgb), 0.14);
+    background: rgba(var(--brand-gold-rgb), 0.05);
+  }
+  .diag-tool--copilot:hover .diag-tool-glyph {
+    box-shadow: 0 0 16px rgba(var(--brand-gold-rgb), 0.08);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     RESPONSIVE — zoom shrinks layout box like an image
+     ═══════════════════════════════════════════════════════════ */
+  @media (max-width: 1100px) {
+    .hero-diagram-wrapper {
+      zoom: 0.72;
+      justify-self: center;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .hero-diagram-wrapper {
+      zoom: 0.55;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-diagram-wrapper {
+      zoom: 0.42;
+    }
+  }
+</style>
+
+<!-- Particle canvas — floating dots with connection lines for depth -->
+<script is:inline>
+  (function () {
+    const canvas = document.getElementById('diag-particles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W,
+      H,
+      dpr,
+      dots = [];
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = canvas.clientWidth;
+      H = canvas.clientHeight;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function init() {
+      resize();
+      const count = Math.min(60, Math.round((W * H) / 8000));
+      dots = Array.from({ length: count }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.5 + 0.4,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.12,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.4 + Math.random() * 0.8,
+      }));
+    }
+
+    let raf;
+    function frame(t) {
+      ctx.clearRect(0, 0, W, H);
+      const s = t / 1000;
+      for (const d of dots) {
+        d.x += d.vx;
+        d.y += d.vy;
+        if (d.x < -4) d.x = W + 4;
+        if (d.x > W + 4) d.x = -4;
+        if (d.y < -4) d.y = H + 4;
+        if (d.y > H + 4) d.y = -4;
+        const a = 0.25 + 0.25 * Math.sin(s * d.speed + d.phase);
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(214,194,161,' + a.toFixed(3) + ')';
+        ctx.fill();
+      }
+
+      // Draw faint connection lines between nearby dots
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const dx = dots[i].x - dots[j].x;
+          const dy = dots[i].y - dots[j].y;
+          const dist = dx * dx + dy * dy;
+          if (dist < 6400) {
+            const alpha = (1 - dist / 6400) * 0.08;
+            ctx.beginPath();
+            ctx.moveTo(dots[i].x, dots[i].y);
+            ctx.lineTo(dots[j].x, dots[j].y);
+            ctx.strokeStyle = 'rgba(214,194,161,' + alpha.toFixed(4) + ')';
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      raf = requestAnimationFrame(frame);
+    }
+
+    // Intersection observer — only animate when visible
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!raf) raf = requestAnimationFrame(frame);
+        } else {
+          if (raf) {
+            cancelAnimationFrame(raf);
+            raf = null;
+          }
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    init();
+    obs.observe(canvas);
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(init, 150);
+    });
+  })();
+</script>

@@ -1,0 +1,227 @@
+---
+import { ChartArea, FileCodeCornerIcon, GitBranch, GlobeIcon, SparkleIcon, Terminal } from "@lucide/astro";
+
+import pi from "@/assets/agents/pi.svg";
+import claudeCode from "@/assets/agents/claudecode-color.svg";
+import codex from "@/assets/agents/codex-color.svg";
+import copilot from "@/assets/agents/githubcopilot.svg";
+import hermesAgent from "@/assets/agents/hermesagent.svg";
+import openCode from "@/assets/agents/opencode.svg";
+
+const agents = [
+  { label: "Codex", img: codex.src },
+  { label: "OpenCode", img: openCode.src },
+  { label: "Hermes Agent", img: hermesAgent.src },
+  { label: "Claude Code", img: claudeCode.src },
+  { label: "Pi", img: pi.src },
+  { label: "Copilot", img: copilot.src },
+];
+
+const tools = [
+  { Icon: SparkleIcon, label: "agents" },
+  { Icon: Terminal, label: "terminal" },
+  { Icon: GlobeIcon, label: "localhost tunnel" },
+  { Icon: GitBranch, label: "git" },
+  { Icon: FileCodeCornerIcon, label: "code editor" },
+  { Icon: ChartArea, label: "resource monitoring" },
+];
+---
+
+<section id="integrations">
+  <div class="i-inner">
+    <div class="i-header">
+      <h2 class="section-title reveal reveal-delay-1">
+        Works with the tools
+        <span>you already use.</span>
+      </h2>
+      <p class="section-sub reveal reveal-delay-2">
+        Shellular doesn't replace your dev environment — it forwards it. Whatever runs on your machine, runs on your
+        phone.
+      </p>
+    </div>
+
+    <div class="agents reveal reveal-delay-3">
+      {
+        agents.map((p) => (
+          <div class="agent-card">
+            <img src={p.img} alt="" width="40" height="40" aria-hidden="true" />
+            <span>{p.label}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="tools reveal reveal-delay-4">
+      {
+        tools.map(({ Icon, label }) => (
+          <div class="tool-chip">
+            <Icon size={16} aria-hidden="true" />
+            <span>{label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  #integrations {
+    background: linear-gradient(180deg, var(--cream-100) 0%, var(--sky-100) 50%, var(--cream-100) 100%);
+    padding: clamp(80px, 11vw, 130px) clamp(16px, 6vw, 64px);
+    position: relative;
+  }
+
+  /* Subtle horizon line above the section */
+  #integrations::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(640px, 80vw);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(21, 108, 194, 0.18), transparent);
+  }
+
+  .i-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .i-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .agents {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 720px) {
+    .agents {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 420px) {
+    .agents {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .agent-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s,
+      border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .agent-card::after {
+    /* sliding sheen on hover — sits behind content via z-index */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.55) 50%, transparent 60%);
+    transform: translateX(-120%);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 0;
+  }
+
+  .agent-card:hover::after {
+    /* only animate on hover-in; instant reset on hover-out (opacity stays 0) */
+    transform: translateX(120%);
+    opacity: 1;
+    transition:
+      transform 0.7s ease,
+      opacity 0s linear;
+  }
+
+  .agent-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(21, 108, 194, 0.3);
+  }
+
+  .agent-card img,
+  .agent-card span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .agent-card img {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .agent-card:hover img {
+    transform: scale(1.08) rotate(-3deg);
+  }
+
+  .agent-card span {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink-900);
+    letter-spacing: -0.01em;
+  }
+
+  .tools {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .tool-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-700);
+    box-shadow: var(--shadow-sm);
+    transition:
+      transform 0.18s,
+      border-color 0.18s,
+      color 0.18s;
+  }
+
+  .tool-chip:hover {
+    transform: translateY(-2px);
+    border-color: var(--brand-gold);
+    color: var(--ink-900);
+  }
+
+  .tool-chip svg {
+    color: var(--ink-500);
+    transition: color 0.18s;
+  }
+
+  .tool-chip:hover svg {
+    color: var(--brand-gold-deep);
+  }
+</style>

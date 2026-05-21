@@ -1,0 +1,925 @@
+---
+import Footer from "@/components/Footer.astro";
+import Nav from "@/components/Nav.astro";
+import Security from "@/components/Security.astro";
+import Layout from "@/layouts/Layout.astro";
+
+const commands = [
+	{ cmd: "shellular", desc: "Run Shellular in the foreground" },
+	{
+		cmd: "shellular start",
+		desc: "Start the background host and print the QR code",
+	},
+	{ cmd: "shellular stop", desc: "Stop the background host" },
+	{
+		cmd: "shellular status",
+		desc: "Show host status, PID, restart count, and logs",
+	},
+	{ cmd: "shellular logs", desc: "Stream background host logs" },
+	{ cmd: "shellular clients", desc: "Review and approve known client devices" },
+];
+
+const options = [
+	{
+		flag: "--server <url>",
+		def: "wss://api.shellular.dev",
+		desc: "Relay server WebSocket URL",
+	},
+	{
+		flag: "--dir <path>",
+		def: "$HOME",
+		desc: "Root directory exposed to the client",
+	},
+	{
+		flag: "--unknown-clients <policy>",
+		def: "requires-approval",
+		desc: "How unknown clients are handled: always-reject, always-allow, or requires-approval",
+	},
+];
+
+const clientsOptions = [
+	{ flag: "--delete <clientId>", desc: "Delete a known client from the store" },
+];
+
+const sections = [
+	{ id: "overview", label: "Overview" },
+	{ id: "requirements", label: "Requirements" },
+	{ id: "quick-start", label: "Quick start" },
+	{ id: "background-mode", label: "Background mode" },
+	{ id: "commands", label: "Commands" },
+	{ id: "options", label: "Options" },
+	{ id: "client-approval", label: "Client approval" },
+	{ id: "security", label: "Security" },
+];
+---
+
+<Layout
+  title="Shellular CLI Docs | Install and Manage the Host Agent"
+  description="Documentation for installing, starting, and managing the Shellular CLI host agent, including commands, options, approvals, and security."
+  keywords={["Shellular CLI", "Shellular docs", "remote CLI", "developer tool documentation", "host agent"]}
+>
+  <Nav currentPath={Astro.url.pathname} />
+
+  <main class="docs-page">
+    <!-- Hero -->
+    <header class="docs-hero">
+      <div class="docs-hero-inner">
+        <h1>Shellular Docs</h1>
+
+        <div>
+          <h4 style="color: var(--text-muted); font-weight: normal;">Get started in just 3 steps:</h4>
+          <ol class="hero-steps">
+            <li>
+              Run <code>npx shellular</code>
+            </li>
+            <li>Scan the QR code with the Shellular app</li>
+            <li>Approve the device</li>
+          </ol>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn-primary" href="#quick-start">Quick start</a>
+          <a class="btn-secondary" href="https://www.npmjs.com/package/shellular" target="_blank" rel="noreferrer"
+            >npm package ↗</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- Two-column docs layout: sticky TOC + content -->
+    <div class="docs-layout">
+      <!-- Table of contents -->
+      <aside class="docs-toc" aria-label="Page sections">
+        <button
+          id="toc-toggle"
+          class="toc-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="toc-list"
+        >
+          <span class="toc-toggle-label">On this page</span>
+          <svg class="toc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <nav id="toc-list" class="toc-list" aria-label="Table of contents">
+          <span class="toc-heading">On this page</span>
+          {
+            sections.map((s) => (
+              <a href={`#${s.id}`} class="toc-link" data-toc={s.id}>
+                {s.label}
+              </a>
+            ))
+          }
+        </nav>
+      </aside>
+
+      <!-- Content -->
+      <div class="docs-body">
+      <section id="overview" class="doc-section">
+        <h2>Overview</h2>
+        <p>
+          Shellular CLI is the host agent for Shellular. It connects your dev machine to the Shellular relay so the
+          mobile app can reach your environment securely.
+        </p>
+        <p>
+          If you are comparing mobile remote development setups, read
+          <a class="inline-link" href="/shellular-vs-claude-remote-control">Shellular vs Claude Remote Control</a>
+          for the short version of where Shellular fits.
+        </p>
+      </section>
+
+      <section id="requirements" class="doc-section">
+        <h2>Requirements</h2>
+        <ul class="check-list">
+          <li>Node.js v20.20.2 or newer</li>
+          <li>macOS, Linux, or Windows</li>
+          <li>The Shellular mobile app to scan the pairing QR code</li>
+        </ul>
+      </section>
+
+      <section id="quick-start" class="doc-section">
+        <h2>Quick start</h2>
+        <p>Start the CLI directly with npx — no install needed:</p>
+        <div class="code-block">
+          <span class="code-label">terminal</span>
+          <pre><code>npx shellular</code></pre>
+        </div>
+        <p>
+          The CLI prints a QR code in your terminal. Scan it with the Shellular app to pair your device and connect. By
+          default, every unknown client must be approved before it can connect.
+        </p>
+      </section>
+
+      <section id="background-mode" class="doc-section">
+        <h2>Background mode</h2>
+        <p>To keep Shellular running after you close your terminal:</p>
+        <div class="code-block">
+          <span class="code-label">terminal</span>
+          <pre><code>npx shellular start</code></pre>
+        </div>
+        <p>
+          In daemon mode, clients are not approved interactively. Run <code>shellular clients</code> to review pending devices
+          and approve them from any terminal.
+        </p>
+        <p>Stop the host when you are done:</p>
+        <div class="code-block">
+          <span class="code-label">terminal</span>
+          <pre><code>npx shellular stop</code></pre>
+        </div>
+        <div class="callout">
+          <strong>Note</strong>
+          <p>Only one instance of Shellular can run at a time per machine.</p>
+        </div>
+      </section>
+
+      <section id="commands" class="doc-section">
+        <h2>Commands</h2>
+        <div class="cmd-list">
+          {
+            commands.map(({ cmd, desc }) => (
+              <div class="cmd-row">
+                <code class="cmd-name">{cmd}</code>
+                <span class="cmd-desc">{desc}</span>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="options" class="doc-section">
+        <h2>Options</h2>
+        <p>Global flags that apply to all commands:</p>
+        <div class="opt-list">
+          {
+            options.map(({ flag, def, desc }) => (
+              <div class="opt-row">
+                <div class="opt-meta">
+                  <code class="opt-flag">{flag}</code>
+                  <span class="opt-default">
+                    default: <code>{def}</code>
+                  </span>
+                </div>
+                <span class="opt-desc">{desc}</span>
+              </div>
+            ))
+          }
+        </div>
+        <h3 class="subsection-title"><code>shellular clients</code> flags</h3>
+        <div class="opt-list">
+          {
+            clientsOptions.map(({ flag, desc }) => (
+              <div class="opt-row">
+                <div class="opt-meta">
+                  <code class="opt-flag">{flag}</code>
+                </div>
+                <span class="opt-desc">{desc}</span>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="client-approval" class="doc-section">
+        <h2>Unknown client approval</h2>
+        <p>
+          <code>--unknown-clients</code> only applies to devices not already in the local approvals file. Once a client is
+          approved or rejected it is remembered.
+        </p>
+        <div class="policy-list">
+          <div class="policy-row">
+            <code class="policy-name">requires-approval</code>
+            <p>
+              Default. In foreground mode the CLI asks interactively. In daemon mode the connection is held pending
+              until you run <code>shellular clients</code>.
+            </p>
+          </div>
+          <div class="policy-row">
+            <code class="policy-name">always-allow</code>
+            <p>Accepts unknown clients immediately without writing to the approvals file.</p>
+          </div>
+          <div class="policy-row">
+            <code class="policy-name">always-reject</code>
+            <p>Rejects unknown clients immediately without writing to the approvals file.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="security" class="doc-section">
+        <h2>Security</h2>
+        <Security compact />
+      </section>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Page shell ───────────────────────────────────────── */
+  .docs-page {
+    padding-top: 60px;
+    background: var(--cream-100);
+  }
+
+  /* ── Hero ─────────────────────────────────────────────── */
+  .docs-hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 70% at 50% -20%, rgba(255, 240, 210, 0.55) 0%, transparent 60%),
+      linear-gradient(180deg, var(--sky-100) 0%, var(--cream-100) 100%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .docs-hero-inner {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 48px) clamp(48px, 6vw, 80px);
+    z-index: 1;
+  }
+
+  .docs-hero-inner h1 {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+    margin-bottom: 24px;
+    color: var(--ink-900);
+  }
+
+  .docs-hero-inner h4 {
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--brand-gold-deep);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 14px;
+  }
+
+  .hero-steps {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    counter-reset: steps;
+  }
+
+  .hero-steps li {
+    counter-increment: steps;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 15px;
+    color: var(--ink-700);
+    line-height: 1.55;
+  }
+
+  .hero-steps li::before {
+    content: counter(steps);
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(214, 194, 161, 0.22), transparent 55%),
+      var(--ink-900);
+    border: 1px solid var(--ink-900);
+    display: inline-grid;
+    place-items: center;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--brand-gold);
+    box-shadow: inset 0 0 0 1px rgba(214, 194, 161, 0.35);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+
+  /* ── Two-column layout (sidebar + content) ────────────── */
+  .docs-layout {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: clamp(28px, 5vw, 56px) clamp(20px, 5vw, 48px) 120px;
+    display: grid;
+    grid-template-columns: 232px minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+  }
+
+  /* ── Table of contents (sidebar) ──────────────────────── */
+  .docs-toc {
+    position: sticky;
+    top: 92px; /* clears the floating pill nav (top:18px + ~52px tall + breathing room) */
+  }
+
+  .toc-heading {
+    display: block;
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0 0 12px 14px;
+  }
+
+  .toc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--border);
+  }
+
+  .toc-link {
+    position: relative;
+    padding: 8px 14px;
+    margin-left: -1px;
+    font-size: 13.5px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ink-500);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    transition: color 0.18s, border-color 0.18s, background 0.18s;
+  }
+
+  .toc-link:hover {
+    color: var(--ink-900);
+    background: rgba(var(--brand-gold-rgb), 0.08);
+  }
+
+  .toc-link.active {
+    color: var(--brand-gold-ink);
+    font-weight: 600;
+    border-left-color: var(--brand-gold-deep);
+    background: rgba(var(--brand-gold-rgb), 0.1);
+  }
+
+  /* Mobile-only collapsible toggle — hidden on desktop */
+  .toc-toggle {
+    display: none;
+  }
+
+  /* ── Docs body ────────────────────────────────────────── */
+  .docs-body {
+    min-width: 0;
+  }
+
+  /* ── Section card ─────────────────────────────────────── */
+  .doc-section {
+    padding: 36px clamp(20px, 4vw, 40px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    scroll-margin-top: 96px;
+  }
+
+  .doc-section + .doc-section {
+    margin-top: 16px;
+  }
+
+  .doc-section h2 {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: clamp(1.3rem, 3vw, 1.65rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--ink-900);
+    margin-bottom: 20px;
+  }
+
+  .doc-section p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-700);
+  }
+
+  .doc-section p + p,
+  .doc-section p + .code-block,
+  .doc-section .code-block + p,
+  .doc-section p + .callout,
+  .doc-section p + ul,
+  .doc-section p + .cmd-list,
+  .doc-section p + .opt-list,
+  .doc-section p + .policy-list,
+  .doc-section .code-block + .callout,
+  .doc-section .callout + p {
+    margin-top: 16px;
+  }
+
+  /* ── Inline code ──────────────────────────────────────── */
+  code {
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 13px;
+    color: var(--brand-gold-ink);
+  }
+
+  p code,
+  li code {
+    background: rgba(var(--brand-gold-rgb), 0.14);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.28);
+    padding: 1px 7px;
+    border-radius: 5px;
+  }
+
+  /* ── Code block (terminal-styled) ─────────────────────── */
+  .code-block {
+    position: relative;
+    margin-top: 16px;
+    border-radius: 12px;
+    background: #14110f;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(26, 22, 21, 0.18);
+  }
+
+  .code-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245, 241, 232, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: #1c1815;
+  }
+
+  .code-label::before {
+    /* tiny traffic-light cluster */
+    content: "";
+    flex-shrink: 0;
+    width: 36px;
+    height: 8px;
+    background:
+      radial-gradient(circle at 4px 50%,  #ff5f57 4px, transparent 5px),
+      radial-gradient(circle at 18px 50%, #febc2e 4px, transparent 5px),
+      radial-gradient(circle at 32px 50%, #28c840 4px, transparent 5px);
+  }
+
+  .code-block pre {
+    margin: 0;
+    padding: 16px 18px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+  }
+
+  .code-block pre code {
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 13.5px;
+    color: var(--brand-gold);
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  /* ── Check list ───────────────────────────────────────── */
+  .check-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .check-list li {
+    padding: 14px 16px 14px 46px;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-700);
+    border-radius: var(--radius-md);
+    background: var(--cream-50);
+    border: 1px solid var(--border);
+  }
+
+  .check-list li::before {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(14, 161, 88, 0.14);
+    display: grid;
+    place-items: center;
+  }
+
+  .check-list li::after {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-65%) rotate(45deg);
+    width: 4px;
+    height: 8px;
+    border: solid var(--accent-green);
+    border-width: 0 2px 2px 0;
+  }
+
+  /* ── Command rows ─────────────────────────────────────── */
+  .cmd-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .cmd-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    background: var(--cream-50);
+    border: 1px solid var(--border);
+    flex-wrap: wrap;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .cmd-row:hover {
+    border-color: var(--brand-gold);
+    background: rgba(var(--brand-gold-rgb), 0.06);
+  }
+
+  .cmd-name {
+    flex-shrink: 0;
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 13px;
+    color: var(--brand-gold-ink);
+    background: rgba(var(--brand-gold-rgb), 0.18);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.32);
+    padding: 4px 10px;
+    border-radius: 7px;
+    white-space: nowrap;
+  }
+
+  .cmd-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-700);
+  }
+
+  /* ── Options ──────────────────────────────────────────── */
+  .opt-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .opt-row {
+    padding: 18px 20px;
+    border-radius: var(--radius-md);
+    background: var(--cream-50);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .opt-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .opt-flag {
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 13px;
+    color: var(--brand-gold-ink);
+    background: rgba(var(--brand-gold-rgb), 0.18);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.32);
+    padding: 4px 10px;
+    border-radius: 7px;
+    white-space: nowrap;
+  }
+
+  .opt-default {
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-500);
+  }
+
+  .opt-default code {
+    font-size: 12px;
+    color: var(--ink-700);
+    background: rgba(26, 22, 21, 0.05);
+    border-color: rgba(26, 22, 21, 0.08);
+  }
+
+  .opt-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-700);
+  }
+
+  .subsection-title {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink-900);
+    margin: 28px 0 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .subsection-title code {
+    font-size: 13px;
+    color: var(--brand-gold-ink);
+    background: rgba(var(--brand-gold-rgb), 0.14);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.28);
+    padding: 2px 7px;
+    border-radius: 5px;
+  }
+
+  /* ── Policy list ──────────────────────────────────────── */
+  .policy-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .policy-row {
+    padding: 18px 20px;
+    border-radius: var(--radius-md);
+    background: var(--cream-50);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .policy-name {
+    align-self: flex-start;
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 13px;
+    color: var(--brand-gold-ink);
+    background: rgba(var(--brand-gold-rgb), 0.18);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.32);
+    padding: 4px 10px;
+    border-radius: 7px;
+  }
+
+  .policy-row p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-700);
+    margin: 0;
+  }
+
+  /* ── Callout ──────────────────────────────────────────── */
+  .callout {
+    margin-top: 18px;
+    padding: 16px 20px;
+    border-radius: var(--radius-md);
+    background: rgba(var(--brand-gold-rgb), 0.08);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.28);
+    border-left: 3px solid var(--brand-gold);
+  }
+
+  .callout strong {
+    display: block;
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--brand-gold-ink);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .callout p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-700);
+  }
+
+  /* ── Responsive ───────────────────────────────────────── */
+
+  /* Below 900px: collapse to single column, TOC becomes a dropdown */
+  @media (max-width: 900px) {
+    .docs-layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+
+    .docs-toc {
+      position: static;
+      margin-bottom: 20px;
+    }
+
+    .toc-heading {
+      display: none;
+    }
+
+    /* Show the toggle button, hide the standalone heading inside the list */
+    .toc-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 12px 16px;
+      font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-900);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+    }
+
+    .toc-chevron {
+      color: var(--ink-500);
+      transition: transform 0.2s ease;
+    }
+
+    .toc-toggle[aria-expanded="true"] .toc-chevron {
+      transform: rotate(180deg);
+    }
+
+    .toc-list {
+      border-left: none;
+      gap: 0;
+      margin-top: 6px;
+      padding: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    /* Collapsed by default on mobile; expands when toggled */
+    .toc-list[hidden] {
+      display: none;
+    }
+
+    .toc-link {
+      margin-left: 0;
+      border-left: none;
+      border-radius: var(--radius-sm);
+      padding: 11px 14px;
+      font-size: 14px;
+    }
+
+    .toc-link.active {
+      border-left: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .cmd-row {
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .docs-hero-inner h1 {
+      font-size: 2.1rem;
+    }
+
+    .doc-section {
+      padding: 28px 22px;
+    }
+  }
+</style>
+
+<script>
+  const mobileMq = window.matchMedia("(max-width: 900px)");
+  const toggle = document.getElementById("toc-toggle");
+  const list = document.getElementById("toc-list");
+  const links = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>(".toc-link"),
+  );
+
+  /* ── Mobile collapsible behaviour ──────────────────────── */
+  // On mobile the list starts collapsed; on desktop it must always show.
+  const syncListVisibility = () => {
+    if (!list || !toggle) return;
+    if (mobileMq.matches) {
+      // Respect current toggle state, default to collapsed.
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      list.hidden = !open;
+    } else {
+      list.hidden = false; // always visible as a sidebar
+    }
+  };
+
+  toggle?.addEventListener("click", () => {
+    const open = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!open));
+    if (list) list.hidden = open;
+  });
+
+  // Collapse the dropdown after picking a section on mobile.
+  links.forEach((link) =>
+    link.addEventListener("click", () => {
+      if (mobileMq.matches && toggle && list) {
+        toggle.setAttribute("aria-expanded", "false");
+        list.hidden = true;
+      }
+    }),
+  );
+
+  mobileMq.addEventListener("change", () => {
+    if (toggle) toggle.setAttribute("aria-expanded", "false");
+    syncListVisibility();
+  });
+  syncListVisibility();
+
+  /* ── Scroll-spy: highlight the section in view ─────────── */
+  const linkById = new Map(
+    links.map((l) => [l.dataset.toc, l] as const),
+  );
+  const sectionEls = links
+    .map((l) => document.getElementById(l.dataset.toc ?? ""))
+    .filter((el): el is HTMLElement => el !== null);
+
+  let activeId: string | null = null;
+  const setActive = (id: string | null) => {
+    if (id === activeId) return;
+    activeId = id;
+    links.forEach((l) => l.classList.remove("active"));
+    if (id) linkById.get(id)?.classList.add("active");
+  };
+
+  const spy = new IntersectionObserver(
+    (entries) => {
+      // Pick the topmost section currently intersecting the viewport band.
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      if (visible.length > 0) {
+        setActive(visible[0].target.id);
+      }
+    },
+    {
+      // Band sits just below the floating nav; the section crossing it is "active".
+      rootMargin: "-96px 0px -65% 0px",
+      threshold: 0,
+    },
+  );
+
+  sectionEls.forEach((el) => spy.observe(el));
+</script>

@@ -1,0 +1,1016 @@
+---
+import { Bot, FileTerminal, FolderCode, Globe } from "@lucide/astro";
+import codexIcon from "@/assets/agents/codex-color.svg";
+
+interface Feature {
+	Icon: typeof Bot;
+	eyebrow: string;
+	title: string;
+	desc: string;
+	bullets: string[];
+	flip?: boolean;
+}
+
+const features: Feature[] = [
+	{
+		Icon: Bot,
+		eyebrow: "Agents",
+		title: "Run the AI agents you already use",
+		desc: "Claude Code, Codex, OpenCode and the rest — running where your code already lives, controllable from your couch.",
+		bullets: [
+			"Full agent UI from your phone",
+			"No copying context between devices",
+			"Pick up the exact session you left",
+		],
+	},
+	{
+		Icon: FileTerminal,
+		eyebrow: "Terminal",
+		title: "A real terminal in your pocket",
+		desc: "Run commands, restart services, tail logs. Not a sandbox, not a fake shell — the same machine you'd sit down to.",
+		bullets: [
+			"Full TTY, full PATH",
+			"Session keeps state across reconnects",
+			"Touch-optimized chord shortcuts",
+		],
+		flip: true,
+	},
+	{
+		Icon: Globe,
+		eyebrow: "Localhost",
+		title: "Open your local apps from anywhere",
+		desc: "Tunneled access to whatever's running on your machine — dev servers, dashboards, internal tools — without exposing them to the world.",
+		bullets: [
+			"Browse localhost from your phone",
+			"DevTools just work",
+			"Encrypted & private",
+		],
+	},
+	{
+		Icon: FolderCode,
+		eyebrow: "Files",
+		title: "The same repos, the same files",
+		desc: 'Touch your actual project files — no sync conflicts, no "mobile version". Edit, commit, push, all on the source machine.',
+		bullets: [
+			"Real git, on the real repo",
+			"Supports  TypeScipt, Python, Go & more.",
+			"Stage hunks from your thumb",
+		],
+		flip: true,
+	},
+];
+---
+
+<section id="features">
+  <div class="features-header">
+    <h2 class="section-title reveal reveal-delay-1">
+      Not just a terminal.
+      <span>Your whole stack.</span>
+    </h2>
+    <p class="section-sub reveal reveal-delay-2">
+      Shellular keeps the machine, tools, repos, and agents you already rely on reachable from anywhere — without the
+      usual mobile-dev compromises.
+    </p>
+  </div>
+
+  <div class="features-stack">
+    {
+      features.map(({ Icon, eyebrow, title, desc, bullets, flip }) => (
+        <article class={`feat-row reveal ${flip ? "feat-row--flip" : ""}`}>
+          <div class="feat-copy">
+            <span class="feat-eyebrow">
+              <Icon size={14} aria-hidden="true" />
+              {eyebrow}
+            </span>
+            <h3 class="feat-title">{title}</h3>
+            <p class="feat-desc">{desc}</p>
+            <ul class="feat-bullets">
+              {bullets.map((b) => (
+                <li>
+                  <span class="check" aria-hidden="true">
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="feat-visual">
+            <div class={`visual-card visual-${eyebrow.toLowerCase()}`} aria-hidden="true">
+              {eyebrow === "Agents" && (
+                <div class="vis-stage vis-stage--agents">
+                  <div class="vis-chat">
+                    <div class="vis-bubble vis-bubble--mine">refactor checkout to use cart hook</div>
+                    <div class="vis-bubble vis-bubble--agent">
+                      <div class="vis-agent-head">
+                        <img class="vis-agent-avatar" src={codexIcon.src} alt="" width="16" height="16" /> Codex
+                      </div>
+                      <div class="vis-agent-body">
+                        <div class="vis-typing">
+                          <span />
+                          <span />
+                          <span />
+                        </div>
+                        <div class="vis-file">
+                          edited <code>src/cart/useCart.ts</code>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="vis-statusbar">
+                    <span class="vis-status-dot" />
+                    streaming · 142 tokens/s
+                  </div>
+                </div>
+              )}
+
+              {eyebrow === "Terminal" && (
+                <div class="vis-stage vis-stage--term">
+                  <div class="vis-term-head">
+                    <span class="vis-traffic vis-traffic--r" />
+                    <span class="vis-traffic vis-traffic--y" />
+                    <span class="vis-traffic vis-traffic--g" />
+                    <span class="vis-term-title">tmux · 2 panes</span>
+                  </div>
+                  <div class="vis-term-split">
+                    <div class="vis-term-pane">
+                      <div class="vis-tline">
+                        <span class="vis-tp">~/api</span> <span class="vis-ta">›</span>{" "}
+                        <span class="vis-tc">pnpm dev</span>
+                      </div>
+                      <div class="vis-tline vis-tline--dim">› ready on :3000</div>
+                      <div class="vis-tline vis-tline--ok">✓ compiled in 412ms</div>
+                      <div class="vis-tline">
+                        <span class="vis-tp">~/api</span> <span class="vis-ta">›</span>
+                        <span class="vis-tcur" />
+                      </div>
+                    </div>
+                    <div class="vis-term-pane vis-term-pane--alt">
+                      <div class="vis-tline vis-tline--log">[14:02] GET /cart 200</div>
+                      <div class="vis-tline vis-tline--log">[14:02] GET /cart/items 200</div>
+                      <div class="vis-tline vis-tline--log">[14:03] POST /checkout 201</div>
+                      <div class="vis-tline vis-tline--log vis-tline--warn">[14:03] retry x1</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {eyebrow === "Localhost" && (
+                <div class="vis-stage vis-stage--browser">
+                  <div class="vis-browser-head">
+                    <span class="vis-traffic vis-traffic--r" />
+                    <span class="vis-traffic vis-traffic--y" />
+                    <span class="vis-traffic vis-traffic--g" />
+                    <div class="vis-browser-url">
+                      <svg
+                        width="10"
+                        height="10"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                      >
+                        <rect x="3" y="11" width="18" height="11" rx="2" />
+                        <path d="M7 11V7a5 5 0 0110 0v4" />
+                      </svg>
+                      localhost:3000
+                    </div>
+                  </div>
+                  <div class="vis-browser-body">
+                    <div class="vis-stat-row">
+                      <div class="vis-stat">
+                        <div class="vis-stat-label">Active</div>
+                        <div class="vis-stat-num">128</div>
+                      </div>
+                      <div class="vis-stat">
+                        <div class="vis-stat-label">MRR</div>
+                        <div class="vis-stat-num">$24.1k</div>
+                      </div>
+                    </div>
+                    <div class="vis-chart">
+                      <svg viewBox="0 0 120 40" preserveAspectRatio="none">
+                        <defs>
+                          <linearGradient id="vis-chart-grad" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0%" stop-color="#156cc2" stop-opacity="0.35" />
+                            <stop offset="100%" stop-color="#156cc2" stop-opacity="0" />
+                          </linearGradient>
+                        </defs>
+                        <path
+                          d="M0 30 L15 24 L28 28 L42 18 L58 22 L72 12 L88 16 L102 8 L120 14 L120 40 L0 40 Z"
+                          fill="url(#vis-chart-grad)"
+                        />
+                        <path
+                          d="M0 30 L15 24 L28 28 L42 18 L58 22 L72 12 L88 16 L102 8 L120 14"
+                          fill="none"
+                          stroke="#156cc2"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {eyebrow === "Files" && (
+                <div class="vis-stage vis-stage--files">
+                  <div class="vis-files-tree">
+                    <div class="vis-file-row">
+                      <span class="vis-folder" />
+                      apps
+                    </div>
+                    <div class="vis-file-row vis-file-row--indent">
+                      <span class="vis-folder vis-folder--open" />
+                      checkout
+                    </div>
+                    <div class="vis-file-row vis-file-row--indent2 vis-file-row--mod">
+                      <span class="vis-doc" />
+                      Cart.tsx <span class="vis-mark vis-mark--m">M</span>
+                    </div>
+                    <div class="vis-file-row vis-file-row--indent2">
+                      <span class="vis-doc" />
+                      index.ts
+                    </div>
+                    <div class="vis-file-row vis-file-row--indent2 vis-file-row--add">
+                      <span class="vis-doc" />
+                      useCart.ts <span class="vis-mark vis-mark--a">+</span>
+                    </div>
+                  </div>
+                  <div class="vis-diff">
+                    <div class="vis-diff-head">Cart.tsx</div>
+                    <div class="vis-diff-line vis-diff-line--rm">- const items = props.items</div>
+                    <div class="vis-diff-line vis-diff-line--add">+ const &#123; items &#125; = useCart()</div>
+                    <div class="vis-diff-line vis-diff-line--add">+ const total = sum(items)</div>
+                    <div class="vis-commit">
+                      <span class="vis-commit-dot" />
+                      <span>staged · ready to commit</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  #features {
+    padding: clamp(80px, 11vw, 130px) clamp(16px, 6vw, 64px);
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--cream-100);
+  }
+
+  .features-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .features-stack {
+    display: grid;
+    gap: clamp(48px, 7vw, 84px);
+  }
+
+  .feat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+    padding: clamp(32px, 5vw, 56px);
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    min-width: 0;
+  }
+
+  .feat-copy,
+  .feat-visual {
+    min-width: 0;
+  }
+
+  .feat-row--flip .feat-copy {
+    order: 2;
+  }
+
+  .feat-row--flip .feat-visual {
+    order: 1;
+  }
+
+  .feat-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: rgba(var(--brand-gold-rgb), 0.18);
+    color: var(--brand-gold-ink);
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .feat-title {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    color: var(--ink-900);
+    margin-bottom: 14px;
+    text-wrap: balance;
+  }
+
+  .feat-desc {
+    font-size: 16px;
+    color: var(--ink-500);
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+
+  .feat-bullets {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .feat-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14.5px;
+    color: var(--ink-700);
+    line-height: 1.5;
+  }
+
+  .check {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(14, 161, 88, 0.14);
+    color: var(--accent-green);
+    display: grid;
+    place-items: center;
+    margin-top: 2px;
+  }
+
+  .feat-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+
+  .visual-card {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-md);
+    background: linear-gradient(160deg, var(--sky-100) 0%, var(--cream-200) 100%);
+    border: 1px solid var(--border);
+    padding: 18px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    min-width: 0;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      0 1px 2px rgba(26, 22, 21, 0.04);
+  }
+
+  .visual-card::after {
+    /* subtle window-light wash */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.4), transparent 50%);
+    pointer-events: none;
+  }
+
+  .vis-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: "Inter", system-ui, sans-serif;
+    z-index: 1;
+  }
+
+  /* ─── Agents ─── */
+  .vis-stage--agents {
+    justify-content: space-between;
+  }
+
+  .vis-chat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .vis-bubble {
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.4;
+    max-width: 82%;
+    box-shadow: 0 2px 6px rgba(26, 22, 21, 0.05);
+  }
+
+  .vis-bubble--mine {
+    align-self: flex-end;
+    background: var(--ink-900);
+    color: var(--cream-100);
+    font-weight: 500;
+    border-bottom-right-radius: 4px;
+  }
+
+  .vis-bubble--agent {
+    align-self: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+    color: var(--ink-700);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 14px;
+  }
+
+  .vis-agent-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: var(--ink-900);
+  }
+
+  .vis-agent-avatar {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    display: inline-block;
+  }
+
+  .vis-agent-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .vis-typing {
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+    height: 14px;
+  }
+
+  .vis-typing span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--ink-500);
+    animation: vis-bounce 1.2s infinite;
+  }
+
+  .vis-typing span:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .vis-typing span:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes vis-bounce {
+    0%,
+    60%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.4;
+    }
+    30% {
+      transform: translateY(-3px);
+      opacity: 1;
+    }
+  }
+
+  .vis-file {
+    font-size: 11.5px;
+    color: var(--ink-500);
+    font-family: "Fragment Mono", monospace;
+  }
+
+  .vis-file code {
+    color: var(--accent-blue);
+    background: rgba(21, 108, 194, 0.08);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+
+  .vis-statusbar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--ink-500);
+    font-family: "Fragment Mono", monospace;
+    margin-top: auto;
+    align-self: flex-start;
+  }
+
+  .vis-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    box-shadow: 0 0 0 3px rgba(14, 161, 88, 0.18);
+    animation: pulse-soft 2.6s ease-in-out infinite;
+  }
+
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      box-shadow: 0 0 0 3px rgba(14, 161, 88, 0.18);
+    }
+    50% {
+      box-shadow: 0 0 0 5px rgba(14, 161, 88, 0.06);
+    }
+  }
+
+  /* ─── Terminal ─── */
+  .vis-stage--term {
+    background: #14110f;
+    border-radius: 12px;
+    overflow: hidden;
+    color: var(--cream-100);
+    box-shadow: 0 10px 30px rgba(26, 22, 21, 0.25);
+    gap: 0;
+  }
+
+  .vis-term-head {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 12px;
+    background: #1c1815;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .vis-traffic {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .vis-traffic--r {
+    background: #ff5f57;
+  }
+  .vis-traffic--y {
+    background: #febc2e;
+  }
+  .vis-traffic--g {
+    background: #28c840;
+  }
+
+  .vis-term-title {
+    margin-left: 10px;
+    font-size: 11px;
+    color: rgba(245, 241, 232, 0.55);
+    font-family: "Fragment Mono", monospace;
+  }
+
+  .vis-term-split {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.06);
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .vis-term-pane {
+    background: #14110f;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 11px;
+    line-height: 1.45;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .vis-term-pane--alt {
+    background: #16130f;
+  }
+
+  .vis-tline {
+    color: var(--cream-100);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .vis-tp {
+    color: #84b9ef;
+    font-weight: 600;
+  }
+  .vis-ta {
+    color: #f0a460;
+    font-weight: 700;
+  }
+  .vis-tc {
+    color: var(--cream-100);
+  }
+
+  .vis-tline--dim {
+    color: rgba(245, 241, 232, 0.45);
+  }
+  .vis-tline--ok {
+    color: #66d39b;
+  }
+  .vis-tline--log {
+    color: rgba(245, 241, 232, 0.6);
+    font-size: 10.5px;
+  }
+  .vis-tline--warn {
+    color: #f0a460;
+  }
+
+  .vis-tcur {
+    display: inline-block;
+    width: 6px;
+    height: 11px;
+    background: var(--cream-100);
+    vertical-align: middle;
+    margin-left: 4px;
+    animation: blink 1.1s steps(2) infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  /* ─── Localhost browser ─── */
+  .vis-stage--browser {
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 24px rgba(26, 22, 21, 0.08);
+    gap: 0;
+  }
+
+  .vis-browser-head {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 12px;
+    background: var(--cream-100);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .vis-browser-url {
+    margin-left: 10px;
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 11px;
+    color: var(--ink-700);
+    font-family: "Fragment Mono", monospace;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .vis-browser-url svg {
+    color: var(--accent-green);
+  }
+
+  .vis-browser-body {
+    flex: 1;
+    padding: 18px 18px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .vis-stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .vis-stat {
+    background: var(--cream-100);
+    border-radius: 10px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+  }
+
+  .vis-stat-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+  }
+
+  .vis-stat-num {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--ink-900);
+    letter-spacing: -0.02em;
+    margin-top: 2px;
+  }
+
+  .vis-chart {
+    flex: 1;
+    min-height: 50px;
+  }
+
+  .vis-chart svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* ─── Files / diff ─── */
+  .vis-stage--files {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .vis-files-tree {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 10px;
+    width: 38%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: "Fragment Mono", monospace;
+    font-size: 11.5px;
+    color: var(--ink-700);
+    box-shadow: 0 2px 6px rgba(26, 22, 21, 0.04);
+  }
+
+  .vis-file-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 6px;
+    border-radius: 5px;
+  }
+
+  .vis-file-row--indent {
+    padding-left: 14px;
+  }
+  .vis-file-row--indent2 {
+    padding-left: 24px;
+  }
+
+  .vis-file-row--mod {
+    background: rgba(21, 108, 194, 0.08);
+    color: var(--accent-blue);
+  }
+
+  .vis-file-row--add {
+    background: rgba(14, 161, 88, 0.1);
+    color: var(--accent-green);
+  }
+
+  .vis-folder {
+    width: 12px;
+    height: 9px;
+    background: var(--ink-500);
+    border-radius: 1px 2px 2px 2px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .vis-folder::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 5px;
+    height: 2px;
+    background: var(--ink-500);
+    border-radius: 1px;
+  }
+
+  .vis-folder--open {
+    background: var(--accent-blue);
+  }
+  .vis-folder--open::before {
+    background: var(--accent-blue);
+  }
+
+  .vis-doc {
+    width: 8px;
+    height: 10px;
+    background: var(--ink-200);
+    border-radius: 1px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .vis-doc::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3px;
+    height: 3px;
+    background: var(--cream-100);
+  }
+
+  .vis-mark {
+    margin-left: auto;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+
+  .vis-mark--m {
+    background: var(--accent-blue);
+    color: white;
+  }
+  .vis-mark--a {
+    background: var(--accent-green);
+    color: white;
+  }
+
+  .vis-diff {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    font-family: "Fragment Mono", monospace;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 2px 6px rgba(26, 22, 21, 0.04);
+  }
+
+  .vis-diff-head {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-900);
+    margin-bottom: 4px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .vis-diff-line {
+    padding: 2px 8px;
+    border-radius: 4px;
+    line-height: 1.4;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .vis-diff-line--rm {
+    background: rgba(201, 80, 46, 0.08);
+    color: var(--accent-orange);
+  }
+
+  .vis-diff-line--add {
+    background: rgba(14, 161, 88, 0.1);
+    color: var(--accent-green);
+  }
+
+  .vis-commit {
+    margin-top: auto;
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-500);
+  }
+
+  .vis-commit-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(207, 141, 19, 0.16);
+  }
+
+  @media (max-width: 820px) {
+    .vis-stage--files {
+      flex-direction: column;
+    }
+    .vis-files-tree {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .feat-row,
+    .feat-row--flip {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .feat-row .feat-copy,
+    .feat-row--flip .feat-copy {
+      order: 2;
+    }
+    .feat-row .feat-visual,
+    .feat-row--flip .feat-visual {
+      order: 1;
+    }
+
+    .feat-visual {
+      aspect-ratio: 16 / 10;
+    }
+  }
+
+  @media (max-width: 520px) {
+    #features {
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+
+    .feat-bullets {
+      display: none;
+    }
+
+    .feat-title {
+      font-size: 1.35rem;
+    }
+
+    .feat-row,
+    .feat-row--flip {
+      padding: 22px;
+    }
+
+    .feat-visual {
+      aspect-ratio: 4 / 3;
+    }
+
+    .visual-card {
+      padding: 12px;
+    }
+
+    .vis-bubble {
+      max-width: 92%;
+      font-size: 12px;
+    }
+
+    .vis-term-pane {
+      padding: 8px 10px;
+      font-size: 10px;
+    }
+
+    .vis-tline--log {
+      font-size: 9.5px;
+    }
+
+    .vis-files-tree {
+      font-size: 10.5px;
+    }
+
+    .vis-diff {
+      font-size: 10px;
+    }
+  }
+</style>

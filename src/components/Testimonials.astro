@@ -1,0 +1,260 @@
+---
+interface Quote {
+	body: string;
+	name: string;
+	role: string;
+	url: string;
+	avatarBg: string;
+	initials: string;
+	accent: "blue" | "gold" | "orange";
+}
+
+const quotes: Quote[] = [
+	{
+		body: "I was at the passport office for 3 hours today, and built a huge engineering feature. Love it man, absolutely love it.",
+		name: "Raj Sheth",
+		role: "Software Engineer, Ema",
+		url: "https://www.linkedin.com/in/er-raj-sheth/",
+		avatarBg: "linear-gradient(135deg, #84b9ef, #156cc2)",
+		initials: "RS",
+		accent: "blue",
+	},
+	{
+		body: "I use Shellular to watch model training jobs on my GPU server, and to keep my Codex and Claude Code sessions going while I'm out. Not having to carry the laptop is the best part.",
+		name: "Anindyadeep Sannigrahi",
+		role: "Co-Founder, LiteFold",
+		url: "https://www.linkedin.com/in/anindyadeep-sannigrahi-38683b1b6/",
+		avatarBg: "linear-gradient(135deg, #e07d52, #754d29)",
+		initials: "AS",
+		accent: "orange",
+	},
+	{
+		body: "Shellular let me actually go out, hang with friends and chill in the park, and still feel unchained. Every agent session is right there no matter which folder, unlike some competitors.",
+		name: "Sohom",
+		role: "Previously at Lossfunk",
+		url: "https://x.com/sxohom",
+		avatarBg: "linear-gradient(135deg, var(--brand-gold-soft), var(--brand-gold-deep))",
+		initials: "S",
+		accent: "gold",
+	},
+];
+---
+
+<section id="testimonials">
+  <div class="t-inner">
+    <div class="t-header">
+      <h2 class="section-title reveal reveal-delay-1">
+        Real workflows,
+        <span>not demos.</span>
+      </h2>
+    </div>
+
+    <div class="t-grid">
+      {
+        quotes.map((q, i) => (
+          <figure class={`t-card t-card--${q.accent} reveal reveal-delay-${i + 1}`}>
+            <span class="quote-mark" aria-hidden="true">
+              “
+            </span>
+            <blockquote>{q.body}</blockquote>
+            <figcaption>
+              <span class="t-avatar" style={`background:${q.avatarBg}`} aria-hidden="true">
+                {q.initials}
+              </span>
+              <span class="t-meta">
+                <a class="t-name" href={q.url} target="_blank" rel="noopener noreferrer">
+                  {q.name}
+                </a>
+                <span class="t-role">{q.role}</span>
+              </span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  #testimonials {
+    background: var(--cream-100);
+    padding: clamp(80px, 11vw, 130px) clamp(16px, 6vw, 64px);
+  }
+
+  .t-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .t-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .t-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .t-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: var(--shadow-sm);
+    transition:
+      transform 0.25s,
+      box-shadow 0.25s,
+      border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .t-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--sky-300);
+    opacity: 0.7;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .t-card--blue::before {
+    background: var(--accent-blue);
+  }
+  .t-card--gold::before {
+    background: linear-gradient(90deg, var(--brand-gold-soft), var(--brand-gold), var(--brand-gold-deep));
+  }
+  .t-card--orange::before {
+    background: var(--accent-orange);
+  }
+
+  .t-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-strong);
+  }
+
+  .quote-mark {
+    font-family: "Plus Jakarta Sans", "Georgia", serif;
+    font-size: 64px;
+    line-height: 0.6;
+    color: var(--sky-300);
+    height: 30px;
+    display: inline-block;
+    font-weight: 800;
+    user-select: none;
+  }
+
+  .t-card--blue .quote-mark {
+    color: rgba(21, 108, 194, 0.35);
+  }
+  .t-card--gold .quote-mark {
+    color: rgba(207, 141, 19, 0.35);
+  }
+  .t-card--orange .quote-mark {
+    color: rgba(201, 80, 46, 0.35);
+  }
+
+  blockquote {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-700);
+    font-weight: 500;
+    text-wrap: pretty;
+    flex: 1;
+  }
+
+  blockquote::before {
+    content: open-quote;
+    margin-right: 1px;
+  }
+
+  blockquote::after {
+    content: close-quote;
+    margin-left: 1px;
+  }
+
+  figcaption {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+
+  .t-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow:
+      inset 0 0 0 2px var(--cream-100),
+      0 4px 10px rgba(26, 22, 21, 0.08);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+    letter-spacing: 0.02em;
+  }
+
+  .t-card--gold .t-avatar {
+    color: rgba(58, 38, 8, 0.85);
+    text-shadow: none;
+  }
+
+  .t-meta {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .t-name {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink-900);
+    text-decoration: none;
+    width: fit-content;
+    transition: color 0.2s;
+  }
+
+  .t-name:hover,
+  .t-name:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .t-card--blue .t-name:hover,
+  .t-card--blue .t-name:focus-visible {
+    color: var(--accent-blue);
+  }
+  .t-card--gold .t-name:hover,
+  .t-card--gold .t-name:focus-visible {
+    color: var(--brand-gold-deep);
+  }
+  .t-card--orange .t-name:hover,
+  .t-card--orange .t-name:focus-visible {
+    color: var(--accent-orange);
+  }
+
+  .t-role {
+    font-size: 12.5px;
+    color: var(--ink-500);
+    margin-top: 2px;
+  }
+</style>

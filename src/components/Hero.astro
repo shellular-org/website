@@ -1,0 +1,610 @@
+---
+import { Image } from "astro:assets";
+import { ArrowRightIcon, BotMessageSquareIcon, GlobeIcon, PlayIcon, TerminalIcon } from "@lucide/astro";
+import appHomeScreenshot from "@/assets/app-home-ss.jpg";
+---
+
+<section id="hero">
+  <!-- Sunbeam rays from above -->
+  <div class="hero-rays" aria-hidden="true"></div>
+
+  <!-- Topographic horizon contour -->
+  <div class="hero-contour" aria-hidden="true">
+    <svg viewBox="0 0 1440 240" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="hero-contour-fade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(107, 85, 48, 0)"></stop>
+          <stop offset="50%" stop-color="rgba(107, 85, 48, 0.35)"></stop>
+          <stop offset="100%" stop-color="rgba(107, 85, 48, 0)"></stop>
+        </linearGradient>
+      </defs>
+      <path
+        d="M0 160 C 240 130 480 195 720 160 S 1200 130 1440 160"
+        fill="none"
+        stroke="url(#hero-contour-fade)"
+        stroke-width="1"
+        stroke-dasharray="3 7"></path>
+      <path
+        d="M0 195 C 280 165 520 230 760 195 S 1220 165 1440 195"
+        fill="none"
+        stroke="url(#hero-contour-fade)"
+        stroke-width="1"
+        stroke-dasharray="2 8"
+        opacity="0.7"></path>
+    </svg>
+  </div>
+
+  <!-- Decorative clouds -->
+  <svg class="cloud cloud-1" viewBox="0 0 200 80" aria-hidden="true">
+    <path
+      d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
+      fill="#ffffff"
+      opacity="0.92"></path>
+  </svg>
+  <svg class="cloud cloud-2" viewBox="0 0 200 80" aria-hidden="true">
+    <path
+      d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
+      fill="#ffffff"
+      opacity="0.78"></path>
+  </svg>
+  <svg class="cloud cloud-3" viewBox="0 0 200 80" aria-hidden="true">
+    <path
+      d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
+      fill="#ffffff"
+      opacity="0.88"></path>
+  </svg>
+  <svg class="cloud cloud-4" viewBox="0 0 200 80" aria-hidden="true">
+    <path
+      d="M40 60 Q20 60 20 45 Q20 30 38 30 Q44 14 64 16 Q82 14 92 30 Q108 26 118 38 Q138 36 144 52 Q150 64 138 68 L52 68 Q40 68 40 60 Z"
+      fill="#ffffff"
+      opacity="0.7"></path>
+  </svg>
+
+  <div class="hero-content">
+    <h1 class="hero-title reveal reveal-delay-1">
+      Your dev environment,
+      <span class="hero-italic">in your pocket.</span>
+    </h1>
+
+    <p class="hero-sub reveal reveal-delay-2">
+      Run Claude Code, Codex, OpenCode and your full terminal from your phone. Real environment, real repos, real ports
+      — no sync, no copy, no compromise.
+    </p>
+
+    <div class="hero-ctas reveal reveal-delay-3">
+      <a href="#get-started" class="btn-primary">
+        Start now
+        <ArrowRightIcon size={16} aria-hidden="true" />
+      </a>
+      <a
+        href="https://youtu.be/I42X_6VHJ2I?si=yU_yHQNOJgE1tn2j"
+        class="btn-secondary"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <PlayIcon size={14} fill="currentColor" aria-hidden="true" />
+        Watch the demo
+      </a>
+    </div>
+
+    <div class="hero-proof reveal reveal-delay-4">
+      <a id="testimonials-link" href="#testimonials" class="avatars" aria-label="Read what developers say">
+        <span class="avatar">RS</span>
+        <span class="avatar">AS</span>
+        <span class="avatar">S</span>
+      </a>
+      <p>Trusted by developers shipping from cafes, couches, and crowded trains.</p>
+    </div>
+
+    <div class="hero-visual reveal reveal-delay-5">
+      <div class="phone-frame">
+        <div class="phone-notch" aria-hidden="true"></div>
+        <div class="phone-screen">
+          <Image
+            src={appHomeScreenshot}
+            alt="Shellular app home screen showing active sessions on the host machine."
+            widths={[360, 540, 720]}
+            sizes="(max-width: 900px) 240px, 320px"
+            class="phone-screenshot"
+            loading="eager"
+          />
+        </div>
+      </div>
+      <!-- Floating chip — terminal -->
+      <div class="floating-chip chip-left" aria-hidden="true">
+        <div class="chip-icon chip-icon-blue">
+          <TerminalIcon size={18} />
+        </div>
+        <div>
+          <div class="chip-title">Live terminal</div>
+          <div class="chip-sub">pnpm run dev</div>
+        </div>
+      </div>
+
+      <!-- Floating chip — agent -->
+      <div class="floating-chip chip-right" aria-hidden="true">
+        <div class="chip-icon chip-icon-green">
+          <BotMessageSquareIcon size={18} />
+        </div>
+        <div>
+          <div class="chip-title">5+ agents</div>
+          <div class="chip-sub">all on your machine</div>
+        </div>
+      </div>
+
+      <!-- Floating chip — localhost / browser -->
+      <div class="floating-chip chip-bottom" aria-hidden="true">
+        <div class="chip-icon chip-icon-gold">
+          <GlobeIcon size={18} />
+        </div>
+        <div>
+          <div class="chip-title">Open localhost</div>
+          <div class="chip-sub">localhost:3000</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /* Refined dawn — one luminous halo behind the headline, a deep symmetric
+       ocean vignette framing the corners, resolving cleanly into a warm cream
+       horizon. Premium through restraint: few large fields, one light source. */
+    background:
+      /* The light source — a single soft cool-white halo behind the headline */
+      radial-gradient(
+        ellipse 58% 42% at 50% 20%,
+        rgba(247, 251, 255, 0.85) 0%,
+        rgba(237, 246, 254, 0.4) 38%,
+        rgba(237, 246, 254, 0) 72%
+      ),
+      /* Symmetric deep-ocean corner vignette for depth and framing */
+      radial-gradient(ellipse 90% 80% at 50% -20%, rgba(38, 92, 152, 0.55) 0%, rgba(38, 92, 152, 0) 55%),
+      /* Vertical spine: deep ocean → open sky → soft cream haze at the horizon */
+      linear-gradient(
+          180deg,
+          #4f8ac4 0%,
+          #6ea6d8 16%,
+          var(--sky-300) 40%,
+          #c2d6e6 64%,
+          var(--cream-400) 84%,
+          var(--cream-300) 100%
+        );
+    padding: 140px 24px 60px;
+  }
+
+  /* Faint supporting bloom — adds soft atmospheric lift around the halo
+     without becoming a second light source. The base gradient does the work. */
+  #hero::before {
+    content: "";
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1100px, 115vw);
+    height: 520px;
+    background: radial-gradient(ellipse 60% 70% at center, rgba(214, 234, 252, 0.22) 0%, rgba(214, 234, 252, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(8px);
+  }
+
+  /* Subtle horizon haze just above the cream */
+  #hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 180px;
+    background: linear-gradient(180deg, transparent 0%, rgba(244, 230, 218, 0.45) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Cool light shafts — atmospheric depth without warmth */
+  .hero-rays {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.55;
+    background: conic-gradient(
+      from 195deg at 50% -8%,
+      transparent 0deg,
+      rgba(230, 242, 255, 0.2) 10deg,
+      transparent 22deg,
+      transparent 36deg,
+      rgba(230, 242, 255, 0.14) 48deg,
+      transparent 60deg,
+      transparent 78deg,
+      rgba(230, 242, 255, 0.16) 90deg,
+      transparent 102deg,
+      transparent 120deg,
+      rgba(230, 242, 255, 0.1) 132deg,
+      transparent 144deg,
+      transparent 360deg
+    );
+    mask-image: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.5) 40%, transparent 75%);
+    -webkit-mask-image: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.5) 40%, transparent 75%);
+  }
+
+  /* Topographic contour — faint dashed arcs at the bottom suggesting horizon */
+  .hero-contour {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 240px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.45;
+  }
+
+  .hero-contour svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .cloud {
+    position: absolute;
+    width: 240px;
+    height: 96px;
+    pointer-events: none;
+  }
+
+  .cloud-1 {
+    top: 14%;
+    left: 4%;
+    width: 220px;
+    animation: drift-slow 32s ease-in-out infinite alternate;
+  }
+
+  .cloud-2 {
+    top: 22%;
+    right: 6%;
+    width: 280px;
+    animation: drift-medium 40s ease-in-out infinite alternate;
+  }
+
+  .cloud-3 {
+    top: 52%;
+    left: 14%;
+    width: 180px;
+    animation: drift-fast 26s ease-in-out infinite alternate;
+  }
+
+  .cloud-4 {
+    top: 38%;
+    right: 22%;
+    width: 140px;
+    animation: drift-slow 36s ease-in-out infinite alternate;
+  }
+
+  @keyframes drift-slow {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(60px);
+    }
+  }
+  @keyframes drift-medium {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-80px);
+    }
+  }
+  @keyframes drift-fast {
+    from {
+      transform: translateX(-30px);
+    }
+    to {
+      transform: translateX(50px);
+    }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-family: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+    font-size: clamp(2.6rem, 6.4vw, 5.4rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    color: var(--ink-900);
+    max-width: 16ch;
+    margin-bottom: 22px;
+    text-wrap: balance;
+  }
+
+  .hero-italic {
+    display: block;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--brand-gold-deep);
+  }
+
+  .hero-sub {
+    font-size: clamp(15px, 1.6vw, 18px);
+    color: var(--ink-700);
+    line-height: 1.55;
+    max-width: 58ch;
+    margin-bottom: 34px;
+    text-wrap: pretty;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+
+  .hero-proof {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 64px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-proof p {
+    font-size: 13px;
+    color: var(--ink-600);
+    font-weight: 500;
+  }
+
+  .avatars {
+    display: inline-flex;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+
+  .avatars:hover {
+    transform: translateY(-1px);
+  }
+
+  .avatars:hover .avatar {
+    border-color: var(--brand-gold-soft);
+  }
+
+  .avatars:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 4px;
+    border-radius: var(--radius-pill);
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--cream-100);
+    background: linear-gradient(135deg, #d6c2a1, #8a745c);
+    margin-left: -10px;
+    box-shadow: 0 2px 8px rgba(26, 22, 21, 0.16);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    transition: border-color 0.2s ease;
+  }
+
+  .avatar:nth-child(1) {
+    background: linear-gradient(135deg, #84b9ef, #156cc2);
+    margin-left: 0;
+  }
+  .avatar:nth-child(2) {
+    background: linear-gradient(135deg, #e07d52, #754d29);
+  }
+  .avatar:nth-child(3) {
+    background: linear-gradient(135deg, var(--brand-gold-soft), var(--brand-gold-deep));
+  }
+
+  /* ── Phone visual ── */
+  .hero-visual {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    /* Match the real screenshot — 1080 × 2340 */
+    aspect-ratio: 1080 / 2340;
+    margin: 0 auto;
+  }
+
+  .phone-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #2a2421 0%, var(--ink-900) 100%);
+    border-radius: 44px;
+    padding: 12px;
+    box-shadow:
+      0 30px 80px rgba(26, 22, 21, 0.32),
+      0 12px 30px rgba(26, 22, 21, 0.2),
+      inset 0 0 0 1.5px rgba(255, 255, 255, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    transform: rotate(-2deg);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-visual:hover .phone-frame {
+    transform: rotate(0deg) translateY(-4px);
+  }
+
+  /* soft ground shadow */
+  .hero-visual::after {
+    content: "";
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: -16px;
+    height: 22px;
+    background: radial-gradient(ellipse at center, rgba(26, 22, 21, 0.22), transparent 70%);
+    filter: blur(6px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .phone-notch {
+    display: none;
+  }
+
+  .phone-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    overflow: hidden;
+    background: #14110f;
+  }
+
+  .phone-screenshot {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .floating-chip {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 14px;
+    box-shadow:
+      0 14px 36px rgba(26, 22, 21, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    z-index: 3;
+    text-align: left;
+  }
+
+  .chip-left {
+    top: 12%;
+    left: -36%;
+    animation: float-y-l 6s ease-in-out infinite alternate;
+  }
+
+  .chip-right {
+    top: 48%;
+    right: -40%;
+    animation: float-y-r 7s ease-in-out infinite alternate-reverse;
+  }
+
+  .chip-bottom {
+    bottom: 6%;
+    left: -28%;
+    animation: float-y-b 6.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes float-y-l {
+    from {
+      transform: translateY(-6px) rotate(-2deg);
+    }
+    to {
+      transform: translateY(8px) rotate(-2deg);
+    }
+  }
+
+  @keyframes float-y-r {
+    from {
+      transform: translateY(-6px) rotate(2deg);
+    }
+    to {
+      transform: translateY(8px) rotate(2deg);
+    }
+  }
+
+  @keyframes float-y-b {
+    from {
+      transform: translateY(-4px) rotate(-1deg);
+    }
+    to {
+      transform: translateY(10px) rotate(-1deg);
+    }
+  }
+
+  .chip-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+  }
+
+  .chip-icon-blue {
+    background: var(--sky-100);
+    color: var(--accent-blue);
+  }
+
+  .chip-icon-green {
+    background: rgba(14, 161, 88, 0.14);
+    color: var(--accent-green);
+  }
+
+  .chip-icon-gold {
+    background: rgba(var(--brand-gold-rgb), 0.2);
+    color: var(--brand-gold-ink);
+  }
+
+  .chip-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink-900);
+  }
+
+  .chip-sub {
+    font-size: 11px;
+    color: var(--ink-500);
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .floating-chip {
+      display: none;
+    }
+
+    .hero-visual {
+      max-width: 260px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #hero {
+      padding-top: 110px;
+    }
+
+    .cloud-4 {
+      display: none;
+    }
+  }
+</style>

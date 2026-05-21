@@ -1,0 +1,343 @@
+---
+import { MenuIcon, XIcon } from "@lucide/astro";
+import { ENTERPRISE_CALENDAR_URL } from "@/data/appLinks";
+import ShellularLogo from "./ShellularLogo.astro";
+
+interface Props {
+	currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+const isHomePage = currentPath === "/";
+---
+
+<div id="nav-wrap">
+  <nav id="nav">
+    <a class="brand" href="/">
+      <ShellularLogo size={26} context="light" />
+      <span class="brand-text">
+        Shellular
+        <span class="beta-badge">beta</span>
+      </span>
+    </a>
+    <div class="links">
+      <a href={isHomePage ? "#features" : "/#features"}>Features</a>
+      <a href={isHomePage ? "#security" : "/#security"}>Security</a>
+      <a href="/docs">Docs</a>
+      <a href={ENTERPRISE_CALENDAR_URL} target="_blank" rel="noopener noreferrer">Enterprise</a>
+    </div>
+    <div class="nav-actions">
+      <a class="download-nav" href={isHomePage ? "#get-started" : "/#get-started"}>Get Started</a>
+      <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <MenuIcon class="icon-menu" size={22} aria-hidden="true" />
+        <XIcon class="icon-close" size={22} aria-hidden="true" />
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="mobile-menu" hidden>
+    <a href={isHomePage ? "#features" : "/#features"} class="mobile-link">Features</a>
+    <a href={isHomePage ? "#security" : "/#security"} class="mobile-link">Security</a>
+    <a href="/docs" class="mobile-link">Docs</a>
+    <a href={ENTERPRISE_CALENDAR_URL} class="mobile-link" target="_blank" rel="noopener noreferrer">Enterprise</a>
+    <a class="download-nav mobile-cta" href={isHomePage ? "#get-started" : "/#get-started"}>Get Started</a>
+  </div>
+</div>
+
+<style>
+  #nav-wrap {
+    position: fixed;
+    top: 18px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px;
+    pointer-events: none;
+  }
+
+  #nav {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 3vw, 36px);
+    padding: 8px 8px 8px 22px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(26, 22, 21, 0.07);
+    border-radius: var(--radius-pill);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.6) inset,
+      0 8px 24px rgba(26, 22, 21, 0.06);
+    max-width: 100%;
+    transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  #nav-wrap.scrolled #nav {
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.6) inset,
+      0 14px 38px rgba(26, 22, 21, 0.12);
+    border-color: rgba(26, 22, 21, 0.1);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .beta-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brand-gold-ink);
+    background: linear-gradient(135deg, var(--brand-gold-soft) 0%, var(--brand-gold) 100%);
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(181, 156, 114, 0.4);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      0 1px 3px rgba(181, 156, 114, 0.25);
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: clamp(14px, 2.4vw, 28px);
+  }
+
+  .links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .links a:hover {
+    color: var(--ink-900);
+  }
+
+  .download-nav {
+    background: var(--ink-900);
+    color: var(--cream-100);
+    padding: 9px 20px;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: background 0.2s, transform 0.2s;
+    border: none;
+    white-space: nowrap;
+  }
+
+  .download-nav:hover {
+    background: var(--ink-700);
+    transform: translateY(-1px);
+    color: var(--cream-100);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Hamburger — hidden on desktop, shown on mobile */
+  .nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--ink-900);
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .nav-toggle:hover {
+    background: rgba(26, 22, 21, 0.06);
+  }
+
+  /* Swap menu/close icons based on open state */
+  .nav-toggle .icon-close {
+    display: none;
+  }
+  #nav-wrap.menu-open .nav-toggle .icon-menu {
+    display: none;
+  }
+  #nav-wrap.menu-open .nav-toggle .icon-close {
+    display: block;
+  }
+
+  /* Dropdown panel */
+  .mobile-menu {
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 10px auto 0;
+    padding: 12px;
+    width: min(100%, 420px);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(26, 22, 21, 0.1);
+    border-radius: var(--radius-lg);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.6) inset,
+      0 14px 38px rgba(26, 22, 21, 0.12);
+    transform-origin: top center;
+    animation: menu-in 0.2s ease;
+  }
+
+  .mobile-menu[hidden] {
+    display: none;
+  }
+
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .mobile-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 11px 14px;
+    border-radius: var(--radius-md);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .mobile-link:hover {
+    background: rgba(26, 22, 21, 0.05);
+    color: var(--ink-900);
+  }
+
+  .mobile-cta {
+    margin-top: 6px;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 720px) {
+    .links {
+      display: none;
+    }
+
+    /* The desktop Get Started button gives way to the hamburger menu */
+    .nav-actions > .download-nav {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+    }
+
+    #nav {
+      width: 100%;
+      justify-content: space-between;
+      padding: 8px 8px 8px 18px;
+      gap: 12px;
+    }
+  }
+
+  /* Keep the dropdown desktop-only-hidden in case viewport grows while open */
+  @media (min-width: 721px) {
+    .mobile-menu {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  const wrap = document.getElementById("nav-wrap");
+  const update = () => {
+    if (!wrap) return;
+    if (window.scrollY > 24) wrap.classList.add("scrolled");
+    else wrap.classList.remove("scrolled");
+  };
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+
+  // Mobile menu toggle
+  const toggle = document.getElementById("nav-toggle");
+  const menu = document.getElementById("mobile-menu");
+
+  const closeMenu = () => {
+    if (!wrap || !toggle || !menu) return;
+    wrap.classList.remove("menu-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Open menu");
+    menu.hidden = true;
+  };
+
+  const openMenu = () => {
+    if (!wrap || !toggle || !menu) return;
+    wrap.classList.add("menu-open");
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Close menu");
+    menu.hidden = false;
+  };
+
+  if (toggle && menu) {
+    toggle.addEventListener("click", () => {
+      if (wrap?.classList.contains("menu-open")) closeMenu();
+      else openMenu();
+    });
+
+    // Close when a link is tapped
+    menu.querySelectorAll("a").forEach((link) =>
+      link.addEventListener("click", closeMenu)
+    );
+
+    // Close on Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+
+    // Close on outside click
+    document.addEventListener("click", (e) => {
+      if (!wrap?.classList.contains("menu-open")) return;
+      const target = e.target as Node;
+      if (!menu.contains(target) && !toggle.contains(target)) closeMenu();
+    });
+
+    // Reset if viewport grows past mobile breakpoint
+    const mq = window.matchMedia("(min-width: 721px)");
+    mq.addEventListener("change", (e) => {
+      if (e.matches) closeMenu();
+    });
+  }
+</script>

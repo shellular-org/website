@@ -1,0 +1,337 @@
+---
+import Footer from "@/components/Footer.astro";
+import Nav from "@/components/Nav.astro";
+import Layout from "@/layouts/Layout.astro";
+
+const comparisonRows = [
+	{
+		label: "AI support",
+		shellular:
+			"Works with Claude Code, Codex, OpenCode, Pi, and the rest of your setup.",
+		codex: "Tied to Codex. No support for other agents or tools.",
+	},
+	{
+		label: "What you can do remotely",
+		shellular:
+			"Terminal control, file browsing, Git operations, browser sessions, DevTools, and agent management.",
+		codex:
+			"Steer active Codex threads: review outputs, approve commands, change models, start new tasks.",
+	},
+	{
+		label: "Terminal access",
+		shellular:
+			"Full remote terminal — run any command, restart services, inspect logs directly.",
+		codex:
+			"Read-only: view terminal output Codex produces. You cannot run commands yourself.",
+	},
+	{
+		label: "Filesystem access",
+		shellular:
+			"Browse and edit your actual project files directly. No sync, no copy.",
+		codex:
+			"See diffs and test results that Codex generates. No direct file browsing or editing.",
+	},
+	{
+		label: "Browser & DevTools",
+		shellular:
+			"Open local apps remotely, inspect pages, debug — from your phone.",
+		codex:
+			"View screenshots Codex captures. No direct browser or DevTools access.",
+	},
+	{
+		label: "Security model",
+		shellular:
+			"End-to-end encrypted. Key never leaves your device. Pairing via QR code only.",
+		codex:
+			"Secure relay managed by OpenAI. Session state synced through your ChatGPT account.",
+	},
+];
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	name: "Shellular vs Codex Mobile",
+	description:
+		"Compare Shellular and Codex Mobile for remote development from your phone. See how terminal access, filesystem control, browser tooling, and multi-agent support stack up.",
+	url: "https://shellular.dev/shellular-vs-codex-mobile",
+};
+---
+
+<Layout
+  title="Shellular vs Codex Mobile | Use Codex & More From Your Phone"
+  description="Want to use Codex from your phone? Shellular gives you a real terminal, file access, Git, browser DevTools, and support for Claude Code, OpenCode, and more — not just Codex task monitoring."
+  keywords={[
+    "Codex mobile",
+    "Codex on phone",
+    "Codex from phone",
+    "use Codex on iPhone",
+    "use Codex on Android",
+    "Codex phone app",
+    "work with Codex from anywhere",
+    "Codex remote access",
+    "Codex mobile app",
+    "Shellular vs Codex Mobile",
+    "Claude Code mobile",
+    "OpenCode mobile",
+    "AI agent mobile",
+    "remote development from phone",
+    "mobile terminal for developers",
+  ]}
+  structuredData={structuredData}
+>
+  <Nav currentPath={Astro.url.pathname} />
+
+  <main class="comparison-page">
+    <header class="comparison-hero">
+      <div class="comparison-inner">
+        <h1>Shellular vs Codex Mobile</h1>
+        <p class="hero-copy">
+          Codex Mobile is a polished way to steer a Codex session from your phone — follow terminal output, review
+          diffs, approve commands, keep long-running tasks moving. Shellular is built for everything beyond that:
+          direct terminal control, file browsing, Git, browser DevTools, and every agent you already run, not just
+          Codex.
+        </p>
+        <div class="hero-pills" aria-label="Key differentiators">
+          <span>Not limited to Codex</span>
+          <span>Direct terminal, not read-only output</span>
+          <span>Files, Git, and browser included</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="comparison-section">
+      <div class="comparison-inner">
+        <h2>Where Shellular pulls ahead</h2>
+        <div class="points-grid">
+          <article class="point-card">
+            <h3>Your whole agent lineup, not just one</h3>
+            <p>
+              Codex Mobile is built entirely around Codex running inside ChatGPT. Shellular works with Claude Code,
+              Codex, OpenCode, Pi, and whatever else is part of your workflow — all from the same remote interface,
+              without switching apps.
+            </p>
+          </article>
+          <article class="point-card">
+            <h3>Run commands, not just read them</h3>
+            <p>
+              Codex Mobile shows you what the agent's terminal is doing — output, diffs, test results. Shellular gives
+              you an actual shell. When you need to run a command directly, restart a service, or fix something the
+              agent missed, you can do that yourself from your phone.
+            </p>
+          </article>
+          <article class="point-card">
+            <h3>Files, Git, and browser when you need them</h3>
+            <p>
+              Codex Mobile lets you observe and steer what Codex is doing. Shellular puts you in direct control of your
+              machine — browse and edit files, run Git operations, open local apps, and debug in the browser without
+              going back to your desk.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="comparison-section comparison-table-section">
+      <div class="comparison-inner">
+        <h2>Quick comparison</h2>
+        <div class="comparison-table" role="table" aria-label="Shellular compared with Codex Mobile">
+          <div class="comparison-head" role="rowgroup">
+            <div class="comparison-row comparison-row-head" role="row">
+              <span role="columnheader">Category</span>
+              <span role="columnheader">Shellular</span>
+              <span role="columnheader">Codex Mobile</span>
+            </div>
+          </div>
+          <div role="rowgroup">
+            {
+              comparisonRows.map((row) => (
+                <div class="comparison-row" role="row">
+                  <span class="row-label" role="cell">
+                    {row.label}
+                  </span>
+                  <span role="cell">{row.shellular}</span>
+                  <span role="cell">{row.codex}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="comparison-section comparison-close">
+      <div class="comparison-inner">
+        <h2>Bottom line</h2>
+        <p class="hero-copy">
+          Codex Mobile is a well-designed way to keep a Codex session moving from your phone — and if Codex is your
+          only agent, it does that well. If you want direct control over your machine — a real terminal, file browsing,
+          Git, browser debugging, and every agent you already use — Shellular is the stronger fit.
+        </p>
+        <a class="cta-link" href="/#install">Try Shellular</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .comparison-page {
+    padding-top: 60px;
+  }
+
+  .comparison-hero {
+    border-bottom: 1px solid var(--line-soft);
+    background:
+      radial-gradient(1100px 420px at 50% -40%, rgba(var(--brand-gold-rgb), 0.16), transparent),
+      linear-gradient(180deg, rgba(var(--brand-cream-rgb), 0.02), transparent 55%), var(--brand-bg);
+  }
+
+  .comparison-inner {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: clamp(40px, 7vw, 84px) clamp(20px, 5vw, 48px);
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 4.3rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.98;
+    margin: 0 0 18px;
+    max-width: 12ch;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  h2 {
+    font-size: clamp(1.35rem, 3vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin: 0 0 14px;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 10px;
+  }
+
+  .hero-copy,
+  .point-card p,
+  .comparison-row span {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .hero-copy {
+    max-width: 70ch;
+  }
+
+  .hero-pills {
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .hero-pills span {
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-primary);
+    background: rgba(var(--brand-gold-rgb), 0.11);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.26);
+  }
+
+  .comparison-section {
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .points-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 22px;
+  }
+
+  .point-card {
+    padding: 20px;
+    border-radius: 18px;
+    background: rgba(var(--brand-cream-rgb), 0.03);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.12);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.02),
+      0 12px 28px rgba(0, 0, 0, 0.18);
+  }
+
+  .comparison-table {
+    margin-top: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.14);
+    background: rgba(var(--brand-cream-rgb), 0.025);
+  }
+
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 0.9fr 1.3fr 1.3fr;
+    gap: 18px;
+    padding: 18px 20px;
+    border-top: 1px solid rgba(var(--brand-gold-rgb), 0.1);
+  }
+
+  .comparison-row-head {
+    border-top: 0;
+    background: rgba(var(--brand-gold-rgb), 0.08);
+  }
+
+  .comparison-row-head span,
+  .row-label {
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+
+  .comparison-close .comparison-inner {
+    padding-bottom: clamp(54px, 8vw, 92px);
+  }
+
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 22px;
+    padding: 11px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    background: var(--grad-accent);
+    color: var(--brand-ink);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .cta-link:hover {
+    opacity: 0.92;
+  }
+
+  @media (max-width: 860px) {
+    .points-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .comparison-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  }
+</style>

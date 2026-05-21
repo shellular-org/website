@@ -1,0 +1,119 @@
+---
+import CtaBanner from "@/components/CtaBanner.astro";
+import Features from "@/components/Features.astro";
+import Footer from "@/components/Footer.astro";
+import GetStarted from "@/components/GetStarted.astro";
+import Hero from "@/components/Hero.astro";
+import Integrations from "@/components/Integrations.astro";
+import Nav from "@/components/Nav.astro";
+import Security from "@/components/Security.astro";
+import Testimonials from "@/components/Testimonials.astro";
+import Layout from "@/layouts/Layout.astro";
+
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		name: "Shellular",
+		url: "https://shellular.dev",
+		logo: "https://shellular.dev/favicon.ico",
+		email: "team@shellular.dev",
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "SoftwareApplication",
+		name: "Shellular",
+		applicationCategory: "DeveloperApplication",
+		operatingSystem: "iOS, Android, macOS, Linux, Windows",
+		url: "https://shellular.dev",
+		description:
+			"Shellular lets you access your development machine from your phone, including terminal, files, ports, Git workflows, and AI coding agents.",
+		offers: {
+			"@type": "Offer",
+			price: "0",
+			priceCurrency: "USD",
+		},
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		name: "Shellular",
+		url: "https://shellular.dev",
+	},
+];
+---
+
+<Layout
+  title="Shellular | Claude Code, Codex & OpenCode on Your Phone"
+  description="Run Claude Code, Codex, OpenCode, and your other AI agents from your phone. Shellular gives you secure remote access to your development machine with terminal, files, Git, ports, and browser DevTools — all from mobile."
+  keywords={[
+    "Shellular",
+    "remote development from phone",
+    "Claude Code mobile",
+    "Claude Code on phone",
+    "Claude Code from phone",
+    "Codex mobile",
+    "Codex on phone",
+    "Codex from phone",
+    "OpenCode mobile",
+    "OpenCode on phone",
+    "OpenCode from phone",
+    "AI coding agent mobile",
+    "remote terminal from phone",
+    "mobile developer tools",
+    "mobile remote development",
+    "Claude Code remote access",
+    "Codex remote access",
+    "use Claude Code on iPhone",
+    "use Codex on iPhone",
+    "control AI agents from phone",
+  ]}
+  structuredData={structuredData}
+>
+  <Nav />
+  <main>
+    <Hero />
+    <Features />
+    <Integrations />
+    <Security />
+    <!-- Soft wave divider transitioning to the warmer Get Started section -->
+    <div class="section-wave-wrap" aria-hidden="true">
+      <svg class="section-wave" viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0 40 C 240 0 480 80 720 40 S 1200 0 1440 40 L1440 80 L0 80 Z" fill="var(--cream-300)"></path>
+      </svg>
+    </div>
+    <GetStarted />
+    <Testimonials />
+  </main>
+  <CtaBanner />
+  <Footer />
+
+  <style>
+    .section-wave-wrap {
+      background: var(--cream-100);
+      line-height: 0;
+    }
+    .section-wave-wrap svg {
+      display: block;
+      width: 100%;
+      height: clamp(40px, 5vw, 70px);
+    }
+  </style>
+
+  <script>
+    // Scroll-reveal via IntersectionObserver
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.12 },
+    );
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
+</Layout>

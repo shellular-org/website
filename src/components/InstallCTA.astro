@@ -1,0 +1,167 @@
+---
+import AppBadges from "./AppBadges.astro";
+
+const INSTALL_CMD = "npx shellular";
+---
+
+<section id="install">
+  <h2 class="section-title reveal reveal-delay-1">Get started <span>in under a minute</span></h2>
+
+  <div class="install-center">
+    <div class="install-actions reveal reveal-delay-3">
+      <p class="install-actions-copy">1. Install Shellular on your phone.</p>
+      <AppBadges />
+    </div>
+
+    <div class="install-command reveal reveal-delay-4">
+      <p class="install-actions-copy">2. Run this on your dev machine.</p>
+      <div class="install-box">
+        <span class="prompt" aria-hidden="true">$</span>
+        <span>{INSTALL_CMD}</span>
+        <button class="copy-btn" id="copy-btn" data-cmd={INSTALL_CMD}>Copy</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #install {
+    padding: clamp(60px, 8vw, 100px) clamp(16px, 8vw, 80px);
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .install-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .install-actions,
+  .install-command {
+    flex: 1 1;
+    max-width: 440px;
+    position: relative;
+  }
+
+  .install-actions::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60%;
+    background: rgba(var(--brand-gold-rgb), 0.15);
+  }
+
+  @media (max-width: 640px) {
+    .install-center {
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .install-actions::after {
+      display: none;
+    }
+  }
+
+  .install-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(14, 14, 17, 0.94);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.16);
+    border-radius: 14px;
+    padding: 16px 24px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 15px;
+    color: var(--accent);
+  }
+
+  .prompt {
+    color: rgba(180, 170, 154, 0.56);
+    user-select: none;
+  }
+
+  .copy-btn {
+    background-color: rgba(var(--brand-gold-rgb), 0.08);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.18);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .copy-btn:hover {
+    background: rgba(var(--brand-gold-rgb), 0.14);
+  }
+
+  .copy-btn.copied {
+    color: var(--success);
+    border-color: rgba(var(--brand-success-rgb), 0.32);
+  }
+
+  .install-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 24px;
+  }
+
+  .install-actions :global(.app-badges) {
+    justify-content: center;
+  }
+
+  .install-command {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 24px;
+  }
+
+  .install-actions-copy {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 560px) {
+    .install-box {
+      width: 100%;
+      max-width: 100%;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      font-size: 14px;
+    }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById("copy-btn") as HTMLButtonElement;
+  btn.addEventListener("click", () => {
+    const cmd = btn.dataset.cmd ?? "";
+    navigator.clipboard.writeText(cmd).then(() => {
+      btn.textContent = "Copied!";
+      btn.classList.add("copied");
+      setTimeout(() => {
+        btn.textContent = "Copy";
+        btn.classList.remove("copied");
+      }, 2000);
+    });
+  });
+</script>

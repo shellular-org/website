@@ -1,0 +1,317 @@
+---
+import Footer from "@/components/Footer.astro";
+import Nav from "@/components/Nav.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout
+  title="Shellular Privacy Policy"
+  description="Shellular's privacy policy. We collect no personal data, require no sign-up, and all traffic between the app and your machine is end-to-end encrypted."
+  keywords={["Shellular privacy policy", "Shellular privacy", "developer tool privacy"]}
+>
+  <Nav />
+  <main class="legal-page">
+    <div class="legal-container">
+      <header class="legal-header">
+        <h1>Privacy Policy</h1>
+        <p class="meta">Effective date: April 19, 2026 · Shellular</p>
+      </header>
+
+      <div class="legal-body">
+        <section>
+          <h2 data-num="01">Overview</h2>
+          <p>
+            Shellular ("we", "our", "us") is a remote development tool that connects your mobile device directly to your
+            own machine. We are committed to your privacy. This policy explains what data we collect (very little), how
+            it is used, and your rights.
+          </p>
+          <p>
+            <strong>Short version:</strong> We do not collect, store, or sell any personal information. No sign-up is required
+            to use Shellular.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="02">Information We Do Not Collect</h2>
+          <p>We do not collect:</p>
+          <ul>
+            <li>Your name, email address, or any other personally identifiable information (PII).</li>
+            <li>Account credentials — Shellular has no account or sign-up system.</li>
+            <li>The contents of your filesystem, terminal sessions, or AI prompts.</li>
+            <li>Precise device location, contacts, photos, or any other sensitive device data.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 data-num="03">Information That May Be Processed Transiently</h2>
+          <p>
+            When you use Shellular, traffic between the Shellular mobile app and the CLI on your machine is relayed
+            through our servers at <code>api.shellular.dev</code>. This relay operates as a pass-through only:
+          </p>
+          <ul>
+            <li>
+              All relay traffic is <strong>end-to-end encrypted</strong> using libsodium. The relay server cannot read the
+              content of any message.
+            </li>
+            <li>
+              The pairing key is exchanged out-of-band via a QR code displayed in your terminal and scanned by the app —
+              the server never sees your pairing key.
+            </li>
+            <li>
+              We may retain standard server logs (IP addresses, timestamps, byte counts) for up to
+              <strong>30 days</strong> solely for abuse prevention and infrastructure monitoring. These logs are not shared
+              with third parties.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 data-num="04">Local Data &amp; Device Permissions</h2>
+          <p>
+            The Shellular CLI runs on your own machine and accesses only the directory you explicitly specify with the <code
+              >--dir</code
+            > flag (defaulting to your home directory). Path-traversal outside that root is rejected. The CLI connects outbound
+            only — it opens no listening ports on your machine.
+          </p>
+          <p>
+            The Shellular mobile app stores your pairing key and session state locally on your device using the
+            platform's secure storage. This data never leaves your device except as part of the encrypted relay traffic
+            described above.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="05">Analytics &amp; Crash Reporting</h2>
+          <p>
+            We do not use third-party analytics SDKs or advertising networks. We may collect anonymous, aggregated crash
+            reports (stack traces without any user-identifying information) to improve stability. You may opt out of
+            crash reporting in the app settings.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="06">Third-Party Services</h2>
+          <p>
+            Shellular can optionally route AI prompts to third-party services such as OpenCode, Anthropic Claude, GitHub
+            Copilot, or OpenAI Codex depending on what is installed on your machine. These requests originate from the
+            CLI on <em>your machine</em> and are governed by the respective provider's privacy policies. Shellular does not
+            proxy or log these prompts.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="07">Children's Privacy</h2>
+          <p>
+            Shellular is a developer tool not directed at children under 13 (or the applicable local age threshold). We
+            do not knowingly collect data from children. If you believe a child has provided personal data to us, please
+            contact us and we will delete it promptly.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="08">Data Security</h2>
+          <p>
+            We use industry-standard measures to protect our relay infrastructure. Because all relay traffic is
+            end-to-end encrypted, even a full compromise of the relay server would not expose your terminal sessions,
+            files, or AI conversations.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="09">Changes to This Policy</h2>
+          <p>
+            We may update this policy from time to time. The effective date at the top of this page will be updated
+            accordingly. Continued use of Shellular after a change constitutes acceptance of the revised policy.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="10">Contact Us</h2>
+          <p>
+            Questions or concerns about this policy? Reach us at
+            <a href="mailto:team@shellular.dev">team@shellular.dev</a>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* Page shell — paper-warm with subtle horizon glow at top */
+  .legal-page {
+    position: relative;
+    min-height: 80vh;
+    padding: 140px clamp(16px, 6vw, 64px) 96px;
+    background: var(--cream-100);
+    overflow: hidden;
+  }
+
+  .legal-page::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 360px;
+    background:
+      radial-gradient(ellipse 80% 70% at 50% -10%, rgba(255, 240, 210, 0.5) 0%, transparent 60%),
+      linear-gradient(180deg, var(--sky-100) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .legal-container {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  /* Header */
+  .legal-header {
+    margin-bottom: 56px;
+    text-align: center;
+  }
+
+  .legal-header h1 {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.04;
+    color: var(--ink-900);
+    margin-bottom: 14px;
+  }
+
+  .meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(26, 22, 21, 0.06);
+    border-radius: var(--radius-pill);
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-700);
+    letter-spacing: 0.02em;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+
+  /* Body — cards per section */
+  .legal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: clamp(24px, 4vw, 36px);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.25s ease;
+  }
+
+  section:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  h2 {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink-900);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  /* Pluck section number into a gold monospace tag */
+  h2::before {
+    content: attr(data-num);
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--brand-gold-deep);
+    padding: 3px 8px;
+    background: rgba(var(--brand-gold-rgb), 0.14);
+    border-radius: 6px;
+  }
+
+  p {
+    font-size: 15px;
+    color: var(--ink-700);
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  ul li {
+    font-size: 15px;
+    color: var(--ink-700);
+    line-height: 1.7;
+    padding-left: 22px;
+    position: relative;
+  }
+
+  ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 10px;
+    height: 1px;
+    background: var(--brand-gold-deep);
+  }
+
+  strong {
+    color: var(--ink-900);
+    font-weight: 700;
+  }
+
+  code {
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 13px;
+    background: rgba(var(--brand-gold-rgb), 0.14);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.28);
+    padding: 1px 7px;
+    border-radius: 5px;
+    color: var(--brand-gold-ink);
+  }
+
+  a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(21, 108, 194, 0.3);
+    transition:
+      color 0.18s ease,
+      border-color 0.18s ease;
+  }
+
+  a:hover {
+    color: var(--accent-orange);
+    border-bottom-color: var(--accent-orange);
+  }
+
+  @media (max-width: 600px) {
+    h2 {
+      flex-wrap: wrap;
+    }
+  }
+</style>
