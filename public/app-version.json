@@ -1,7 +1,7 @@
 {
 	"android": {
-		"version": "0.0.17",
-		"versionCode": 17,
+		"version": "0.0.18",
+		"versionCode": 18,
 		"storeUrl": "https://play.google.com/store/apps/details?id=io.foxbiz.shellular"
 	},
 	"ios": {
