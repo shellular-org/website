@@ -45,6 +45,8 @@
 	--brand-gold-ink: #6b5530;
 	--brand-gold-glow: rgba(214, 194, 161, 0.42);
 	--brand-bg: var(--cream-100);
+	--brand-bg-rgb: 244, 241, 238; /* cream-100 as rgb, for rgba() usage */
+	--brand-ink: var(--ink-900);
 
 	/* Semantic */
 	--bg: var(--cream-100);
@@ -53,6 +55,7 @@
 	--surface: #ffffff;
 	--surface-soft: var(--cream-50);
 	--surface-warm: var(--cream-200);
+	--surface-muted: var(--cream-200);
 
 	--text-primary: var(--ink-900);
 	--text-secondary: var(--ink-700);
@@ -62,6 +65,7 @@
 
 	--border: var(--ink-200);
 	--border-strong: #d6d3d1;
+	--card-border: var(--ink-200);
 	--line-soft: rgba(26, 22, 21, 0.08);
 
 	--accent: var(--accent-blue);
@@ -75,6 +79,16 @@
 		var(--cream-300) 100%
 	);
 	--grad-cta: linear-gradient(135deg, #1a1615 0%, #2a2421 100%);
+	/* Signature warm gold — used for selected/active controls (paired with --brand-ink) */
+	--grad-accent: linear-gradient(
+		135deg,
+		var(--brand-gold-soft) 0%,
+		var(--brand-gold) 50%,
+		var(--brand-gold-deep) 100%
+	);
+	/* Clipped onto headline text (background-clip: text) — must stay dark
+	   enough to read on light backgrounds. */
+	--grad-text: black;
 
 	--shadow-sm: 0 1px 2px rgba(26, 22, 21, 0.05);
 	--shadow-md: 0 8px 24px rgba(26, 22, 21, 0.08);
