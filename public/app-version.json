@@ -1,12 +1,12 @@
 {
 	"android": {
-		"version": "0.0.20",
-		"versionCode": 20,
+		"version": "0.0.21",
+		"versionCode": 21,
 		"storeUrl": "https://play.google.com/store/apps/details?id=io.foxbiz.shellular"
 	},
 	"ios": {
-		"version": "0.0.20",
-		"versionCode": 20,
+		"version": "0.0.21",
+		"versionCode": 21,
 		"storeUrl": "https://apps.apple.com/us/app/shellular/id6761985327"
 	}
 }
