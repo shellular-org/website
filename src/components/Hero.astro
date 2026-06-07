@@ -120,7 +120,11 @@ const agentLogos = [
         <span class="avatar">AS</span>
         <span class="avatar">S</span>
       </a>
-      <p>Trusted by developers shipping from cafes, couches, and crowded trains.</p>
+      <p>
+        Built by a team behind
+        <a href="https://acode.app" target="_blank" rel="noopener noreferrer">Acode</a>, the mobile code editor with
+        <span class="hero-proof-emphasis">4M downloads</span> on Play Store.
+      </p>
     </div>
 
     <div class="hero-visual reveal reveal-delay-5">
@@ -399,6 +403,27 @@ const agentLogos = [
     font-size: 13px;
     color: var(--ink-600);
     font-weight: 500;
+  }
+
+  .hero-proof a:not(.avatars) {
+    color: var(--ink-800);
+    font-weight: 700;
+    text-decoration-color: rgba(138, 116, 92, 0.35);
+    text-underline-offset: 3px;
+    transition:
+      color 0.18s ease,
+      text-decoration-color 0.18s ease;
+  }
+
+  .hero-proof a:not(.avatars):hover {
+    color: var(--brand-gold-deep);
+    text-decoration-color: currentColor;
+  }
+
+  .hero-proof-emphasis {
+    color: var(--ink-800);
+    font-style: italic;
+    font-weight: 700;
   }
 
   /* ── Agent logo strip ── */

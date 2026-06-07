@@ -81,6 +81,9 @@ const social: { label: string; href: string; Icon: (typeof socialIcon)[keyof typ
         <span class="footer-brand-text">Shellular</span>
       </a>
       <p class="footer-tagline">Your full dev environment — agents, terminal, files, ports — in your pocket.</p>
+      <p class="footer-proof">
+        Built by the team behind <a href="https://acode.app" target="_blank" rel="noopener noreferrer">Acode</a>.
+      </p>
 
       <div class="footer-social" aria-label="Shellular on social">
         {
@@ -201,11 +204,33 @@ const social: { label: string; href: string; Icon: (typeof socialIcon)[keyof typ
   }
 
   .footer-tagline {
-    margin: 18px 0 24px;
+    margin: 18px 0 10px;
     font-size: 14px;
     color: rgba(245, 241, 232, 0.62);
     line-height: 1.65;
     max-width: 36ch;
+  }
+
+  .footer-proof {
+    margin: 0 0 24px;
+    font-size: 13px;
+    color: rgba(245, 241, 232, 0.42);
+    line-height: 1.55;
+    max-width: 36ch;
+  }
+
+  .footer-proof a {
+    color: rgba(245, 241, 232, 0.68);
+    text-decoration-color: rgba(214, 194, 161, 0.28);
+    text-underline-offset: 3px;
+    transition:
+      color 0.18s ease,
+      text-decoration-color 0.18s ease;
+  }
+
+  .footer-proof a:hover {
+    color: var(--cream-100);
+    text-decoration-color: var(--brand-gold);
   }
 
   @keyframes footer-pulse {
