@@ -21,14 +21,34 @@ const team = [
 	},
 ];
 
-const structuredData = {
-	"@context": "https://schema.org",
-	"@type": "AboutPage",
-	name: "About Shellular",
-	description:
-		"Learn about Shellular and the team building mobile-first remote development workflows.",
-	url: "https://shellular.dev/about",
-};
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "AboutPage",
+		name: "About Shellular",
+		description:
+			"Learn about Shellular and the team building mobile-first remote development workflows.",
+		url: "https://shellular.dev/about",
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Home",
+				item: "https://shellular.dev",
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "About",
+				item: "https://shellular.dev/about",
+			},
+		],
+	},
+];
 ---
 
 <Layout
