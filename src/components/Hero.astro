@@ -113,17 +113,22 @@ const agentLogos = [
     <div class="demo-overlay" id="demo-overlay">
       <div class="demo-modal">
         <button class="demo-close" id="demo-close" aria-label="Close video">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
         <div class="demo-embed">
-          <iframe
-            src=""
-            id="demo-iframe"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            allowfullscreen
+          <iframe src="" id="demo-iframe" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen
           ></iframe>
         </div>
       </div>
@@ -798,7 +803,7 @@ const agentLogos = [
   const iframe = document.getElementById("demo-iframe");
 
   btn.addEventListener("click", () => {
-    iframe.src = "https://www.youtube.com/embed/I42X_6VHJ2I?autoplay=1";
+    iframe.src = "https://www.youtube.com/embed/wtVmx5ylWic?autoplay=1";
     overlay.classList.add("open");
     document.body.style.overflow = "hidden";
   });
