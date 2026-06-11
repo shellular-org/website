@@ -1,7 +1,9 @@
 ---
 import { MenuIcon, XIcon } from "@lucide/astro";
-import { ENTERPRISE_CALENDAR_URL } from "@/data/appLinks";
 import ShellularLogo from "./ShellularLogo.astro";
+import { GithubIcon } from "./icons";
+
+const GITHUB_URL = "https://github.com/shellular-org";
 
 interface Props {
 	currentPath?: string;
@@ -24,7 +26,10 @@ const isHomePage = currentPath === "/";
       <a href={isHomePage ? "#features" : "/#features"}>Features</a>
       <a href={isHomePage ? "#security" : "/#security"}>Security</a>
       <a href="/docs">Docs</a>
-      <a href={ENTERPRISE_CALENDAR_URL} target="_blank" rel="noopener noreferrer">Enterprise</a>
+      <a href="/enterprise">Enterprise</a>
+      <a class="github-link" href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <GithubIcon size={18} />
+      </a>
     </div>
     <div class="nav-actions">
       <a class="download-nav" href={isHomePage ? "#get-started" : "/#get-started"}>Get Started</a>
@@ -39,7 +44,11 @@ const isHomePage = currentPath === "/";
     <a href={isHomePage ? "#features" : "/#features"} class="mobile-link">Features</a>
     <a href={isHomePage ? "#security" : "/#security"} class="mobile-link">Security</a>
     <a href="/docs" class="mobile-link">Docs</a>
-    <a href={ENTERPRISE_CALENDAR_URL} class="mobile-link" target="_blank" rel="noopener noreferrer">Enterprise</a>
+    <a href="/enterprise" class="mobile-link">Enterprise</a>
+    <a href={GITHUB_URL} class="mobile-link mobile-github" target="_blank" rel="noopener noreferrer">
+      <GithubIcon size={16} />
+      GitHub
+    </a>
     <a class="download-nav mobile-cta" href={isHomePage ? "#get-started" : "/#get-started"}>Get Started</a>
   </div>
 </div>
@@ -133,6 +142,22 @@ const isHomePage = currentPath === "/";
 
   .links a:hover {
     color: var(--ink-900);
+  }
+
+  .github-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-secondary);
+  }
+
+  .github-link:hover {
+    color: var(--ink-900);
+  }
+
+  .mobile-github {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .download-nav {
