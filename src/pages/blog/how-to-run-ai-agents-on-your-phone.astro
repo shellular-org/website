@@ -1,0 +1,224 @@
+---
+import ArticleLayout from "@/components/ArticleLayout.astro";
+---
+
+<ArticleLayout
+  title="How to Run AI Agents on Your Phone (2026 Guide) | Shellular"
+  description="Want to run AI coding agents from your phone? They keep running on your PC, Mac, Mac mini, or VPS with full context of your code. Here is how to reach Claude Code, Codex, and OpenCode from anywhere with Shellular."
+  keywords={[
+    "run AI agents on phone",
+    "how to run agents on phone",
+    "AI agent mobile",
+    "code from phone",
+    "mobile terminal for developers",
+    "remote development from phone",
+    "AI coding agent mobile app",
+    "mobile agent UI",
+    "slash commands on phone",
+    "approve agent permissions on phone",
+    "run agent on Mac mini",
+    "run agent on VPS",
+    "Shellular",
+  ]}
+  heading="How to Run AI Agents on Your Phone"
+  tagline="Your agents run on your own PC, Mac, Mac mini, or VPS, right next to your code. Shellular gives each one a real mobile UI, with slash commands, @ file mentions, permission approvals, and model controls, so you can drive them from your pocket."
+  dateLabel="June 11, 2026"
+  dateISO="2026-06-11"
+  readTime="5 min read"
+  slug="how-to-run-ai-agents-on-your-phone"
+  pills={["Mobile agent UI", "Slash commands and @ mentions", "Any agent"]}
+  faqs={[
+    {
+      q: "Can you really run AI coding agents from a phone?",
+      a: "Yes. The agents keep running on your machine, and Shellular gives your phone a dedicated, mobile-optimized UI for each one. You get slash commands, @ file mentions, permission approvals, a model picker, and reasoning effort controls, plus a real terminal, files, and Git when you need them.",
+    },
+    {
+      q: "Is it just a chat box, or a full agent UI?",
+      a: "A full UI. Shellular has a dedicated mobile interface for Claude Code, Codex, OpenCode, Cursor, Pi, and GitHub Copilot CLI. You can type / for slash commands, use @ to mention real files from your repo, approve or deny permissions with a tap, switch models, and set reasoning effort, all built for a phone.",
+    },
+    {
+      q: "Do I need a powerful phone to run agents?",
+      a: "No. The heavy work happens on your dev machine, not your phone. Your phone is just a remote control, so any modern iPhone or Android device works fine.",
+    },
+    {
+      q: "Which AI agents can I run this way?",
+      a: "Any agent that runs in your terminal. That includes Claude Code, Codex, OpenCode, Pi, and most other CLI based agents. You launch them exactly the way you would on your laptop.",
+    },
+    {
+      q: "What machine does the agent run on?",
+      a: "Your own computer. That can be a desktop PC, a Mac, a Mac mini you leave running at home, or a cloud server or VPS. Shellular runs a small companion on that machine and your phone connects to it. The agent never runs on the phone itself.",
+    },
+    {
+      q: "Does the agent have the context of my code?",
+      a: "Yes. Because the agent runs on your machine right next to your project, it has full context: your repository, branches, dependencies, environment variables, and tools. It reads and edits your real files in place, not pasted snippets.",
+    },
+    {
+      q: "Is it safe to control my dev machine from my phone?",
+      a: "Shellular sessions are end to end encrypted and you connect to your own machine rather than a shared relay. The pairing key never leaves your device, and pairing is done by scanning a QR code.",
+    },
+    {
+      q: "Is this just a remote desktop?",
+      a: "No. Remote desktop mirrors a tiny screen and is painful to use on a phone. Shellular gives you a touch friendly terminal, a real file browser, and Git controls built for mobile.",
+    },
+  ]}
+  related={[
+    {
+      href: "/blog/how-to-run-claude-code-on-your-phone",
+      label: "Claude Code on your phone",
+      note: "Step by step for the most popular terminal agent.",
+    },
+    {
+      href: "/blog/how-to-run-codex-on-your-phone",
+      label: "Codex on your phone",
+      note: "Drive a real Codex session, not just watch it.",
+    },
+    {
+      href: "/blog/how-to-run-opencode-on-your-phone",
+      label: "OpenCode on your phone",
+      note: "The terminal native agent goes mobile easily.",
+    },
+    {
+      href: "/shellular-vs-claude-remote-control",
+      label: "Shellular vs Claude Remote Control",
+      note: "How the two compare for mobile dev.",
+    },
+  ]}
+>
+  <p>
+    AI coding agents are great until you step away from your desk. The agent
+    finishes a task, hits a question, and then just waits. Meanwhile you are on
+    the couch, on a walk, or stuck in line somewhere, watching a build stall in
+    your head because you cannot type a single command.
+  </p>
+  <p>
+    The good news: your agents do not need to move. They keep running on your
+    machine. You just need a way to reach in and steer them from your phone.
+    That is exactly what <strong>Shellular</strong> does.
+  </p>
+
+  <h2>Where the agent actually runs</h2>
+  <p>
+    This is the part worth being clear about. Shellular does not run an agent on
+    your phone. It connects your phone to a computer you already own: your <strong
+      >desktop PC, your Mac, a Mac mini you leave running at home, or a cloud
+      server or VPS</strong
+    >. The agent runs there, and your phone is the remote control.
+  </p>
+  <p>
+    That detail matters more than it sounds. Because the agent runs on your
+    machine, it sits right next to your actual codebase. It has the full
+    context: your repository, your branches, your dependencies, your environment
+    variables, your build tools, everything. You are not pasting snippets into a
+    chat box and hoping the model guessed your project right. The agent reads
+    and edits your real files in place, the same way it would if you were
+    sitting at the keyboard.
+  </p>
+  <p>
+    So the mental model is simple: <strong
+      >your code and your agent stay on your computer; only the controls come to
+      your phone.</strong
+    >
+  </p>
+
+  <h2>Why this is harder than it sounds</h2>
+  <p>
+    Most "mobile" agent tools only let you watch. You see output scroll by,
+    maybe approve a step, and that is it. And the ones that do give you access
+    usually dump you into a raw terminal, where you are pinching to zoom and
+    trying to type a slash command on a tiny keyboard. Either way it is a chore,
+    so you give up and wait until you are back at your laptop.
+  </p>
+  <p>
+    The fix is not a terminal. It is a real, mobile-optimized interface for the
+    agent itself, with the controls you actually use built right in.
+  </p>
+
+  <h2>The fast way: Shellular</h2>
+  <p>
+    Shellular connects your phone to the machine your agents run on, whether
+    that is your PC, your Mac, a Mac mini, or a VPS. Install a small companion
+    on that computer, install the app on your phone, pair them once with a QR
+    code, and you have a proper agent UI in your hand.
+  </p>
+  <ol>
+    <li>
+      Install the Shellular app on <a
+        href="https://apps.apple.com/us/app/shellular/id6761985327">iPhone</a
+      > or <a
+        href="https://play.google.com/store/apps/details?id=io.foxbiz.shellular"
+        >Android</a
+      >.
+    </li>
+    <li>
+      Run the companion on your machine and follow the <a href="/docs"
+        >setup in the docs</a
+      >.
+    </li>
+    <li>Scan the QR code to pair. The pairing key never leaves your device.</li>
+    <li>Pick your agent and start working in a UI built for your thumbs.</li>
+  </ol>
+
+  <h2>This is the part people do not expect</h2>
+  <p>
+    Shellular does not just give you a terminal and leave you to type. It has a
+    dedicated, mobile-optimized UI for each agent: <strong
+      >Claude Code, Codex, OpenCode, Cursor, Pi, and GitHub Copilot CLI.</strong
+    > Everything you reach for on the desktop is right there, tap-friendly:
+  </p>
+  <ul>
+    <li>
+      <strong>Slash commands.</strong> Type <code>/</code> and pick from the agent's
+      commands, no memorizing.
+    </li>
+    <li>
+      <strong>@ file mentions.</strong> Tap <code>@</code> to pull a real file from
+      your repo into the prompt.
+    </li>
+    <li>
+      <strong>Permission approvals in the UI.</strong> When the agent wants to run
+      something, you approve or deny it with a tap.
+    </li>
+    <li>
+      <strong>Model picker.</strong> Switch the model the agent uses without leaving
+      the app.
+    </li>
+    <li>
+      <strong>Reasoning effort.</strong> Dial how hard the agent thinks for the task
+      in front of you.
+    </li>
+  </ul>
+  <p>
+    And when you do want raw power, the real terminal, your files, Git, and a
+    browser with DevTools are all one tap away. So you get the polished agent UI
+    for the everyday stuff and the full machine for the moments you need it.
+  </p>
+
+  <h2>Is it safe?</h2>
+  <p>
+    Yes. Sessions are end to end encrypted and the pairing key stays on your
+    device. You connect to your own machine, not a shared relay sitting in the
+    middle reading your code. If you want the details, the <a href="/#security"
+      >security overview</a
+    > walks through how pairing and encryption work.
+  </p>
+
+  <h2>The short version</h2>
+  <p>
+    Running AI agents on your phone is not about cramming an IDE onto a small
+    screen, and it is not about squinting at a raw terminal either. With
+    Shellular, each agent gets a real mobile UI, with slash commands, @
+    mentions, permission approvals, and model controls, backed by your actual
+    machine and your real code. Pair once and your whole dev setup goes wherever
+    you do.
+  </p>
+  <p>
+    Want agent-specific steps? Read <a
+      href="/blog/how-to-run-claude-code-on-your-phone"
+      >running Claude Code on your phone</a
+    >, <a href="/blog/how-to-run-codex-on-your-phone"
+      >running Codex on your phone</a
+    >, or <a href="/blog/how-to-run-opencode-on-your-phone"
+      >running OpenCode on your phone</a
+    >.
+  </p>
+</ArticleLayout>

@@ -190,6 +190,30 @@ const structuredData = [
         <a class="cta-link" href="/#install">Try Shellular</a>
       </div>
     </section>
+
+    <section class="comparison-section related-section">
+      <div class="comparison-inner">
+        <h2>Related guides</h2>
+        <div class="related-grid">
+          <a class="related-card" href="/blog/how-to-run-codex-on-your-phone">
+            <span class="related-label">How to run Codex on your phone</span>
+            <span class="related-note">The step by step setup, with a real terminal behind it.</span>
+          </a>
+          <a class="related-card" href="/blog/how-to-run-ai-agents-on-your-phone">
+            <span class="related-label">How to run AI agents on your phone</span>
+            <span class="related-note">The broader guide to mobile agent workflows.</span>
+          </a>
+          <a class="related-card" href="/blog/how-to-run-claude-code-on-your-phone">
+            <span class="related-label">How to run Claude Code on your phone</span>
+            <span class="related-note">Same idea, for Claude Code.</span>
+          </a>
+          <a class="related-card" href="/shellular-vs-claude-remote-control">
+            <span class="related-label">Shellular vs Claude Remote Control</span>
+            <span class="related-note">Another head to head comparison.</span>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <Footer />
@@ -344,6 +368,48 @@ const structuredData = [
     opacity: 0.92;
   }
 
+  .related-section {
+    border-bottom: 0;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .related-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 20px;
+    border-radius: 16px;
+    text-decoration: none;
+    background: rgba(var(--brand-cream-rgb), 0.03);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.18);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .related-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(var(--brand-gold-rgb), 0.45);
+  }
+
+  .related-label {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  .related-note {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
   @media (max-width: 860px) {
     .points-grid {
       grid-template-columns: 1fr;
@@ -352,6 +418,10 @@ const structuredData = [
     .comparison-row {
       grid-template-columns: 1fr;
       gap: 8px;
+    }
+
+    .related-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

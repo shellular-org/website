@@ -1,0 +1,195 @@
+---
+import ArticleLayout from "@/components/ArticleLayout.astro";
+---
+
+<ArticleLayout
+  title="How to Run Codex on Your Phone (2026 Guide) | Shellular"
+  description="Run Codex from your phone with a real terminal, file browsing, and Git, not just task monitoring. Steer a full Codex session from anywhere with Shellular."
+  keywords={[
+    "Codex on phone",
+    "how to run Codex on phone",
+    "Codex mobile",
+    "use Codex on iPhone",
+    "use Codex on Android",
+    "Codex remote access",
+    "code from phone",
+    "Codex mobile app",
+    "Codex UI on phone",
+    "Codex slash commands mobile",
+    "Shellular",
+  ]}
+  heading="How to Run Codex on Your Phone"
+  tagline="Shellular gives Codex a real mobile UI: slash commands, @ file mentions, permission approvals, and model controls, all driving Codex on your own machine with full context of your code."
+  dateLabel="June 11, 2026"
+  dateISO="2026-06-11"
+  readTime="4 min read"
+  slug="how-to-run-codex-on-your-phone"
+  pills={["Mobile Codex UI", "Slash and @ mentions", "Real shell behind it"]}
+  faqs={[
+    {
+      q: "What is the difference between Codex Mobile and Shellular?",
+      a: "Codex Mobile lets you follow and steer a Codex thread. Shellular gives Codex a full mobile UI with slash commands, @ file mentions, permission approvals, and model controls, backed by the real machine: a terminal, file browsing, and Git, so you can also fix things yourself.",
+    },
+    {
+      q: "Can I run my own commands while Codex is working?",
+      a: "Yes. With Shellular you drop into the same shell Codex runs in, so you can restart a service, rerun a test, or edit a file, then let Codex continue.",
+    },
+    {
+      q: "Do I have to choose between Codex and other agents?",
+      a: "No. The same Shellular setup runs Codex, Claude Code, OpenCode, and other terminal agents, so you can switch between them in one place.",
+    },
+    {
+      q: "Where does Codex run, and does it have my project context?",
+      a: "Codex runs on your own computer, a PC, a Mac, a Mac mini, or a VPS, and your phone connects to it through Shellular. Because it runs next to your project, it has full context of your real files, branches, dependencies, and tools.",
+    },
+    {
+      q: "Is running Codex from my phone secure?",
+      a: "Yes. Shellular sessions are end to end encrypted and connect to your own machine. The pairing key never leaves your phone.",
+    },
+  ]}
+  related={[
+    {
+      href: "/shellular-vs-codex-mobile",
+      label: "Shellular vs Codex Mobile",
+      note: "Full feature by feature comparison.",
+    },
+    {
+      href: "/blog/how-to-run-ai-agents-on-your-phone",
+      label: "Run any AI agent on your phone",
+      note: "The broader mobile agent guide.",
+    },
+    {
+      href: "/blog/how-to-run-claude-code-on-your-phone",
+      label: "Claude Code on your phone",
+      note: "Same workflow, different agent.",
+    },
+    {
+      href: "/blog/how-to-run-opencode-on-your-phone",
+      label: "OpenCode on your phone",
+      note: "Terminal native and mobile friendly.",
+    },
+  ]}
+>
+  <p>
+    There are two ways to use Codex from your phone, and they feel very
+    different.
+  </p>
+  <p>
+    The first is the official mobile experience: follow a Codex thread, review
+    diffs, approve commands, keep a long-running task moving. That is genuinely
+    useful when Codex is the only tool you care about in that moment.
+  </p>
+  <p>
+    The second is a full Codex workspace you can actually drive: a real mobile
+    UI for prompting Codex, plus a real terminal, your files, and Git when you
+    want them. That is where <strong>Shellular</strong> comes in.
+  </p>
+
+  <h2>Run Codex in a real mobile UI</h2>
+  <p>
+    Shellular connects your phone to the actual machine Codex runs on, your PC,
+    your Mac, a Mac mini, or a VPS. Codex runs there, right next to your
+    project, so it keeps full context of your real codebase, branches, and
+    dependencies. You are not watching a synced view, you are driving the real
+    thing.
+  </p>
+  <ol>
+    <li>
+      Install Shellular on <a
+        href="https://apps.apple.com/us/app/shellular/id6761985327">iPhone</a
+      > or <a
+        href="https://play.google.com/store/apps/details?id=io.foxbiz.shellular"
+        >Android</a
+      >.
+    </li>
+    <li>
+      Run the companion on your machine, following the <a href="/docs">docs</a>.
+    </li>
+    <li>Pair by scanning the QR code. The key stays on your device.</li>
+    <li>
+      Open Codex in the app and start prompting in a UI built for your phone.
+    </li>
+  </ol>
+
+  <h2>A real Codex UI, not a raw terminal</h2>
+  <p>
+    Shellular does not just drop you into a shell and make you type. It gives
+    Codex a dedicated, mobile-optimized interface with the controls you actually
+    use:
+  </p>
+  <ul>
+    <li>
+      <strong>Slash commands.</strong> Type <code>/</code> and pick from Codex's commands.
+    </li>
+    <li>
+      <strong>@ file mentions.</strong> Tap <code>@</code> to pull a real file from
+      your repo into the prompt.
+    </li>
+    <li>
+      <strong>Permission approvals.</strong> Approve or deny what Codex wants to run,
+      with a tap.
+    </li>
+    <li>
+      <strong>Model picker and reasoning effort.</strong> Tune how Codex works for
+      the task at hand.
+    </li>
+  </ul>
+  <p>
+    And when you want to take over, the real terminal, your files, and Git are
+    one tap away.
+  </p>
+
+  <h2>The difference in practice</h2>
+  <p>
+    Codex is partway through a task and a command fails because a local service
+    is down. In a watch-only setup, you are stuck: you can see the failure but
+    cannot fix it. With Shellular, you drop into the same shell, restart the
+    service, and let Codex continue. No trip back to your desk.
+  </p>
+  <ul>
+    <li>
+      <strong>Run any command yourself</strong>, not just approve the ones Codex
+      suggests.
+    </li>
+    <li>
+      <strong>Browse and edit your real files</strong>, not a diff preview.
+    </li>
+    <li><strong>Use Git directly</strong>: stage, commit, push, inspect.</li>
+    <li>
+      <strong>Switch between agents</strong> in the same setup if you also run Claude
+      Code or OpenCode.
+    </li>
+  </ul>
+  <blockquote>
+    <p>
+      Want the head to head? See <a href="/shellular-vs-codex-mobile"
+        >Shellular vs Codex Mobile</a
+      > for a full breakdown.
+    </p>
+  </blockquote>
+
+  <h2>Is it secure?</h2>
+  <p>
+    Yes. Connections are end to end encrypted and you are talking to your own
+    machine. The pairing key never leaves your phone. The <a href="/#security"
+      >security overview</a
+    > covers the details.
+  </p>
+
+  <h2>Bottom line</h2>
+  <p>
+    If you only want to keep a Codex thread moving, the official mobile flow is
+    fine. If you want to actually drive Codex, with a real mobile UI for slash
+    commands, @ mentions, permissions, and models, plus a real terminal, your
+    files, and Git behind it, Shellular runs Codex on your phone with nothing
+    held back.
+  </p>
+  <p>
+    Curious about the others? Read <a
+      href="/blog/how-to-run-claude-code-on-your-phone"
+      >Claude Code on your phone</a
+    > and <a href="/blog/how-to-run-opencode-on-your-phone"
+      >OpenCode on your phone</a
+    >.
+  </p>
+</ArticleLayout>

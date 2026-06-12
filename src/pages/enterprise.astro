@@ -1,21 +1,26 @@
 ---
 import Footer from "@/components/Footer.astro";
 import Nav from "@/components/Nav.astro";
-import Layout from "@/layouts/Layout.astro";
 import { ENTERPRISE_CALENDAR_URL } from "@/data/appLinks";
+import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout
   title="Shellular for Enterprise"
   description="Self-host Shellular's relay server on your own infrastructure for extra security, full control, and compliance. Talk to the founder."
-  keywords={["Shellular enterprise", "self-host Shellular", "Shellular relay server", "Shellular compliance"]}
+  keywords={[
+    "Shellular enterprise",
+    "self-host Shellular",
+    "Shellular relay server",
+    "Shellular compliance",
+  ]}
 >
   <Nav />
   <main class="enterprise-page">
     <div class="enterprise-container">
       <header class="enterprise-header">
         <span class="eyebrow">Enterprise</span>
-        <h1>Talk to <span class="h1-italic">Founder (Biraj)</span></h1>
+        <h1>Talk to <span class="h1-italic">Founder</span></h1>
         <a
           class="cta"
           href={ENTERPRISE_CALENDAR_URL}
@@ -60,7 +65,11 @@ import { ENTERPRISE_CALENDAR_URL } from "@/data/appLinks";
     inset: 0 0 auto 0;
     height: 360px;
     background:
-      radial-gradient(ellipse 80% 70% at 50% -10%, rgba(255, 240, 210, 0.5) 0%, transparent 60%),
+      radial-gradient(
+        ellipse 80% 70% at 50% -10%,
+        rgba(255, 240, 210, 0.5) 0%,
+        transparent 60%
+      ),
       linear-gradient(180deg, var(--sky-100) 0%, transparent 100%);
     pointer-events: none;
   }
@@ -115,7 +124,9 @@ import { ENTERPRISE_CALENDAR_URL } from "@/data/appLinks";
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
-    transition: background 0.2s, transform 0.2s;
+    transition:
+      background 0.2s,
+      transform 0.2s;
   }
 
   .cta:hover {

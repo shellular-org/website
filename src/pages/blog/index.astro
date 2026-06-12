@@ -1,0 +1,354 @@
+---
+import Footer from "@/components/Footer.astro";
+import Nav from "@/components/Nav.astro";
+import Layout from "@/layouts/Layout.astro";
+
+const posts = [
+	{
+		slug: "how-to-run-ai-agents-on-your-phone",
+		title: "How to Run AI Agents on Your Phone",
+		blurb:
+			"A real mobile UI for each agent, with slash commands, @ file mentions, permission approvals, and model controls, running on your own PC, Mac, Mac mini, or VPS.",
+		dateLabel: "June 11, 2026",
+		readTime: "5 min read",
+		tag: "AI Agents",
+	},
+	{
+		slug: "how-to-run-claude-code-on-your-phone",
+		title: "How to Run Claude Code on Your Phone",
+		blurb:
+			"A native Claude Code UI on your phone: slash commands, @ file mentions, permission approvals, and a model picker, backed by your real machine.",
+		dateLabel: "June 11, 2026",
+		readTime: "4 min read",
+		tag: "Claude Code",
+	},
+	{
+		slug: "how-to-run-codex-on-your-phone",
+		title: "How to Run Codex on Your Phone",
+		blurb:
+			"A real mobile UI for Codex, with slash commands, @ mentions, permission approvals, and model controls, plus a terminal and Git behind it.",
+		dateLabel: "June 11, 2026",
+		readTime: "4 min read",
+		tag: "Codex",
+	},
+	{
+		slug: "how-to-run-opencode-on-your-phone",
+		title: "How to Run OpenCode on Your Phone",
+		blurb:
+			"A native OpenCode UI for your phone: slash commands, @ file mentions, permission approvals, and model controls on your own machine.",
+		dateLabel: "June 11, 2026",
+		readTime: "4 min read",
+		tag: "OpenCode",
+	},
+	{
+		slug: "how-to-use-cursor-on-your-phone",
+		title: "How to Use Cursor on Your Phone",
+		blurb:
+			"The editor stays on desktop, but Shellular gives the Cursor agent a real mobile UI: slash commands, @ mentions, permissions, and model controls.",
+		dateLabel: "June 11, 2026",
+		readTime: "4 min read",
+		tag: "Cursor",
+	},
+];
+
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "Blog",
+		name: "Shellular Blog",
+		description:
+			"Guides on running AI coding agents, terminals, and your full dev environment from your phone.",
+		url: "https://shellular.dev/blog",
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{ "@type": "ListItem", position: 1, name: "Home", item: "https://shellular.dev" },
+			{ "@type": "ListItem", position: 2, name: "Blog", item: "https://shellular.dev/blog" },
+		],
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "ItemList",
+		name: "Shellular Blog articles",
+		itemListElement: posts.map((post, i) => ({
+			"@type": "ListItem",
+			position: i + 1,
+			url: `https://shellular.dev/blog/${post.slug}`,
+			name: post.title,
+		})),
+	},
+];
+---
+
+<Layout
+  title="Shellular Blog | Run AI Agents and Code From Your Phone"
+  description="Practical guides on running Claude Code, Codex, OpenCode, Cursor, Pi, and Copilot CLI from your phone, with a real mobile agent UI: slash commands, @ file mentions, permission approvals, and model controls."
+  keywords={[
+    "run AI agents on phone",
+    "code from phone",
+    "Claude Code on phone",
+    "Codex on phone",
+    "OpenCode on phone",
+    "Cursor on phone",
+    "AI coding agent mobile app",
+    "mobile agent UI",
+    "slash commands on phone",
+    "approve agent permissions on phone",
+    "mobile development",
+    "Shellular blog",
+  ]}
+  structuredData={structuredData}
+>
+  <Nav currentPath={Astro.url.pathname} />
+
+  <main class="blog-page">
+    <header class="blog-hero">
+      <div class="blog-inner">
+        <span class="eyebrow">The Shellular Blog</span>
+        <h1>Code from <span class="h1-italic">anywhere.</span></h1>
+        <p>
+          Short, practical guides on running your AI agents from your phone, with a real mobile UI for each one: slash
+          commands, @ file mentions, permission approvals, and model controls. The agents stay on your PC, Mac, Mac mini,
+          or VPS, with full context of your code. No fluff, just the steps that work.
+        </p>
+      </div>
+    </header>
+
+    <section class="blog-list-section">
+      <div class="blog-inner">
+        <div class="post-grid">
+          {
+            posts.map((post) => (
+              <a class="post-card" href={`/blog/${post.slug}`}>
+                <span class="post-tag">{post.tag}</span>
+                <h2>{post.title}</h2>
+                <p>{post.blurb}</p>
+                <div class="post-meta">
+                  <span>{post.dateLabel}</span>
+                  <span class="dot" aria-hidden="true">•</span>
+                  <span>{post.readTime}</span>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+
+        <div class="compare-block">
+          <h2>Comparing the options?</h2>
+          <p>See how Shellular stacks up against the official mobile tools, feature by feature.</p>
+          <div class="compare-links">
+            <a href="/shellular-vs-codex-mobile">Shellular vs Codex Mobile →</a>
+            <a href="/shellular-vs-claude-remote-control">Shellular vs Claude Remote Control →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .blog-page {
+    padding-top: 60px;
+    background: var(--cream-100);
+  }
+
+  .blog-hero {
+    background:
+      radial-gradient(ellipse 80% 70% at 50% -20%, rgba(255, 240, 210, 0.55) 0%, transparent 60%),
+      linear-gradient(180deg, var(--sky-100) 0%, var(--cream-100) 100%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .blog-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 48px);
+  }
+
+  .blog-hero .blog-inner {
+    padding-top: clamp(60px, 9vw, 104px);
+    padding-bottom: clamp(44px, 6vw, 72px);
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brand-gold-deep);
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1.03;
+    color: var(--ink-900);
+    margin-bottom: 18px;
+    text-wrap: balance;
+  }
+
+  .h1-italic {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--brand-gold-deep);
+  }
+
+  .blog-hero p {
+    color: var(--ink-700);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 60ch;
+  }
+
+  .blog-list-section .blog-inner {
+    padding-top: clamp(40px, 6vw, 64px);
+    padding-bottom: clamp(72px, 10vw, 120px);
+  }
+
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    padding: 26px 24px;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .post-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--brand-gold);
+    opacity: 0;
+    transition: opacity 0.22s ease;
+  }
+
+  .post-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(var(--brand-gold-rgb), 0.45);
+    box-shadow: var(--shadow-md);
+  }
+
+  .post-card:hover::before {
+    opacity: 1;
+  }
+
+  .post-tag {
+    align-self: flex-start;
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brand-gold-ink);
+    background: rgba(var(--brand-gold-rgb), 0.16);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.34);
+    padding: 4px 11px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 16px;
+  }
+
+  .post-card h2 {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 1.22rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink-900);
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .post-card p {
+    color: var(--ink-700);
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+    flex-grow: 1;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .post-meta .dot {
+    opacity: 0.5;
+  }
+
+  .compare-block {
+    margin-top: 28px;
+    padding: clamp(24px, 4vw, 36px);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(var(--brand-gold-rgb), 0.16), rgba(var(--brand-gold-rgb), 0.05));
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.3);
+  }
+
+  .compare-block h2 {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--ink-900);
+    margin-bottom: 8px;
+  }
+
+  .compare-block p {
+    color: var(--ink-700);
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+
+  .compare-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+  }
+
+  .compare-links a {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--brand-gold-ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: color 0.2s;
+  }
+
+  .compare-links a:hover {
+    color: var(--ink-900);
+  }
+
+  @media (max-width: 700px) {
+    .post-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
