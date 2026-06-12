@@ -3,8 +3,8 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
 ---
 
 <ArticleLayout
-  title="How to Run AI Agents on Your Phone (2026 Guide) | Shellular"
-  description="Want to run AI coding agents from your phone? They keep running on your PC, Mac, Mac mini, or VPS with full context of your code. Here is how to reach Claude Code, Codex, and OpenCode from anywhere with Shellular."
+  title="How to Run AI Agents on Your Phone & Write Code From Mobile (2026) | Shellular"
+  description="Want to run AI coding agents on mobile and write code from your phone? They keep running on your PC, Mac, Mac mini, or VPS with full context of your code. Reach Claude Code, Codex, Cursor, and OpenCode from anywhere with Shellular."
   keywords={[
     "run AI agents on phone",
     "how to run agents on phone",
@@ -13,6 +13,12 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
     "mobile terminal for developers",
     "remote development from phone",
     "AI coding agent mobile app",
+    "AI agents on mobile",
+    "run AI agents on mobile",
+    "write code from phone",
+    "coding on phone",
+    "AI on phone",
+    "code from mobile",
     "mobile agent UI",
     "slash commands on phone",
     "approve agent permissions on phone",
@@ -54,7 +60,7 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
     },
     {
       q: "Is it safe to control my dev machine from my phone?",
-      a: "Shellular sessions are end to end encrypted and you connect to your own machine rather than a shared relay. The pairing key never leaves your device, and pairing is done by scanning a QR code.",
+      a: "Yes. Shellular sessions are end to end encrypted. Traffic passes through a relay server so the two devices can connect, but it is encrypted on your device and only decrypted on the other end, so the relay cannot read your code. The encryption key is shared by scanning a QR code and never leaves your devices, and every new device must be approved by you.",
     },
     {
       q: "Is this just a remote desktop?",
@@ -78,9 +84,9 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
       note: "The terminal native agent goes mobile easily.",
     },
     {
-      href: "/shellular-vs-claude-remote-control",
-      label: "Shellular vs Claude Remote Control",
-      note: "How the two compare for mobile dev.",
+      href: "/blog/access-localhost-on-phone-without-ngrok",
+      label: "Access localhost on your phone, no ngrok",
+      note: "Preview and debug your dev server from your phone.",
     },
   ]}
 >
@@ -92,8 +98,9 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
   </p>
   <p>
     The good news: your agents do not need to move. They keep running on your
-    machine. You just need a way to reach in and steer them from your phone.
-    That is exactly what <strong>Shellular</strong> does.
+    machine. You just need a way to reach in and steer them from your phone. That
+    is exactly what <strong>Shellular</strong> does: it lets you run AI agents on
+    mobile and write code from your phone, against your real project.
   </p>
 
   <h2>Where the agent actually runs</h2>
@@ -195,11 +202,13 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
 
   <h2>Is it safe?</h2>
   <p>
-    Yes. Sessions are end to end encrypted and the pairing key stays on your
-    device. You connect to your own machine, not a shared relay sitting in the
-    middle reading your code. If you want the details, the <a href="/#security"
-      >security overview</a
-    > walks through how pairing and encryption work.
+    Yes. Sessions are end to end encrypted. Traffic does flow through a relay
+    server so your phone and your machine can find each other, but it is encrypted
+    on your device and only decrypted on the other end, so the relay just passes
+    along bytes it cannot read. The encryption key is shared by scanning a QR code
+    and never leaves your devices, and you approve every new device. If you want
+    the details, the <a href="/#security">security overview</a> walks through how
+    pairing and encryption work.
   </p>
 
   <h2>The short version</h2>

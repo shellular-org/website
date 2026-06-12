@@ -3,8 +3,8 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
 ---
 
 <ArticleLayout
-  title="How to Run Claude Code on Your Phone (2026 Guide) | Shellular"
-  description="Run Claude Code from your phone with a real terminal, file access, and Git. Approve plans, answer prompts, and review diffs from anywhere with Shellular."
+  title="How to Run Claude Code on Your Phone or Mobile (2026 Guide) | Shellular"
+  description="Use Claude Code on mobile with a real agent UI, terminal, file access, and Git. Run it from your phone, approve plans, and review diffs from anywhere with Shellular."
   keywords={[
     "Claude Code on phone",
     "how to run Claude Code on phone",
@@ -13,9 +13,13 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
     "use Claude Code on Android",
     "Claude Code remote",
     "code from phone",
+    "Claude Code on mobile",
+    "run Claude Code on mobile",
     "Claude Code mobile app",
     "Claude Code UI on phone",
     "Claude Code slash commands mobile",
+    "write code from phone",
+    "coding on phone",
     "Shellular",
   ]}
   heading="How to Run Claude Code on Your Phone"
@@ -27,8 +31,8 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
   pills={["Mobile Claude Code UI", "Slash and @ mentions", "Files and Git"]}
   faqs={[
     {
-      q: "Is there a Claude Code app for phones?",
-      a: "Shellular is effectively that app. It gives Claude Code a dedicated, mobile-optimized UI with slash commands, @ file mentions, permission approvals, a model picker, and reasoning effort controls, all driving Claude Code running on your own machine.",
+      q: "Can I use Claude Code from my phone?",
+      a: "Yes. Anthropic has an official Remote Control feature that mirrors a Claude Code session to the Claude app, and there are third party options too. Shellular is one of them: it gives Claude Code a dedicated mobile UI with slash commands, @ file mentions, permission approvals, and a model picker, and it also gives you a real terminal, file browsing, Git, and a localhost browser on the same machine.",
     },
     {
       q: "Can I approve Claude Code plans and prompts from my phone?",
@@ -48,7 +52,7 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
     },
     {
       q: "Is running Claude Code remotely secure?",
-      a: "Sessions are end to end encrypted and you connect to your own machine, not a shared server. The pairing key never leaves your phone.",
+      a: "Sessions are end to end encrypted. Traffic passes through a relay server, but it is encrypted on your device and only decrypted on your phone, so the relay never sees your code. The encryption key is shared by scanning a QR code and never leaves your devices, and every new device has to be approved by you.",
     },
   ]}
   related={[
@@ -75,8 +79,9 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
   ]}
 >
   <p>
-    Here is the thing people get wrong: running Claude Code on your phone does
-    not mean squinting at a raw terminal and typing commands with your thumbs.
+    Here is the thing people get wrong: running Claude Code on your phone, or on
+    mobile generally, does not mean squinting at a raw terminal and typing commands
+    with your thumbs.
     Shellular gives Claude Code a real, mobile-optimized UI. The same controls
     you use on the desktop are right there, built for touch.
   </p>
@@ -176,9 +181,12 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
 
   <h2>Is it secure?</h2>
   <p>
-    Sessions are end to end encrypted and you connect to your own machine, not a
-    shared server in the middle. The pairing key never leaves your phone. See
-    the <a href="/#security">security overview</a> for how it works.
+    Sessions are end to end encrypted. Traffic does pass through a relay server,
+    but it is encrypted on your machine and only decrypted on your phone, so the
+    relay just shuttles bytes it cannot read. The encryption key is shared by QR
+    code and never leaves your devices. See the <a href="/#security"
+      >security overview</a
+    > for how it works.
   </p>
 
   <h2>Bottom line</h2>

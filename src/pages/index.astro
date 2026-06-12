@@ -87,6 +87,30 @@ const structuredData = [
 			},
 			{
 				"@type": "Question",
+				name: "Can I run Claude Code, Codex, or Cursor on mobile?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Yes. Shellular gives Claude Code, Codex, OpenCode, and the Cursor agent a dedicated mobile UI on your phone, with slash commands, @ file mentions, permission approvals, a model picker, and reasoning effort controls. The agents run on your own machine, so they keep full context of your code.",
+				},
+			},
+			{
+				"@type": "Question",
+				name: "Can I write code from my phone with Shellular?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Yes. Shellular lets you write code from your phone by connecting to your own computer (PC, Mac, Mac mini, or VPS). You get a real terminal, your actual project files, Git, AI agents, and an in-app browser with DevTools, all from a mobile interface.",
+				},
+			},
+			{
+				"@type": "Question",
+				name: "Can I view localhost on my phone without ngrok?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Yes. With the Shellular companion running on your machine, you can type localhost:3000, localhost:5173, or any port into Shellular's in-app browser and it loads, with a JavaScript console, inspect tab, and network tab. No ngrok, tunnel, or port forwarding required.",
+				},
+			},
+			{
+				"@type": "Question",
 				name: "Is my code encrypted?",
 				acceptedAnswer: {
 					"@type": "Answer",
@@ -132,29 +156,36 @@ const structuredData = [
 ---
 
 <Layout
-  title="Shellular | Claude Code, Codex & OpenCode on Your Phone"
-  description="Run Claude Code, Codex, OpenCode, and your other AI agents from your phone. Shellular gives you secure remote access to your development machine with terminal, files, Git, ports, and browser DevTools — all from mobile."
+  title="Shellular | Run Claude Code, Codex, Cursor & OpenCode on Your Phone"
+  description="Run Claude Code, Codex, Cursor, and OpenCode on mobile and write code from your phone. Shellular gives you secure remote access to your dev machine: a real agent UI, terminal, files, Git, ports, and browser DevTools, all from your phone."
   keywords={[
     "Shellular",
+    "write code from phone",
+    "code from mobile",
+    "AI agents on phone",
+    "AI agents on mobile",
+    "AI on phone",
     "remote development from phone",
-    "Claude Code mobile",
+    "Claude Code on mobile",
     "Claude Code on phone",
-    "Claude Code from phone",
-    "Codex mobile",
+    "Claude Code mobile",
+    "Codex on mobile",
     "Codex on phone",
-    "Codex from phone",
-    "OpenCode mobile",
+    "Codex mobile",
+    "OpenCode on mobile",
     "OpenCode on phone",
-    "OpenCode from phone",
+    "OpenCode mobile",
+    "Cursor on mobile",
+    "Cursor on phone",
+    "Copilot CLI on phone",
     "AI coding agent mobile",
     "remote terminal from phone",
     "mobile developer tools",
     "mobile remote development",
-    "Claude Code remote access",
-    "Codex remote access",
     "use Claude Code on iPhone",
     "use Codex on iPhone",
     "control AI agents from phone",
+    "access localhost on phone",
   ]}
   structuredData={structuredData}
 >

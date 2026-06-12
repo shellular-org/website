@@ -3,8 +3,8 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
 ---
 
 <ArticleLayout
-  title="How to Use Cursor on Your Phone (2026 Guide) | Shellular"
-  description="Cursor is desktop software, but the agents and terminals it runs do not have to be out of reach. Here is the practical way to keep coding from your phone."
+  title="How to Use Cursor on Your Phone or Mobile (2026 Guide) | Shellular"
+  description="Cursor on mobile: the editor stays on desktop, but Shellular gives the Cursor agent a real phone UI plus a terminal, files, and Git on your own machine. Keep coding from your phone."
   keywords={[
     "Cursor on phone",
     "how to use Cursor on phone",
@@ -13,9 +13,13 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
     "use Cursor on Android",
     "Cursor remote",
     "code from phone",
+    "Cursor on mobile",
+    "use Cursor on mobile",
     "Cursor agent mobile",
     "Cursor agent UI on phone",
     "Cursor CLI mobile",
+    "write code from phone",
+    "coding on phone",
     "Shellular",
   ]}
   heading="How to Use Cursor on Your Phone"
@@ -28,7 +32,7 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
   faqs={[
     {
       q: "Is there a Cursor app for phones?",
-      a: "The Cursor editor itself is desktop only, but Shellular gives the Cursor agent a real mobile UI with slash commands, @ file mentions, permission approvals, and a model picker, all driving the agent on your own machine. The terminal, files, and Git come along too.",
+      a: "Not a native one. Cursor offers mobile access through a web app you install from the browser (a PWA), built around its background and cloud agents. Shellular is a different angle: it connects to the Cursor agent running on your own machine and gives you a real terminal, file browsing, Git, and a localhost browser alongside it, so you control your actual dev box, not just a cloud task.",
     },
     {
       q: "Can I run my Cursor agents from my phone?",
@@ -67,19 +71,21 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
   ]}
 >
   <p>
-    Let us be honest up front: Cursor is desktop software built on VS Code.
-    There is no phone version, and cramming a full IDE onto a small screen would
-    be miserable anyway. So the question is not "can I install Cursor on my
-    phone." It is "can I keep my Cursor workflow going when I am away from my
-    desk."
+    Let us be clear up front about using Cursor on mobile: the Cursor desktop
+    editor does not run on a phone, and cramming a full IDE onto a small screen
+    would be miserable anyway. Cursor
+    does offer mobile access through a web app you install from the browser, but
+    it is built around its background and cloud agents. If what you want is to
+    drive the Cursor agent on your own machine, with your real local environment,
+    that is a different need.
   </p>
   <p>
-    And there, the answer is better than you might expect. The valuable part is
-    the <strong>Cursor agent</strong>, and that does not live inside the editor
-    window. It runs on your machine, your PC, your Mac, a Mac mini, or a VPS.
-    <strong>Shellular</strong> gives that agent a real, mobile-optimized UI on your
-    phone, connected straight to the same machine, with full context of your real
-    codebase.
+    That is where <strong>Shellular</strong> fits. The Cursor agent runs on your
+    own computer, your PC, your Mac, a Mac mini, or a VPS, right next to your code.
+    Shellular gives that agent a real, mobile-optimized UI on your phone, connected
+    straight to the same machine, with full context of your real codebase, plus a
+    terminal, files, Git, and a localhost browser you will not get from a cloud
+    task runner.
   </p>
 
   <h2>A real Cursor agent UI, on your phone</h2>
@@ -140,9 +146,11 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
 
   <h2>Is it secure?</h2>
   <p>
-    Yes. Sessions are end to end encrypted and you connect to your own machine,
-    not a shared relay. The pairing key stays on your device. See the <a
-      href="/#security">security overview</a
+    Yes. Sessions are end to end encrypted. Traffic passes through a relay
+    server, but it is encrypted on your machine and only decrypted on your phone,
+    so the relay just forwards bytes it cannot read. The encryption key is shared
+    by QR code and never leaves your devices. See the <a href="/#security"
+      >security overview</a
     > for how it works.
   </p>
 

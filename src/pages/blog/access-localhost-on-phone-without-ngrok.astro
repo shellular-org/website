@@ -1,0 +1,108 @@
+---
+import ArticleLayout from "@/components/ArticleLayout.astro";
+---
+
+<ArticleLayout
+  title="Access localhost on Your Phone Without ngrok | Shellular"
+  description="View your local dev server on your phone without ngrok or port forwarding. Type localhost:3000 in Shellular's in-app browser and get DevTools, console, and network tab too."
+  keywords={[
+    "access localhost on phone",
+    "view localhost on phone without ngrok",
+    "test localhost on mobile",
+    "ngrok alternative",
+    "no port forwarding",
+    "mobile devtools",
+    "inspect localhost on phone",
+    "localhost 3000 on phone",
+    "preview dev server on phone",
+    "Shellular",
+  ]}
+  heading="Access localhost on Your Phone, No ngrok Required"
+  tagline="Got a dev server running on localhost:3000 or localhost:5173? Type it into Shellular's in-app browser and it just loads, with a real console, inspector, and network tab. No ngrok, no port forwarding, no fiddling."
+  dateLabel="June 11, 2026"
+  dateISO="2026-06-11"
+  readTime="3 min read"
+  slug="access-localhost-on-phone-without-ngrok"
+  pills={["No ngrok", "No port forwarding", "Full DevTools"]}
+  faqs={[
+    {
+      q: "Can I view my localhost dev server on my phone without ngrok?",
+      a: "Yes. If the Shellular companion is running on your machine, you can type localhost:3000, localhost:5173, or any port into Shellular's in-app browser and it loads, with no ngrok, tunnel service, or port forwarding to set up.",
+    },
+    {
+      q: "Do I get developer tools on mobile too?",
+      a: "Yes. Shellular's in-app browser includes DevTools: a JavaScript console, an inspect or elements tab, and a network tab, so you can debug your local site from your phone, not just look at it.",
+    },
+    {
+      q: "Is my dev server exposed to the public internet?",
+      a: "No. Unlike a public tunnel that puts your server on a shareable URL, Shellular traffic is end to end encrypted. It passes through a relay so your phone and machine can connect, but it is encrypted on your machine and only decrypted on your phone, so the relay cannot read it and your localhost stays private to you. The encryption key never leaves your devices.",
+    },
+    {
+      q: "Does this work for any framework or port?",
+      a: "Yes. It does not care what is serving the page. Vite on 5173, Next.js on 3000, a Rails or Django server, a Storybook, an internal dashboard, anything listening on a local port works.",
+    },
+  ]}
+  related={[
+    { href: "/blog/how-to-run-ai-agents-on-your-phone", label: "Run any AI agent on your phone", note: "The full mobile dev workflow." },
+    { href: "/blog/how-to-run-claude-code-on-your-phone", label: "Claude Code on your phone", note: "Steer your agent while you preview." },
+    { href: "/blog/how-to-run-codex-on-your-phone", label: "Codex on your phone", note: "Drive a real Codex session." },
+    { href: "/blog/how-to-run-opencode-on-your-phone", label: "OpenCode on your phone", note: "Terminal native, mobile friendly." },
+  ]}
+>
+  <p>
+    You change a button, the agent ships the diff, and now you want to see it on an actual phone screen. The old way: stop
+    what you are doing, fire up ngrok, copy the random URL, paste it into your phone, and hope the tunnel does not drop.
+    Every single time.
+  </p>
+  <p>
+    Shellular skips all of that. If the companion is running on your machine, your phone can already reach anything serving
+    on localhost. Just type the address.
+  </p>
+
+  <h2>Type the address. That is the whole step.</h2>
+  <p>
+    Open the in-app browser in Shellular and enter your local URL the same way you would on your laptop:
+  </p>
+  <pre><code>localhost:3000
+localhost:5173
+127.0.0.1:8080</code></pre>
+  <p>
+    The page loads. No tunnel to spin up, no public URL to generate, no firewall rule, no router settings. Because the
+    Shellular app is already connected to your machine, your local ports are reachable from your phone over the same
+    encrypted link.
+  </p>
+
+  <h2>It is not just a preview. It is a real browser with DevTools.</h2>
+  <p>
+    This is the part that makes it genuinely useful instead of a glorified screenshot. The in-app browser ships with real
+    developer tools:
+  </p>
+  <ul>
+    <li><strong>JavaScript console.</strong> See logs and errors, and run snippets, right from your phone.</li>
+    <li><strong>Inspect tab.</strong> Poke at the DOM and styles to figure out why that layout is off.</li>
+    <li><strong>Network tab.</strong> Watch requests, check payloads, and catch the call that is failing.</li>
+  </ul>
+  <p>
+    So when something only breaks on mobile, you are not stuck guessing. You debug it on the device where it actually
+    happens.
+  </p>
+
+  <h2>Why this beats a tunnel</h2>
+  <ul>
+    <li><strong>Nothing to set up.</strong> No ngrok account, no auth token, no per-port config.</li>
+    <li><strong>Nothing exposed.</strong> A public tunnel puts your dev server on the open internet behind a shareable URL. Shellular traffic is end to end encrypted, so even the relay that connects your devices cannot read it, and your localhost stays private to you.</li>
+    <li><strong>Nothing to babysit.</strong> No expiring URLs, no reconnects, no "tunnel session expired" right when you need it.</li>
+    <li><strong>Any port, any framework.</strong> If it listens on localhost, you can open it.</li>
+  </ul>
+
+  <h2>The short version</h2>
+  <p>
+    Previewing and debugging a local dev server on your phone used to mean wrestling with ngrok or port forwarding.
+    With Shellular, you type <code>localhost:3000</code> into the in-app browser and you are looking at your site, with a
+    console, inspector, and network tab right there. Private, instant, and zero setup.
+  </p>
+  <p>
+    And since the same app also runs your terminal and your AI agents, you can tweak code, ship it, and check it on a phone
+    screen without ever getting up.
+  </p>
+</ArticleLayout>
