@@ -11,147 +11,146 @@ import Testimonials from "@/components/Testimonials.astro";
 import Layout from "@/layouts/Layout.astro";
 
 const structuredData = [
-	{
-		"@context": "https://schema.org",
-		"@type": "Organization",
-		name: "Shellular",
-		url: "https://shellular.dev",
-		logo: "https://shellular.dev/favicon.ico",
-		email: "team@shellular.dev",
-		sameAs: [
-			"https://twitter.com/shellular_dev",
-			"https://github.com/shellular-org",
-			"https://www.linkedin.com/company/120924584",
-		],
-	},
-	{
-		"@context": "https://schema.org",
-		"@type": "SoftwareApplication",
-		name: "Shellular",
-		applicationCategory: "DeveloperApplication",
-		operatingSystem: "macOS, Linux, Windows",
-		availableOnPlatform: [
-			{ "@type": "SoftwarePlatform", name: "iOS" },
-			{ "@type": "SoftwarePlatform", name: "Android" },
-		],
-		url: "https://shellular.dev",
-		description:
-			"Shellular lets you access your development machine from your phone, including terminal, files, ports, Git workflows, and AI coding agents.",
-		offers: {
-			"@type": "Offer",
-			price: "0",
-			priceCurrency: "USD",
-			category: "Free",
-		},		},
-	{
-		"@context": "https://schema.org",
-		"@type": "WebSite",
-		name: "Shellular",
-		url: "https://shellular.dev",
-		potentialAction: {
-			"@type": "SearchAction",
-			target: {
-				"@type": "EntryPoint",
-				urlTemplate: "https://shellular.dev/?q={search_term_string}",
-			},
-			"query-input": "required name=search_term_string",
-		},
-	},
-	{
-		"@context": "https://schema.org",
-		"@type": "FAQPage",
-		mainEntity: [
-			{
-				"@type": "Question",
-				name: "What is Shellular?",
-				acceptedAnswer: {
-					"@type": "Answer",
-					text: "Shellular is a remote development tool that lets you access your development machine from your phone. You can run AI coding agents (Claude Code, Codex, OpenCode, and more), use a full terminal, browse files, manage ports, and use browser DevTools — all from a mobile interface.",
-				},
-			},
-			{
-				"@type": "Question",
-				name: "Is Shellular free?",
-				acceptedAnswer: {
-					"@type": "Answer",
-					text: "Yes, Shellular is currently free to use. You install the CLI on your machine and the mobile app on your phone, then connect them via a QR code. No account or sign-up is required.",
-				},
-			},
-			{
-				"@type": "Question",
-				name: "What AI agents does Shellular support?",
-				acceptedAnswer: {
-					"@type": "Answer",
-					text: "Shellular works with Claude Code, Codex, OpenCode, Pi, Cursor CLI, GitHub Copilot CLI, Hermes Agent, and any other AI coding agent that runs in your terminal. It is not tied to a single provider.",
-				},
-			},
-			{
-				"@type": "Question",
-				name: "Can I run Claude Code, Codex, or Cursor on mobile?",
-				acceptedAnswer: {
-					"@type": "Answer",
-					text: "Yes. Shellular gives Claude Code, Codex, OpenCode, and the Cursor agent a dedicated mobile UI on your phone, with slash commands, @ file mentions, permission approvals, a model picker, and reasoning effort controls. The agents run on your own machine, so they keep full context of your code.",
-				},
-			},
-			{
-				"@type": "Question",
-				name: "Can I write code from my phone with Shellular?",
-				acceptedAnswer: {
-					"@type": "Answer",
-					text: "Yes. Shellular lets you write code from your phone by connecting to your own computer (PC, Mac, Mac mini, or VPS). You get a real terminal, your actual project files, Git, AI agents, and an in-app browser with DevTools, all from a mobile interface.",
-				},
-			},
-			{
-				"@type": "Question",
-				name: "Can I view localhost on my phone without ngrok?",
-				acceptedAnswer: {
-					"@type": "Answer",
-					text: "Yes. With the Shellular companion running on your machine, you can type localhost:3000, localhost:5173, or any port into Shellular's in-app browser and it loads, with a JavaScript console, inspect tab, and network tab. No ngrok, tunnel, or port forwarding required.",
-				},
-			},
-			{
-				"@type": "Question",
-				name: "Is my code encrypted?",
-				acceptedAnswer: {
-					"@type": "Answer",
-					text: "Yes. All traffic between the Shellular app and the CLI on your machine is end-to-end encrypted using libsodium. The relay server cannot read the content of your sessions. The encryption key is exchanged via QR code and never transmitted over the network.",
-				},
-			},
-			{
-				"@type": "Question",
-				name: "What operating systems does Shellular support?",
-				acceptedAnswer: {
-					"@type": "Answer",
-					text: "The CLI host runs on macOS, Linux, and Windows. The mobile app is available for iOS and Android.",
-				},
-			},
-			{
-				"@type": "Question",
-				name: "How do I get started with Shellular?",
-				acceptedAnswer: {
-					"@type": "Answer",
-					text: "Download the Shellular app on your phone, then run 'npx shellular' on your development machine. A QR code will appear — scan it with the app, approve the device on your machine, and your full dev environment will be accessible from your phone.",
-				},
-			},
-		],
-	},
-	{
-		"@context": "https://schema.org",
-		"@type": "VideoObject",
-		name: "Shellular — Your dev environment in your pocket",
-		description: "Demo video showing how Shellular lets you run AI coding agents, terminal commands, file browsing, and browser DevTools from your phone.",
-		url: "https://youtu.be/I42X_6VHJ2I",
-		uploadDate: "2025-03-15",
-		duration: "PT1M32S",
-		thumbnailUrl: "https://shellular.dev/banner.jpeg",
-		contentUrl: "https://youtu.be/I42X_6VHJ2I",
-		embedUrl: "https://www.youtube.com/embed/I42X_6VHJ2I",
-		publisher: {
-			"@type": "Organization",
-			name: "Shellular",
-			url: "https://shellular.dev",
-		},
-	},
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://shellular.dev/#organization",
+    name: "Shellular",
+    url: "https://shellular.dev",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://shellular.dev/logo.png",
+      width: 512,
+      height: 512,
+    },
+    email: "team@shellular.dev",
+    sameAs: [
+      "https://twitter.com/shellular_dev",
+      "https://github.com/shellular-org",
+      "https://www.linkedin.com/company/120924584",
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Shellular",
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "macOS, Linux, Windows",
+    availableOnPlatform: [
+      { "@type": "SoftwarePlatform", name: "iOS" },
+      { "@type": "SoftwarePlatform", name: "Android" },
+    ],
+    url: "https://shellular.dev",
+    description:
+      "Shellular lets you access your development machine from your phone, including terminal, files, ports, Git workflows, and AI coding agents.",
+    publisher: { "@id": "https://shellular.dev/#organization" },
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      category: "Free",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://shellular.dev/#website",
+    name: "Shellular",
+    url: "https://shellular.dev",
+    publisher: { "@id": "https://shellular.dev/#organization" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is Shellular?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Shellular is a remote development tool that lets you access your development machine from your phone. You can run AI coding agents (Claude Code, Codex, OpenCode, and more), use a full terminal, browse files, manage ports, and use browser DevTools — all from a mobile interface.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is Shellular free?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, Shellular is currently free to use. You install the CLI on your machine and the mobile app on your phone, then connect them via a QR code. No account or sign-up is required.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What AI agents does Shellular support?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Shellular works with Claude Code, Codex, OpenCode, Pi, Cursor CLI, GitHub Copilot CLI, Hermes Agent, and any other AI coding agent that runs in your terminal. It is not tied to a single provider.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I run Claude Code, Codex, or Cursor on mobile?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Shellular gives Claude Code, Codex, OpenCode, and the Cursor agent a dedicated mobile UI on your phone, with slash commands, @ file mentions, permission approvals, a model picker, and reasoning effort controls. The agents run on your own machine, so they keep full context of your code.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I write code from my phone with Shellular?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Shellular lets you write code from your phone by connecting to your own computer (PC, Mac, Mac mini, or VPS). You get a real terminal, your actual project files, Git, AI agents, and an in-app browser with DevTools, all from a mobile interface.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I view localhost on my phone without ngrok?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. With the Shellular companion running on your machine, you can type localhost:3000, localhost:5173, or any port into Shellular's in-app browser and it loads, with a JavaScript console, inspect tab, and network tab. No ngrok, tunnel, or port forwarding required.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is my code encrypted?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. All traffic between the Shellular app and the CLI on your machine is end-to-end encrypted using libsodium. The relay server cannot read the content of your sessions. The encryption key is exchanged via QR code and never transmitted over the network.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What operating systems does Shellular support?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The CLI host runs on macOS, Linux, and Windows. The mobile app is available for iOS and Android.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do I get started with Shellular?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Download the Shellular app on your phone, then run 'npx shellular' on your development machine. A QR code will appear — scan it with the app, approve the device on your machine, and your full dev environment will be accessible from your phone.",
+        },
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "Shellular — Your dev environment in your pocket",
+    description:
+      "Demo video showing how Shellular lets you run AI coding agents, terminal commands, file browsing, and browser DevTools from your phone.",
+    url: "https://youtu.be/I42X_6VHJ2I",
+    uploadDate: "2026-06-01",
+    duration: "PT1M32S",
+    thumbnailUrl: "https://shellular.dev/banner.jpeg",
+    contentUrl: "https://youtu.be/I42X_6VHJ2I",
+    embedUrl: "https://www.youtube.com/embed/I42X_6VHJ2I",
+    publisher: { "@id": "https://shellular.dev/#organization" },
+  },
 ];
 ---
 

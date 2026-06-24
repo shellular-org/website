@@ -2,7 +2,7 @@
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
   <ShortName>Shellular</ShortName>
   <Description>Search Shellular — remote development tool for AI agents, terminal, files, and browser DevTools on your phone.</Description>
-  <Url type="text/html" template="https://shellular.dev/?q={searchTerms}" />
+  <Url type="text/html" template="https://www.google.com/search?q=site:shellular.dev+{searchTerms}" />
   <Contact>team@shellular.dev</Contact>
   <Tags>developer tools remote development mobile terminal AI agents coding</Tags>
   <LongName>Shellular — Dev environment on your phone</LongName>
