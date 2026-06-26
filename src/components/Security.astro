@@ -76,6 +76,15 @@ const points = [
           </li>
         ))}
       </ul>
+
+      <div class="sec-more reveal reveal-delay-4">
+        <a href="/security" class="sec-more-link">
+          Learn more about our security model
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
     </section>
   )
 }
@@ -161,5 +170,33 @@ const points = [
     font-size: 14px;
     color: var(--ink-500);
     line-height: 1.65;
+  }
+
+  .sec-more {
+    margin-top: 32px;
+    text-align: center;
+  }
+
+  .sec-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(21, 108, 194, 0.3);
+    padding-bottom: 2px;
+    transition:
+      color 0.18s ease,
+      border-color 0.18s ease,
+      gap 0.18s ease;
+  }
+
+  .sec-more-link:hover {
+    color: var(--accent-orange);
+    border-bottom-color: var(--accent-orange);
+    gap: 10px;
   }
 </style>
