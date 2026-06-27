@@ -1,0 +1,105 @@
+# Shellular
+
+> Shellular gives developers secure remote access to a development machine from their phone. The machine can be your own laptop or desktop, or a remote server such as an AWS EC2 instance, a Hetzner box, a DigitalOcean droplet, a Mac mini, or any VPS. You get a real terminal, file browser, port forwarding, Git workflows, and a dedicated UI for AI coding agents - all from iOS or Android, with end-to-end encryption.
+
+Shellular is a two-part system: a CLI host daemon (`npx shellular`) that runs on the machine you want to control, and a mobile app (iOS/Android) that connects to it via an encrypted WebSocket relay. The host can be a local machine (Mac, Linux, or Windows) or a remote cloud server you SSH into today (EC2, Hetzner, DigitalOcean, Fly, a VPS, etc.) - if Node.js runs on it, Shellular runs on it. The encryption key is generated on the host and exchanged via QR code, so it never travels over the network and the relay cannot read your sessions.
+
+Shellular speaks the Agent Client Protocol (ACP), an open standard for editor-to-agent communication. The Shellular mobile app acts as an ACP client, so it talks to any ACP-compatible coding agent through one common interface instead of bespoke per-agent integrations - this is how the app drives Claude Code, Codex, and others from your phone.
+
+Shellular is fully open source (CLI, relay server, and mobile app are all on GitHub under [shellular-org](https://github.com/shellular-org)).
+
+## What you can do with Shellular
+
+- Connect to any machine you own: a local laptop/desktop, a Mac mini, or a remote server like an EC2 instance, Hetzner server, DigitalOcean droplet, or any VPS
+- Run AI coding agents from your phone: Claude Code, Codex, OpenCode, Cursor CLI, GitHub Copilot CLI, Hermes Agent, and any other terminal-based agent
+- Get a dedicated mobile UI for agents: slash commands, @ file mentions, permission approvals, model picker, reasoning effort controls
+- Use a full terminal connected to your real machine, wherever it lives
+- Browse, open, and edit files on the host from your phone
+- View ports running on the host (e.g. localhost:3000, localhost:5173) in an in-app browser with DevTools - no ngrok or tunnel needed
+- Manage Git: branches, commits, diffs
+- Approve or reject device connections from the host CLI
+
+## Getting started
+
+1. Run `npx shellular` on the machine you want to control - your own computer or a remote server you SSH into. No install required.
+2. Scan the QR code with the Shellular app on your phone
+3. Approve the device on the host machine
+4. Your full dev environment is now accessible from your phone
+
+## Security model
+
+- End-to-end encrypted with libsodium. The relay only passes encrypted bytes - it cannot read your sessions.
+- Encryption key is generated on the host and exchanged via QR code scan. It is never transmitted over the network.
+- Every new device must be explicitly approved from the host machine before it can connect.
+- Self-hosting supported: you can run your own relay instead of using the hosted one
+- All source code is publicly auditable. The server exposes its running commit SHA at `api.shellular.dev`.
+
+## CLI reference
+
+**Commands**
+- `npx shellular` - start the host in the foreground and show a QR code
+- `shellular start` - start the host as a background daemon
+- `shellular stop` - stop the background daemon
+- `shellular status` - show host status, PID, restart count, and logs
+- `shellular logs` - stream background host logs
+- `shellular clients` - review and approve connected client devices
+
+**Global options**
+- `--server <url>` - relay server WebSocket URL
+- `--dir <path>` (default: `$HOME`) - root directory exposed to the client
+- `--unknown-clients <policy>` (default: `requires-approval`) - how unknown clients are handled: `requires-approval`, `always-allow`, or `always-reject`
+
+**Requirements:** Node.js v20.20.2+, runs on macOS / Linux / Windows (local or remote/cloud server)
+
+## Supported AI agents
+
+Shellular works with any terminal-based AI coding agent, and integrates with ACP-compatible agents via the Agent Client Protocol. Agents with a dedicated mobile UI in the app:
+- Claude Code (Anthropic)
+- Codex (OpenAI)
+- OpenCode
+- Cursor CLI
+- GitHub Copilot CLI
+- Hermes Agent
+- Pi
+
+## Pages
+
+- [Home](https://shellular.dev/): Product overview, features, integrations, and download links
+- [Docs](https://shellular.dev/docs): Full CLI documentation - install, commands, options, client approval, and security
+- [Security](https://shellular.dev/security): Encryption model, device approval, self-hosting, and open source verification
+- [About](https://shellular.dev/about): Team and mission
+- [Blog](https://shellular.dev/blog): Guides and technical articles
+- [Contact](https://shellular.dev/contact): Reach the team
+- [Privacy Policy](https://shellular.dev/privacy)
+- [Terms of Service](https://shellular.dev/terms)
+
+## Blog posts
+
+- [How to run Claude Code on your phone](https://shellular.dev/blog/how-to-run-claude-code-on-your-phone)
+- [How to run AI agents on your phone](https://shellular.dev/blog/how-to-run-ai-agents-on-your-phone)
+- [How to run Codex on your phone](https://shellular.dev/blog/how-to-run-codex-on-your-phone)
+- [How to run OpenCode on your phone](https://shellular.dev/blog/how-to-run-opencode-on-your-phone)
+- [How to use Cursor on your phone](https://shellular.dev/blog/how-to-use-cursor-on-your-phone)
+- [Cloud agents will let you ship from anywhere](https://shellular.dev/blog/cloud-agents-will-let-you-ship-from-anywhere)
+- [Access localhost on your phone without ngrok](https://shellular.dev/blog/access-localhost-on-phone-without-ngrok)
+
+## Comparisons
+
+- [Shellular vs Claude Remote Control](https://shellular.dev/shellular-vs-claude-remote-control)
+- [Shellular vs Codex Mobile](https://shellular.dev/shellular-vs-codex-mobile)
+
+## Optional
+
+- [npm package](https://www.npmjs.com/package/shellular): Install or inspect the CLI on npm
+- [GitHub - App](https://github.com/shellular-org/app): Mobile app source code
+- [GitHub - CLI](https://github.com/shellular-org/packages): CLI source code
+- [GitHub - Server](https://github.com/shellular-org/server): Relay server source code (also the self-hosting starting point)
+- [Demo video](https://youtu.be/I42X_6VHJ2I): 1m32s walkthrough of the full product
+- [Agent Client Protocol (ACP)](https://agentclientprotocol.com/get-started/introduction): The open standard Shellular implements as an ACP client to talk to coding agents
+
+## Contact
+
+- Email: team@shellular.dev
+- Twitter/X: https://twitter.com/shellular_dev
+- GitHub: https://github.com/shellular-org
+- LinkedIn: https://www.linkedin.com/company/120924584
