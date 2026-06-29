@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import ArticleLayout from "@/components/ArticleLayout.astro";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/data/appLinks";
 import step1 from "@/assets/how-to-run-on-vps/step-1.png";
 import step2 from "@/assets/how-to-run-on-vps/step-2.png";
 import step3 from "@/assets/how-to-run-on-vps/step-3.png";
@@ -115,6 +116,13 @@ npx shellular</code></pre>
     Open the Shellular app on your phone and scan the QR code in your SSH window. That pairs your phone with the server
     and hands over the encryption key — which is generated on the server and never sent over the network. Your phone is
     now talking to your VPS over an end-to-end encrypted link.
+  </p>
+  <p>
+    Don't have the app yet? Grab it for <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer"
+      >iOS on the App Store</a
+    >{" "}
+    or <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer">Android on Google Play</a>, then come back and
+    scan.
   </p>
   <figure class="article-shot">
     <Image
