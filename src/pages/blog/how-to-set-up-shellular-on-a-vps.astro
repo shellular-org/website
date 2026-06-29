@@ -1,0 +1,227 @@
+---
+import { Image } from "astro:assets";
+import ArticleLayout from "@/components/ArticleLayout.astro";
+import step1 from "@/assets/how-to-run-on-vps/step-1.png";
+import step2 from "@/assets/how-to-run-on-vps/step-2.png";
+import step3 from "@/assets/how-to-run-on-vps/step-3.png";
+---
+
+<ArticleLayout
+  title="How to Set Up Shellular on a VPS (EC2, Hetzner, Droplet) | Shellular"
+  description="Run Shellular on a cloud server and control it from your phone. A 5-minute walkthrough for any VPS — AWS EC2, Hetzner, DigitalOcean — with background mode so it survives disconnects."
+  keywords={[
+    "Shellular on VPS",
+    "Shellular on EC2",
+    "Shellular on Hetzner",
+    "run AI agents on a server",
+    "remote development on VPS",
+    "control server from phone",
+    "AWS EC2 from phone",
+    "DigitalOcean droplet from phone",
+    "cloud dev environment phone",
+    "Shellular",
+  ]}
+  heading="How to Set Up Shellular on a VPS"
+  tagline="Your dev machine doesn't have to be the laptop in your bag. Point Shellular at an EC2 instance, a Hetzner box, or any droplet, and that always-on server becomes the thing in your pocket. Here's the whole setup in about five minutes."
+  dateLabel="June 28, 2026"
+  dateISO="2026-06-28"
+  readTime="4 min read"
+  slug="how-to-set-up-shellular-on-a-vps"
+  pills={["Any VPS", "Always on", "5-minute setup"]}
+  faqs={[
+    {
+      q: "Which VPS providers does Shellular work with?",
+      a: "Any of them. Shellular is a Node.js CLI, so if your server runs Node v20.20.2 or newer, Shellular runs on it. That covers AWS EC2, Hetzner, DigitalOcean, Linode, Fly, Oracle Cloud, a Mac mini, or a box under your desk.",
+    },
+    {
+      q: "Do I need to open ports or configure my firewall?",
+      a: "No. Shellular connects outbound to the relay, so there are no inbound ports to open and no security-group rules to add. Your server reaches out to the relay; your phone reaches the same relay. Nothing about your VPS is exposed to the public internet.",
+    },
+    {
+      q: "Will Shellular keep running after I close my SSH session?",
+      a: "Yes, if you start it in background mode with shellular start. It runs as a daemon and survives your SSH disconnect, so your phone stays connected to the server even after you log out of the terminal.",
+    },
+    {
+      q: "Is the connection to my server encrypted?",
+      a: "Yes. All traffic between your phone and the server is end-to-end encrypted with libsodium. The relay only forwards encrypted bytes and cannot read your session. The encryption key is generated on the server and shared via QR code, so it never travels over the network.",
+    },
+  ]}
+  related={[
+    {
+      href: "/blog/cloud-agents-will-let-you-ship-from-anywhere",
+      label: "Cloud agents will let you ship from anywhere",
+      note: "Why the server, not the laptop, is the future.",
+    },
+    {
+      href: "/blog/how-to-run-ai-agents-on-your-phone",
+      label: "Run any AI agent on your phone",
+      note: "Drive Claude Code or Codex on the box.",
+    },
+    {
+      href: "/blog/access-localhost-on-phone-without-ngrok",
+      label: "Access localhost on your phone",
+      note: "Preview the server's ports, no tunnel.",
+    },
+    {
+      href: "/docs",
+      label: "Read the CLI docs",
+      note: "Every command and flag in one place.",
+    },
+  ]}
+>
+  <p>
+    A laptop is a terrible place to keep your dev environment alive. The lid closes, the wifi drops, the battery dies,
+    and whatever you had running goes with it. A VPS doesn't do any of that. It just sits there, awake, on a fat
+    connection, forever.
+  </p>
+  <p>
+    So put Shellular on the server and let your phone be the remote control. Spin up an agent, close the app, get on
+    with your day, and check back in from anywhere. Here's how to wire it up.
+  </p>
+
+  <h2>Before you start</h2>
+  <p>
+    You need two things: a server you can SSH into, and the Shellular app on your phone. The server can be anything — an
+    AWS EC2 instance, a Hetzner box, a DigitalOcean droplet, a Mac mini in a closet. The only real requirement is <strong
+      >Node.js v20.20.2 or newer</strong
+    >. Check it with:
+  </p>
+  <pre><code>node --version</code></pre>
+  <p>
+    If that prints something older, or nothing at all, install a current Node first (<a
+      href="https://github.com/nvm-sh/nvm"
+      target="_blank"
+      rel="noopener noreferrer">nvm</a
+    > or your distro's package manager both work fine). Done? Good, the hard part is over.
+  </p>
+
+  <h2>Step 1 — SSH into the server and run Shellular</h2>
+  <p>Connect the way you normally would, then start Shellular straight from npx — nothing to install globally:</p>
+  <pre><code>ssh you@your-server-ip
+npx shellular</code></pre>
+  <p>The CLI prints a QR code right there in your terminal. That's your pairing code.</p>
+  <figure class="article-shot">
+    <Image
+      src={step1}
+      alt="Shellular CLI running on a server, printing a QR code in the terminal next to the app's Start the CLI screen."
+      widths={[480, 760, 1140]}
+      sizes="(max-width: 760px) 100vw, 700px"
+    />
+    <figcaption>Run <code>npx shellular</code> on the box and it prints a QR code to scan.</figcaption>
+  </figure>
+
+  <h2>Step 2 — Scan the QR code with the app</h2>
+  <p>
+    Open the Shellular app on your phone and scan the QR code in your SSH window. That pairs your phone with the server
+    and hands over the encryption key — which is generated on the server and never sent over the network. Your phone is
+    now talking to your VPS over an end-to-end encrypted link.
+  </p>
+  <figure class="article-shot">
+    <Image
+      src={step2}
+      alt="The Shellular app scanning the terminal's QR code from a phone camera to pair with the server."
+      widths={[480, 760, 1140]}
+      sizes="(max-width: 760px) 100vw, 700px"
+    />
+    <figcaption>Point the app's scanner at the QR code in your terminal. You only do this once.</figcaption>
+  </figure>
+
+  <h2>Step 3 — Approve the device</h2>
+  <p>
+    The first time a new device connects, Shellular doesn't just let it in. Back in your SSH session, it asks you to
+    approve the device. Confirm it, and you're connected: a real terminal, your files, Git, ports, and any AI agent on
+    the box — all from your phone.
+  </p>
+  <figure class="article-shot">
+    <Image
+      src={step3}
+      alt="The terminal prompting to allow a new iPhone client to connect, with the user typing y to approve."
+      widths={[480, 760, 1140]}
+      sizes="(max-width: 760px) 100vw, 700px"
+    />
+    <figcaption>
+      The terminal asks <code>Allow client … to connect? (Y/n)</code> — press <code>y</code>, hit <code>Enter</code>,
+      and you're in.
+    </figcaption>
+  </figure>
+  <blockquote>
+    <p>Approval is per device and it's remembered. You approve your phone once, not every time it reconnects.</p>
+  </blockquote>
+
+  <h2>Step 4 — Keep it running after you log out</h2>
+  <p>
+    This is the step that matters most on a server. If you run <code>npx shellular</code> in the foreground and then close
+    your SSH session, it stops. On a VPS you almost always want it running in the background instead:
+  </p>
+  <pre><code>npx shellular start</code></pre>
+  <p>
+    That launches Shellular as a background daemon. It survives your SSH disconnect and keeps your server reachable from
+    your phone around the clock. A few commands you'll want:
+  </p>
+  <ul>
+    <li><code>shellular status</code> — check it's alive, see the PID and logs.</li>
+    <li><code>shellular clients</code> — approve a new device (in daemon mode, connections wait here for your OK).</li>
+    <li><code>shellular logs</code> — stream what the host is doing.</li>
+    <li><code>shellular stop</code> — shut the daemon down.</li>
+  </ul>
+  <p>
+    In background mode there's no interactive prompt, so a brand-new phone won't get in until you run <code
+      >shellular clients</code
+    > and approve it. That's the feature, not a bug — nobody connects to your server without your say-so.
+  </p>
+
+  <h2>Optional — scope it to one project</h2>
+  <p>
+    By default Shellular exposes your home directory. On a shared or multi-project server you might want to point it at
+    a single folder instead:
+  </p>
+  <pre><code>npx shellular start --dir /home/you/my-app</code></pre>
+  <p>Now the file browser and terminal start rooted in that project, and that's all your phone sees.</p>
+
+  <h2>What about firewalls and ports?</h2>
+  <p>
+    Nothing to do. Shellular connects <em>outbound</em> to the relay, so there are no inbound ports to open, no EC2 security-group
+    rules, no Hetzner firewall edits. Your server reaches out, your phone reaches the same relay in the middle, and the two
+    meet over an encrypted channel. Your VPS never gets a public address and nothing on it is exposed to the open internet.
+  </p>
+
+  <h2>That's it</h2>
+  <p>
+    SSH in, run <code>npx shellular start</code>, scan, approve. Now your always-on server lives in your pocket — kick
+    off an agent on the box, close the app, and come back to review the diff from a coffee shop. No lid to keep open, no
+    machine to babysit.
+  </p>
+</ArticleLayout>
+
+<style>
+  .article-shot {
+    margin: 28px 0;
+  }
+
+  .article-shot :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .article-shot figcaption {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .article-shot figcaption :global(code) {
+    font-family: "Fragment Mono", "JetBrains Mono", monospace;
+    font-size: 0.86em;
+    background: rgba(26, 22, 21, 0.06);
+    border: 1px solid rgba(26, 22, 21, 0.08);
+    padding: 1px 5px;
+    border-radius: 5px;
+    color: var(--ink-800);
+  }
+</style>

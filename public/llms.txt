@@ -36,6 +36,8 @@ Shellular is fully open source (CLI, relay server, and mobile app are all on Git
 
 ## CLI reference
 
+On macOS and Linux, run the CLI directly with `npx shellular` (no install needed). On Windows, install it globally first with `npm i -g shellular`, then run the commands below without the `npx` prefix.
+
 **Commands**
 - `npx shellular` - start the host in the foreground and show a QR code
 - `shellular start` - start the host as a background daemon
@@ -75,6 +77,7 @@ Shellular works with any terminal-based AI coding agent, and integrates with ACP
 
 ## Blog posts
 
+- [How to set up Shellular on a VPS](https://shellular.dev/blog/how-to-set-up-shellular-on-a-vps): Step-by-step guide to running Shellular on a cloud server (AWS EC2, Hetzner, DigitalOcean, any VPS) and controlling it from your phone, including background/daemon mode so it survives SSH disconnects
 - [How to run Claude Code on your phone](https://shellular.dev/blog/how-to-run-claude-code-on-your-phone)
 - [How to run AI agents on your phone](https://shellular.dev/blog/how-to-run-ai-agents-on-your-phone)
 - [How to run Codex on your phone](https://shellular.dev/blog/how-to-run-codex-on-your-phone)

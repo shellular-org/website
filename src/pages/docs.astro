@@ -140,15 +140,26 @@ const sections = [
 
       <section id="quick-start" class="doc-section">
         <h2>Quick start</h2>
-        <p>Start the CLI directly with npx — no install needed:</p>
+        <p>On macOS and Linux, start the CLI directly with npx — no install needed:</p>
         <div class="code-block">
-          <span class="code-label">terminal</span>
+          <span class="code-label">macOS / Linux</span>
           <pre><code>npx shellular</code></pre>
         </div>
         <p>
           The CLI prints a QR code in your terminal. Scan it with the Shellular app to pair your device and connect. By
           default, every unknown client must be approved before it can connect.
         </p>
+        <div class="callout">
+          <strong>On Windows</strong>
+          <p>
+            Install the CLI globally first, then run it without the <code>npx</code> prefix:
+          </p>
+          <div class="code-block">
+            <span class="code-label">windows</span>
+            <pre><code>npm i -g shellular
+shellular</code></pre>
+          </div>
+        </div>
       </section>
 
       <section id="background-mode" class="doc-section">
@@ -170,6 +181,13 @@ const sections = [
         <div class="callout">
           <strong>Note</strong>
           <p>Only one instance of Shellular can run at a time per machine.</p>
+        </div>
+        <div class="callout">
+          <strong>On Windows</strong>
+          <p>
+            After <code>npm i -g shellular</code>, drop the <code>npx</code> prefix here too —
+            use <code>shellular start</code> and <code>shellular stop</code>.
+          </p>
         </div>
       </section>
 
