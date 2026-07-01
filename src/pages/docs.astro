@@ -5,51 +5,63 @@ import Security from "@/components/Security.astro";
 import Layout from "@/layouts/Layout.astro";
 
 const commands = [
-	{ cmd: "shellular", desc: "Run Shellular in the foreground" },
-	{
-		cmd: "shellular start",
-		desc: "Start the background host and print the QR code",
-	},
-	{ cmd: "shellular stop", desc: "Stop the background host" },
-	{
-		cmd: "shellular status",
-		desc: "Show host status, PID, restart count, and logs",
-	},
-	{ cmd: "shellular logs", desc: "Stream background host logs" },
-	{ cmd: "shellular clients", desc: "Review and approve known client devices" },
+  { cmd: "shellular", desc: "Run Shellular in the foreground" },
+  {
+    cmd: "shellular start",
+    desc: "Start the background host and print the QR code",
+  },
+  { cmd: "shellular stop", desc: "Stop the background host" },
+  {
+    cmd: "shellular status",
+    desc: "Show host status, PID, restart count, and logs",
+  },
+  { cmd: "shellular logs", desc: "Stream background host logs" },
+  { cmd: "shellular clients", desc: "Review and approve known client devices" },
+  {
+    cmd: "shellular startup",
+    desc: "Generate and install a boot startup script so the daemon restarts on reboot (wraps PM2)",
+  },
+  {
+    cmd: "shellular unstartup",
+    desc: "Remove the boot startup script created by startup (wraps PM2)",
+  },
 ];
 
 const options = [
-	{
-		flag: "--server <url>",
-		def: "wss://api.shellular.dev",
-		desc: "Relay server WebSocket URL",
-	},
-	{
-		flag: "--dir <path>",
-		def: "$HOME",
-		desc: "Root directory exposed to the client",
-	},
-	{
-		flag: "--unknown-clients <policy>",
-		def: "requires-approval",
-		desc: "How unknown clients are handled: always-reject, always-allow, or requires-approval",
-	},
+  {
+    flag: "--server <url>",
+    def: "wss://api.shellular.dev",
+    desc: "Relay server WebSocket URL",
+  },
+  {
+    flag: "--dir <path>",
+    def: "$HOME",
+    desc: "Root directory exposed to the client",
+  },
+  {
+    flag: "--unknown-clients <policy>",
+    def: "requires-approval",
+    desc: "How unknown clients are handled: always-reject, always-allow, or requires-approval",
+  },
+  {
+    flag: "--no-qr",
+    def: "false",
+    desc: "Skip printing the pairing QR code on start. Useful once your phone has connected at least once — you avoid re-displaying the QR every time, which is better for privacy on shared or visible screens",
+  },
 ];
 
-const clientsOptions = [
-	{ flag: "--delete <clientId>", desc: "Delete a known client from the store" },
-];
+const clientsOptions = [{ flag: "--delete <clientId>", desc: "Delete a known client from the store" }];
 
 const sections = [
-	{ id: "overview", label: "Overview" },
-	{ id: "requirements", label: "Requirements" },
-	{ id: "quick-start", label: "Quick start" },
-	{ id: "background-mode", label: "Background mode" },
-	{ id: "commands", label: "Commands" },
-	{ id: "options", label: "Options" },
-	{ id: "client-approval", label: "Client approval" },
-	{ id: "security", label: "Security" },
+  { id: "overview", label: "Overview" },
+  { id: "requirements", label: "Requirements" },
+  { id: "quick-start", label: "Quick start" },
+  { id: "background-mode", label: "Background mode" },
+  { id: "start-on-boot", label: "Start on boot" },
+  { id: "commands", label: "Commands" },
+  { id: "options", label: "Options" },
+  { id: "client-approval", label: "Client approval" },
+  { id: "security", label: "Security" },
 ];
 ---
 
@@ -90,16 +102,21 @@ const sections = [
     <div class="docs-layout">
       <!-- Table of contents -->
       <aside class="docs-toc" aria-label="Page sections">
-        <button
-          id="toc-toggle"
-          class="toc-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="toc-list"
-        >
+        <button id="toc-toggle" class="toc-toggle" type="button" aria-expanded="false" aria-controls="toc-list">
           <span class="toc-toggle-label">On this page</span>
-          <svg class="toc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="6 9 12 15 18 9" />
+          <svg
+            class="toc-chevron"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </button>
         <nav id="toc-list" class="toc-list" aria-label="Table of contents">
@@ -116,157 +133,215 @@ const sections = [
 
       <!-- Content -->
       <div class="docs-body">
-      <section id="overview" class="doc-section">
-        <h2>Overview</h2>
-        <p>
-          Shellular CLI is the host agent for Shellular. It connects your dev machine to the Shellular relay so the
-          mobile app can reach your environment securely.
-        </p>
-        <p>
-          If you are comparing mobile remote development setups, read
-          <a class="inline-link" href="/shellular-vs-claude-remote-control">Shellular vs Claude Remote Control</a>
-          for the short version of where Shellular fits.
-        </p>
-      </section>
-
-      <section id="requirements" class="doc-section">
-        <h2>Requirements</h2>
-        <ul class="check-list">
-          <li>Node.js v20.20.2 or newer</li>
-          <li>macOS, Linux, or Windows</li>
-          <li>The Shellular mobile app to scan the pairing QR code</li>
-        </ul>
-      </section>
-
-      <section id="quick-start" class="doc-section">
-        <h2>Quick start</h2>
-        <p>On macOS and Linux, start the CLI directly with npx — no install needed:</p>
-        <div class="code-block">
-          <span class="code-label">macOS / Linux</span>
-          <pre><code>npx shellular</code></pre>
-        </div>
-        <p>
-          The CLI prints a QR code in your terminal. Scan it with the Shellular app to pair your device and connect. By
-          default, every unknown client must be approved before it can connect.
-        </p>
-        <div class="callout">
-          <strong>On Windows</strong>
+        <section id="overview" class="doc-section">
+          <h2>Overview</h2>
           <p>
-            Install the CLI globally first, then run it without the <code>npx</code> prefix:
+            Shellular CLI is the host agent for Shellular. It connects your dev machine to the Shellular relay so the
+            mobile app can reach your environment securely.
           </p>
+          <p>
+            If you are comparing mobile remote development setups, read
+            <a class="inline-link" href="/shellular-vs-claude-remote-control">Shellular vs Claude Remote Control</a>
+            for the short version of where Shellular fits.
+          </p>
+        </section>
+
+        <section id="requirements" class="doc-section">
+          <h2>Requirements</h2>
+          <ul class="check-list">
+            <li>Node.js v20.20.2 or newer</li>
+            <li>macOS, Linux, or Windows</li>
+            <li>The Shellular mobile app to scan the pairing QR code</li>
+          </ul>
+        </section>
+
+        <section id="quick-start" class="doc-section">
+          <h2>Quick start</h2>
+          <p>On macOS and Linux, start the CLI directly with npx — no install needed:</p>
           <div class="code-block">
-            <span class="code-label">windows</span>
-            <pre><code>npm i -g shellular
-shellular</code></pre>
+            <span class="code-label">macOS / Linux</span>
+            <pre><code>npx shellular</code></pre>
           </div>
-        </div>
-      </section>
-
-      <section id="background-mode" class="doc-section">
-        <h2>Background mode</h2>
-        <p>To keep Shellular running after you close your terminal:</p>
-        <div class="code-block">
-          <span class="code-label">terminal</span>
-          <pre><code>npx shellular start</code></pre>
-        </div>
-        <p>
-          In daemon mode, clients are not approved interactively. Run <code>shellular clients</code> to review pending devices
-          and approve them from any terminal.
-        </p>
-        <p>Stop the host when you are done:</p>
-        <div class="code-block">
-          <span class="code-label">terminal</span>
-          <pre><code>npx shellular stop</code></pre>
-        </div>
-        <div class="callout">
-          <strong>Note</strong>
-          <p>Only one instance of Shellular can run at a time per machine.</p>
-        </div>
-        <div class="callout">
-          <strong>On Windows</strong>
           <p>
-            After <code>npm i -g shellular</code>, drop the <code>npx</code> prefix here too —
-            use <code>shellular start</code> and <code>shellular stop</code>.
+            The CLI prints a QR code in your terminal. Scan it with the Shellular app to pair your device and connect.
+            By default, every unknown client must be approved before it can connect.
           </p>
-        </div>
-      </section>
-
-      <section id="commands" class="doc-section">
-        <h2>Commands</h2>
-        <div class="cmd-list">
-          {
-            commands.map(({ cmd, desc }) => (
-              <div class="cmd-row">
-                <code class="cmd-name">{cmd}</code>
-                <span class="cmd-desc">{desc}</span>
-              </div>
-            ))
-          }
-        </div>
-      </section>
-
-      <section id="options" class="doc-section">
-        <h2>Options</h2>
-        <p>Global flags that apply to all commands:</p>
-        <div class="opt-list">
-          {
-            options.map(({ flag, def, desc }) => (
-              <div class="opt-row">
-                <div class="opt-meta">
-                  <code class="opt-flag">{flag}</code>
-                  <span class="opt-default">
-                    default: <code>{def}</code>
-                  </span>
-                </div>
-                <span class="opt-desc">{desc}</span>
-              </div>
-            ))
-          }
-        </div>
-        <h3 class="subsection-title"><code>shellular clients</code> flags</h3>
-        <div class="opt-list">
-          {
-            clientsOptions.map(({ flag, desc }) => (
-              <div class="opt-row">
-                <div class="opt-meta">
-                  <code class="opt-flag">{flag}</code>
-                </div>
-                <span class="opt-desc">{desc}</span>
-              </div>
-            ))
-          }
-        </div>
-      </section>
-
-      <section id="client-approval" class="doc-section">
-        <h2>Unknown client approval</h2>
-        <p>
-          <code>--unknown-clients</code> only applies to devices not already in the local approvals file. Once a client is
-          approved or rejected it is remembered.
-        </p>
-        <div class="policy-list">
-          <div class="policy-row">
-            <code class="policy-name">requires-approval</code>
+          <div class="callout">
+            <strong>On Windows</strong>
             <p>
-              Default. In foreground mode the CLI asks interactively. In daemon mode the connection is held pending
-              until you run <code>shellular clients</code>.
+              Install the CLI globally first, then run it without the <code>npx</code> prefix:
+            </p>
+            <div class="code-block">
+              <span class="code-label">windows</span>
+              <pre><code>npm i -g shellular
+shellular</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="background-mode" class="doc-section">
+          <h2>Background mode</h2>
+          <p>To keep Shellular running after you close your terminal:</p>
+          <div class="code-block">
+            <span class="code-label">terminal</span>
+            <pre><code>npx shellular start</code></pre>
+          </div>
+          <p>
+            In daemon mode, clients are not approved interactively. Run <code>shellular clients</code> to review pending devices
+            and approve them from any terminal.
+          </p>
+          <p>Stop the host when you are done:</p>
+          <div class="code-block">
+            <span class="code-label">terminal</span>
+            <pre><code>npx shellular stop</code></pre>
+          </div>
+          <div class="callout">
+            <strong>Note</strong>
+            <p>Only one instance of Shellular can run at a time per machine.</p>
+          </div>
+          <div class="callout">
+            <strong>On Windows</strong>
+            <p>
+              After <code>npm i -g shellular</code>, drop the <code>npx</code> prefix here too — use <code
+                >shellular start</code
+              > and <code>shellular stop</code>.
             </p>
           </div>
-          <div class="policy-row">
-            <code class="policy-name">always-allow</code>
-            <p>Accepts unknown clients immediately without writing to the approvals file.</p>
-          </div>
-          <div class="policy-row">
-            <code class="policy-name">always-reject</code>
-            <p>Rejects unknown clients immediately without writing to the approvals file.</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="security" class="doc-section">
-        <h2>Security</h2>
-        <Security compact />
-      </section>
+        <section id="start-on-boot" class="doc-section">
+          <h2>Start on boot</h2>
+          <p>
+            To have the host come back automatically after a reboot, Shellular can install a system startup script.
+            Under the hood this wraps <a
+              class="inline-link"
+              href="https://pm2.keymetrics.io/docs/usage/startup/"
+              target="_blank"
+              rel="noreferrer">PM2's startup command</a
+            >, which generates and configures the right init script for your platform (systemd, launchd, etc.).
+          </p>
+          <div class="callout">
+            <strong>Prerequisite</strong>
+            <p>
+              The daemon must already be running before these commands work — start it first with
+              <code>shellular start</code>. The startup script captures the currently running host so it can be
+              resurrected on boot.
+            </p>
+          </div>
+          <p>Install the startup script:</p>
+          <div class="code-block">
+            <span class="code-label">terminal</span>
+            <pre><code>npx shellular startup</code></pre>
+          </div>
+          <p>
+            This registers Shellular to launch on boot. You may be prompted to run a command with elevated privileges (<code
+              >sudo</code
+            >) to complete the install, since it writes a system-level init script.
+          </p>
+          <p>Remove the startup script when you no longer want Shellular to auto-start:</p>
+          <div class="code-block">
+            <span class="code-label">terminal</span>
+            <pre><code>npx shellular unstartup</code></pre>
+          </div>
+          <div class="callout">
+            <strong>On Windows</strong>
+            <p>
+              After <code>npm i -g shellular</code>, drop the <code>npx</code> prefix — use <code
+                >shellular startup</code
+              > and <code>shellular unstartup</code>.
+            </p>
+          </div>
+        </section>
+
+        <section id="commands" class="doc-section">
+          <h2>Commands</h2>
+          <div class="cmd-list">
+            {
+              commands.map(({ cmd, desc }) => (
+                <div class="cmd-row">
+                  <code class="cmd-name">{cmd}</code>
+                  <span class="cmd-desc">{desc}</span>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <section id="options" class="doc-section">
+          <h2>Options</h2>
+          <p>Global flags that apply to all commands:</p>
+          <div class="opt-list">
+            {
+              options.map(({ flag, def, desc }) => (
+                <div class="opt-row">
+                  <div class="opt-meta">
+                    <code class="opt-flag">{flag}</code>
+                    <span class="opt-default">
+                      default: <code>{def}</code>
+                    </span>
+                  </div>
+                  <span class="opt-desc">{desc}</span>
+                </div>
+              ))
+            }
+          </div>
+          <h3 class="subsection-title"><code>shellular clients</code> flags</h3>
+          <div class="opt-list">
+            {
+              clientsOptions.map(({ flag, desc }) => (
+                <div class="opt-row">
+                  <div class="opt-meta">
+                    <code class="opt-flag">{flag}</code>
+                  </div>
+                  <span class="opt-desc">{desc}</span>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <section id="client-approval" class="doc-section">
+          <h2>Unknown client approval</h2>
+          <p>
+            <code>--unknown-clients</code> only applies to devices not already in the local approvals file. Once a client
+            is approved or rejected it is remembered.
+          </p>
+          <div class="policy-list">
+            <div class="policy-row">
+              <code class="policy-name">requires-approval</code>
+              <p>
+                Default. In foreground mode the CLI asks interactively. In daemon mode the connection is held pending
+                until you run <code>shellular clients</code>.
+              </p>
+            </div>
+            <div class="policy-row">
+              <code class="policy-name">always-allow</code>
+              <p>Accepts unknown clients immediately without writing to the approvals file.</p>
+            </div>
+            <div class="policy-row">
+              <code class="policy-name">always-reject</code>
+              <p>Rejects unknown clients immediately without writing to the approvals file.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="security" class="doc-section">
+          <h2>Security</h2>
+          <Security compact />
+          <div class="sec-more">
+            <a href="/security" class="sec-more-link">
+              Learn more about our security model
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path
+                  d="M3 7h8M7 3l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </a>
+          </div>
+        </section>
       </div>
     </div>
   </main>
@@ -344,9 +419,7 @@ shellular</code></pre>
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    background:
-      radial-gradient(circle at 30% 25%, rgba(214, 194, 161, 0.22), transparent 55%),
-      var(--ink-900);
+    background: radial-gradient(circle at 30% 25%, rgba(214, 194, 161, 0.22), transparent 55%), var(--ink-900);
     border: 1px solid var(--ink-900);
     display: inline-grid;
     place-items: center;
@@ -410,7 +483,10 @@ shellular</code></pre>
     text-decoration: none;
     border-left: 2px solid transparent;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    transition: color 0.18s, border-color 0.18s, background 0.18s;
+    transition:
+      color 0.18s,
+      border-color 0.18s,
+      background 0.18s;
   }
 
   .toc-link:hover {
@@ -524,7 +600,7 @@ shellular</code></pre>
     width: 36px;
     height: 8px;
     background:
-      radial-gradient(circle at 4px 50%,  #ff5f57 4px, transparent 5px),
+      radial-gradient(circle at 4px 50%, #ff5f57 4px, transparent 5px),
       radial-gradient(circle at 18px 50%, #febc2e 4px, transparent 5px),
       radial-gradient(circle at 32px 50%, #28c840 4px, transparent 5px);
   }
@@ -610,7 +686,9 @@ shellular</code></pre>
     background: var(--cream-50);
     border: 1px solid var(--border);
     flex-wrap: wrap;
-    transition: border-color 0.2s, background 0.2s;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
   }
 
   .cmd-row:hover {
@@ -743,6 +821,35 @@ shellular</code></pre>
     margin: 0;
   }
 
+  /* ── Security "learn more" link ───────────────────────── */
+  .sec-more {
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .sec-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(21, 108, 194, 0.3);
+    padding-bottom: 2px;
+    transition:
+      color 0.18s ease,
+      border-color 0.18s ease,
+      gap 0.18s ease;
+  }
+
+  .sec-more-link:hover {
+    color: var(--accent-orange);
+    border-bottom-color: var(--accent-orange);
+    gap: 10px;
+  }
+
   /* ── Callout ──────────────────────────────────────────── */
   .callout {
     margin-top: 18px;
@@ -867,9 +974,7 @@ shellular</code></pre>
   const mobileMq = window.matchMedia("(max-width: 900px)");
   const toggle = document.getElementById("toc-toggle");
   const list = document.getElementById("toc-list");
-  const links = Array.from(
-    document.querySelectorAll<HTMLAnchorElement>(".toc-link"),
-  );
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>(".toc-link"));
 
   /* ── Mobile collapsible behaviour ──────────────────────── */
   // On mobile the list starts collapsed; on desktop it must always show.
@@ -907,9 +1012,7 @@ shellular</code></pre>
   syncListVisibility();
 
   /* ── Scroll-spy: highlight the section in view ─────────── */
-  const linkById = new Map(
-    links.map((l) => [l.dataset.toc, l] as const),
-  );
+  const linkById = new Map(links.map((l) => [l.dataset.toc, l] as const));
   const sectionEls = links
     .map((l) => document.getElementById(l.dataset.toc ?? ""))
     .filter((el): el is HTMLElement => el !== null);
