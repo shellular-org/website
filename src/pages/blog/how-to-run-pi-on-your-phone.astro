@@ -1,0 +1,194 @@
+---
+import ArticleLayout from "@/components/ArticleLayout.astro";
+---
+
+<ArticleLayout
+  title="How to Run Pi on Your Phone or Mobile (2026 Guide) | Shellular"
+  description="Use Pi, the minimal open-source coding agent, on mobile with a real agent UI, terminal, file browsing, and Git. Run a full Pi session from your phone with Shellular."
+  keywords={[
+    "Pi on phone",
+    "how to run Pi on phone",
+    "Pi coding agent mobile",
+    "use Pi on iPhone",
+    "use Pi on Android",
+    "Pi CLI mobile",
+    "Pi agent remote access",
+    "code from phone",
+    "Pi on mobile",
+    "run Pi on mobile",
+    "Pi mobile app",
+    "Pi UI on phone",
+    "pi.dev mobile",
+    "write code from phone",
+    "coding on phone",
+    "Shellular",
+  ]}
+  heading="How to Run Pi on Your Phone"
+  tagline="Shellular gives Pi, the minimal open-source agent harness, a real mobile UI: slash commands, @ file mentions, permission approvals, and model controls, all running Pi on your own machine."
+  dateLabel="July 8, 2026"
+  dateISO="2026-07-08"
+  readTime="4 min read"
+  slug="how-to-run-pi-on-your-phone"
+  pills={["Mobile Pi UI", "Slash and @ mentions", "Files and Git"]}
+  faqs={[
+    {
+      q: "What is Pi?",
+      a: "Pi is an open-source, minimal agent harness from Earendil Inc, built as a command-line coding agent that connects to 15+ model providers, including Anthropic, OpenAI, Google, Azure, and Mistral. It favors small composable primitives, extensions, skills, and prompt templates, over baked-in features, so you can adapt it to your own workflow.",
+    },
+    {
+      q: "Can I run Pi from my phone?",
+      a: "Yes. Shellular gives Pi a dedicated mobile UI with slash commands, @ file mentions, permission approvals, and a model picker, plus a real terminal, file browsing, and Git on the same machine Pi runs on.",
+    },
+    {
+      q: "Does Shellular replace Pi's RPC or SDK modes?",
+      a: "No. Shellular is a way to reach the interactive terminal UI mode of Pi from your phone, not a replacement for its RPC protocol or SDK. If you already run Pi interactively at your desk, Shellular gives that same session a touch-friendly interface on mobile.",
+    },
+    {
+      q: "Can I switch models mid-session on my phone?",
+      a: "Yes. Pi supports switching models mid-session, normally with a shortcut like Ctrl+L. Shellular exposes that as a model picker in the mobile UI, so you can change providers without reaching for a keyboard.",
+    },
+    {
+      q: "Do I have to choose between Pi and other agents?",
+      a: "No. The same Shellular setup also runs Claude Code, Codex, OpenCode, Cursor CLI, Grok Build, and GitHub Copilot CLI, so you can switch agents from one app.",
+    },
+    {
+      q: "Is running Pi from my phone secure?",
+      a: "Yes. Shellular sessions are end to end encrypted and connect to your own machine. The pairing key never leaves your phone, and every new device has to be approved by you.",
+    },
+  ]}
+  related={[
+    {
+      href: "/blog/how-to-run-ai-agents-on-your-phone",
+      label: "Run any AI agent on your phone",
+      note: "The broader mobile agent guide.",
+    },
+    {
+      href: "/blog/how-to-run-claude-code-on-your-phone",
+      label: "Claude Code on your phone",
+      note: "Same workflow, different agent.",
+    },
+    {
+      href: "/blog/how-to-run-opencode-on-your-phone",
+      label: "OpenCode on your phone",
+      note: "Terminal native and mobile friendly.",
+    },
+    {
+      href: "/blog/how-to-run-grok-build-on-your-phone",
+      label: "Grok Build on your phone",
+      note: "xAI's coding CLI, on mobile.",
+    },
+  ]}
+>
+  <p>
+    <strong>Pi</strong> is the opposite of a bloated agent. It is an open-source,
+    minimal harness that connects to 15+ model providers, Anthropic, OpenAI,
+    Google, Azure, Mistral, and more, and deliberately leaves out things like
+    built-in permission popups and MCP integration so you build exactly the
+    workflow you want out of extensions, skills, and prompt templates. It runs
+    as a terminal agent, which means the same portability question comes up:
+    great in your terminal, awkward the moment you are away from your desk.
+  </p>
+  <p>
+    <strong>Shellular</strong> closes that gap. Pi keeps running on your own computer,
+    your PC, your Mac, a Mac mini, or a VPS, so it keeps its tree-structured session
+    history, your project's AGENTS.md or SYSTEM.md context, and every extension
+    you have installed. Shellular gives that session a real, mobile-optimized
+    UI on your phone, plus a terminal, files, Git, and a localhost browser
+    alongside it.
+  </p>
+
+  <h2>A real Pi UI, on your phone</h2>
+  <p>
+    Pi's whole philosophy is small composable primitives instead of baked-in
+    features. Shellular meets it there with a touch interface for the controls
+    you actually use:
+  </p>
+  <ul>
+    <li>
+      <strong>Slash commands.</strong> Type <code>/</code> and pick a command,
+      no syntax to memorize.
+    </li>
+    <li>
+      <strong>@ file mentions.</strong> Tap <code>@</code> to pull a real file from
+      your repo into the prompt.
+    </li>
+    <li>
+      <strong>Permission approvals.</strong> Since Pi does not bake in its own
+      popups, Shellular gives you a clean way to approve or deny what the agent
+      wants to run, with a tap.
+    </li>
+    <li>
+      <strong>Model picker.</strong> Switch between Pi's 15+ supported providers
+      mid-session, the mobile equivalent of its <code>Ctrl+L</code> shortcut.
+    </li>
+  </ul>
+  <p>
+    The same setup also covers Claude Code, Codex, OpenCode, Cursor CLI, Grok
+    Build, and GitHub Copilot CLI, so any other agent you run alongside Pi
+    comes with you too.
+  </p>
+
+  <h2>Getting set up</h2>
+  <ol>
+    <li>
+      Install Shellular on <a
+        href="https://apps.apple.com/us/app/shellular/id6761985327">iPhone</a
+      > or <a
+        href="https://play.google.com/store/apps/details?id=io.foxbiz.shellular"
+        >Android</a
+      >.
+    </li>
+    <li>
+      Run the Shellular companion on the same machine you run Pi on. The <a
+        href="/docs">docs</a
+      > walk through it.
+    </li>
+    <li>Scan the QR code to pair. The key never leaves your phone.</li>
+    <li>Open Pi in the app and start prompting.</li>
+  </ol>
+  <p>
+    Beyond the agent UI, you get a real terminal, your project files, Git, and
+    a browser with DevTools, all one tap away. Since Pi's history is
+    tree-structured, you can branch off an earlier point in the conversation
+    from your phone just as easily as at your desk, and everything you do is
+    there when you sit back down at your machine.
+  </p>
+
+  <h2>Why this beats a raw terminal mirror</h2>
+  <p>
+    You could SSH into your machine and run Pi in a mirrored terminal, but
+    typing slash commands and file paths on a phone keyboard gets old fast.
+    Because Pi deliberately skips built-in permission prompts and lets you
+    build your own, a raw terminal mirror leaves you improvising a UI on the
+    fly. Shellular gives you the buttons instead: slash commands, @ mentions,
+    permissions, and a model switcher, all built for touch, with the full
+    shell still one tap away for anything Pi's extensions do not cover.
+  </p>
+
+  <h2>Is it secure?</h2>
+  <p>
+    Yes. Sessions are end to end encrypted. Traffic passes through a relay
+    server, but it is encrypted on your machine and only decrypted on your phone,
+    so the relay just forwards bytes it cannot read. The encryption key is shared
+    by QR code and never leaves your devices. See the <a href="/#security"
+      >security overview</a
+    > for how it works.
+  </p>
+
+  <h2>Bottom line</h2>
+  <p>
+    Pi is built to be adapted, not boxed in, and Shellular extends that same
+    idea to mobile. You get a real Pi UI, with slash commands, @ mentions,
+    permissions, and a model picker, plus the terminal, files, and Git behind
+    it, all pointed at your own machine. Pair once and Pi is in your pocket.
+  </p>
+  <p>
+    Run other agents too? See <a href="/blog/how-to-run-claude-code-on-your-phone"
+      >Claude Code on your phone</a
+    >, <a href="/blog/how-to-run-opencode-on-your-phone"
+      >OpenCode on your phone</a
+    >, and <a href="/blog/how-to-run-grok-build-on-your-phone"
+      >Grok Build on your phone</a
+    >.
+  </p>
+</ArticleLayout>
