@@ -178,6 +178,27 @@ npx shellular</code></pre>
     > and approve it. That's the feature, not a bug — nobody connects to your server without your say-so.
   </p>
 
+  <h2>Step 5 — Survive a reboot too</h2>
+  <p>
+    Background mode survives your SSH disconnect, but not a server reboot. On a VPS that gets patched, restarted, or
+    occasionally falls over, you want Shellular to come back on its own. One command sets that up:
+  </p>
+  <pre><code>npx shellular startup</code></pre>
+  <p>
+    This registers Shellular to launch automatically on boot. Under the hood it wraps PM2's startup command, which
+    generates the right init script for your box — systemd on most Linux servers, launchd on a Mac. You may be prompted
+    to re-run a line with <code>sudo</code>, since it writes a system-level service file.
+  </p>
+  <blockquote>
+    <p>
+      Run <code>shellular start</code> <em>before</em> <code>shellular startup</code>. The startup script captures the
+      host that's currently running, so the daemon has to be up first for it to be resurrected on boot.
+    </p>
+  </blockquote>
+  <p>Changed your mind, or moving the host elsewhere? Undo it just as easily:</p>
+  <pre><code>npx shellular unstartup</code></pre>
+  <p>That removes the boot script, and Shellular stops auto-starting after the next reboot.</p>
+
   <h2>Optional — scope it to one project</h2>
   <p>
     By default Shellular exposes your home directory. On a shared or multi-project server you might want to point it at

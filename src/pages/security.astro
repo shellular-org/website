@@ -5,8 +5,8 @@ import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout
-  title="Security — Shellular"
-  description="How Shellular keeps your terminals, file systems, and AI agents secure — end-to-end encryption, device approval, and open source."
+  title="Security | Shellular"
+  description="How Shellular keeps your terminals, file systems, and AI agents secure: end-to-end encryption, device approval, and open source."
   keywords={["Shellular security", "end-to-end encrypted", "open source relay", "device approval"]}
 >
   <Nav />
@@ -25,11 +25,15 @@ import Layout from "@/layouts/Layout.astro";
           <ul>
             <li>
               Your data is end-to-end encrypted. The encryption key lives only on your device and never travels over the
-              network — not even to our relay.
+              network, not even to our relay.
             </li>
             <li>
               New devices can't connect automatically. Every new device must be explicitly approved from the host
               machine before it gets access.
+            </li>
+            <li>
+              You can lock the host to specific accounts. An optional allowlist restricts connections to the exact
+              Shellular accounts you name, and turns unauthenticated clients away entirely.
             </li>
             <li>
               The relay, CLI, and app are <a
@@ -46,15 +50,15 @@ import Layout from "@/layouts/Layout.astro";
           <p>Shellular has three parts:</p>
           <ul>
             <li>
-              <strong>Host (CLI)</strong> — runs on your machine or VPS. This is where your terminals, files, and agents actually
+              <strong>Host (CLI)</strong>: runs on your machine or VPS. This is where your terminals, files, and agents actually
               live.
             </li>
             <li>
-              <strong>Relay</strong> — a lightweight open source server that forwards encrypted traffic between your host
+              <strong>Relay</strong>: a lightweight open source server that forwards encrypted traffic between your host
               and your phone. It cannot read your data; it only passes encrypted bytes through.
             </li>
             <li>
-              <strong>Mobile app</strong> — connects to your host via the relay, using the key generated on your host.
+              <strong>Mobile app</strong>: connects to your host via the relay, using the key generated on your host.
             </li>
           </ul>
           <p>
@@ -72,10 +76,28 @@ import Layout from "@/layouts/Layout.astro";
         </section>
 
         <section>
-          <h2 data-num="03">Self-hosting</h2>
+          <h2 data-num="03">Account allowlist</h2>
+          <p>
+            Device approval is per device. On top of it, you can add a second gate that works per <strong>account</strong>,
+            the Shellular account you sign in with in the app.
+          </p>
+          <p>
+            The allowlist is off by default, so any approved device connects as usual. The moment you add the first
+            account with <code>shellular users add</code>, it switches on: from then on, only the accounts you've listed
+            can connect, and any unauthenticated client is turned away. Remove an account and every one of its devices is
+            disconnected at once.
+          </p>
+          <p>
+            It's a clean way to lock a shared or always-on host, like a VPS, to just your own accounts, without having
+            to approve each device by hand. See the <a href="/docs#user-allowlist">CLI docs</a> for the full command set.
+          </p>
+        </section>
+
+        <section>
+          <h2 data-num="04">Self-hosting</h2>
           <p>
             If you'd rather not rely on our hosted relay at all, you can run your own relay on your own infrastructure.
-            The relay is open source — the <a
+            The relay is open source. The <a
               href="https://github.com/shellular-org/server"
               target="_blank"
               rel="noopener noreferrer">server README</a
@@ -84,29 +106,29 @@ import Layout from "@/layouts/Layout.astro";
         </section>
 
         <section>
-          <h2 data-num="04">Open source and verifiable</h2>
+          <h2 data-num="05">Open source and verifiable</h2>
           <p>
             The CLI, relay, and mobile app source code are all publicly available. The server exposes the running commit
-            SHA at <code>api.shellular.dev</code>. The CLI publishes to NPM via GitHub Actions — you can verify any
+            SHA at <code>api.shellular.dev</code>. The CLI publishes to NPM via GitHub Actions, so you can verify any
             release by cross-referencing the changelog and the Actions run that produced it.
           </p>
           <ul>
             <li>
-              <strong>App</strong> — <a
+              <strong>App</strong>: <a
                 href="https://github.com/shellular-org/app"
                 target="_blank"
                 rel="noopener noreferrer">github.com/shellular-org/app</a
               >
             </li>
             <li>
-              <strong>CLI</strong> — <a
+              <strong>CLI</strong>: <a
                 href="https://github.com/shellular-org/packages"
                 target="_blank"
                 rel="noopener noreferrer">github.com/shellular-org/packages</a
               >
             </li>
             <li>
-              <strong>Server</strong> — <a
+              <strong>Server</strong>: <a
                 href="https://github.com/shellular-org/server"
                 target="_blank"
                 rel="noopener noreferrer">github.com/shellular-org/server</a
@@ -116,7 +138,7 @@ import Layout from "@/layouts/Layout.astro";
         </section>
 
         <section>
-          <h2 data-num="05">What we don't have yet</h2>
+          <h2 data-num="06">What we don't have yet</h2>
           <p>
             We're an early-stage startup. We don't have SOC 2 or ISO 27001 certifications yet. We're not going to
             pretend otherwise.

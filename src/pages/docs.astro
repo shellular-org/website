@@ -18,6 +18,18 @@ const commands = [
   { cmd: "shellular logs", desc: "Stream background host logs" },
   { cmd: "shellular clients", desc: "Review and approve known client devices" },
   {
+    cmd: "shellular users",
+    desc: "List, add, or remove accounts on the connection allowlist (alias for shellular users list)",
+  },
+  {
+    cmd: "shellular users add <email-or-id>",
+    desc: "Allow an account, by email or user ID, to connect",
+  },
+  {
+    cmd: "shellular users remove <email-or-id>",
+    desc: "Revoke an account and disconnect all of its devices",
+  },
+  {
     cmd: "shellular startup",
     desc: "Generate and install a boot startup script so the daemon restarts on reboot (wraps PM2)",
   },
@@ -55,12 +67,14 @@ const clientsOptions = [{ flag: "--delete <clientId>", desc: "Delete a known cli
 const sections = [
   { id: "overview", label: "Overview" },
   { id: "requirements", label: "Requirements" },
+  { id: "windows", label: "On Windows" },
   { id: "quick-start", label: "Quick start" },
   { id: "background-mode", label: "Background mode" },
   { id: "start-on-boot", label: "Start on boot" },
   { id: "commands", label: "Commands" },
   { id: "options", label: "Options" },
   { id: "client-approval", label: "Client approval" },
+  { id: "user-allowlist", label: "Account allowlist" },
   { id: "security", label: "Security" },
 ];
 ---
@@ -155,6 +169,22 @@ const sections = [
           </ul>
         </section>
 
+        <section id="windows" class="doc-section">
+          <h2>On Windows</h2>
+          <p>
+            The <code>npx shellular</code> shorthand used throughout these docs is for macOS and Linux. On Windows, install
+            the CLI globally once:
+          </p>
+          <div class="code-block">
+            <span class="code-label">windows</span>
+            <pre><code>npm i -g shellular</code></pre>
+          </div>
+          <p>
+            After that, run every command in these docs <strong>without the <code>npx</code> prefix</strong> — use
+            <code>shellular</code>, <code>shellular start</code>, <code>shellular clients</code>, and so on.
+          </p>
+        </section>
+
         <section id="quick-start" class="doc-section">
           <h2>Quick start</h2>
           <p>On macOS and Linux, start the CLI directly with npx — no install needed:</p>
@@ -166,17 +196,10 @@ const sections = [
             The CLI prints a QR code in your terminal. Scan it with the Shellular app to pair your device and connect.
             By default, every unknown client must be approved before it can connect.
           </p>
-          <div class="callout">
-            <strong>On Windows</strong>
-            <p>
-              Install the CLI globally first, then run it without the <code>npx</code> prefix:
-            </p>
-            <div class="code-block">
-              <span class="code-label">windows</span>
-              <pre><code>npm i -g shellular
-shellular</code></pre>
-            </div>
-          </div>
+          <p>
+            On Windows, install globally first and drop the <code>npx</code> prefix — see
+            <a class="inline-link" href="#windows">On Windows</a> above.
+          </p>
         </section>
 
         <section id="background-mode" class="doc-section">
@@ -198,14 +221,6 @@ shellular</code></pre>
           <div class="callout">
             <strong>Note</strong>
             <p>Only one instance of Shellular can run at a time per machine.</p>
-          </div>
-          <div class="callout">
-            <strong>On Windows</strong>
-            <p>
-              After <code>npm i -g shellular</code>, drop the <code>npx</code> prefix here too — use <code
-                >shellular start</code
-              > and <code>shellular stop</code>.
-            </p>
           </div>
         </section>
 
@@ -242,14 +257,6 @@ shellular</code></pre>
           <div class="code-block">
             <span class="code-label">terminal</span>
             <pre><code>npx shellular unstartup</code></pre>
-          </div>
-          <div class="callout">
-            <strong>On Windows</strong>
-            <p>
-              After <code>npm i -g shellular</code>, drop the <code>npx</code> prefix — use <code
-                >shellular startup</code
-              > and <code>shellular unstartup</code>.
-            </p>
           </div>
         </section>
 
@@ -325,6 +332,60 @@ shellular</code></pre>
           </div>
         </section>
 
+        <section id="user-allowlist" class="doc-section">
+          <h2>Account allowlist</h2>
+          <p>
+            <a class="inline-link" href="#client-approval">Client approval</a> works per device. The
+            <code>users</code> command adds a second, higher gate that works per <em>account</em> — the Shellular account
+            you sign in with in the app, identified by its email or stable user ID.
+          </p>
+
+          <h3 class="subsection-title">How it works</h3>
+          <ul class="check-list">
+            <li><strong>Off by default.</strong> An empty allowlist gates nothing — any approved device connects as usual.</li>
+            <li><strong>Adding the first account turns it on.</strong> From then on, only listed accounts may connect.</li>
+            <li>
+              <strong>Unauthenticated clients are always rejected</strong> while the allowlist is active.
+            </li>
+            <li>
+              <strong>It's checked before device approval.</strong> An allowlisted account lets in <em>all</em> of its
+              devices — even brand-new ones — with no unknown-client prompt. Removing it disconnects every one of them at
+              once.
+            </li>
+          </ul>
+
+          <h3 class="subsection-title">Commands</h3>
+          <div class="cmd-list">
+            <div class="cmd-row">
+              <code class="cmd-name">shellular users list</code>
+              <span class="cmd-desc">Show the allowed accounts. Running <code>shellular users</code> alone does the same.</span>
+            </div>
+            <div class="cmd-row">
+              <code class="cmd-name">shellular users add &lt;email-or-id&gt;</code>
+              <span class="cmd-desc">Allow an account to connect, by email or user ID.</span>
+            </div>
+            <div class="cmd-row">
+              <code class="cmd-name">shellular users remove &lt;email-or-id&gt;</code>
+              <span class="cmd-desc">Revoke an account and disconnect all of its devices.</span>
+            </div>
+          </div>
+
+          <div class="code-block">
+            <span class="code-label">terminal</span>
+            <pre><code>npx shellular users add you@example.com</code></pre>
+          </div>
+
+          <div class="callout">
+            <strong>Where to find your email or user ID</strong>
+            <p>
+              Under the Account tab in the Shellular app, or at
+              <a class="inline-link" href="https://app.shellular.dev" target="_blank" rel="noreferrer"
+                >app.shellular.dev</a
+              >.
+            </p>
+          </div>
+        </section>
+
         <section id="security" class="doc-section">
           <h2>Security</h2>
           <Security compact />
@@ -368,7 +429,7 @@ shellular</code></pre>
 
   .docs-hero-inner {
     position: relative;
-    max-width: 860px;
+    max-width: 1140px;
     margin: 0 auto;
     padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 48px) clamp(48px, 6vw, 80px);
     z-index: 1;
