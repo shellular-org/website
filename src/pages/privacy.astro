@@ -6,7 +6,7 @@ import Layout from "@/layouts/Layout.astro";
 
 <Layout
   title="Shellular Privacy Policy"
-  description="Shellular's privacy policy. We collect no personal data, require no sign-up, and all traffic between the app and your machine is end-to-end encrypted."
+  description="Shellular's privacy policy. We never sell your data, all traffic between the app and your machine is end-to-end encrypted, and we process only minimal account and product-usage metadata."
   keywords={["Shellular privacy policy", "Shellular privacy", "developer tool privacy"]}
 >
   <Nav />
@@ -14,7 +14,7 @@ import Layout from "@/layouts/Layout.astro";
     <div class="legal-container">
       <header class="legal-header">
         <h1>Privacy Policy</h1>
-        <p class="meta">Effective date: April 19, 2026 · Shellular</p>
+        <p class="meta">Effective date: July 12, 2026 · Shellular</p>
       </header>
 
       <div class="legal-body">
@@ -26,8 +26,9 @@ import Layout from "@/layouts/Layout.astro";
             it is used, and your rights.
           </p>
           <p>
-            <strong>Short version:</strong> We do not collect, store, or sell any personal information. No sign-up is required
-            to use Shellular.
+            <strong>Short version:</strong> We never sell your data, and we never see the contents of your terminal, files,
+            or AI prompts since it's all end-to-end encrypted. To run Shellular we do process an account identifier and a
+            small amount of connection and product-usage metadata, described below.
           </p>
         </section>
 
@@ -35,11 +36,14 @@ import Layout from "@/layouts/Layout.astro";
           <h2 data-num="02">Information We Do Not Collect</h2>
           <p>We do not collect:</p>
           <ul>
-            <li>Your name, email address, or any other personally identifiable information (PII).</li>
-            <li>Account credentials — Shellular has no account or sign-up system.</li>
             <li>The contents of your filesystem, terminal sessions, or AI prompts.</li>
             <li>Precise device location, contacts, photos, or any other sensitive device data.</li>
+            <li>Your data for sale or for advertising — we never sell or rent your information.</li>
           </ul>
+          <p>
+            Signing in to Shellular does create an account, so we process the account identifier and any details
+            provided by your sign-in method (for example, an email address). We use this only to authenticate you.
+          </p>
         </section>
 
         <section>
@@ -81,16 +85,46 @@ import Layout from "@/layouts/Layout.astro";
         </section>
 
         <section>
-          <h2 data-num="05">Analytics &amp; Crash Reporting</h2>
+          <h2 data-num="05">Analytics</h2>
           <p>
-            We do not use third-party analytics SDKs or advertising networks. We may collect anonymous, aggregated crash
-            reports (stack traces without any user-identifying information) to improve stability. You may opt out of
-            crash reporting in the app settings.
+            To understand how many people use Shellular and how it is performing, we capture a small set of
+            <strong>product-usage events</strong> using <a href="https://posthog.com" rel="noopener">PostHog</a>, our
+            analytics provider. Importantly, <strong>PostHog runs only on our relay server</strong> — it is
+            <strong>not</strong> embedded in the Shellular app or CLI. There is no analytics or tracking SDK in the
+            software on your device or machine; the events are derived server-side from connection metadata and sent to
+            PostHog's US infrastructure. We do <strong>not</strong> use advertising networks, and PostHog session replay
+            is not enabled.
+          </p>
+          <p>The events record connection and platform metadata only, such as:</p>
+          <ul>
+            <li>
+              A pseudonymous account identifier, plus stable device and host identifiers, used to count distinct and
+              daily-active users.
+            </li>
+            <li>Platform (iOS, Android, web), and the app or CLI version you are running.</li>
+            <li>Whether the app is running on an emulator, and your host operating system.</li>
+            <li>The timestamp of the connection.</li>
+          </ul>
+          <p>
+            We never send the contents of your terminal sessions, filesystem, or AI prompts to PostHog. Because this
+            analytics is captured server-side to keep our usage metrics accurate, there is currently no in-app opt-out.
+          </p>
+          <p>
+            Forks and self-hosted deployments of the relay can run without analytics entirely — it is active only when
+            we configure an analytics key on our production servers. Our relay server is open source, so you can review
+            exactly what we capture in
+            <a href="https://github.com/shellular-org/server/blob/main/src/posthog.ts" rel="noopener"
+              >the analytics code</a
+            >.
           </p>
         </section>
 
         <section>
           <h2 data-num="06">Third-Party Services</h2>
+          <p>
+            We use <a href="https://posthog.com" rel="noopener">PostHog</a> (US) as our analytics processor for the product-usage
+            events described in Section 05. PostHog processes this data on our behalf and does not use it for its own purposes.
+          </p>
           <p>
             Shellular can optionally route AI prompts to third-party services such as OpenCode, Anthropic Claude, GitHub
             Copilot, or OpenAI Codex depending on what is installed on your machine. These requests originate from the
