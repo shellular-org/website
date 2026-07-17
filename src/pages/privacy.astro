@@ -50,7 +50,8 @@ import Layout from "@/layouts/Layout.astro";
           <h2 data-num="03">Information That May Be Processed Transiently</h2>
           <p>
             When you use Shellular, traffic between the Shellular mobile app and the CLI on your machine is relayed
-            through our servers at <code>api.shellular.dev</code>. This relay operates as a pass-through only:
+            through our servers at <code>server.shellular.dev</code> (and legacy server <code>api.shellular.dev</code>).
+            This relay operates as a pass-through only:
           </p>
           <ul>
             <li>
@@ -90,10 +91,9 @@ import Layout from "@/layouts/Layout.astro";
             To understand how many people use Shellular and how it is performing, we capture a small set of
             <strong>product-usage events</strong> using <a href="https://posthog.com" rel="noopener">PostHog</a>, our
             analytics provider. Importantly, <strong>PostHog runs only on our relay server</strong> — it is
-            <strong>not</strong> embedded in the Shellular app or CLI. There is no analytics or tracking SDK in the
-            software on your device or machine; the events are derived server-side from connection metadata and sent to
-            PostHog's US infrastructure. We do <strong>not</strong> use advertising networks, and PostHog session replay
-            is not enabled.
+            <strong>not</strong> embedded in the Shellular app or CLI. There is no analytics or tracking SDK in the software
+            on your device or machine; the events are derived server-side from connection metadata and sent to PostHog's US
+            infrastructure. We do <strong>not</strong> use advertising networks, and PostHog session replay is not enabled.
           </p>
           <p>The events record connection and platform metadata only, such as:</p>
           <ul>
@@ -113,7 +113,7 @@ import Layout from "@/layouts/Layout.astro";
             Forks and self-hosted deployments of the relay can run without analytics entirely — it is active only when
             we configure an analytics key on our production servers. Our relay server is open source, so you can review
             exactly what we capture in
-            <a href="https://github.com/shellular-org/server/blob/main/src/posthog.ts" rel="noopener"
+            <a href="https://github.com/shellular-org/server/blob/main/relay/posthog.ts" rel="noopener"
               >the analytics code</a
             >.
           </p>
