@@ -32,7 +32,7 @@ Shellular is fully open source (CLI, relay server, and mobile app are all on Git
 - Encryption key is generated on the host and exchanged via QR code scan. It is never transmitted over the network.
 - Every new device must be explicitly approved from the host machine before it can connect.
 - Self-hosting supported: you can run your own relay instead of using the hosted one
-- All source code is publicly auditable. The server exposes its running commit SHA at `api.shellular.dev`.
+- All source code is publicly auditable. The server exposes its running commit SHA at / path.
 
 ## CLI reference
 
