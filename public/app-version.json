@@ -5,8 +5,8 @@
     "storeUrl": "https://play.google.com/store/apps/details?id=io.foxbiz.shellular"
   },
   "ios": {
-    "version": "0.0.39",
-    "versionCode": 39,
+    "version": "0.0.40",
+    "versionCode": 40,
     "storeUrl": "https://apps.apple.com/us/app/shellular/id6761985327"
   }
 }
