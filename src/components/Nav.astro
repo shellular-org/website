@@ -1,5 +1,5 @@
 ---
-import { MenuIcon, XIcon } from "@lucide/astro";
+import { MenuIcon, MessageCircleIcon, XIcon } from "@lucide/astro";
 import ShellularLogo from "./ShellularLogo.astro";
 import { GithubIcon } from "./icons";
 
@@ -27,9 +27,12 @@ const isHomePage = currentPath === "/";
       <a href={isHomePage ? "#security" : "/#security"}>Security</a>
       <a href="/docs">Docs</a>
       <a href="/blog">Blog</a>
-      <a href="/enterprise">Enterprise</a>
       <a class="github-link" href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
         <GithubIcon size={18} />
+      </a>
+      <a class="founder-nav" href="/talk-to-founder">
+        <MessageCircleIcon size={15} aria-hidden="true" />
+        <span>Talk to founder</span>
       </a>
     </div>
     <div class="nav-actions">
@@ -46,10 +49,13 @@ const isHomePage = currentPath === "/";
     <a href={isHomePage ? "#security" : "/#security"} class="mobile-link">Security</a>
     <a href="/docs" class="mobile-link">Docs</a>
     <a href="/blog" class="mobile-link">Blog</a>
-    <a href="/enterprise" class="mobile-link">Enterprise</a>
     <a href={GITHUB_URL} class="mobile-link mobile-github" target="_blank" rel="noopener noreferrer">
       <GithubIcon size={16} />
       GitHub
+    </a>
+    <a href="/talk-to-founder" class="mobile-link founder-nav">
+      <MessageCircleIcon size={16} aria-hidden="true" />
+      <span>Talk to founder</span>
     </a>
     <a class="download-nav mobile-cta" href={isHomePage ? "#get-started" : "/#get-started"}>Get Started</a>
   </div>
@@ -73,7 +79,7 @@ const isHomePage = currentPath === "/";
     pointer-events: auto;
     display: flex;
     align-items: center;
-    gap: clamp(16px, 3vw, 36px);
+    gap: clamp(16px, 2vw, 24px);
     padding: 8px 8px 8px 22px;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(20px) saturate(180%);
@@ -131,7 +137,7 @@ const isHomePage = currentPath === "/";
   .links {
     display: flex;
     align-items: center;
-    gap: clamp(14px, 2.4vw, 28px);
+    gap: clamp(12px, 1.8vw, 20px);
   }
 
   .links a {
@@ -144,6 +150,28 @@ const isHomePage = currentPath === "/";
 
   .links a:hover {
     color: var(--ink-900);
+  }
+
+  .links .founder-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    color: var(--brand-gold-ink);
+    background: rgba(var(--brand-gold-rgb), 0.2);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.42);
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .links .founder-nav:hover {
+    color: var(--ink-900);
+    background: var(--brand-gold-soft);
+    border-color: var(--brand-gold-deep);
+    transform: translateY(-1px);
   }
 
   .github-link {
@@ -269,6 +297,23 @@ const isHomePage = currentPath === "/";
   .mobile-link:hover {
     background: rgba(26, 22, 21, 0.05);
     color: var(--ink-900);
+  }
+
+  .mobile-link.founder-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: var(--radius-pill);
+    color: var(--brand-gold-ink);
+    background: rgba(var(--brand-gold-rgb), 0.2);
+    border: 1px solid rgba(var(--brand-gold-rgb), 0.42);
+    font-weight: 700;
+  }
+
+  .mobile-link.founder-nav:hover {
+    color: var(--ink-900);
+    background: var(--brand-gold-soft);
   }
 
   .mobile-cta {
