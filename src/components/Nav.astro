@@ -324,6 +324,13 @@ const isHomePage = currentPath === "/";
   }
 
   @media (max-width: 720px) {
+    #nav,
+    #nav-wrap.scrolled #nav {
+      background: var(--surface);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
     .links {
       display: none;
     }
