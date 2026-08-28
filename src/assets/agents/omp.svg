@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Oh My Pi">
+  <defs>
+    <linearGradient id="omp-gradient" x1="10" y1="14" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f257a7"/>
+      <stop offset="0.5" stop-color="#9c4de3"/>
+      <stop offset="1" stop-color="#4bc4da"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#omp-gradient)" d="M10 14h44v9H43v33h-9V23h-9v22h-9V23H10z"/>
+</svg>
