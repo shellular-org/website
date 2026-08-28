@@ -4,113 +4,119 @@ import Nav from "@/components/Nav.astro";
 import Layout from "@/layouts/Layout.astro";
 
 interface Faq {
-	q: string;
-	a: string;
+  q: string;
+  a: string;
 }
 
 interface RelatedLink {
-	href: string;
-	label: string;
-	note: string;
+  href: string;
+  label: string;
+  note: string;
 }
 
 interface Props {
-	title: string;
-	description: string;
-	keywords?: string[];
-	heading: string;
-	tagline: string;
-	dateLabel: string;
-	dateISO: string;
-	readTime: string;
-	slug: string;
-	pills?: string[];
-	faqs?: Faq[];
-	related?: RelatedLink[];
+  title: string;
+  description: string;
+  keywords?: string[];
+  heading: string;
+  tagline: string;
+  dateLabel: string;
+  dateISO: string;
+  readTime: string;
+  slug: string;
+  pills?: string[];
+  faqs?: Faq[];
+  related?: RelatedLink[];
 }
 
 const {
-	title,
-	description,
-	keywords = [],
-	heading,
-	tagline,
-	dateLabel,
-	dateISO,
-	readTime,
-	slug,
-	pills = [],
-	faqs = [],
-	related = [],
+  title,
+  description,
+  keywords = [],
+  heading,
+  tagline,
+  dateLabel,
+  dateISO,
+  readTime,
+  slug,
+  pills = [],
+  faqs = [],
+  related = [],
 } = Astro.props;
 
 const url = `https://shellular.dev/blog/${slug}`;
 
 const structuredData = [
-	{
-		"@context": "https://schema.org",
-		"@type": "Article",
-		headline: heading,
-		description,
-		datePublished: dateISO,
-		dateModified: dateISO,
-		author: {
-			"@type": "Organization",
-			name: "Shellular",
-			url: "https://shellular.dev",
-		},
-		publisher: {
-			"@type": "Organization",
-			name: "Shellular",
-			url: "https://shellular.dev",
-		},
-		mainEntityOfPage: url,
-		url,
-	},
-	{
-		"@context": "https://schema.org",
-		"@type": "BreadcrumbList",
-		itemListElement: [
-			{
-				"@type": "ListItem",
-				position: 1,
-				name: "Home",
-				item: "https://shellular.dev",
-			},
-			{
-				"@type": "ListItem",
-				position: 2,
-				name: "Blog",
-				item: "https://shellular.dev/blog",
-			},
-			{
-				"@type": "ListItem",
-				position: 3,
-				name: heading,
-				item: url,
-			},
-		],
-	},
-	...(faqs.length > 0
-		? [
-				{
-					"@context": "https://schema.org",
-					"@type": "FAQPage",
-					mainEntity: faqs.map((f) => ({
-						"@type": "Question",
-						name: f.q,
-						acceptedAnswer: {
-							"@type": "Answer",
-							text: f.a,
-						},
-					})),
-				},
-			]
-		: []),
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: heading,
+    description,
+    datePublished: dateISO,
+    dateModified: dateISO,
+    author: {
+      "@type": "Organization",
+      name: "Shellular",
+      url: "https://shellular.dev",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Shellular",
+      url: "https://shellular.dev",
+    },
+    mainEntityOfPage: url,
+    url,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://shellular.dev",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: "https://shellular.dev/blog",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: heading,
+        item: url,
+      },
+    ],
+  },
+  ...(faqs.length > 0
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: f.a,
+            },
+          })),
+        },
+      ]
+    : []),
 ];
 ---
 
-<Layout title={title} description={description} keywords={keywords} ogType="article" structuredData={structuredData}>
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+  ogType="article"
+  structuredData={structuredData}
+>
   <Nav currentPath={Astro.url.pathname} />
 
   <main class="article-page">
@@ -127,7 +133,9 @@ const structuredData = [
         {
           pills.length > 0 && (
             <div class="article-pills">
-              {pills.map((p) => <span>{p}</span>)}
+              {pills.map((p) => (
+                <span>{p}</span>
+              ))}
             </div>
           )
         }
@@ -171,7 +179,11 @@ const structuredData = [
 
       <aside class="article-cta">
         <h2>Try it for yourself</h2>
-        <p>Shellular puts a real terminal, your files, Git, and every AI agent you run on your phone. Pair once with a QR code and you are coding from anywhere.</p>
+        <p>
+          Shellular puts a real terminal, your files, Git, and every AI agent
+          you run on your phone. Pair once with a QR code and you are coding
+          from anywhere.
+        </p>
         <div class="cta-row">
           <a class="cta-link" href="/#get-started">Get Shellular</a>
           <a class="cta-ghost" href="/docs">Read the docs</a>
@@ -192,7 +204,8 @@ const structuredData = [
   .article-shell {
     max-width: 760px;
     margin: 0 auto;
-    padding: clamp(40px, 7vw, 84px) clamp(20px, 5vw, 48px) clamp(64px, 9vw, 110px);
+    padding: clamp(40px, 7vw, 84px) clamp(20px, 5vw, 48px)
+      clamp(64px, 9vw, 110px);
   }
 
   /* ── Hero ──────────────────────────────────────────────── */
@@ -474,7 +487,10 @@ const structuredData = [
     background: var(--surface);
     border: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
-    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease,
+      box-shadow 0.22s ease;
   }
 
   .related-card:hover {
@@ -509,7 +525,11 @@ const structuredData = [
     margin-top: 56px;
     padding: clamp(28px, 5vw, 40px);
     border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, rgba(var(--brand-gold-rgb), 0.18), rgba(var(--brand-gold-rgb), 0.06));
+    background: linear-gradient(
+      135deg,
+      rgba(var(--brand-gold-rgb), 0.18),
+      rgba(var(--brand-gold-rgb), 0.06)
+    );
     border: 1px solid rgba(var(--brand-gold-rgb), 0.3);
   }
 
@@ -546,7 +566,9 @@ const structuredData = [
     color: var(--cream-100);
     font-size: 14px;
     font-weight: 700;
-    transition: transform 0.2s, background 0.2s;
+    transition:
+      transform 0.2s,
+      background 0.2s;
   }
 
   .cta-link:hover {
@@ -565,7 +587,9 @@ const structuredData = [
     color: var(--ink-900);
     font-size: 14px;
     font-weight: 700;
-    transition: transform 0.2s, background 0.2s;
+    transition:
+      transform 0.2s,
+      background 0.2s;
   }
 
   .cta-ghost:hover {

@@ -80,7 +80,11 @@ import { FOUNDER_CALENDAR_URL } from "@/data/appLinks";
     inset: 0 0 auto 0;
     height: 420px;
     background:
-      radial-gradient(ellipse 76% 66% at 50% -8%, rgba(255, 240, 210, 0.65) 0%, transparent 62%),
+      radial-gradient(
+        ellipse 76% 66% at 50% -8%,
+        rgba(255, 240, 210, 0.65) 0%,
+        transparent 62%
+      ),
       linear-gradient(180deg, var(--sky-100) 0%, transparent 100%);
     pointer-events: none;
   }
@@ -143,16 +147,23 @@ import { FOUNDER_CALENDAR_URL } from "@/data/appLinks";
     background: var(--brand-gold);
     border: 1px solid var(--brand-gold-deep);
     border-radius: var(--radius-pill);
-    box-shadow: 0 8px 22px rgba(var(--brand-gold-rgb), 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    box-shadow:
+      0 8px 22px rgba(var(--brand-gold-rgb), 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.55);
     font-size: 15px;
     font-weight: 700;
     text-decoration: none;
-    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    transition:
+      background 0.2s,
+      box-shadow 0.2s,
+      transform 0.2s;
   }
 
   .founder-cta:hover {
     background: var(--brand-gold-soft);
-    box-shadow: 0 12px 30px rgba(var(--brand-gold-rgb), 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    box-shadow:
+      0 12px 30px rgba(var(--brand-gold-rgb), 0.38),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
     transform: translateY(-2px);
   }
 

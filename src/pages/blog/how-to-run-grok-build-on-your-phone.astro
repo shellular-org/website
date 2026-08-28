@@ -80,22 +80,26 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
   ]}
 >
   <p>
-    xAI's <strong>Grok Build</strong> is a coding CLI built for serious engineering work: a multi-agent architecture that
-    splits complex tasks across parallel subagents, a native subagent view, Plan Mode, and enough slash commands to run a
-    whole session without touching a mouse. It runs in your terminal, the same way Claude Code and Codex CLI do, which means
-    it has the same problem when you leave your desk: the terminal does not fit in your pocket.
+    xAI's <strong>Grok Build</strong> is a coding CLI built for serious engineering
+    work: a multi-agent architecture that splits complex tasks across parallel subagents,
+    a native subagent view, Plan Mode, and enough slash commands to run a whole session
+    without touching a mouse. It runs in your terminal, the same way Claude Code and
+    Codex CLI do, which means it has the same problem when you leave your desk: the
+    terminal does not fit in your pocket.
   </p>
   <p>
-    <strong>Shellular</strong> solves that. Grok Build keeps running on your own computer, your PC, your Mac, a Mac mini,
-    or a VPS, so it has full context of your real codebase, branches, and dependencies. Shellular gives it a real, mobile-optimized
-    UI on your phone, connected straight to that machine, plus a terminal, files, Git, and a localhost browser you would not
-    get from a read-only mobile viewer.
+    <strong>Shellular</strong> solves that. Grok Build keeps running on your own computer,
+    your PC, your Mac, a Mac mini, or a VPS, so it has full context of your real codebase,
+    branches, and dependencies. Shellular gives it a real, mobile-optimized UI on
+    your phone, connected straight to that machine, plus a terminal, files, Git, and
+    a localhost browser you would not get from a read-only mobile viewer.
   </p>
 
   <h2>A real Grok Build UI, on your phone</h2>
   <p>
-    Grok Build leans hard on slash commands and subagents. Shellular does not make you type them out on a phone
-    keyboard. It gives Grok Build a proper touch interface with the controls you actually use:
+    Grok Build leans hard on slash commands and subagents. Shellular does not
+    make you type them out on a phone keyboard. It gives Grok Build a proper
+    touch interface with the controls you actually use:
   </p>
   <ul>
     <li>
@@ -103,58 +107,73 @@ import ArticleLayout from "@/components/ArticleLayout.astro";
       <code>/compact</code>, <code>/always-approve</code>, etc.
     </li>
     <li>
-      <strong>@ file mentions.</strong> Tap <code>@</code> to pull a real file from your repo into the prompt.
+      <strong>@ file mentions.</strong> Tap <code>@</code> to pull a real file from
+      your repo into the prompt.
     </li>
     <li>
-      <strong>Permission approvals.</strong> Approve or deny what Grok Build wants to run, with a tap.
+      <strong>Permission approvals.</strong> Approve or deny what Grok Build wants
+      to run, with a tap.
     </li>
     <li>
-      <strong>Model picker.</strong> Switch models mid-session from the UI, the same way you would with <code
-        >/model</code
-      > at your desk.
+      <strong>Model picker.</strong> Switch models mid-session from the UI, the same
+      way you would with <code>/model</code> at your desk.
     </li>
   </ul>
   <p>
-    And the same setup covers Claude Code, Codex, OpenCode, Pi, Cursor CLI, and GitHub Copilot CLI, so every other agent
-    you run alongside Grok Build is right there too.
+    And the same setup covers Claude Code, Codex, OpenCode, Pi, Cursor CLI, and
+    GitHub Copilot CLI, so every other agent you run alongside Grok Build is
+    right there too.
   </p>
 
   <h2>Getting set up</h2>
   <ol>
     <li>
-      Install Shellular on <a href="https://apps.apple.com/us/app/shellular/id6761985327">iPhone</a> or <a
-        href="https://play.google.com/store/apps/details?id=io.foxbiz.shellular">Android</a
+      Install Shellular on <a
+        href="https://apps.apple.com/us/app/shellular/id6761985327">iPhone</a
+      > or <a
+        href="https://play.google.com/store/apps/details?id=io.foxbiz.shellular"
+        >Android</a
       >.
     </li>
     <li>
-      Run the Shellular companion on the same machine you run Grok Build on. The <a href="/docs">docs</a> walk through it.
+      Run the Shellular companion on the same machine you run Grok Build on. The <a
+        href="/docs">docs</a
+      > walk through it.
     </li>
     <li>Scan the QR code to pair. The key never leaves your phone.</li>
     <li>Open Grok Build in the app and start prompting.</li>
   </ol>
   <p>
-    Beyond the agent UI, you also get a real terminal, your project files, Git, and a browser with DevTools, all one tap
-    away. Kick off a task before you leave the house, let Grok Build's subagents work through it, steer or approve from
-    your phone, run the tests yourself if a step needs a human call, and push. Your desktop session picks up right where
-    you left it.
+    Beyond the agent UI, you also get a real terminal, your project files, Git,
+    and a browser with DevTools, all one tap away. Kick off a task before you
+    leave the house, let Grok Build's subagents work through it, steer or
+    approve from your phone, run the tests yourself if a step needs a human
+    call, and push. Your desktop session picks up right where you left it.
   </p>
 
   <h2>Is it secure?</h2>
   <p>
-    Yes. Sessions are end to end encrypted. Traffic passes through a relay server, but it is encrypted on your machine
-    and only decrypted on your phone, so the relay just forwards bytes it cannot read. The encryption key is shared by
-    QR code and never leaves your devices. See the <a href="/#security">security overview</a> for how it works.
+    Yes. Sessions are end to end encrypted. Traffic passes through a relay
+    server, but it is encrypted on your machine and only decrypted on your
+    phone, so the relay just forwards bytes it cannot read. The encryption key
+    is shared by QR code and never leaves your devices. See the <a
+      href="/#security">security overview</a
+    > for how it works.
   </p>
 
   <h2>Bottom line</h2>
   <p>
-    Grok Build is a serious CLI, and it deserves more than a cramped terminal on a small screen. Shellular gives it a
-    real mobile UI, with slash commands, @ mentions, permissions, and model controls, backed by the terminal, files, and
-    Git on your own machine. Pair once and Grok Build follows you out the door.
+    Grok Build is a serious CLI, and it deserves more than a cramped terminal on
+    a small screen. Shellular gives it a real mobile UI, with slash commands, @
+    mentions, permissions, and model controls, backed by the terminal, files,
+    and Git on your own machine. Pair once and Grok Build follows you out the
+    door.
   </p>
   <p>
-    Run other agents too? See <a href="/blog/how-to-run-claude-code-on-your-phone">Claude Code on your phone</a>, <a
-      href="/blog/how-to-run-codex-on-your-phone">Codex on your phone</a
-    >, and <a href="/blog/how-to-run-pi-on-your-phone">Pi on your phone</a>.
+    Run other agents too? See <a
+      href="/blog/how-to-run-claude-code-on-your-phone"
+      >Claude Code on your phone</a
+    >, <a href="/blog/how-to-run-codex-on-your-phone">Codex on your phone</a>,
+    and <a href="/blog/how-to-run-pi-on-your-phone">Pi on your phone</a>.
   </p>
 </ArticleLayout>

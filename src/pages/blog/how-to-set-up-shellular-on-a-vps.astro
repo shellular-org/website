@@ -71,36 +71,47 @@ import step3 from "@/assets/how-to-run-on-vps/step-3.png";
   ]}
 >
   <p>
-    A laptop is a terrible place to keep your dev environment alive. The lid closes, the wifi drops, the battery dies,
-    and whatever you had running goes with it. A VPS doesn't do any of that. It just sits there, awake, on a fat
+    A laptop is a terrible place to keep your dev environment alive. The lid
+    closes, the wifi drops, the battery dies, and whatever you had running goes
+    with it. A VPS doesn't do any of that. It just sits there, awake, on a fat
     connection, forever.
   </p>
   <p>
-    So put Shellular on the server and let your phone be the remote control. Spin up an agent, close the app, get on
-    with your day, and check back in from anywhere. Here's how to wire it up.
+    So put Shellular on the server and let your phone be the remote control.
+    Spin up an agent, close the app, get on with your day, and check back in
+    from anywhere. Here's how to wire it up.
   </p>
 
   <h2>Before you start</h2>
   <p>
-    You need two things: a server you can SSH into, and the Shellular app on your phone. The server can be anything — an
-    AWS EC2 instance, a Hetzner box, a DigitalOcean droplet, a Mac mini in a closet. The only real requirement is <strong
+    You need two things: a server you can SSH into, and the Shellular app on
+    your phone. The server can be anything — an AWS EC2 instance, a Hetzner box,
+    a DigitalOcean droplet, a Mac mini in a closet. The only real requirement is <strong
       >Node.js v20.20.2 or newer</strong
     >. Check it with:
   </p>
   <pre><code>node --version</code></pre>
   <p>
-    If that prints something older, or nothing at all, install a current Node first (<a
+    If that prints something older, or nothing at all, install a current Node
+    first (<a
       href="https://github.com/nvm-sh/nvm"
       target="_blank"
       rel="noopener noreferrer">nvm</a
-    > or your distro's package manager both work fine). Done? Good, the hard part is over.
+    > or your distro's package manager both work fine). Done? Good, the hard part
+    is over.
   </p>
 
   <h2>Step 1 — SSH into the server and run Shellular</h2>
-  <p>Connect the way you normally would, then start Shellular straight from npx — nothing to install globally:</p>
+  <p>
+    Connect the way you normally would, then start Shellular straight from npx —
+    nothing to install globally:
+  </p>
   <pre><code>ssh you@your-server-ip
 npx shellular</code></pre>
-  <p>The CLI prints a QR code right there in your terminal. That's your pairing code.</p>
+  <p>
+    The CLI prints a QR code right there in your terminal. That's your pairing
+    code.
+  </p>
   <figure class="article-shot">
     <Image
       src={step1}
@@ -108,21 +119,27 @@ npx shellular</code></pre>
       widths={[480, 760, 1140]}
       sizes="(max-width: 760px) 100vw, 700px"
     />
-    <figcaption>Run <code>npx shellular</code> on the box and it prints a QR code to scan.</figcaption>
+    <figcaption>
+      Run <code>npx shellular</code> on the box and it prints a QR code to scan.
+    </figcaption>
   </figure>
 
   <h2>Step 2 — Scan the QR code with the app</h2>
   <p>
-    Open the Shellular app on your phone and scan the QR code in your SSH window. That pairs your phone with the server
-    and hands over the encryption key — which is generated on the server and never sent over the network. Your phone is
-    now talking to your VPS over an end-to-end encrypted link.
+    Open the Shellular app on your phone and scan the QR code in your SSH
+    window. That pairs your phone with the server and hands over the encryption
+    key — which is generated on the server and never sent over the network. Your
+    phone is now talking to your VPS over an end-to-end encrypted link.
   </p>
   <p>
-    Don't have the app yet? Grab it for <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer"
-      >iOS on the App Store</a
+    Don't have the app yet? Grab it for <a
+      href={APP_STORE_URL}
+      target="_blank"
+      rel="noopener noreferrer">iOS on the App Store</a
     >{" "}
-    or <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer">Android on Google Play</a>, then come back and
-    scan.
+    or <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer"
+      >Android on Google Play</a
+    >, then come back and scan.
   </p>
   <figure class="article-shot">
     <Image
@@ -131,14 +148,18 @@ npx shellular</code></pre>
       widths={[480, 760, 1140]}
       sizes="(max-width: 760px) 100vw, 700px"
     />
-    <figcaption>Point the app's scanner at the QR code in your terminal. You only do this once.</figcaption>
+    <figcaption>
+      Point the app's scanner at the QR code in your terminal. You only do this
+      once.
+    </figcaption>
   </figure>
 
   <h2>Step 3 — Approve the device</h2>
   <p>
-    The first time a new device connects, Shellular doesn't just let it in. Back in your SSH session, it asks you to
-    approve the device. Confirm it, and you're connected: a real terminal, your files, Git, ports, and any AI agent on
-    the box — all from your phone.
+    The first time a new device connects, Shellular doesn't just let it in. Back
+    in your SSH session, it asks you to approve the device. Confirm it, and
+    you're connected: a real terminal, your files, Git, ports, and any AI agent
+    on the box — all from your phone.
   </p>
   <figure class="article-shot">
     <Image
@@ -148,77 +169,106 @@ npx shellular</code></pre>
       sizes="(max-width: 760px) 100vw, 700px"
     />
     <figcaption>
-      The terminal asks <code>Allow client … to connect? (Y/n)</code> — press <code>y</code>, hit <code>Enter</code>,
-      and you're in.
+      The terminal asks <code>Allow client … to connect? (Y/n)</code> — press <code
+        >y</code
+      >, hit <code>Enter</code>, and you're in.
     </figcaption>
   </figure>
   <blockquote>
-    <p>Approval is per device and it's remembered. You approve your phone once, not every time it reconnects.</p>
+    <p>
+      Approval is per device and it's remembered. You approve your phone once,
+      not every time it reconnects.
+    </p>
   </blockquote>
 
   <h2>Step 4 — Keep it running after you log out</h2>
   <p>
-    This is the step that matters most on a server. If you run <code>npx shellular</code> in the foreground and then close
-    your SSH session, it stops. On a VPS you almost always want it running in the background instead:
+    This is the step that matters most on a server. If you run <code
+      >npx shellular</code
+    > in the foreground and then close your SSH session, it stops. On a VPS you almost
+    always want it running in the background instead:
   </p>
   <pre><code>npx shellular start</code></pre>
   <p>
-    That launches Shellular as a background daemon. It survives your SSH disconnect and keeps your server reachable from
-    your phone around the clock. A few commands you'll want:
+    That launches Shellular as a background daemon. It survives your SSH
+    disconnect and keeps your server reachable from your phone around the clock.
+    A few commands you'll want:
   </p>
   <ul>
-    <li><code>shellular status</code> — check it's alive, see the PID and logs.</li>
-    <li><code>shellular clients</code> — approve a new device (in daemon mode, connections wait here for your OK).</li>
+    <li>
+      <code>shellular status</code> — check it's alive, see the PID and logs.
+    </li>
+    <li>
+      <code>shellular clients</code> — approve a new device (in daemon mode, connections
+      wait here for your OK).
+    </li>
     <li><code>shellular logs</code> — stream what the host is doing.</li>
     <li><code>shellular stop</code> — shut the daemon down.</li>
   </ul>
   <p>
-    In background mode there's no interactive prompt, so a brand-new phone won't get in until you run <code
-      >shellular clients</code
-    > and approve it. That's the feature, not a bug — nobody connects to your server without your say-so.
+    In background mode there's no interactive prompt, so a brand-new phone won't
+    get in until you run <code>shellular clients</code> and approve it. That's the
+    feature, not a bug — nobody connects to your server without your say-so.
   </p>
 
   <h2>Step 5 — Survive a reboot too</h2>
   <p>
-    Background mode survives your SSH disconnect, but not a server reboot. On a VPS that gets patched, restarted, or
-    occasionally falls over, you want Shellular to come back on its own. One command sets that up:
+    Background mode survives your SSH disconnect, but not a server reboot. On a
+    VPS that gets patched, restarted, or occasionally falls over, you want
+    Shellular to come back on its own. One command sets that up:
   </p>
   <pre><code>npx shellular startup</code></pre>
   <p>
-    This registers Shellular to launch automatically on boot. Under the hood it wraps PM2's startup command, which
-    generates the right init script for your box — systemd on most Linux servers, launchd on a Mac. You may be prompted
-    to re-run a line with <code>sudo</code>, since it writes a system-level service file.
+    This registers Shellular to launch automatically on boot. Under the hood it
+    wraps PM2's startup command, which generates the right init script for your
+    box — systemd on most Linux servers, launchd on a Mac. You may be prompted
+    to re-run a line with <code>sudo</code>, since it writes a system-level
+    service file.
   </p>
   <blockquote>
     <p>
-      Run <code>shellular start</code> <em>before</em> <code>shellular startup</code>. The startup script captures the
-      host that's currently running, so the daemon has to be up first for it to be resurrected on boot.
+      Run <code>shellular start</code>
+      <em>before</em>
+      <code>shellular startup</code>. The startup script captures the host
+      that's currently running, so the daemon has to be up first for it to be
+      resurrected on boot.
     </p>
   </blockquote>
-  <p>Changed your mind, or moving the host elsewhere? Undo it just as easily:</p>
+  <p>
+    Changed your mind, or moving the host elsewhere? Undo it just as easily:
+  </p>
   <pre><code>npx shellular unstartup</code></pre>
-  <p>That removes the boot script, and Shellular stops auto-starting after the next reboot.</p>
+  <p>
+    That removes the boot script, and Shellular stops auto-starting after the
+    next reboot.
+  </p>
 
   <h2>Optional — scope it to one project</h2>
   <p>
-    By default Shellular exposes your home directory. On a shared or multi-project server you might want to point it at
-    a single folder instead:
+    By default Shellular exposes your home directory. On a shared or
+    multi-project server you might want to point it at a single folder instead:
   </p>
   <pre><code>npx shellular start --dir /home/you/my-app</code></pre>
-  <p>Now the file browser and terminal start rooted in that project, and that's all your phone sees.</p>
+  <p>
+    Now the file browser and terminal start rooted in that project, and that's
+    all your phone sees.
+  </p>
 
   <h2>What about firewalls and ports?</h2>
   <p>
-    Nothing to do. Shellular connects <em>outbound</em> to the relay, so there are no inbound ports to open, no EC2 security-group
-    rules, no Hetzner firewall edits. Your server reaches out, your phone reaches the same relay in the middle, and the two
-    meet over an encrypted channel. Your VPS never gets a public address and nothing on it is exposed to the open internet.
+    Nothing to do. Shellular connects <em>outbound</em> to the relay, so there are
+    no inbound ports to open, no EC2 security-group rules, no Hetzner firewall edits.
+    Your server reaches out, your phone reaches the same relay in the middle, and
+    the two meet over an encrypted channel. Your VPS never gets a public address and
+    nothing on it is exposed to the open internet.
   </p>
 
   <h2>That's it</h2>
   <p>
-    SSH in, run <code>npx shellular start</code>, scan, approve. Now your always-on server lives in your pocket — kick
-    off an agent on the box, close the app, and come back to review the diff from a coffee shop. No lid to keep open, no
-    machine to babysit.
+    SSH in, run <code>npx shellular start</code>, scan, approve. Now your
+    always-on server lives in your pocket — kick off an agent on the box, close
+    the app, and come back to review the diff from a coffee shop. No lid to keep
+    open, no machine to babysit.
   </p>
 </ArticleLayout>
 

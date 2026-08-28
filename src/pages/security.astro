@@ -7,7 +7,12 @@ import Layout from "@/layouts/Layout.astro";
 <Layout
   title="Security | Shellular"
   description="How Shellular keeps your terminals, file systems, and AI agents secure: end-to-end encryption, device approval, and open source."
-  keywords={["Shellular security", "end-to-end encrypted", "open source relay", "device approval"]}
+  keywords={[
+    "Shellular security",
+    "end-to-end encrypted",
+    "open source relay",
+    "device approval",
+  ]}
 >
   <Nav />
   <main class="legal-page">
@@ -15,7 +20,8 @@ import Layout from "@/layouts/Layout.astro";
       <header class="legal-header">
         <h1>Security</h1>
         <p class="meta">
-          Shellular lets you control your entire dev environment from your phone. Here's how we keep that safe.
+          Shellular lets you control your entire dev environment from your
+          phone. Here's how we keep that safe.
         </p>
       </header>
 
@@ -24,16 +30,18 @@ import Layout from "@/layouts/Layout.astro";
           <h2 data-num="TL;DR">The short version</h2>
           <ul>
             <li>
-              Your data is end-to-end encrypted. The encryption key lives only on your device and never travels over the
-              network, not even to our relay.
+              Your data is end-to-end encrypted. The encryption key lives only
+              on your device and never travels over the network, not even to our
+              relay.
             </li>
             <li>
-              New devices can't connect automatically. Every new device must be explicitly approved from the host
-              machine before it gets access.
+              New devices can't connect automatically. Every new device must be
+              explicitly approved from the host machine before it gets access.
             </li>
             <li>
-              You can lock the host to specific accounts. An optional allowlist restricts connections to the exact
-              Shellular accounts you name, and turns unauthenticated clients away entirely.
+              You can lock the host to specific accounts. An optional allowlist
+              restricts connections to the exact Shellular accounts you name,
+              and turns unauthenticated clients away entirely.
             </li>
             <li>
               The relay, CLI, and app are <a
@@ -50,54 +58,64 @@ import Layout from "@/layouts/Layout.astro";
           <p>Shellular has three parts:</p>
           <ul>
             <li>
-              <strong>Host (CLI)</strong>: runs on your machine or VPS. This is where your terminals, files, and agents actually
-              live.
+              <strong>Host (CLI)</strong>: runs on your machine or VPS. This is
+              where your terminals, files, and agents actually live.
             </li>
             <li>
-              <strong>Relay</strong>: a lightweight open source server that forwards encrypted traffic between your host
-              and your phone. It cannot read your data; it only passes encrypted bytes through.
+              <strong>Relay</strong>: a lightweight open source server that
+              forwards encrypted traffic between your host and your phone. It
+              cannot read your data; it only passes encrypted bytes through.
             </li>
             <li>
-              <strong>Mobile app</strong>: connects to your host via the relay, using the key generated on your host.
+              <strong>Mobile app</strong>: connects to your host via the relay,
+              using the key generated on your host.
             </li>
           </ul>
           <p>
-            Because the encryption key is generated and stored only on the host device, the relay (and by extension, us)
-            has no way to decrypt your session, even if we wanted to.
+            Because the encryption key is generated and stored only on the host
+            device, the relay (and by extension, us) has no way to decrypt your
+            session, even if we wanted to.
           </p>
         </section>
 
         <section>
           <h2 data-num="02">Device approval</h2>
           <p>
-            The first time a new device tries to connect to your host, it does not get in automatically. You have to
-            explicitly approve it from the host machine.
+            The first time a new device tries to connect to your host, it does
+            not get in automatically. You have to explicitly approve it from the
+            host machine.
           </p>
         </section>
 
         <section>
           <h2 data-num="03">Account allowlist</h2>
           <p>
-            Device approval is per device. On top of it, you can add a second gate that works per <strong>account</strong>,
-            the Shellular account you sign in with in the app.
+            Device approval is per device. On top of it, you can add a second
+            gate that works per <strong>account</strong>, the Shellular account
+            you sign in with in the app.
           </p>
           <p>
-            The allowlist is off by default, so any approved device connects as usual. The moment you add the first
-            account with <code>shellular users add</code>, it switches on: from then on, only the accounts you've listed
-            can connect, and any unauthenticated client is turned away. Remove an account and every one of its devices is
-            disconnected at once.
+            The allowlist is off by default, so any approved device connects as
+            usual. The moment you add the first account with <code
+              >shellular users add</code
+            >, it switches on: from then on, only the accounts you've listed can
+            connect, and any unauthenticated client is turned away. Remove an
+            account and every one of its devices is disconnected at once.
           </p>
           <p>
-            It's a clean way to lock a shared or always-on host, like a VPS, to just your own accounts, without having
-            to approve each device by hand. See the <a href="/docs#user-allowlist">CLI docs</a> for the full command set.
+            It's a clean way to lock a shared or always-on host, like a VPS, to
+            just your own accounts, without having to approve each device by
+            hand. See the <a href="/docs#user-allowlist">CLI docs</a> for the full
+            command set.
           </p>
         </section>
 
         <section>
           <h2 data-num="04">Self-hosting</h2>
           <p>
-            If you'd rather not rely on our hosted relay at all, you can run your own relay on your own infrastructure.
-            The relay is open source. The <a
+            If you'd rather not rely on our hosted relay at all, you can run
+            your own relay on your own infrastructure. The relay is open source.
+            The <a
               href="https://github.com/shellular-org/server"
               target="_blank"
               rel="noopener noreferrer">server README</a
@@ -108,9 +126,12 @@ import Layout from "@/layouts/Layout.astro";
         <section>
           <h2 data-num="05">Open source and verifiable</h2>
           <p>
-            The CLI, relay, and mobile app source code are all publicly available. The server exposes the running commit
-            SHA at <code>api.shellular.dev</code>. The CLI publishes to NPM via GitHub Actions, so you can verify any
-            release by cross-referencing the changelog and the Actions run that produced it.
+            The CLI, relay, and mobile app source code are all publicly
+            available. The server exposes the running commit SHA at <code
+              >api.shellular.dev</code
+            >. The CLI publishes to NPM via GitHub Actions, so you can verify
+            any release by cross-referencing the changelog and the Actions run
+            that produced it.
           </p>
           <ul>
             <li>
@@ -140,16 +161,18 @@ import Layout from "@/layouts/Layout.astro";
         <section>
           <h2 data-num="06">What we don't have yet</h2>
           <p>
-            We're an early-stage startup. We don't have SOC 2 or ISO 27001 certifications yet. We're not going to
-            pretend otherwise.
+            We're an early-stage startup. We don't have SOC 2 or ISO 27001
+            certifications yet. We're not going to pretend otherwise.
           </p>
           <p>
-            What we do have is fully open source, auditable code and an architecture designed so that even our own
-            servers never see your unencrypted data.
+            What we do have is fully open source, auditable code and an
+            architecture designed so that even our own servers never see your
+            unencrypted data.
           </p>
           <p>
-            If your team needs something specific for a vendor review that isn't covered here, email us at <a
-              href="mailto:team@shellular.dev">team@shellular.dev</a
+            If your team needs something specific for a vendor review that isn't
+            covered here, email us at <a href="mailto:team@shellular.dev"
+              >team@shellular.dev</a
             > and we'll get back to you directly.
           </p>
         </section>
@@ -174,7 +197,11 @@ import Layout from "@/layouts/Layout.astro";
     inset: 0 0 auto 0;
     height: 360px;
     background:
-      radial-gradient(ellipse 80% 70% at 50% -10%, rgba(255, 240, 210, 0.5) 0%, transparent 60%),
+      radial-gradient(
+        ellipse 80% 70% at 50% -10%,
+        rgba(255, 240, 210, 0.5) 0%,
+        transparent 60%
+      ),
       linear-gradient(180deg, var(--sky-100) 0%, transparent 100%);
     pointer-events: none;
   }

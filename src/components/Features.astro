@@ -3,61 +3,61 @@ import { Bot, FileTerminal, FolderCode, Globe } from "@lucide/astro";
 import codexIcon from "@/assets/agents/codex-color.svg";
 
 interface Feature {
-	Icon: typeof Bot;
-	eyebrow: string;
-	title: string;
-	desc: string;
-	bullets: string[];
-	flip?: boolean;
+  Icon: typeof Bot;
+  eyebrow: string;
+  title: string;
+  desc: string;
+  bullets: string[];
+  flip?: boolean;
 }
 
 const features: Feature[] = [
-	{
-		Icon: Bot,
-		eyebrow: "Agents",
-		title: "Run the AI agents you already use",
-		desc: "Claude Code, Codex, OpenCode and the rest — running where your code already lives, controllable from your couch.",
-		bullets: [
-			"Full agent UI from your phone",
-			"No copying context between devices",
-			"Pick up the exact session you left",
-		],
-	},
-	{
-		Icon: FileTerminal,
-		eyebrow: "Terminal",
-		title: "A real terminal in your pocket",
-		desc: "Run commands, restart services, tail logs. Not a sandbox, not a fake shell — the same machine you'd sit down to.",
-		bullets: [
-			"Full TTY, full PATH",
-			"Session keeps state across reconnects",
-			"Touch-optimized chord shortcuts",
-		],
-		flip: true,
-	},
-	{
-		Icon: Globe,
-		eyebrow: "Localhost",
-		title: "Open your local apps from anywhere",
-		desc: "Tunneled access to whatever's running on your machine — dev servers, dashboards, internal tools — without exposing them to the world.",
-		bullets: [
-			"Browse localhost from your phone",
-			"DevTools just work",
-			"Encrypted & private",
-		],
-	},
-	{
-		Icon: FolderCode,
-		eyebrow: "Files",
-		title: "The same repos, the same files",
-		desc: 'Touch your actual project files — no sync conflicts, no "mobile version". Edit, commit, push, all on the source machine.',
-		bullets: [
-			"Real git, on the real repo",
-			"Supports  TypeScipt, Python, Go & more.",
-			"Stage hunks from your thumb",
-		],
-		flip: true,
-	},
+  {
+    Icon: Bot,
+    eyebrow: "Agents",
+    title: "Run the AI agents you already use",
+    desc: "Claude Code, Codex, OpenCode and the rest — running where your code already lives, controllable from your couch.",
+    bullets: [
+      "Full agent UI from your phone",
+      "No copying context between devices",
+      "Pick up the exact session you left",
+    ],
+  },
+  {
+    Icon: FileTerminal,
+    eyebrow: "Terminal",
+    title: "A real terminal in your pocket",
+    desc: "Run commands, restart services, tail logs. Not a sandbox, not a fake shell — the same machine you'd sit down to.",
+    bullets: [
+      "Full TTY, full PATH",
+      "Session keeps state across reconnects",
+      "Touch-optimized chord shortcuts",
+    ],
+    flip: true,
+  },
+  {
+    Icon: Globe,
+    eyebrow: "Localhost",
+    title: "Open your local apps from anywhere",
+    desc: "Tunneled access to whatever's running on your machine — dev servers, dashboards, internal tools — without exposing them to the world.",
+    bullets: [
+      "Browse localhost from your phone",
+      "DevTools just work",
+      "Encrypted & private",
+    ],
+  },
+  {
+    Icon: FolderCode,
+    eyebrow: "Files",
+    title: "The same repos, the same files",
+    desc: 'Touch your actual project files — no sync conflicts, no "mobile version". Edit, commit, push, all on the source machine.',
+    bullets: [
+      "Real git, on the real repo",
+      "Supports  TypeScipt, Python, Go & more.",
+      "Stage hunks from your thumb",
+    ],
+    flip: true,
+  },
 ];
 ---
 
@@ -68,8 +68,8 @@ const features: Feature[] = [
       <span>Your whole stack.</span>
     </h2>
     <p class="section-sub reveal reveal-delay-2">
-      Shellular keeps the machine, tools, repos, and agents you already rely on reachable from anywhere — without the
-      usual mobile-dev compromises.
+      Shellular keeps the machine, tools, repos, and agents you already rely on
+      reachable from anywhere — without the usual mobile-dev compromises.
     </p>
   </div>
 
@@ -107,14 +107,26 @@ const features: Feature[] = [
             </ul>
           </div>
           <div class="feat-visual">
-            <div class={`visual-card visual-${eyebrow.toLowerCase()}`} aria-hidden="true">
+            <div
+              class={`visual-card visual-${eyebrow.toLowerCase()}`}
+              aria-hidden="true"
+            >
               {eyebrow === "Agents" && (
                 <div class="vis-stage vis-stage--agents">
                   <div class="vis-chat">
-                    <div class="vis-bubble vis-bubble--mine">refactor checkout to use cart hook</div>
+                    <div class="vis-bubble vis-bubble--mine">
+                      refactor checkout to use cart hook
+                    </div>
                     <div class="vis-bubble vis-bubble--agent">
                       <div class="vis-agent-head">
-                        <img class="vis-agent-avatar" src={codexIcon.src} alt="" width="16" height="16" /> Codex
+                        <img
+                          class="vis-agent-avatar"
+                          src={codexIcon.src}
+                          alt=""
+                          width="16"
+                          height="16"
+                        />{" "}
+                        Codex
                       </div>
                       <div class="vis-agent-body">
                         <div class="vis-typing">
@@ -146,21 +158,35 @@ const features: Feature[] = [
                   <div class="vis-term-split">
                     <div class="vis-term-pane">
                       <div class="vis-tline">
-                        <span class="vis-tp">~/api</span> <span class="vis-ta">›</span>{" "}
+                        <span class="vis-tp">~/api</span>{" "}
+                        <span class="vis-ta">›</span>{" "}
                         <span class="vis-tc">pnpm dev</span>
                       </div>
-                      <div class="vis-tline vis-tline--dim">› ready on :3000</div>
-                      <div class="vis-tline vis-tline--ok">✓ compiled in 412ms</div>
+                      <div class="vis-tline vis-tline--dim">
+                        › ready on :3000
+                      </div>
+                      <div class="vis-tline vis-tline--ok">
+                        ✓ compiled in 412ms
+                      </div>
                       <div class="vis-tline">
-                        <span class="vis-tp">~/api</span> <span class="vis-ta">›</span>
+                        <span class="vis-tp">~/api</span>{" "}
+                        <span class="vis-ta">›</span>
                         <span class="vis-tcur" />
                       </div>
                     </div>
                     <div class="vis-term-pane vis-term-pane--alt">
-                      <div class="vis-tline vis-tline--log">[14:02] GET /cart 200</div>
-                      <div class="vis-tline vis-tline--log">[14:02] GET /cart/items 200</div>
-                      <div class="vis-tline vis-tline--log">[14:03] POST /checkout 201</div>
-                      <div class="vis-tline vis-tline--log vis-tline--warn">[14:03] retry x1</div>
+                      <div class="vis-tline vis-tline--log">
+                        [14:02] GET /cart 200
+                      </div>
+                      <div class="vis-tline vis-tline--log">
+                        [14:02] GET /cart/items 200
+                      </div>
+                      <div class="vis-tline vis-tline--log">
+                        [14:03] POST /checkout 201
+                      </div>
+                      <div class="vis-tline vis-tline--log vis-tline--warn">
+                        [14:03] retry x1
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -201,9 +227,23 @@ const features: Feature[] = [
                     <div class="vis-chart">
                       <svg viewBox="0 0 120 40" preserveAspectRatio="none">
                         <defs>
-                          <linearGradient id="vis-chart-grad" x1="0" x2="0" y1="0" y2="1">
-                            <stop offset="0%" stop-color="#156cc2" stop-opacity="0.35" />
-                            <stop offset="100%" stop-color="#156cc2" stop-opacity="0" />
+                          <linearGradient
+                            id="vis-chart-grad"
+                            x1="0"
+                            x2="0"
+                            y1="0"
+                            y2="1"
+                          >
+                            <stop
+                              offset="0%"
+                              stop-color="#156cc2"
+                              stop-opacity="0.35"
+                            />
+                            <stop
+                              offset="100%"
+                              stop-color="#156cc2"
+                              stop-opacity="0"
+                            />
                           </linearGradient>
                         </defs>
                         <path
@@ -250,9 +290,15 @@ const features: Feature[] = [
                   </div>
                   <div class="vis-diff">
                     <div class="vis-diff-head">Cart.tsx</div>
-                    <div class="vis-diff-line vis-diff-line--rm">- const items = props.items</div>
-                    <div class="vis-diff-line vis-diff-line--add">+ const &#123; items &#125; = useCart()</div>
-                    <div class="vis-diff-line vis-diff-line--add">+ const total = sum(items)</div>
+                    <div class="vis-diff-line vis-diff-line--rm">
+                      - const items = props.items
+                    </div>
+                    <div class="vis-diff-line vis-diff-line--add">
+                      + const &#123; items &#125; = useCart()
+                    </div>
+                    <div class="vis-diff-line vis-diff-line--add">
+                      + const total = sum(items)
+                    </div>
                     <div class="vis-commit">
                       <span class="vis-commit-dot" />
                       <span>staged · ready to commit</span>
@@ -384,7 +430,11 @@ const features: Feature[] = [
     width: 100%;
     height: 100%;
     border-radius: var(--radius-md);
-    background: linear-gradient(160deg, var(--sky-100) 0%, var(--cream-200) 100%);
+    background: linear-gradient(
+      160deg,
+      var(--sky-100) 0%,
+      var(--cream-200) 100%
+    );
     border: 1px solid var(--border);
     padding: 18px;
     display: flex;
@@ -401,7 +451,11 @@ const features: Feature[] = [
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.4), transparent 50%);
+    background: radial-gradient(
+      circle at 80% 10%,
+      rgba(255, 255, 255, 0.4),
+      transparent 50%
+    );
     pointer-events: none;
   }
 

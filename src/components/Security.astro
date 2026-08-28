@@ -3,32 +3,32 @@ import { Lock, Shield, Smartphone, UserCheck } from "@lucide/astro";
 import SecurityDiagram from "./SecurityDiagram.astro";
 
 interface Props {
-	compact?: boolean;
+  compact?: boolean;
 }
 
 const { compact = false } = Astro.props;
 
 const points = [
-	{
-		Icon: Lock,
-		title: "End-to-end encrypted",
-		desc: "Data is encrypted on your device before it hits our server, and decrypted only on your phone. The relay just passes it through.",
-	},
-	{
-		Icon: Shield,
-		title: "TLS in transit",
-		desc: "All traffic runs over TLS — no unencrypted connections at all.",
-	},
-	{
-		Icon: Smartphone,
-		title: "Key never leaves your device",
-		desc: "Pairing is done by scanning a QR code that contains the encryption key. It's never transmitted through any network.",
-	},
-	{
-		Icon: UserCheck,
-		title: "Only your devices can connect",
-		desc: "Every new device must be approved by you on the host before it can connect.",
-	},
+  {
+    Icon: Lock,
+    title: "End-to-end encrypted",
+    desc: "Data is encrypted on your device before it hits our server, and decrypted only on your phone. The relay just passes it through.",
+  },
+  {
+    Icon: Shield,
+    title: "TLS in transit",
+    desc: "All traffic runs over TLS — no unencrypted connections at all.",
+  },
+  {
+    Icon: Smartphone,
+    title: "Key never leaves your device",
+    desc: "Pairing is done by scanning a QR code that contains the encryption key. It's never transmitted through any network.",
+  },
+  {
+    Icon: UserCheck,
+    title: "Only your devices can connect",
+    desc: "Every new device must be approved by you on the host before it can connect.",
+  },
 ];
 ---
 
@@ -55,7 +55,8 @@ const points = [
           <span>by default.</span>
         </h2>
         <p class="section-sub reveal reveal-delay-2">
-          Your code is your business. We architected Shellular so even we can't read it.
+          Your code is your business. We architected Shellular so even we can't
+          read it.
         </p>
       </div>
 
@@ -80,8 +81,20 @@ const points = [
       <div class="sec-more reveal reveal-delay-4">
         <a href="/security" class="sec-more-link">
           Learn more about our security model
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M3 7h8M7 3l4 4-4 4"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </a>
       </div>

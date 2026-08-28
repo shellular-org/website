@@ -4,76 +4,76 @@ import Nav from "@/components/Nav.astro";
 import Layout from "@/layouts/Layout.astro";
 
 const comparisonRows = [
-	{
-		label: "AI support",
-		shellular:
-			"Works with Claude Code, Codex, OpenCode, Pi, and the rest of your setup.",
-		codex: "Tied to Codex. No support for other agents or tools.",
-	},
-	{
-		label: "What you can do remotely",
-		shellular:
-			"Terminal control, file browsing, Git operations, browser sessions, DevTools, and agent management.",
-		codex:
-			"Steer active Codex threads: review outputs, approve commands, change models, start new tasks.",
-	},
-	{
-		label: "Terminal access",
-		shellular:
-			"Full remote terminal — run any command, restart services, inspect logs directly.",
-		codex:
-			"Read-only: view terminal output Codex produces. You cannot run commands yourself.",
-	},
-	{
-		label: "Filesystem access",
-		shellular:
-			"Browse and edit your actual project files directly. No sync, no copy.",
-		codex:
-			"See diffs and test results that Codex generates. No direct file browsing or editing.",
-	},
-	{
-		label: "Browser & DevTools",
-		shellular:
-			"Open local apps remotely, inspect pages, debug — from your phone.",
-		codex:
-			"View screenshots Codex captures. No direct browser or DevTools access.",
-	},
-	{
-		label: "Security model",
-		shellular:
-			"End-to-end encrypted. Key never leaves your device. Pairing via QR code only.",
-		codex:
-			"Secure relay managed by OpenAI. Session state synced through your ChatGPT account.",
-	},
+  {
+    label: "AI support",
+    shellular:
+      "Works with Claude Code, Codex, OpenCode, Pi, and the rest of your setup.",
+    codex: "Tied to Codex. No support for other agents or tools.",
+  },
+  {
+    label: "What you can do remotely",
+    shellular:
+      "Terminal control, file browsing, Git operations, browser sessions, DevTools, and agent management.",
+    codex:
+      "Steer active Codex threads: review outputs, approve commands, change models, start new tasks.",
+  },
+  {
+    label: "Terminal access",
+    shellular:
+      "Full remote terminal — run any command, restart services, inspect logs directly.",
+    codex:
+      "Read-only: view terminal output Codex produces. You cannot run commands yourself.",
+  },
+  {
+    label: "Filesystem access",
+    shellular:
+      "Browse and edit your actual project files directly. No sync, no copy.",
+    codex:
+      "See diffs and test results that Codex generates. No direct file browsing or editing.",
+  },
+  {
+    label: "Browser & DevTools",
+    shellular:
+      "Open local apps remotely, inspect pages, debug — from your phone.",
+    codex:
+      "View screenshots Codex captures. No direct browser or DevTools access.",
+  },
+  {
+    label: "Security model",
+    shellular:
+      "End-to-end encrypted. Key never leaves your device. Pairing via QR code only.",
+    codex:
+      "Secure relay managed by OpenAI. Session state synced through your ChatGPT account.",
+  },
 ];
 
 const structuredData = [
-	{
-		"@context": "https://schema.org",
-		"@type": "WebPage",
-		name: "Shellular vs Codex Mobile",
-		description:
-			"Compare Shellular and Codex Mobile for remote development from your phone. See how terminal access, filesystem control, browser tooling, and multi-agent support stack up.",
-		url: "https://shellular.dev/shellular-vs-codex-mobile",
-	},
-	{
-		"@context": "https://schema.org",
-		"@type": "BreadcrumbList",
-		itemListElement: [
-			{
-				"@type": "ListItem",
-				position: 1,
-				name: "Home",
-				item: "https://shellular.dev",
-			},
-			{
-				"@type": "ListItem",
-				position: 2,
-				name: "Shellular vs Codex Mobile",
-				item: "https://shellular.dev/shellular-vs-codex-mobile",
-			},
-		],
-	},
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Shellular vs Codex Mobile",
+    description:
+      "Compare Shellular and Codex Mobile for remote development from your phone. See how terminal access, filesystem control, browser tooling, and multi-agent support stack up.",
+    url: "https://shellular.dev/shellular-vs-codex-mobile",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://shellular.dev",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Shellular vs Codex Mobile",
+        item: "https://shellular.dev/shellular-vs-codex-mobile",
+      },
+    ],
+  },
 ];
 ---
 
@@ -106,10 +106,11 @@ const structuredData = [
       <div class="comparison-inner">
         <h1>Shellular vs Codex Mobile</h1>
         <p class="hero-copy">
-          Codex Mobile is a polished way to steer a Codex session from your phone — follow terminal output, review
-          diffs, approve commands, keep long-running tasks moving. Shellular is built for everything beyond that:
-          direct terminal control, file browsing, Git, browser DevTools, and every agent you already run, not just
-          Codex.
+          Codex Mobile is a polished way to steer a Codex session from your
+          phone — follow terminal output, review diffs, approve commands, keep
+          long-running tasks moving. Shellular is built for everything beyond
+          that: direct terminal control, file browsing, Git, browser DevTools,
+          and every agent you already run, not just Codex.
         </p>
         <div class="hero-pills" aria-label="Key differentiators">
           <span>Not limited to Codex</span>
@@ -126,25 +127,29 @@ const structuredData = [
           <article class="point-card">
             <h3>Your whole agent lineup, not just one</h3>
             <p>
-              Codex Mobile is built entirely around Codex running inside ChatGPT. Shellular works with Claude Code,
-              Codex, OpenCode, Pi, and whatever else is part of your workflow — all from the same remote interface,
-              without switching apps.
+              Codex Mobile is built entirely around Codex running inside
+              ChatGPT. Shellular works with Claude Code, Codex, OpenCode, Pi,
+              and whatever else is part of your workflow — all from the same
+              remote interface, without switching apps.
             </p>
           </article>
           <article class="point-card">
             <h3>Run commands, not just read them</h3>
             <p>
-              Codex Mobile shows you what the agent's terminal is doing — output, diffs, test results. Shellular gives
-              you an actual shell. When you need to run a command directly, restart a service, or fix something the
-              agent missed, you can do that yourself from your phone.
+              Codex Mobile shows you what the agent's terminal is doing —
+              output, diffs, test results. Shellular gives you an actual shell.
+              When you need to run a command directly, restart a service, or fix
+              something the agent missed, you can do that yourself from your
+              phone.
             </p>
           </article>
           <article class="point-card">
             <h3>Files, Git, and browser when you need them</h3>
             <p>
-              Codex Mobile lets you observe and steer what Codex is doing. Shellular puts you in direct control of your
-              machine — browse and edit files, run Git operations, open local apps, and debug in the browser without
-              going back to your desk.
+              Codex Mobile lets you observe and steer what Codex is doing.
+              Shellular puts you in direct control of your machine — browse and
+              edit files, run Git operations, open local apps, and debug in the
+              browser without going back to your desk.
             </p>
           </article>
         </div>
@@ -154,7 +159,11 @@ const structuredData = [
     <section class="comparison-section comparison-table-section">
       <div class="comparison-inner">
         <h2>Quick comparison</h2>
-        <div class="comparison-table" role="table" aria-label="Shellular compared with Codex Mobile">
+        <div
+          class="comparison-table"
+          role="table"
+          aria-label="Shellular compared with Codex Mobile"
+        >
           <div class="comparison-head" role="rowgroup">
             <div class="comparison-row comparison-row-head" role="row">
               <span role="columnheader">Category</span>
@@ -183,9 +192,11 @@ const structuredData = [
       <div class="comparison-inner">
         <h2>Bottom line</h2>
         <p class="hero-copy">
-          Codex Mobile is a well-designed way to keep a Codex session moving from your phone — and if Codex is your
-          only agent, it does that well. If you want direct control over your machine — a real terminal, file browsing,
-          Git, browser debugging, and every agent you already use — Shellular is the stronger fit.
+          Codex Mobile is a well-designed way to keep a Codex session moving
+          from your phone — and if Codex is your only agent, it does that well.
+          If you want direct control over your machine — a real terminal, file
+          browsing, Git, browser debugging, and every agent you already use —
+          Shellular is the stronger fit.
         </p>
         <a class="cta-link" href="/#install">Try Shellular</a>
       </div>
@@ -197,18 +208,32 @@ const structuredData = [
         <div class="related-grid">
           <a class="related-card" href="/blog/how-to-run-codex-on-your-phone">
             <span class="related-label">How to run Codex on your phone</span>
-            <span class="related-note">The step by step setup, with a real terminal behind it.</span>
+            <span class="related-note"
+              >The step by step setup, with a real terminal behind it.</span
+            >
           </a>
-          <a class="related-card" href="/blog/how-to-run-ai-agents-on-your-phone">
-            <span class="related-label">How to run AI agents on your phone</span>
-            <span class="related-note">The broader guide to mobile agent workflows.</span>
+          <a
+            class="related-card"
+            href="/blog/how-to-run-ai-agents-on-your-phone"
+          >
+            <span class="related-label">How to run AI agents on your phone</span
+            >
+            <span class="related-note"
+              >The broader guide to mobile agent workflows.</span
+            >
           </a>
-          <a class="related-card" href="/blog/how-to-run-claude-code-on-your-phone">
-            <span class="related-label">How to run Claude Code on your phone</span>
+          <a
+            class="related-card"
+            href="/blog/how-to-run-claude-code-on-your-phone"
+          >
+            <span class="related-label"
+              >How to run Claude Code on your phone</span
+            >
             <span class="related-note">Same idea, for Claude Code.</span>
           </a>
           <a class="related-card" href="/shellular-vs-claude-remote-control">
-            <span class="related-label">Shellular vs Claude Remote Control</span>
+            <span class="related-label">Shellular vs Claude Remote Control</span
+            >
             <span class="related-note">Another head to head comparison.</span>
           </a>
         </div>
@@ -227,8 +252,17 @@ const structuredData = [
   .comparison-hero {
     border-bottom: 1px solid var(--line-soft);
     background:
-      radial-gradient(1100px 420px at 50% -40%, rgba(var(--brand-gold-rgb), 0.16), transparent),
-      linear-gradient(180deg, rgba(var(--brand-cream-rgb), 0.02), transparent 55%), var(--brand-bg);
+      radial-gradient(
+        1100px 420px at 50% -40%,
+        rgba(var(--brand-gold-rgb), 0.16),
+        transparent
+      ),
+      linear-gradient(
+        180deg,
+        rgba(var(--brand-cream-rgb), 0.02),
+        transparent 55%
+      ),
+      var(--brand-bg);
   }
 
   .comparison-inner {
@@ -388,7 +422,9 @@ const structuredData = [
     text-decoration: none;
     background: rgba(var(--brand-cream-rgb), 0.03);
     border: 1px solid rgba(var(--brand-gold-rgb), 0.18);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease;
   }
 
   .related-card:hover {

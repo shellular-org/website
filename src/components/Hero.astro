@@ -1,28 +1,15 @@
 ---
 import { Image } from "astro:assets";
-import { BotMessageSquareIcon, GlobeIcon, PlayIcon, TerminalIcon } from "@lucide/astro";
-import claudeCode from "@/assets/agents/claudecode-color.svg";
-import codex from "@/assets/agents/codex-color.svg";
-import cursorAgent from "@/assets/agents/cursor.svg";
-import copilot from "@/assets/agents/githubcopilot.svg";
-import hermesAgent from "@/assets/agents/hermesagent.svg";
-import openCode from "@/assets/agents/opencode.svg";
-import pi from "@/assets/agents/pi.svg";
-import grok from "@/assets/agents/grok.svg";
+import {
+  BotMessageSquareIcon,
+  GlobeIcon,
+  PlayIcon,
+  TerminalIcon,
+} from "@lucide/astro";
 import appHomeScreenshot from "@/assets/app-home-ss.jpg";
 import AppStoreBadge from "@/components/AppStoreBadge.astro";
+import { agents } from "@/components/Integrations.astro";
 import PlayStoreBadge from "@/components/PlayStoreBadge.astro";
-
-const agentLogos = [
-  { label: "Codex", img: codex.src },
-  { label: "Claude Code", img: claudeCode.src },
-  { label: "OpenCode", img: openCode.src },
-  { label: "Hermes Agent", img: hermesAgent.src },
-  { label: "Cursor CLI", img: cursorAgent.src },
-  { label: "Pi", img: pi.src },
-  { label: "Grok Build", img: grok.src },
-  { label: "Copilot", img: copilot.src },
-];
 ---
 
 <section id="hero">
@@ -91,9 +78,12 @@ const agentLogos = [
       Run agents, terminals, code editor and browser DevTools from your phone.
     </p>
 
-    <div class="hero-logos reveal reveal-delay-4" aria-label="Works with your favorite coding agents">
+    <div
+      class="hero-logos reveal reveal-delay-4"
+      aria-label="Works with your favorite coding agents"
+    >
       {
-        agentLogos.map((a) => (
+        agents.map((a) => (
           <span class="hero-logo">
             <img src={a.img} alt={a.label} loading="lazy" />
           </span>
@@ -111,14 +101,24 @@ const agentLogos = [
     </div>
 
     <div class="hero-proof reveal reveal-delay-4">
-      <a id="testimonials-link" href="#testimonials" class="avatars" aria-label="Read what developers say">
+      <a
+        id="testimonials-link"
+        href="#testimonials"
+        class="avatars"
+        aria-label="Read what developers say"
+      >
         <span class="avatar">RS</span>
         <span class="avatar">AS</span>
         <span class="avatar">S</span>
       </a>
       <p>
-        Built by the team behind <a href="https://acode.app" target="_blank" rel="noopener noreferrer">Acode</a>, the
-        mobile code editor with <span class="hero-proof-emphasis">4M downloads</span> on Play Store.
+        Built by the team behind <a
+          href="https://acode.app"
+          target="_blank"
+          rel="noopener noreferrer">Acode</a
+        >, the mobile code editor with <span class="hero-proof-emphasis"
+          >4M downloads</span
+        > on Play Store.
       </p>
     </div>
 
@@ -191,7 +191,11 @@ const agentLogos = [
       </svg>
     </button>
     <div class="demo-embed">
-      <iframe src="" id="demo-iframe" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      <iframe
+        src=""
+        id="demo-iframe"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen></iframe>
     </div>
   </div>
 </div>
@@ -213,7 +217,11 @@ const agentLogos = [
         rgba(237, 246, 254, 0) 72%
       ),
       /* Symmetric deep-ocean corner vignette for depth and framing */
-      radial-gradient(ellipse 90% 80% at 50% -20%, rgba(38, 92, 152, 0.55) 0%, rgba(38, 92, 152, 0) 55%),
+      radial-gradient(
+          ellipse 90% 80% at 50% -20%,
+          rgba(38, 92, 152, 0.55) 0%,
+          rgba(38, 92, 152, 0) 55%
+        ),
       /* Vertical spine: deep ocean → open sky → soft cream haze at the horizon */
       linear-gradient(
           180deg,
@@ -237,7 +245,11 @@ const agentLogos = [
     transform: translateX(-50%);
     width: min(1100px, 115vw);
     height: 520px;
-    background: radial-gradient(ellipse 60% 70% at center, rgba(214, 234, 252, 0.22) 0%, rgba(214, 234, 252, 0) 70%);
+    background: radial-gradient(
+      ellipse 60% 70% at center,
+      rgba(214, 234, 252, 0.22) 0%,
+      rgba(214, 234, 252, 0) 70%
+    );
     pointer-events: none;
     z-index: 0;
     filter: blur(8px);
@@ -251,7 +263,11 @@ const agentLogos = [
     right: 0;
     bottom: 0;
     height: 180px;
-    background: linear-gradient(180deg, transparent 0%, rgba(244, 230, 218, 0.45) 100%);
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(244, 230, 218, 0.45) 100%
+    );
     pointer-events: none;
     z-index: 0;
   }
@@ -279,8 +295,18 @@ const agentLogos = [
       transparent 144deg,
       transparent 360deg
     );
-    mask-image: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.5) 40%, transparent 75%);
-    -webkit-mask-image: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.5) 40%, transparent 75%);
+    mask-image: linear-gradient(
+      180deg,
+      black 0%,
+      rgba(0, 0, 0, 0.5) 40%,
+      transparent 75%
+    );
+    -webkit-mask-image: linear-gradient(
+      180deg,
+      black 0%,
+      rgba(0, 0, 0, 0.5) 40%,
+      transparent 75%
+    );
   }
 
   /* Topographic contour — faint dashed arcs at the bottom suggesting horizon */
@@ -535,7 +561,11 @@ const agentLogos = [
     background: linear-gradient(135deg, #e07d52, #754d29);
   }
   .avatar:nth-child(3) {
-    background: linear-gradient(135deg, var(--brand-gold-soft), var(--brand-gold-deep));
+    background: linear-gradient(
+      135deg,
+      var(--brand-gold-soft),
+      var(--brand-gold-deep)
+    );
   }
 
   /* ── Phone visual ── */
@@ -576,7 +606,11 @@ const agentLogos = [
     right: 10%;
     bottom: -16px;
     height: 22px;
-    background: radial-gradient(ellipse at center, rgba(26, 22, 21, 0.22), transparent 70%);
+    background: radial-gradient(
+      ellipse at center,
+      rgba(26, 22, 21, 0.22),
+      transparent 70%
+    );
     filter: blur(6px);
     z-index: -1;
     pointer-events: none;

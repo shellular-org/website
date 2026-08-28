@@ -6,7 +6,7 @@ import { GithubIcon } from "./icons";
 const GITHUB_URL = "https://github.com/shellular-org";
 
 interface Props {
-	currentPath?: string;
+  currentPath?: string;
 }
 
 const { currentPath = Astro.url.pathname } = Astro.props;
@@ -27,7 +27,13 @@ const isHomePage = currentPath === "/";
       <a href={isHomePage ? "#security" : "/#security"}>Security</a>
       <a href="/docs">Docs</a>
       <a href="/blog">Blog</a>
-      <a class="github-link" href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <a
+        class="github-link"
+        href={GITHUB_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+      >
         <GithubIcon size={18} />
       </a>
       <a class="founder-nav" href="/talk-to-founder">
@@ -36,8 +42,18 @@ const isHomePage = currentPath === "/";
       </a>
     </div>
     <div class="nav-actions">
-      <a class="download-nav" href={isHomePage ? "#get-started" : "/#get-started"}>Get Started</a>
-      <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <a
+        class="download-nav"
+        href={isHomePage ? "#get-started" : "/#get-started"}>Get Started</a
+      >
+      <button
+        id="nav-toggle"
+        class="nav-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
         <MenuIcon class="icon-menu" size={22} aria-hidden="true" />
         <XIcon class="icon-close" size={22} aria-hidden="true" />
       </button>
@@ -45,11 +61,20 @@ const isHomePage = currentPath === "/";
   </nav>
 
   <div id="mobile-menu" class="mobile-menu" hidden>
-    <a href={isHomePage ? "#features" : "/#features"} class="mobile-link">Features</a>
-    <a href={isHomePage ? "#security" : "/#security"} class="mobile-link">Security</a>
+    <a href={isHomePage ? "#features" : "/#features"} class="mobile-link"
+      >Features</a
+    >
+    <a href={isHomePage ? "#security" : "/#security"} class="mobile-link"
+      >Security</a
+    >
     <a href="/docs" class="mobile-link">Docs</a>
     <a href="/blog" class="mobile-link">Blog</a>
-    <a href={GITHUB_URL} class="mobile-link mobile-github" target="_blank" rel="noopener noreferrer">
+    <a
+      href={GITHUB_URL}
+      class="mobile-link mobile-github"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <GithubIcon size={16} />
       GitHub
     </a>
@@ -57,7 +82,10 @@ const isHomePage = currentPath === "/";
       <MessageCircleIcon size={16} aria-hidden="true" />
       <span>Talk to founder</span>
     </a>
-    <a class="download-nav mobile-cta" href={isHomePage ? "#get-started" : "/#get-started"}>Get Started</a>
+    <a
+      class="download-nav mobile-cta"
+      href={isHomePage ? "#get-started" : "/#get-started"}>Get Started</a
+    >
   </div>
 </div>
 
@@ -90,7 +118,11 @@ const isHomePage = currentPath === "/";
       0 1px 0 rgba(255, 255, 255, 0.6) inset,
       0 8px 24px rgba(26, 22, 21, 0.06);
     max-width: 100%;
-    transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    transition:
+      background 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease;
   }
 
   #nav-wrap.scrolled #nav {
@@ -125,7 +157,11 @@ const isHomePage = currentPath === "/";
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--brand-gold-ink);
-    background: linear-gradient(135deg, var(--brand-gold-soft) 0%, var(--brand-gold) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--brand-gold-soft) 0%,
+      var(--brand-gold) 100%
+    );
     padding: 2px 8px;
     border-radius: var(--radius-pill);
     border: 1px solid rgba(181, 156, 114, 0.4);
@@ -164,7 +200,11 @@ const isHomePage = currentPath === "/";
     font-size: 13px;
     font-weight: 700;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
-    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      color 0.2s,
+      transform 0.2s;
   }
 
   .links .founder-nav:hover {
@@ -200,7 +240,9 @@ const isHomePage = currentPath === "/";
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    transition: background 0.2s, transform 0.2s;
+    transition:
+      background 0.2s,
+      transform 0.2s;
     border: none;
     white-space: nowrap;
   }
@@ -291,7 +333,9 @@ const isHomePage = currentPath === "/";
     font-weight: 500;
     padding: 11px 14px;
     border-radius: var(--radius-md);
-    transition: background 0.2s, color 0.2s;
+    transition:
+      background 0.2s,
+      color 0.2s;
   }
 
   .mobile-link:hover {
@@ -397,9 +441,9 @@ const isHomePage = currentPath === "/";
     });
 
     // Close when a link is tapped
-    menu.querySelectorAll("a").forEach((link) =>
-      link.addEventListener("click", closeMenu)
-    );
+    menu
+      .querySelectorAll("a")
+      .forEach((link) => link.addEventListener("click", closeMenu));
 
     // Close on Escape
     document.addEventListener("keydown", (e) => {

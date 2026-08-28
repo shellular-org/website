@@ -7,7 +7,11 @@ import Layout from "@/layouts/Layout.astro";
 <Layout
   title="Shellular Privacy Policy"
   description="Shellular's privacy policy. We never sell your data, all traffic between the app and your machine is end-to-end encrypted, and we process only minimal account and product-usage metadata."
-  keywords={["Shellular privacy policy", "Shellular privacy", "developer tool privacy"]}
+  keywords={[
+    "Shellular privacy policy",
+    "Shellular privacy",
+    "developer tool privacy",
+  ]}
 >
   <Nav />
   <main class="legal-page">
@@ -21,14 +25,17 @@ import Layout from "@/layouts/Layout.astro";
         <section>
           <h2 data-num="01">Overview</h2>
           <p>
-            Shellular ("we", "our", "us") is a remote development tool that connects your mobile device directly to your
-            own machine. We are committed to your privacy. This policy explains what data we collect (very little), how
-            it is used, and your rights.
+            Shellular ("we", "our", "us") is a remote development tool that
+            connects your mobile device directly to your own machine. We are
+            committed to your privacy. This policy explains what data we collect
+            (very little), how it is used, and your rights.
           </p>
           <p>
-            <strong>Short version:</strong> We never sell your data, and we never see the contents of your terminal, files,
-            or AI prompts since it's all end-to-end encrypted. To run Shellular we do process an account identifier and a
-            small amount of connection and product-usage metadata, described below.
+            <strong>Short version:</strong> We never sell your data, and we never
+            see the contents of your terminal, files, or AI prompts since it's all
+            end-to-end encrypted. To run Shellular we do process an account identifier
+            and a small amount of connection and product-usage metadata, described
+            below.
           </p>
         </section>
 
@@ -36,36 +43,50 @@ import Layout from "@/layouts/Layout.astro";
           <h2 data-num="02">Information We Do Not Collect</h2>
           <p>We do not collect:</p>
           <ul>
-            <li>The contents of your filesystem, terminal sessions, or AI prompts.</li>
-            <li>Precise device location, contacts, photos, or any other sensitive device data.</li>
-            <li>Your data for sale or for advertising — we never sell or rent your information.</li>
+            <li>
+              The contents of your filesystem, terminal sessions, or AI prompts.
+            </li>
+            <li>
+              Precise device location, contacts, photos, or any other sensitive
+              device data.
+            </li>
+            <li>
+              Your data for sale or for advertising — we never sell or rent your
+              information.
+            </li>
           </ul>
           <p>
-            Signing in to Shellular does create an account, so we process the account identifier and any details
-            provided by your sign-in method (for example, an email address). We use this only to authenticate you.
+            Signing in to Shellular does create an account, so we process the
+            account identifier and any details provided by your sign-in method
+            (for example, an email address). We use this only to authenticate
+            you.
           </p>
         </section>
 
         <section>
           <h2 data-num="03">Information That May Be Processed Transiently</h2>
           <p>
-            When you use Shellular, traffic between the Shellular mobile app and the CLI on your machine is relayed
-            through our servers at <code>server.shellular.dev</code> (and legacy server <code>api.shellular.dev</code>).
-            This relay operates as a pass-through only:
+            When you use Shellular, traffic between the Shellular mobile app and
+            the CLI on your machine is relayed through our servers at <code
+              >server.shellular.dev</code
+            > (and legacy server <code>api.shellular.dev</code>). This relay
+            operates as a pass-through only:
           </p>
           <ul>
             <li>
-              All relay traffic is <strong>end-to-end encrypted</strong> using libsodium. The relay server cannot read the
-              content of any message.
+              All relay traffic is <strong>end-to-end encrypted</strong> using libsodium.
+              The relay server cannot read the content of any message.
             </li>
             <li>
-              The pairing key is exchanged out-of-band via a QR code displayed in your terminal and scanned by the app —
-              the server never sees your pairing key.
+              The pairing key is exchanged out-of-band via a QR code displayed
+              in your terminal and scanned by the app — the server never sees
+              your pairing key.
             </li>
             <li>
-              We may retain standard server logs (IP addresses, timestamps, byte counts) for up to
-              <strong>30 days</strong> solely for abuse prevention and infrastructure monitoring. These logs are not shared
-              with third parties.
+              We may retain standard server logs (IP addresses, timestamps, byte
+              counts) for up to
+              <strong>30 days</strong> solely for abuse prevention and infrastructure
+              monitoring. These logs are not shared with third parties.
             </li>
           </ul>
         </section>
@@ -73,48 +94,68 @@ import Layout from "@/layouts/Layout.astro";
         <section>
           <h2 data-num="04">Local Data &amp; Device Permissions</h2>
           <p>
-            The Shellular CLI runs on your own machine and accesses only the directory you explicitly specify with the <code
-              >--dir</code
-            > flag (defaulting to your home directory). Path-traversal outside that root is rejected. The CLI connects outbound
-            only — it opens no listening ports on your machine.
+            The Shellular CLI runs on your own machine and accesses only the
+            directory you explicitly specify with the <code>--dir</code> flag (defaulting
+            to your home directory). Path-traversal outside that root is rejected.
+            The CLI connects outbound only — it opens no listening ports on your machine.
           </p>
           <p>
-            The Shellular mobile app stores your pairing key and session state locally on your device using the
-            platform's secure storage. This data never leaves your device except as part of the encrypted relay traffic
-            described above.
+            The Shellular mobile app stores your pairing key and session state
+            locally on your device using the platform's secure storage. This
+            data never leaves your device except as part of the encrypted relay
+            traffic described above.
           </p>
         </section>
 
         <section>
           <h2 data-num="05">Analytics</h2>
           <p>
-            To understand how many people use Shellular and how it is performing, we capture a small set of
-            <strong>product-usage events</strong> using <a href="https://posthog.com" rel="noopener">PostHog</a>, our
-            analytics provider. Importantly, <strong>PostHog runs only on our relay server</strong> — it is
-            <strong>not</strong> embedded in the Shellular app or CLI. There is no analytics or tracking SDK in the software
-            on your device or machine; the events are derived server-side from connection metadata and sent to PostHog's US
-            infrastructure. We do <strong>not</strong> use advertising networks, and PostHog session replay is not enabled.
+            To understand how many people use Shellular and how it is
+            performing, we capture a small set of
+            <strong>product-usage events</strong> using <a
+              href="https://posthog.com"
+              rel="noopener">PostHog</a
+            >, our analytics provider. Importantly, <strong
+              >PostHog runs only on our relay server</strong
+            > — it is
+            <strong>not</strong> embedded in the Shellular app or CLI. There is no
+            analytics or tracking SDK in the software on your device or machine; the
+            events are derived server-side from connection metadata and sent to PostHog's
+            US infrastructure. We do <strong>not</strong> use advertising networks,
+            and PostHog session replay is not enabled.
           </p>
-          <p>The events record connection and platform metadata only, such as:</p>
+          <p>
+            The events record connection and platform metadata only, such as:
+          </p>
           <ul>
             <li>
-              A pseudonymous account identifier, plus stable device and host identifiers, used to count distinct and
-              daily-active users.
+              A pseudonymous account identifier, plus stable device and host
+              identifiers, used to count distinct and daily-active users.
             </li>
-            <li>Platform (iOS, Android, web), and the app or CLI version you are running.</li>
-            <li>Whether the app is running on an emulator, and your host operating system.</li>
+            <li>
+              Platform (iOS, Android, web), and the app or CLI version you are
+              running.
+            </li>
+            <li>
+              Whether the app is running on an emulator, and your host operating
+              system.
+            </li>
             <li>The timestamp of the connection.</li>
           </ul>
           <p>
-            We never send the contents of your terminal sessions, filesystem, or AI prompts to PostHog. Because this
-            analytics is captured server-side to keep our usage metrics accurate, there is currently no in-app opt-out.
+            We never send the contents of your terminal sessions, filesystem, or
+            AI prompts to PostHog. Because this analytics is captured
+            server-side to keep our usage metrics accurate, there is currently
+            no in-app opt-out.
           </p>
           <p>
-            Forks and self-hosted deployments of the relay can run without analytics entirely — it is active only when
-            we configure an analytics key on our production servers. Our relay server is open source, so you can review
-            exactly what we capture in
-            <a href="https://github.com/shellular-org/server/blob/main/relay/posthog.ts" rel="noopener"
-              >the analytics code</a
+            Forks and self-hosted deployments of the relay can run without
+            analytics entirely — it is active only when we configure an
+            analytics key on our production servers. Our relay server is open
+            source, so you can review exactly what we capture in
+            <a
+              href="https://github.com/shellular-org/server/blob/main/relay/posthog.ts"
+              rel="noopener">the analytics code</a
             >.
           </p>
         </section>
@@ -122,40 +163,48 @@ import Layout from "@/layouts/Layout.astro";
         <section>
           <h2 data-num="06">Third-Party Services</h2>
           <p>
-            We use <a href="https://posthog.com" rel="noopener">PostHog</a> (US) as our analytics processor for the product-usage
-            events described in Section 05. PostHog processes this data on our behalf and does not use it for its own purposes.
+            We use <a href="https://posthog.com" rel="noopener">PostHog</a> (US) as
+            our analytics processor for the product-usage events described in Section
+            05. PostHog processes this data on our behalf and does not use it for
+            its own purposes.
           </p>
           <p>
-            Shellular can optionally route AI prompts to third-party services such as OpenCode, Anthropic Claude, GitHub
-            Copilot, or OpenAI Codex depending on what is installed on your machine. These requests originate from the
-            CLI on <em>your machine</em> and are governed by the respective provider's privacy policies. Shellular does not
-            proxy or log these prompts.
+            Shellular can optionally route AI prompts to third-party services
+            such as OpenCode, Anthropic Claude, GitHub Copilot, or OpenAI Codex
+            depending on what is installed on your machine. These requests
+            originate from the CLI on <em>your machine</em> and are governed by the
+            respective provider's privacy policies. Shellular does not proxy or log
+            these prompts.
           </p>
         </section>
 
         <section>
           <h2 data-num="07">Children's Privacy</h2>
           <p>
-            Shellular is a developer tool not directed at children under 13 (or the applicable local age threshold). We
-            do not knowingly collect data from children. If you believe a child has provided personal data to us, please
-            contact us and we will delete it promptly.
+            Shellular is a developer tool not directed at children under 13 (or
+            the applicable local age threshold). We do not knowingly collect
+            data from children. If you believe a child has provided personal
+            data to us, please contact us and we will delete it promptly.
           </p>
         </section>
 
         <section>
           <h2 data-num="08">Data Security</h2>
           <p>
-            We use industry-standard measures to protect our relay infrastructure. Because all relay traffic is
-            end-to-end encrypted, even a full compromise of the relay server would not expose your terminal sessions,
-            files, or AI conversations.
+            We use industry-standard measures to protect our relay
+            infrastructure. Because all relay traffic is end-to-end encrypted,
+            even a full compromise of the relay server would not expose your
+            terminal sessions, files, or AI conversations.
           </p>
         </section>
 
         <section>
           <h2 data-num="09">Changes to This Policy</h2>
           <p>
-            We may update this policy from time to time. The effective date at the top of this page will be updated
-            accordingly. Continued use of Shellular after a change constitutes acceptance of the revised policy.
+            We may update this policy from time to time. The effective date at
+            the top of this page will be updated accordingly. Continued use of
+            Shellular after a change constitutes acceptance of the revised
+            policy.
           </p>
         </section>
 
@@ -188,7 +237,11 @@ import Layout from "@/layouts/Layout.astro";
     inset: 0 0 auto 0;
     height: 360px;
     background:
-      radial-gradient(ellipse 80% 70% at 50% -10%, rgba(255, 240, 210, 0.5) 0%, transparent 60%),
+      radial-gradient(
+        ellipse 80% 70% at 50% -10%,
+        rgba(255, 240, 210, 0.5) 0%,
+        transparent 60%
+      ),
       linear-gradient(180deg, var(--sky-100) 0%, transparent 100%);
     pointer-events: none;
   }

@@ -6,7 +6,7 @@ import { APP_STORE_URL, PLAY_STORE_URL } from "@/data/appLinks";
 import Layout from "@/layouts/Layout.astro";
 
 const qrUrl = (url: string) =>
-	`https://api.qrserver.com/v1/create-qr-code/?size=360x360&margin=18&data=${encodeURIComponent(url)}`;
+  `https://api.qrserver.com/v1/create-qr-code/?size=360x360&margin=18&data=${encodeURIComponent(url)}`;
 ---
 
 <Layout
@@ -21,14 +21,29 @@ const qrUrl = (url: string) =>
       <div class="share-copy">
         <p class="eyebrow">Your entire dev environment, on your phone.</p>
         <h1>Try Shellular on your phone.</h1>
-        <p>Terminal, AI agents, files, ports & Git — all from your phone. Choose your platform and scan the QR code.</p>
+        <p>
+          Terminal, AI agents, files, ports & Git — all from your phone. Choose
+          your platform and scan the QR code.
+        </p>
 
-        <div class="platform-toggle" role="radiogroup" aria-label="Choose platform">
-          <button class="platform-button active" type="button" data-platform="ios" role="radio" aria-checked="true"
-            >iPhone</button
+        <div
+          class="platform-toggle"
+          role="radiogroup"
+          aria-label="Choose platform"
+        >
+          <button
+            class="platform-button active"
+            type="button"
+            data-platform="ios"
+            role="radio"
+            aria-checked="true">iPhone</button
           >
-          <button class="platform-button" type="button" data-platform="android" role="radio" aria-checked="false"
-            >Android</button
+          <button
+            class="platform-button"
+            type="button"
+            data-platform="android"
+            role="radio"
+            aria-checked="false">Android</button
           >
         </div>
 
@@ -54,7 +69,12 @@ const qrUrl = (url: string) =>
         </div>
         <div class="qr-meta">
           <span data-store-name>App Store</span>
-          <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" data-plain-link>{APP_STORE_URL}</a>
+          <a
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-plain-link>{APP_STORE_URL}</a
+          >
         </div>
       </div>
     </section>
@@ -202,9 +222,12 @@ const qrUrl = (url: string) =>
 
 <script>
   const panel = document.querySelector<HTMLElement>(".qr-panel");
-  const buttons = document.querySelectorAll<HTMLButtonElement>(".platform-button[data-platform]");
+  const buttons = document.querySelectorAll<HTMLButtonElement>(
+    ".platform-button[data-platform]",
+  );
   const qr = document.querySelector<HTMLImageElement>("[data-qr]");
-  const plainLink = document.querySelector<HTMLAnchorElement>("[data-plain-link]");
+  const plainLink =
+    document.querySelector<HTMLAnchorElement>("[data-plain-link]");
   const storeName = document.querySelector<HTMLElement>("[data-store-name]");
 
   const content = {
@@ -222,7 +245,9 @@ const qrUrl = (url: string) =>
     },
   };
 
-  const badges = document.querySelectorAll<HTMLElement>(".share-copy .app-badges");
+  const badges = document.querySelectorAll<HTMLElement>(
+    ".share-copy .app-badges",
+  );
 
   const setPlatform = (platform: keyof typeof content) => {
     const c = content[platform];

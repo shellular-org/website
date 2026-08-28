@@ -40,8 +40,16 @@ const columns = [
   },
 ];
 
-const social: { label: string; href: string; Icon: (typeof socialIcon)[keyof typeof socialIcon] }[] = [
-  { label: "GitHub", href: "https://github.com/shellular-org", Icon: GithubIcon },
+const social: {
+  label: string;
+  href: string;
+  Icon: (typeof socialIcon)[keyof typeof socialIcon];
+}[] = [
+  {
+    label: "GitHub",
+    href: "https://github.com/shellular-org",
+    Icon: GithubIcon,
+  },
   { label: "X", href: "https://x.com/shellular_dev", Icon: XIcon },
   {
     label: "LinkedIn",
@@ -80,16 +88,29 @@ const social: { label: string; href: string; Icon: (typeof socialIcon)[keyof typ
         <ShellularLogo size={32} context="dark" />
         <span class="footer-brand-text">Shellular</span>
       </a>
-      <p class="footer-tagline">Your full dev environment — agents, terminal, files, ports — in your pocket.</p>
+      <p class="footer-tagline">
+        Your full dev environment — agents, terminal, files, ports — in your
+        pocket.
+      </p>
       <p class="footer-proof">
-        Built by the team behind <a href="https://acode.app" target="_blank" rel="noopener noreferrer">Acode</a>.
+        Built by the team behind <a
+          href="https://acode.app"
+          target="_blank"
+          rel="noopener noreferrer">Acode</a
+        >.
       </p>
 
       <div class="footer-social" aria-label="Shellular on social">
         {
           social.map(({ label, href, Icon }) => {
             return (
-              <a class="footer-social-btn" href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+              <a
+                class="footer-social-btn"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+              >
                 <Icon size={16} />
               </a>
             );
@@ -104,7 +125,12 @@ const social: { label: string; href: string; Icon: (typeof socialIcon)[keyof typ
           <div class="footer-col">
             <span class="footer-heading">{col.heading}</span>
             {col.links.map((link) => (
-              <a href={link.href} {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+              <a
+                href={link.href}
+                {...(link.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
                 {link.label}
               </a>
             ))}
@@ -115,7 +141,8 @@ const social: { label: string; href: string; Icon: (typeof socialIcon)[keyof typ
   </div>
 
   <div class="footer-base">
-    <span class="footer-base-copy">© 2026 Shellular — all rights reserved.</span>
+    <span class="footer-base-copy">© 2026 Shellular — all rights reserved.</span
+    >
     <span class="footer-base-tag">Made for developers on the move.</span>
   </div>
 
@@ -193,7 +220,12 @@ const social: { label: string; href: string; Icon: (typeof socialIcon)[keyof typ
   }
 
   .footer-brand-text {
-    background: linear-gradient(135deg, #f0e3c5 0%, var(--brand-gold) 60%, #b59c72 100%);
+    background: linear-gradient(
+      135deg,
+      #f0e3c5 0%,
+      var(--brand-gold) 60%,
+      #b59c72 100%
+    );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -368,7 +400,12 @@ const social: { label: string; href: string; Icon: (typeof socialIcon)[keyof typ
     transform: translateX(-50%);
     width: clamp(80px, 12vw, 160px);
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--brand-gold), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--brand-gold),
+      transparent
+    );
     opacity: 0.5;
   }
 
@@ -394,7 +431,12 @@ const social: { label: string; href: string; Icon: (typeof socialIcon)[keyof typ
     line-height: 0.85;
     pointer-events: none;
     user-select: none;
-    background: linear-gradient(180deg, rgba(214, 194, 161, 0.07) 0%, rgba(214, 194, 161, 0.025) 60%, transparent 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(214, 194, 161, 0.07) 0%,
+      rgba(214, 194, 161, 0.025) 60%,
+      transparent 100%
+    );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

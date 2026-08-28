@@ -8,143 +8,148 @@ import ShellularLogo from "./ShellularLogo.astro";
 ---
 
 <div
-  class='hero-diagram-wrapper reveal reveal-delay-3'
-  aria-label='Architecture diagram'>
-  <div class='diag-scene'>
+  class="hero-diagram-wrapper reveal reveal-delay-3"
+  aria-label="Architecture diagram"
+>
+  <div class="diag-scene">
     <!-- Layered ambient glow -->
-    <div class='diag-glow diag-glow-warm'></div>
-    <div class='diag-glow diag-glow-cool'></div>
-    <div class='diag-glow diag-glow-accent'></div>
+    <div class="diag-glow diag-glow-warm"></div>
+    <div class="diag-glow diag-glow-cool"></div>
+    <div class="diag-glow diag-glow-accent"></div>
 
     <!-- Animated dot-grid canvas -->
-    <canvas id='diag-particles' class='diag-particles' aria-hidden='true'
+    <canvas id="diag-particles" class="diag-particles" aria-hidden="true"
     ></canvas>
 
     <!-- ─── Flow layout ────────────────────────────────── -->
-    <div class='diag-flow'>
+    <div class="diag-flow">
       <!-- ─── Phone column ──────────────────────────────── -->
-      <div class='diag-col diag-col-phone'>
-        <div class='diag-phone-scene'>
-          <div class='diag-phone-halo'></div>
-          <div class='diag-phone-float'>
-            <div class='diag-phone'>
-              <div class='diag-phone-notch'></div>
+      <div class="diag-col diag-col-phone">
+        <div class="diag-phone-scene">
+          <div class="diag-phone-halo"></div>
+          <div class="diag-phone-float">
+            <div class="diag-phone">
+              <div class="diag-phone-notch"></div>
               <img
                 src={androidCcScreenshot.src}
-                alt='Shellular mobile app showing Claude Code running'
-                class='diag-phone-screen'
-                loading='eager'
+                alt="Shellular mobile app showing Claude Code running"
+                class="diag-phone-screen"
+                loading="eager"
               />
-              <div class='diag-phone-reflection'></div>
+              <div class="diag-phone-reflection"></div>
             </div>
           </div>
         </div>
-        <span class='diag-label-tag'>Your Phone</span>
+        <span class="diag-label-tag">Your Phone</span>
       </div>
 
       <!-- ─── Connection 1 ──────────────────────────────── -->
-      <div class='diag-connector'>
-        <div class='diag-beam'>
-          <div class='diag-beam-line'></div>
-          <div class='diag-beam-particle diag-beam-particle-1'></div>
-          <div class='diag-beam-particle diag-beam-particle-2'></div>
-          <div class='diag-beam-particle diag-beam-particle-3'></div>
+      <div class="diag-connector">
+        <div class="diag-beam">
+          <div class="diag-beam-line"></div>
+          <div class="diag-beam-particle diag-beam-particle-1"></div>
+          <div class="diag-beam-particle diag-beam-particle-2"></div>
+          <div class="diag-beam-particle diag-beam-particle-3"></div>
         </div>
       </div>
 
       <!-- ─── Shellular hub ─────────────────────────────── -->
-      <div class='diag-col diag-col-hub'>
-        <div class='diag-hub-scene'>
-          <div class='diag-hub-pulse diag-hub-pulse-3'></div>
-          <div class='diag-hub-pulse diag-hub-pulse-2'></div>
-          <div class='diag-hub-pulse diag-hub-pulse-1'></div>
-          <div class='diag-hub-core'>
+      <div class="diag-col diag-col-hub">
+        <div class="diag-hub-scene">
+          <div class="diag-hub-pulse diag-hub-pulse-3"></div>
+          <div class="diag-hub-pulse diag-hub-pulse-2"></div>
+          <div class="diag-hub-pulse diag-hub-pulse-1"></div>
+          <div class="diag-hub-core">
             <ShellularLogo size={45} />
           </div>
         </div>
         <!-- <span class="diag-hub-name">Shellular</span> -->
-        <span class='diag-hub-sub'>E2E Encrypted</span>
+        <span class="diag-hub-sub">E2E Encrypted</span>
       </div>
 
       <!-- ─── Connection 2 ──────────────────────────────── -->
-      <div class='diag-connector'>
-        <div class='diag-beam'>
-          <div class='diag-beam-line'></div>
+      <div class="diag-connector">
+        <div class="diag-beam">
+          <div class="diag-beam-line"></div>
           <div
-            class='diag-beam-particle diag-beam-particle-1'
-            style='animation-delay: 0.3s;'>
+            class="diag-beam-particle diag-beam-particle-1"
+            style="animation-delay: 0.3s;"
+          >
           </div>
           <div
-            class='diag-beam-particle diag-beam-particle-2'
-            style='animation-delay: 1.1s;'>
+            class="diag-beam-particle diag-beam-particle-2"
+            style="animation-delay: 1.1s;"
+          >
           </div>
         </div>
       </div>
 
       <!-- ─── Host column ───────────────────────────────── -->
-      <div class='diag-col diag-col-host'>
-        <div class='diag-host-card'>
-          <div class='diag-host-card-shine'></div>
-          <div class='diag-host-head'>
-            <span class='diag-host-title'>Your Machine</span>
-            <span class='diag-host-sub'>Laptop, Mac Mini, Desktop, Homelab</span
+      <div class="diag-col diag-col-host">
+        <div class="diag-host-card">
+          <div class="diag-host-card-shine"></div>
+          <div class="diag-host-head">
+            <span class="diag-host-title">Your Machine</span>
+            <span class="diag-host-sub">Laptop, Mac Mini, Desktop, Homelab</span
             >
           </div>
-          <div class='diag-tools'>
-            <div class='diag-tool diag-tool--terminal' data-stagger='1'>
-              <div class='diag-tool-glyph'>
+          <div class="diag-tools">
+            <div class="diag-tool diag-tool--terminal" data-stagger="1">
+              <div class="diag-tool-glyph">
                 <svg
-                  width='18'
-                  height='18'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  aria-hidden='true'>
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
                   <path
-                    d='M4 17l6-5-6-5M14 17h6'
-                    stroke='currentColor'
-                    stroke-width='2'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'></path>
+                    d="M4 17l6-5-6-5M14 17h6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
                 </svg>
               </div>
               <span>Terminal</span>
             </div>
-            <div class='diag-tool diag-tool--files' data-stagger='2'>
-              <div class='diag-tool-glyph'>
+            <div class="diag-tool diag-tool--files" data-stagger="2">
+              <div class="diag-tool-glyph">
                 <svg
-                  width='18'
-                  height='18'
-                  viewBox='0 0 24 24'
-                  fill='currentColor'
-                  aria-hidden='true'>
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
                   <path
-                    d='M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z'
+                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
                   ></path>
                 </svg>
               </div>
               <span>Files</span>
             </div>
-            <div class='diag-tool diag-tool--claude' data-stagger='3'>
-              <div class='diag-tool-glyph'>
-                <img src={claudeCodeIcon.src} alt='' aria-hidden='true' />
+            <div class="diag-tool diag-tool--claude" data-stagger="3">
+              <div class="diag-tool-glyph">
+                <img src={claudeCodeIcon.src} alt="" aria-hidden="true" />
               </div>
               <span>Claude Code</span>
             </div>
-            <div class='diag-tool diag-tool--codex' data-stagger='4'>
-              <div class='diag-tool-glyph'>
-                <img src={codexIcon.src} alt='' aria-hidden='true' />
+            <div class="diag-tool diag-tool--codex" data-stagger="4">
+              <div class="diag-tool-glyph">
+                <img src={codexIcon.src} alt="" aria-hidden="true" />
               </div>
               <span>Codex</span>
             </div>
-            <div class='diag-tool diag-tool--opencode' data-stagger='5'>
-              <div class='diag-tool-glyph'>
-                <img src={opencodeIcon.src} alt='' aria-hidden='true' />
+            <div class="diag-tool diag-tool--opencode" data-stagger="5">
+              <div class="diag-tool-glyph">
+                <img src={opencodeIcon.src} alt="" aria-hidden="true" />
               </div>
               <span>OpenCode</span>
             </div>
-            <div class='diag-tool diag-tool--copilot' data-stagger='6'>
-              <div class='diag-tool-glyph'>
-                <img src={githubCopilotIcon.src} alt='' aria-hidden='true' />
+            <div class="diag-tool diag-tool--copilot" data-stagger="6">
+              <div class="diag-tool-glyph">
+                <img src={githubCopilotIcon.src} alt="" aria-hidden="true" />
               </div>
               <span>Copilot</span>
             </div>
@@ -183,7 +188,7 @@ import ShellularLogo from "./ShellularLogo.astro";
       0 1px 0 rgba(255, 255, 255, 0.04) inset,
       0 60px 120px -30px rgba(0, 0, 0, 0.55),
       0 0 0 1px rgba(0, 0, 0, 0.2);
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
   }
 
   /* ─── Particle canvas ────────────────────────────────────── */
@@ -650,7 +655,7 @@ import ShellularLogo from "./ShellularLogo.astro";
   }
 
   .diag-host-card::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 16px;
@@ -710,22 +715,22 @@ import ShellularLogo from "./ShellularLogo.astro";
     animation: tool-appear 0.5s ease-out forwards;
   }
 
-  .diag-tool[data-stagger='1'] {
+  .diag-tool[data-stagger="1"] {
     animation-delay: 0.1s;
   }
-  .diag-tool[data-stagger='2'] {
+  .diag-tool[data-stagger="2"] {
     animation-delay: 0.18s;
   }
-  .diag-tool[data-stagger='3'] {
+  .diag-tool[data-stagger="3"] {
     animation-delay: 0.26s;
   }
-  .diag-tool[data-stagger='4'] {
+  .diag-tool[data-stagger="4"] {
     animation-delay: 0.34s;
   }
-  .diag-tool[data-stagger='5'] {
+  .diag-tool[data-stagger="5"] {
     animation-delay: 0.42s;
   }
-  .diag-tool[data-stagger='6'] {
+  .diag-tool[data-stagger="6"] {
     animation-delay: 0.5s;
   }
 
@@ -853,9 +858,9 @@ import ShellularLogo from "./ShellularLogo.astro";
 <!-- Particle canvas — floating dots with connection lines for depth -->
 <script is:inline>
   (function () {
-    const canvas = document.getElementById('diag-particles');
+    const canvas = document.getElementById("diag-particles");
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     let W,
       H,
       dpr,
@@ -898,7 +903,7 @@ import ShellularLogo from "./ShellularLogo.astro";
         const a = 0.25 + 0.25 * Math.sin(s * d.speed + d.phase);
         ctx.beginPath();
         ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(214,194,161,' + a.toFixed(3) + ')';
+        ctx.fillStyle = "rgba(214,194,161," + a.toFixed(3) + ")";
         ctx.fill();
       }
 
@@ -913,7 +918,7 @@ import ShellularLogo from "./ShellularLogo.astro";
             ctx.beginPath();
             ctx.moveTo(dots[i].x, dots[i].y);
             ctx.lineTo(dots[j].x, dots[j].y);
-            ctx.strokeStyle = 'rgba(214,194,161,' + alpha.toFixed(4) + ')';
+            ctx.strokeStyle = "rgba(214,194,161," + alpha.toFixed(4) + ")";
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -942,7 +947,7 @@ import ShellularLogo from "./ShellularLogo.astro";
     obs.observe(canvas);
 
     let resizeTimer;
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(init, 150);
     });

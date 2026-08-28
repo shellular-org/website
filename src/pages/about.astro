@@ -4,57 +4,62 @@ import Nav from "@/components/Nav.astro";
 import Layout from "@/layouts/Layout.astro";
 
 const team = [
-	{
-		name: "Ajit Kumar",
-		url: "https://github.com/deadlyjack",
-		avatarUrl: "https://github.com/deadlyjack.png",
-	},
-	{
-		name: "Biraj",
-		url: "https://github.com/biraj21",
-		avatarUrl: "https://github.com/biraj21.png",
-	},
-	{
-		name: "Raunak Raj",
-		url: "https://github.com/bajrangCoder",
-		avatarUrl: "https://github.com/bajrangCoder.png",
-	},
+  {
+    name: "Ajit Kumar",
+    url: "https://github.com/deadlyjack",
+    avatarUrl: "https://github.com/deadlyjack.png",
+  },
+  {
+    name: "Biraj",
+    url: "https://github.com/biraj21",
+    avatarUrl: "https://github.com/biraj21.png",
+  },
+  {
+    name: "Raunak Raj",
+    url: "https://github.com/bajrangCoder",
+    avatarUrl: "https://github.com/bajrangCoder.png",
+  },
 ];
 
 const structuredData = [
-	{
-		"@context": "https://schema.org",
-		"@type": "AboutPage",
-		name: "About Shellular",
-		description:
-			"Learn about Shellular and the team building mobile-first remote development workflows.",
-		url: "https://shellular.dev/about",
-	},
-	{
-		"@context": "https://schema.org",
-		"@type": "BreadcrumbList",
-		itemListElement: [
-			{
-				"@type": "ListItem",
-				position: 1,
-				name: "Home",
-				item: "https://shellular.dev",
-			},
-			{
-				"@type": "ListItem",
-				position: 2,
-				name: "About",
-				item: "https://shellular.dev/about",
-			},
-		],
-	},
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About Shellular",
+    description:
+      "Learn about Shellular and the team building mobile-first remote development workflows.",
+    url: "https://shellular.dev/about",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://shellular.dev",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About",
+        item: "https://shellular.dev/about",
+      },
+    ],
+  },
 ];
 ---
 
 <Layout
   title="About Shellular | Team and Product Overview"
   description="Learn what Shellular does, who is building it, and how the product brings terminal, files, browser tooling, and AI agents to your phone."
-  keywords={["about Shellular", "Shellular team", "remote development app", "developer workflow"]}
+  keywords={[
+    "about Shellular",
+    "Shellular team",
+    "remote development app",
+    "developer workflow",
+  ]}
   structuredData={structuredData}
 >
   <Nav currentPath={Astro.url.pathname} />
@@ -64,9 +69,10 @@ const structuredData = [
       <div class="about-hero-inner">
         <h1>About <span class="h1-italic">Shellular.</span></h1>
         <p>
-          Shellular is your remote command center for modern development. Spin up and supervise AI agents, execute
-          terminal commands, inspect browser behavior with DevTools, browse your file system, and ship confidently with
-          Git controls, all from one connected experience.
+          Shellular is your remote command center for modern development. Spin
+          up and supervise AI agents, execute terminal commands, inspect browser
+          behavior with DevTools, browse your file system, and ship confidently
+          with Git controls, all from one connected experience.
         </p>
         <div class="hero-capabilities">
           <span class="feature-highlight">AI Agents</span>
@@ -90,16 +96,24 @@ const structuredData = [
 
     <section class="about-section">
       <div class="about-inner">
-        <h2 id="meet-humans">Meet <span class="h2-italic">the humans.</span></h2>
+        <h2 id="meet-humans">
+          Meet <span class="h2-italic">the humans.</span>
+        </h2>
         <p class="section-copy">
-          We are building Shellular so distributed teams can move faster with agent-powered workflows while keeping full
-          visibility and control over every environment.
+          We are building Shellular so distributed teams can move faster with
+          agent-powered workflows while keeping full visibility and control over
+          every environment.
         </p>
         <div class="team-grid">
           {
             team.map(({ name, url, avatarUrl }) => (
               <a class="team-card" href={url} target="_blank" rel="noreferrer">
-                <img class="team-avatar" src={avatarUrl} alt={`${name} avatar`} loading="lazy" />
+                <img
+                  class="team-avatar"
+                  src={avatarUrl}
+                  alt={`${name} avatar`}
+                  loading="lazy"
+                />
                 <div class="team-meta">
                   <span class="team-name">{name}</span>
                   <span class="team-link">GitHub ↗</span>
@@ -126,7 +140,11 @@ const structuredData = [
     position: relative;
     overflow: hidden;
     background:
-      radial-gradient(ellipse 80% 70% at 50% -20%, rgba(255, 240, 210, 0.55) 0%, transparent 60%),
+      radial-gradient(
+        ellipse 80% 70% at 50% -20%,
+        rgba(255, 240, 210, 0.55) 0%,
+        transparent 60%
+      ),
       linear-gradient(180deg, var(--sky-100) 0%, var(--cream-100) 100%);
     border-bottom: 1px solid var(--border);
   }
@@ -135,7 +153,8 @@ const structuredData = [
     position: relative;
     max-width: 860px;
     margin: 0 auto;
-    padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 48px) clamp(48px, 6vw, 80px);
+    padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 48px)
+      clamp(48px, 6vw, 80px);
     z-index: 1;
   }
 
@@ -221,7 +240,11 @@ const structuredData = [
   }
 
   .hero-link-card-primary {
-    background: linear-gradient(135deg, rgba(var(--brand-gold-rgb), 0.16), rgba(var(--brand-gold-rgb), 0.06));
+    background: linear-gradient(
+      135deg,
+      rgba(var(--brand-gold-rgb), 0.16),
+      rgba(var(--brand-gold-rgb), 0.06)
+    );
     border-color: rgba(var(--brand-gold-rgb), 0.3);
   }
 
@@ -251,7 +274,8 @@ const structuredData = [
   .about-inner {
     max-width: 860px;
     margin: 0 auto;
-    padding: clamp(56px, 8vw, 90px) clamp(20px, 5vw, 48px) clamp(72px, 10vw, 120px);
+    padding: clamp(56px, 8vw, 90px) clamp(20px, 5vw, 48px)
+      clamp(72px, 10vw, 120px);
   }
 
   h2 {
@@ -348,8 +372,14 @@ const structuredData = [
   }
 
   @media (max-width: 760px) {
-    .hero-actions { flex-direction: column; }
-    .hero-link-card { min-width: 0; }
-    .team-grid { grid-template-columns: 1fr; }
+    .hero-actions {
+      flex-direction: column;
+    }
+    .hero-link-card {
+      min-width: 0;
+    }
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

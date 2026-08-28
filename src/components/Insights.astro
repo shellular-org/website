@@ -2,42 +2,42 @@
 type Cover = "field" | "engineering" | "guide";
 
 interface Post {
-	category: string;
-	title: string;
-	author: string;
-	readTime: string;
-	href: string;
-	cover: Cover;
-	featured?: boolean;
+  category: string;
+  title: string;
+  author: string;
+  readTime: string;
+  href: string;
+  cover: Cover;
+  featured?: boolean;
 }
 
 const posts: Post[] = [
-	{
-		category: "Field notes",
-		title:
-			"Shipping production code from a phone — what actually works in 2026",
-		author: "The Shellular team",
-		readTime: "8 min read",
-		href: "/docs",
-		cover: "field",
-		featured: true,
-	},
-	{
-		category: "Engineering",
-		title: "How we encrypt your dev environment end-to-end",
-		author: "Security team",
-		readTime: "5 min read",
-		href: "/docs",
-		cover: "engineering",
-	},
-	{
-		category: "Guide",
-		title: "Five tmux tricks that change mobile development",
-		author: "Community",
-		readTime: "4 min read",
-		href: "/docs",
-		cover: "guide",
-	},
+  {
+    category: "Field notes",
+    title:
+      "Shipping production code from a phone — what actually works in 2026",
+    author: "The Shellular team",
+    readTime: "8 min read",
+    href: "/docs",
+    cover: "field",
+    featured: true,
+  },
+  {
+    category: "Engineering",
+    title: "How we encrypt your dev environment end-to-end",
+    author: "Security team",
+    readTime: "5 min read",
+    href: "/docs",
+    cover: "engineering",
+  },
+  {
+    category: "Guide",
+    title: "Five tmux tricks that change mobile development",
+    author: "Community",
+    readTime: "4 min read",
+    href: "/docs",
+    cover: "guide",
+  },
 ];
 ---
 
@@ -48,21 +48,30 @@ const posts: Post[] = [
         Mobile dev,
         <span>done right.</span>
       </h2>
-      <p class="section-sub reveal reveal-delay-2">Tips, deep dives, and stories from teams shipping with Shellular.</p>
+      <p class="section-sub reveal reveal-delay-2">
+        Tips, deep dives, and stories from teams shipping with Shellular.
+      </p>
     </div>
 
     <div class="ins-grid">
       {
         posts.map((p, i) => (
-          <a href={p.href} class={`ins-card ${p.featured ? "ins-card--featured" : ""} reveal reveal-delay-${i + 1}`}>
+          <a
+            href={p.href}
+            class={`ins-card ${p.featured ? "ins-card--featured" : ""} reveal reveal-delay-${i + 1}`}
+          >
             <div class={`ins-thumb ins-thumb--${p.cover}`} aria-hidden="true">
               {p.cover === "field" && (
                 <div class="cov cov-field">
                   <div class="cov-phone">
                     <div class="cov-phone-screen">
                       <div class="cov-line cov-line--prompt">~/ship</div>
-                      <div class="cov-line cov-line--cmd">git push origin main</div>
-                      <div class="cov-line cov-line--ok">✓ shipped from a train</div>
+                      <div class="cov-line cov-line--cmd">
+                        git push origin main
+                      </div>
+                      <div class="cov-line cov-line--ok">
+                        ✓ shipped from a train
+                      </div>
                     </div>
                   </div>
                   <div class="cov-cloud cov-cloud--a" />
@@ -72,7 +81,12 @@ const posts: Post[] = [
               {p.cover === "engineering" && (
                 <div class="cov cov-eng">
                   <div class="cov-lock">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    >
                       <rect x="4" y="11" width="16" height="10" rx="2.5" />
                       <path d="M8 11V7a4 4 0 018 0v4" />
                     </svg>
@@ -193,7 +207,11 @@ const posts: Post[] = [
   }
 
   .ins-thumb--guide {
-    background: linear-gradient(160deg, var(--cream-300) 0%, var(--cream-200) 100%);
+    background: linear-gradient(
+      160deg,
+      var(--cream-300) 0%,
+      var(--cream-200) 100%
+    );
   }
 
   /* ── Field notes cover ── */
@@ -275,7 +293,11 @@ const posts: Post[] = [
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, rgba(240, 227, 197, 0.5), rgba(214, 194, 161, 0.18) 70%);
+    background: radial-gradient(
+      circle at 35% 30%,
+      rgba(240, 227, 197, 0.5),
+      rgba(214, 194, 161, 0.18) 70%
+    );
     border: 1px solid rgba(214, 194, 161, 0.5);
     display: grid;
     place-items: center;

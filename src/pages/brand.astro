@@ -7,24 +7,29 @@ import ShellularLogo from "@/components/ShellularLogo.astro";
 import Layout from "@/layouts/Layout.astro";
 
 const colors = [
-	{ name: "Ink", token: "--brand-ink" },
-	{ name: "Background", token: "--brand-bg" },
-	{ name: "Deep Background", token: "--brand-bg-deep" },
-	{ name: "Surface", token: "--brand-surface" },
-	{ name: "Strong Surface", token: "--brand-surface-strong" },
-	{ name: "Cream", token: "--brand-cream" },
-	{ name: "Soft Cream", token: "--brand-cream-soft" },
-	{ name: "Gold", token: "--brand-gold" },
-	{ name: "Highlight", token: "--brand-highlight" },
-	{ name: "Bronze", token: "--brand-bronze" },
-	{ name: "Success", token: "--brand-success" },
+  { name: "Ink", token: "--brand-ink" },
+  { name: "Background", token: "--brand-bg" },
+  { name: "Deep Background", token: "--brand-bg-deep" },
+  { name: "Surface", token: "--brand-surface" },
+  { name: "Strong Surface", token: "--brand-surface-strong" },
+  { name: "Cream", token: "--brand-cream" },
+  { name: "Soft Cream", token: "--brand-cream-soft" },
+  { name: "Gold", token: "--brand-gold" },
+  { name: "Highlight", token: "--brand-highlight" },
+  { name: "Bronze", token: "--brand-bronze" },
+  { name: "Success", token: "--brand-success" },
 ];
 ---
 
 <Layout
   title="Shellular Brand Assets"
   description="Shellular brand assets including product colors, CSS tokens, logos, and app icon downloads."
-  keywords={["Shellular brand", "Shellular logo", "Shellular colors", "brand assets"]}
+  keywords={[
+    "Shellular brand",
+    "Shellular logo",
+    "Shellular colors",
+    "brand assets",
+  ]}
   noindex={true}
 >
   <Nav currentPath={Astro.url.pathname} />
@@ -33,7 +38,8 @@ const colors = [
     <header class="brand-hero">
       <h1>Shellular brand assets</h1>
       <p>
-        Use these colors and logos when referencing Shellular in docs, launch posts, app listings, and integrations.
+        Use these colors and logos when referencing Shellular in docs, launch
+        posts, app listings, and integrations.
       </p>
     </header>
 
@@ -46,7 +52,11 @@ const colors = [
         {
           colors.map(({ name, token }) => (
             <article class="color-card">
-              <div class="color-swatch" style={`background: var(${token});`} aria-hidden="true" />
+              <div
+                class="color-swatch"
+                style={`background: var(${token});`}
+                aria-hidden="true"
+              />
               <div>
                 <h3>{name}</h3>
                 <code>{token}</code>
@@ -63,7 +73,10 @@ const colors = [
     <section class="brand-section" aria-labelledby="brand-logos">
       <div class="section-head">
         <h2 id="brand-logos">Logos</h2>
-        <p>Use the SVG for product surfaces and the PNG when a platform needs a raster image.</p>
+        <p>
+          Use the SVG for product surfaces and the PNG when a platform needs a
+          raster image.
+        </p>
       </div>
 
       <div class="logo-grid">
@@ -80,7 +93,13 @@ const colors = [
 
         <article class="logo-card logo-card-light">
           <div class="logo-preview">
-            <img src={logoPng.src} width="96" height="96" alt="Shellular app icon" loading="lazy" />
+            <img
+              src={logoPng.src}
+              width="96"
+              height="96"
+              alt="Shellular app icon"
+              loading="lazy"
+            />
             <span>App icon</span>
           </div>
           <div class="asset-meta">
@@ -260,7 +279,9 @@ const colors = [
 </style>
 
 <script>
-  const values = document.querySelectorAll<HTMLElement>(".color-value[data-token]");
+  const values = document.querySelectorAll<HTMLElement>(
+    ".color-value[data-token]",
+  );
   const rootStyles = getComputedStyle(document.documentElement);
 
   values.forEach((value) => {

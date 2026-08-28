@@ -62,7 +62,9 @@ const options = [
   },
 ];
 
-const clientsOptions = [{ flag: "--delete <clientId>", desc: "Delete a known client from the store" }];
+const clientsOptions = [
+  { flag: "--delete <clientId>", desc: "Delete a known client from the store" },
+];
 
 const sections = [
   { id: "overview", label: "Overview" },
@@ -82,7 +84,13 @@ const sections = [
 <Layout
   title="Shellular CLI Docs | Install and Manage the Host Agent"
   description="Documentation for installing, starting, and managing the Shellular CLI host agent, including commands, options, approvals, and security."
-  keywords={["Shellular CLI", "Shellular docs", "remote CLI", "developer tool documentation", "host agent"]}
+  keywords={[
+    "Shellular CLI",
+    "Shellular docs",
+    "remote CLI",
+    "developer tool documentation",
+    "host agent",
+  ]}
 >
   <Nav currentPath={Astro.url.pathname} />
 
@@ -93,7 +101,9 @@ const sections = [
         <h1>Shellular Docs</h1>
 
         <div>
-          <h4 style="color: var(--text-muted); font-weight: normal;">Get started in just 3 steps:</h4>
+          <h4 style="color: var(--text-muted); font-weight: normal;">
+            Get started in just 3 steps:
+          </h4>
           <ol class="hero-steps">
             <li>
               Run <code>npx shellular</code>
@@ -105,8 +115,11 @@ const sections = [
 
         <div class="hero-actions">
           <a class="btn-primary" href="#quick-start">Quick start</a>
-          <a class="btn-secondary" href="https://www.npmjs.com/package/shellular" target="_blank" rel="noreferrer"
-            >npm package ↗</a
+          <a
+            class="btn-secondary"
+            href="https://www.npmjs.com/package/shellular"
+            target="_blank"
+            rel="noreferrer">npm package ↗</a
           >
         </div>
       </div>
@@ -116,7 +129,13 @@ const sections = [
     <div class="docs-layout">
       <!-- Table of contents -->
       <aside class="docs-toc" aria-label="Page sections">
-        <button id="toc-toggle" class="toc-toggle" type="button" aria-expanded="false" aria-controls="toc-list">
+        <button
+          id="toc-toggle"
+          class="toc-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="toc-list"
+        >
           <span class="toc-toggle-label">On this page</span>
           <svg
             class="toc-chevron"
@@ -150,12 +169,15 @@ const sections = [
         <section id="overview" class="doc-section">
           <h2>Overview</h2>
           <p>
-            Shellular CLI is the host agent for Shellular. It connects your dev machine to the Shellular relay so the
-            mobile app can reach your environment securely.
+            Shellular CLI is the host agent for Shellular. It connects your dev
+            machine to the Shellular relay so the mobile app can reach your
+            environment securely.
           </p>
           <p>
             If you are comparing mobile remote development setups, read
-            <a class="inline-link" href="/shellular-vs-claude-remote-control">Shellular vs Claude Remote Control</a>
+            <a class="inline-link" href="/shellular-vs-claude-remote-control"
+              >Shellular vs Claude Remote Control</a
+            >
             for the short version of where Shellular fits.
           </p>
         </section>
@@ -172,32 +194,41 @@ const sections = [
         <section id="windows" class="doc-section">
           <h2>On Windows</h2>
           <p>
-            The <code>npx shellular</code> shorthand used throughout these docs is for macOS and Linux. On Windows, install
-            the CLI globally once:
+            The <code>npx shellular</code> shorthand used throughout these docs is
+            for macOS and Linux. On Windows, install the CLI globally once:
           </p>
           <div class="code-block">
             <span class="code-label">windows</span>
             <pre><code>npm i -g shellular</code></pre>
           </div>
           <p>
-            After that, run every command in these docs <strong>without the <code>npx</code> prefix</strong> — use
-            <code>shellular</code>, <code>shellular start</code>, <code>shellular clients</code>, and so on.
+            After that, run every command in these docs <strong
+              >without the <code>npx</code> prefix</strong
+            > — use
+            <code>shellular</code>, <code>shellular start</code>, <code
+              >shellular clients</code
+            >, and so on.
           </p>
         </section>
 
         <section id="quick-start" class="doc-section">
           <h2>Quick start</h2>
-          <p>On macOS and Linux, start the CLI directly with npx — no install needed:</p>
+          <p>
+            On macOS and Linux, start the CLI directly with npx — no install
+            needed:
+          </p>
           <div class="code-block">
             <span class="code-label">macOS / Linux</span>
             <pre><code>npx shellular</code></pre>
           </div>
           <p>
-            The CLI prints a QR code in your terminal. Scan it with the Shellular app to pair your device and connect.
-            By default, every unknown client must be approved before it can connect.
+            The CLI prints a QR code in your terminal. Scan it with the
+            Shellular app to pair your device and connect. By default, every
+            unknown client must be approved before it can connect.
           </p>
           <p>
-            On Windows, install globally first and drop the <code>npx</code> prefix — see
+            On Windows, install globally first and drop the <code>npx</code> prefix
+            — see
             <a class="inline-link" href="#windows">On Windows</a> above.
           </p>
         </section>
@@ -210,8 +241,9 @@ const sections = [
             <pre><code>npx shellular start</code></pre>
           </div>
           <p>
-            In daemon mode, clients are not approved interactively. Run <code>shellular clients</code> to review pending devices
-            and approve them from any terminal.
+            In daemon mode, clients are not approved interactively. Run <code
+              >shellular clients</code
+            > to review pending devices and approve them from any terminal.
           </p>
           <p>Stop the host when you are done:</p>
           <div class="code-block">
@@ -227,20 +259,22 @@ const sections = [
         <section id="start-on-boot" class="doc-section">
           <h2>Start on boot</h2>
           <p>
-            To have the host come back automatically after a reboot, Shellular can install a system startup script.
-            Under the hood this wraps <a
+            To have the host come back automatically after a reboot, Shellular
+            can install a system startup script. Under the hood this wraps <a
               class="inline-link"
               href="https://pm2.keymetrics.io/docs/usage/startup/"
               target="_blank"
               rel="noreferrer">PM2's startup command</a
-            >, which generates and configures the right init script for your platform (systemd, launchd, etc.).
+            >, which generates and configures the right init script for your
+            platform (systemd, launchd, etc.).
           </p>
           <div class="callout">
             <strong>Prerequisite</strong>
             <p>
-              The daemon must already be running before these commands work — start it first with
-              <code>shellular start</code>. The startup script captures the currently running host so it can be
-              resurrected on boot.
+              The daemon must already be running before these commands work —
+              start it first with
+              <code>shellular start</code>. The startup script captures the
+              currently running host so it can be resurrected on boot.
             </p>
           </div>
           <p>Install the startup script:</p>
@@ -249,11 +283,14 @@ const sections = [
             <pre><code>npx shellular startup</code></pre>
           </div>
           <p>
-            This registers Shellular to launch on boot. You may be prompted to run a command with elevated privileges (<code
-              >sudo</code
-            >) to complete the install, since it writes a system-level init script.
+            This registers Shellular to launch on boot. You may be prompted to
+            run a command with elevated privileges (<code>sudo</code>) to
+            complete the install, since it writes a system-level init script.
           </p>
-          <p>Remove the startup script when you no longer want Shellular to auto-start:</p>
+          <p>
+            Remove the startup script when you no longer want Shellular to
+            auto-start:
+          </p>
           <div class="code-block">
             <span class="code-label">terminal</span>
             <pre><code>npx shellular unstartup</code></pre>
@@ -310,24 +347,33 @@ const sections = [
         <section id="client-approval" class="doc-section">
           <h2>Unknown client approval</h2>
           <p>
-            <code>--unknown-clients</code> only applies to devices not already in the local approvals file. Once a client
-            is approved or rejected it is remembered.
+            <code>--unknown-clients</code> only applies to devices not already in
+            the local approvals file. Once a client is approved or rejected it is
+            remembered.
           </p>
           <div class="policy-list">
             <div class="policy-row">
               <code class="policy-name">requires-approval</code>
               <p>
-                Default. In foreground mode the CLI asks interactively. In daemon mode the connection is held pending
-                until you run <code>shellular clients</code>.
+                Default. In foreground mode the CLI asks interactively. In
+                daemon mode the connection is held pending until you run <code
+                  >shellular clients</code
+                >.
               </p>
             </div>
             <div class="policy-row">
               <code class="policy-name">always-allow</code>
-              <p>Accepts unknown clients immediately without writing to the approvals file.</p>
+              <p>
+                Accepts unknown clients immediately without writing to the
+                approvals file.
+              </p>
             </div>
             <div class="policy-row">
               <code class="policy-name">always-reject</code>
-              <p>Rejects unknown clients immediately without writing to the approvals file.</p>
+              <p>
+                Rejects unknown clients immediately without writing to the
+                approvals file.
+              </p>
             </div>
           </div>
         </section>
@@ -335,22 +381,33 @@ const sections = [
         <section id="user-allowlist" class="doc-section">
           <h2>Account allowlist</h2>
           <p>
-            <a class="inline-link" href="#client-approval">Client approval</a> works per device. The
-            <code>users</code> command adds a second, higher gate that works per <em>account</em> — the Shellular account
-            you sign in with in the app, identified by its email or stable user ID.
+            <a class="inline-link" href="#client-approval">Client approval</a> works
+            per device. The
+            <code>users</code> command adds a second, higher gate that works per <em
+              >account</em
+            > — the Shellular account you sign in with in the app, identified by its
+            email or stable user ID.
           </p>
 
           <h3 class="subsection-title">How it works</h3>
           <ul class="check-list">
-            <li><strong>Off by default.</strong> An empty allowlist gates nothing — any approved device connects as usual.</li>
-            <li><strong>Adding the first account turns it on.</strong> From then on, only listed accounts may connect.</li>
             <li>
-              <strong>Unauthenticated clients are always rejected</strong> while the allowlist is active.
+              <strong>Off by default.</strong> An empty allowlist gates nothing —
+              any approved device connects as usual.
             </li>
             <li>
-              <strong>It's checked before device approval.</strong> An allowlisted account lets in <em>all</em> of its
-              devices — even brand-new ones — with no unknown-client prompt. Removing it disconnects every one of them at
-              once.
+              <strong>Adding the first account turns it on.</strong> From then on,
+              only listed accounts may connect.
+            </li>
+            <li>
+              <strong>Unauthenticated clients are always rejected</strong> while the
+              allowlist is active.
+            </li>
+            <li>
+              <strong>It's checked before device approval.</strong> An allowlisted
+              account lets in <em>all</em> of its devices — even brand-new ones —
+              with no unknown-client prompt. Removing it disconnects every one of
+              them at once.
             </li>
           </ul>
 
@@ -358,15 +415,26 @@ const sections = [
           <div class="cmd-list">
             <div class="cmd-row">
               <code class="cmd-name">shellular users list</code>
-              <span class="cmd-desc">Show the allowed accounts. Running <code>shellular users</code> alone does the same.</span>
+              <span class="cmd-desc"
+                >Show the allowed accounts. Running <code>shellular users</code> alone
+                does the same.</span
+              >
             </div>
             <div class="cmd-row">
-              <code class="cmd-name">shellular users add &lt;email-or-id&gt;</code>
-              <span class="cmd-desc">Allow an account to connect, by email or user ID.</span>
+              <code class="cmd-name"
+                >shellular users add &lt;email-or-id&gt;</code
+              >
+              <span class="cmd-desc"
+                >Allow an account to connect, by email or user ID.</span
+              >
             </div>
             <div class="cmd-row">
-              <code class="cmd-name">shellular users remove &lt;email-or-id&gt;</code>
-              <span class="cmd-desc">Revoke an account and disconnect all of its devices.</span>
+              <code class="cmd-name"
+                >shellular users remove &lt;email-or-id&gt;</code
+              >
+              <span class="cmd-desc"
+                >Revoke an account and disconnect all of its devices.</span
+              >
             </div>
           </div>
 
@@ -379,8 +447,11 @@ const sections = [
             <strong>Where to find your email or user ID</strong>
             <p>
               Under the Account tab in the Shellular app, or at
-              <a class="inline-link" href="https://app.shellular.dev" target="_blank" rel="noreferrer"
-                >app.shellular.dev</a
+              <a
+                class="inline-link"
+                href="https://app.shellular.dev"
+                target="_blank"
+                rel="noreferrer">app.shellular.dev</a
               >.
             </p>
           </div>
@@ -392,7 +463,13 @@ const sections = [
           <div class="sec-more">
             <a href="/security" class="sec-more-link">
               Learn more about our security model
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                aria-hidden="true"
+              >
                 <path
                   d="M3 7h8M7 3l4 4-4 4"
                   stroke="currentColor"
@@ -422,7 +499,11 @@ const sections = [
     position: relative;
     overflow: hidden;
     background:
-      radial-gradient(ellipse 80% 70% at 50% -20%, rgba(255, 240, 210, 0.55) 0%, transparent 60%),
+      radial-gradient(
+        ellipse 80% 70% at 50% -20%,
+        rgba(255, 240, 210, 0.55) 0%,
+        transparent 60%
+      ),
       linear-gradient(180deg, var(--sky-100) 0%, var(--cream-100) 100%);
     border-bottom: 1px solid var(--border);
   }
@@ -431,7 +512,8 @@ const sections = [
     position: relative;
     max-width: 1140px;
     margin: 0 auto;
-    padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 48px) clamp(48px, 6vw, 80px);
+    padding: clamp(60px, 9vw, 110px) clamp(20px, 5vw, 48px)
+      clamp(48px, 6vw, 80px);
     z-index: 1;
   }
 
@@ -480,7 +562,13 @@ const sections = [
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 25%, rgba(214, 194, 161, 0.22), transparent 55%), var(--ink-900);
+    background:
+      radial-gradient(
+        circle at 30% 25%,
+        rgba(214, 194, 161, 0.22),
+        transparent 55%
+      ),
+      var(--ink-900);
     border: 1px solid var(--ink-900);
     display: inline-grid;
     place-items: center;
@@ -1035,7 +1123,9 @@ const sections = [
   const mobileMq = window.matchMedia("(max-width: 900px)");
   const toggle = document.getElementById("toc-toggle");
   const list = document.getElementById("toc-list");
-  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>(".toc-link"));
+  const links = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>(".toc-link"),
+  );
 
   /* ── Mobile collapsible behaviour ──────────────────────── */
   // On mobile the list starts collapsed; on desktop it must always show.

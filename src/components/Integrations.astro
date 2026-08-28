@@ -1,24 +1,32 @@
 ---
-import { ChartArea, FileCodeCornerIcon, GitBranch, GlobeIcon, SparkleIcon, Terminal } from "@lucide/astro";
-
-import pi from "@/assets/agents/pi.svg";
+import {
+  ChartArea,
+  FileCodeCornerIcon,
+  GitBranch,
+  GlobeIcon,
+  SparkleIcon,
+  Terminal,
+} from "@lucide/astro";
 import claudeCode from "@/assets/agents/claudecode-color.svg";
 import codex from "@/assets/agents/codex-color.svg";
+import cursorAgent from "@/assets/agents/cursor.svg";
 import copilot from "@/assets/agents/githubcopilot.svg";
+import grok from "@/assets/agents/grok.svg";
 import hermesAgent from "@/assets/agents/hermesagent.svg";
 import openCode from "@/assets/agents/opencode.svg";
-import cursorAgent from "@/assets/agents/cursor.svg";
-import grok from "@/assets/agents/grok.svg";
+import pi from "@/assets/agents/pi.svg";
+import vercelFx from "@/assets/agents/vercel-fx.svg";
 
-const agents = [
+export const agents = [
   { label: "Codex", img: codex.src },
-  { label: "OpenCode", img: openCode.src },
-  { label: "Hermes Agent", img: hermesAgent.src },
   { label: "Claude Code", img: claudeCode.src },
-  { label: "Cursor", img: cursorAgent.src },
   { label: "Pi", img: pi.src },
+  { label: "Hermes Agent", img: hermesAgent.src },
+  { label: "Cursor", img: cursorAgent.src },
+  { label: "OpenCode", img: openCode.src },
   { label: "Grok Build", img: grok.src },
   { label: "Copilot", img: copilot.src },
+  { label: "fx by Vercel", img: vercelFx.src },
 ];
 
 const tools = [
@@ -39,8 +47,8 @@ const tools = [
         <span>you already use.</span>
       </h2>
       <p class="section-sub reveal reveal-delay-2">
-        Shellular doesn't replace your dev environment — it forwards it. Whatever runs on your machine, runs on your
-        phone.
+        Shellular doesn't replace your dev environment — it forwards it.
+        Whatever runs on your machine, runs on your phone.
       </p>
     </div>
 
@@ -70,7 +78,12 @@ const tools = [
 
 <style>
   #integrations {
-    background: linear-gradient(180deg, var(--cream-100) 0%, var(--sky-100) 50%, var(--cream-100) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--cream-100) 0%,
+      var(--sky-100) 50%,
+      var(--cream-100) 100%
+    );
     padding: clamp(80px, 11vw, 130px) clamp(16px, 6vw, 64px);
     position: relative;
   }
@@ -84,7 +97,12 @@ const tools = [
     transform: translateX(-50%);
     width: min(640px, 80vw);
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(21, 108, 194, 0.18), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(21, 108, 194, 0.18),
+      transparent
+    );
   }
 
   .i-inner {
@@ -141,7 +159,12 @@ const tools = [
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.55) 50%, transparent 60%);
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.55) 50%,
+      transparent 60%
+    );
     transform: translateX(-120%);
     pointer-events: none;
     opacity: 0;

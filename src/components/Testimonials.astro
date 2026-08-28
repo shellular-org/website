@@ -1,42 +1,43 @@
 ---
 interface Quote {
-	body: string;
-	name: string;
-	role: string;
-	url: string;
-	avatarBg: string;
-	initials: string;
-	accent: "blue" | "gold" | "orange";
+  body: string;
+  name: string;
+  role: string;
+  url: string;
+  avatarBg: string;
+  initials: string;
+  accent: "blue" | "gold" | "orange";
 }
 
 const quotes: Quote[] = [
-	{
-		body: "I was at the passport office for 3 hours today, and built a huge engineering feature. Love it man, absolutely love it.",
-		name: "Raj Sheth",
-		role: "Software Engineer, Ema",
-		url: "https://www.linkedin.com/in/er-raj-sheth/",
-		avatarBg: "linear-gradient(135deg, #84b9ef, #156cc2)",
-		initials: "RS",
-		accent: "blue",
-	},
-	{
-		body: "I use Shellular to watch model training jobs on my GPU server, and to keep my Codex and Claude Code sessions going while I'm out. Not having to carry the laptop is the best part.",
-		name: "Anindyadeep Sannigrahi",
-		role: "Co-Founder, LiteFold",
-		url: "https://www.linkedin.com/in/anindyadeep-sannigrahi-38683b1b6/",
-		avatarBg: "linear-gradient(135deg, #e07d52, #754d29)",
-		initials: "AS",
-		accent: "orange",
-	},
-	{
-		body: "Shellular let me actually go out, hang with friends and chill in the park, and still feel unchained. Every agent session is right there no matter which folder, unlike some competitors.",
-		name: "Sohom",
-		role: "Previously at Lossfunk",
-		url: "https://x.com/sxohom",
-		avatarBg: "linear-gradient(135deg, var(--brand-gold-soft), var(--brand-gold-deep))",
-		initials: "S",
-		accent: "gold",
-	},
+  {
+    body: "I was at the passport office for 3 hours today, and built a huge engineering feature. Love it man, absolutely love it.",
+    name: "Raj Sheth",
+    role: "Software Engineer, Ema",
+    url: "https://www.linkedin.com/in/er-raj-sheth/",
+    avatarBg: "linear-gradient(135deg, #84b9ef, #156cc2)",
+    initials: "RS",
+    accent: "blue",
+  },
+  {
+    body: "I use Shellular to watch model training jobs on my GPU server, and to keep my Codex and Claude Code sessions going while I'm out. Not having to carry the laptop is the best part.",
+    name: "Anindyadeep Sannigrahi",
+    role: "Co-Founder, LiteFold",
+    url: "https://www.linkedin.com/in/anindyadeep-sannigrahi-38683b1b6/",
+    avatarBg: "linear-gradient(135deg, #e07d52, #754d29)",
+    initials: "AS",
+    accent: "orange",
+  },
+  {
+    body: "Shellular let me actually go out, hang with friends and chill in the park, and still feel unchained. Every agent session is right there no matter which folder, unlike some competitors.",
+    name: "Sohom",
+    role: "Previously at Lossfunk",
+    url: "https://x.com/sxohom",
+    avatarBg:
+      "linear-gradient(135deg, var(--brand-gold-soft), var(--brand-gold-deep))",
+    initials: "S",
+    accent: "gold",
+  },
 ];
 ---
 
@@ -52,17 +53,28 @@ const quotes: Quote[] = [
     <div class="t-grid">
       {
         quotes.map((q, i) => (
-          <figure class={`t-card t-card--${q.accent} reveal reveal-delay-${i + 1}`}>
+          <figure
+            class={`t-card t-card--${q.accent} reveal reveal-delay-${i + 1}`}
+          >
             <span class="quote-mark" aria-hidden="true">
               “
             </span>
             <blockquote>{q.body}</blockquote>
             <figcaption>
-              <span class="t-avatar" style={`background:${q.avatarBg}`} aria-hidden="true">
+              <span
+                class="t-avatar"
+                style={`background:${q.avatarBg}`}
+                aria-hidden="true"
+              >
                 {q.initials}
               </span>
               <span class="t-meta">
-                <a class="t-name" href={q.url} target="_blank" rel="noopener noreferrer">
+                <a
+                  class="t-name"
+                  href={q.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {q.name}
                 </a>
                 <span class="t-role">{q.role}</span>
@@ -132,7 +144,12 @@ const quotes: Quote[] = [
     background: var(--accent-blue);
   }
   .t-card--gold::before {
-    background: linear-gradient(90deg, var(--brand-gold-soft), var(--brand-gold), var(--brand-gold-deep));
+    background: linear-gradient(
+      90deg,
+      var(--brand-gold-soft),
+      var(--brand-gold),
+      var(--brand-gold-deep)
+    );
   }
   .t-card--orange::before {
     background: var(--accent-orange);

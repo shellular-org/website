@@ -4,126 +4,136 @@ import Nav from "@/components/Nav.astro";
 import Layout from "@/layouts/Layout.astro";
 
 const posts = [
-	{
-		slug: "how-to-run-grok-build-on-your-phone",
-		title: "How to Run Grok Build on Your Phone",
-		blurb:
-			"A real mobile UI for xAI's Grok Build: slash commands, @ file mentions, permission approvals, and model controls, on your own machine.",
-		dateLabel: "July 8, 2026",
-		readTime: "4 min read",
-		tag: "Grok Build",
-	},
-	{
-		slug: "how-to-run-pi-on-your-phone",
-		title: "How to Run Pi on Your Phone",
-		blurb:
-			"A native UI for Pi, the minimal open-source agent harness, on your phone: slash commands, @ mentions, permissions, and a model picker.",
-		dateLabel: "July 8, 2026",
-		readTime: "4 min read",
-		tag: "Pi",
-	},
-	{
-		slug: "how-to-set-up-shellular-on-a-vps",
-		title: "How to Set Up Shellular on a VPS",
-		blurb:
-			"Run Shellular on an EC2 instance, Hetzner box, or any droplet, and control that always-on server from your phone. The full setup in about five minutes.",
-		dateLabel: "June 28, 2026",
-		readTime: "4 min read",
-		tag: "VPS",
-	},
-	{
-		slug: "cloud-agents-will-let-you-ship-from-anywhere",
-		title: "Cloud Agents Will Let You Ship From Anywhere",
-		blurb:
-			"We already ship with agents. The next shift is cloud-run agents, where your phone, laptop, and desktop become interfaces for review and control.",
-		dateLabel: "June 23, 2026",
-		readTime: "3 min read",
-		tag: "Cloud Agents",
-	},
-	{
-		slug: "how-to-run-ai-agents-on-your-phone",
-		title: "How to Run AI Agents on Your Phone",
-		blurb:
-			"A real mobile UI for each agent, with slash commands, @ file mentions, permission approvals, and model controls, running on your own PC, Mac, Mac mini, or VPS.",
-		dateLabel: "June 11, 2026",
-		readTime: "5 min read",
-		tag: "AI Agents",
-	},
-	{
-		slug: "access-localhost-on-phone-without-ngrok",
-		title: "Access localhost on Your Phone, No ngrok Required",
-		blurb:
-			"Type localhost:3000 into Shellular's in-app browser and it loads, with a real console, inspector, and network tab. No tunnel, no port forwarding.",
-		dateLabel: "June 11, 2026",
-		readTime: "3 min read",
-		tag: "Localhost",
-	},
-	{
-		slug: "how-to-run-claude-code-on-your-phone",
-		title: "How to Run Claude Code on Your Phone",
-		blurb:
-			"A native Claude Code UI on your phone: slash commands, @ file mentions, permission approvals, and a model picker, backed by your real machine.",
-		dateLabel: "June 11, 2026",
-		readTime: "4 min read",
-		tag: "Claude Code",
-	},
-	{
-		slug: "how-to-run-codex-on-your-phone",
-		title: "How to Run Codex on Your Phone",
-		blurb:
-			"A real mobile UI for Codex, with slash commands, @ mentions, permission approvals, and model controls, plus a terminal and Git behind it.",
-		dateLabel: "June 11, 2026",
-		readTime: "4 min read",
-		tag: "Codex",
-	},
-	{
-		slug: "how-to-run-opencode-on-your-phone",
-		title: "How to Run OpenCode on Your Phone",
-		blurb:
-			"A native OpenCode UI for your phone: slash commands, @ file mentions, permission approvals, and model controls on your own machine.",
-		dateLabel: "June 11, 2026",
-		readTime: "4 min read",
-		tag: "OpenCode",
-	},
-	{
-		slug: "how-to-use-cursor-on-your-phone",
-		title: "How to Use Cursor on Your Phone",
-		blurb:
-			"The editor stays on desktop, but Shellular gives the Cursor agent a real mobile UI: slash commands, @ mentions, permissions, and model controls.",
-		dateLabel: "June 11, 2026",
-		readTime: "4 min read",
-		tag: "Cursor",
-	},
+  {
+    slug: "how-to-run-grok-build-on-your-phone",
+    title: "How to Run Grok Build on Your Phone",
+    blurb:
+      "A real mobile UI for xAI's Grok Build: slash commands, @ file mentions, permission approvals, and model controls, on your own machine.",
+    dateLabel: "July 8, 2026",
+    readTime: "4 min read",
+    tag: "Grok Build",
+  },
+  {
+    slug: "how-to-run-pi-on-your-phone",
+    title: "How to Run Pi on Your Phone",
+    blurb:
+      "A native UI for Pi, the minimal open-source agent harness, on your phone: slash commands, @ mentions, permissions, and a model picker.",
+    dateLabel: "July 8, 2026",
+    readTime: "4 min read",
+    tag: "Pi",
+  },
+  {
+    slug: "how-to-set-up-shellular-on-a-vps",
+    title: "How to Set Up Shellular on a VPS",
+    blurb:
+      "Run Shellular on an EC2 instance, Hetzner box, or any droplet, and control that always-on server from your phone. The full setup in about five minutes.",
+    dateLabel: "June 28, 2026",
+    readTime: "4 min read",
+    tag: "VPS",
+  },
+  {
+    slug: "cloud-agents-will-let-you-ship-from-anywhere",
+    title: "Cloud Agents Will Let You Ship From Anywhere",
+    blurb:
+      "We already ship with agents. The next shift is cloud-run agents, where your phone, laptop, and desktop become interfaces for review and control.",
+    dateLabel: "June 23, 2026",
+    readTime: "3 min read",
+    tag: "Cloud Agents",
+  },
+  {
+    slug: "how-to-run-ai-agents-on-your-phone",
+    title: "How to Run AI Agents on Your Phone",
+    blurb:
+      "A real mobile UI for each agent, with slash commands, @ file mentions, permission approvals, and model controls, running on your own PC, Mac, Mac mini, or VPS.",
+    dateLabel: "June 11, 2026",
+    readTime: "5 min read",
+    tag: "AI Agents",
+  },
+  {
+    slug: "access-localhost-on-phone-without-ngrok",
+    title: "Access localhost on Your Phone, No ngrok Required",
+    blurb:
+      "Type localhost:3000 into Shellular's in-app browser and it loads, with a real console, inspector, and network tab. No tunnel, no port forwarding.",
+    dateLabel: "June 11, 2026",
+    readTime: "3 min read",
+    tag: "Localhost",
+  },
+  {
+    slug: "how-to-run-claude-code-on-your-phone",
+    title: "How to Run Claude Code on Your Phone",
+    blurb:
+      "A native Claude Code UI on your phone: slash commands, @ file mentions, permission approvals, and a model picker, backed by your real machine.",
+    dateLabel: "June 11, 2026",
+    readTime: "4 min read",
+    tag: "Claude Code",
+  },
+  {
+    slug: "how-to-run-codex-on-your-phone",
+    title: "How to Run Codex on Your Phone",
+    blurb:
+      "A real mobile UI for Codex, with slash commands, @ mentions, permission approvals, and model controls, plus a terminal and Git behind it.",
+    dateLabel: "June 11, 2026",
+    readTime: "4 min read",
+    tag: "Codex",
+  },
+  {
+    slug: "how-to-run-opencode-on-your-phone",
+    title: "How to Run OpenCode on Your Phone",
+    blurb:
+      "A native OpenCode UI for your phone: slash commands, @ file mentions, permission approvals, and model controls on your own machine.",
+    dateLabel: "June 11, 2026",
+    readTime: "4 min read",
+    tag: "OpenCode",
+  },
+  {
+    slug: "how-to-use-cursor-on-your-phone",
+    title: "How to Use Cursor on Your Phone",
+    blurb:
+      "The editor stays on desktop, but Shellular gives the Cursor agent a real mobile UI: slash commands, @ mentions, permissions, and model controls.",
+    dateLabel: "June 11, 2026",
+    readTime: "4 min read",
+    tag: "Cursor",
+  },
 ];
 
 const structuredData = [
-	{
-		"@context": "https://schema.org",
-		"@type": "Blog",
-		name: "Shellular Blog",
-		description:
-			"Guides on running AI coding agents, terminals, and your full dev environment from your phone.",
-		url: "https://shellular.dev/blog",
-	},
-	{
-		"@context": "https://schema.org",
-		"@type": "BreadcrumbList",
-		itemListElement: [
-			{ "@type": "ListItem", position: 1, name: "Home", item: "https://shellular.dev" },
-			{ "@type": "ListItem", position: 2, name: "Blog", item: "https://shellular.dev/blog" },
-		],
-	},
-	{
-		"@context": "https://schema.org",
-		"@type": "ItemList",
-		name: "Shellular Blog articles",
-		itemListElement: posts.map((post, i) => ({
-			"@type": "ListItem",
-			position: i + 1,
-			url: `https://shellular.dev/blog/${post.slug}`,
-			name: post.title,
-		})),
-	},
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "Shellular Blog",
+    description:
+      "Guides on running AI coding agents, terminals, and your full dev environment from your phone.",
+    url: "https://shellular.dev/blog",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://shellular.dev",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: "https://shellular.dev/blog",
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Shellular Blog articles",
+    itemListElement: posts.map((post, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `https://shellular.dev/blog/${post.slug}`,
+      name: post.title,
+    })),
+  },
 ];
 ---
 
@@ -154,9 +164,11 @@ const structuredData = [
         <span class="eyebrow">The Shellular Blog</span>
         <h1>Code from <span class="h1-italic">anywhere.</span></h1>
         <p>
-          Short, practical guides on running your AI agents from your phone, with a real mobile UI for each one: slash
-          commands, @ file mentions, permission approvals, and model controls. The agents stay on your PC, Mac, Mac mini,
-          or VPS, with full context of your code. No fluff, just the steps that work.
+          Short, practical guides on running your AI agents from your phone,
+          with a real mobile UI for each one: slash commands, @ file mentions,
+          permission approvals, and model controls. The agents stay on your PC,
+          Mac, Mac mini, or VPS, with full context of your code. No fluff, just
+          the steps that work.
         </p>
       </div>
     </header>
@@ -172,7 +184,9 @@ const structuredData = [
                 <p>{post.blurb}</p>
                 <div class="post-meta">
                   <span>{post.dateLabel}</span>
-                  <span class="dot" aria-hidden="true">•</span>
+                  <span class="dot" aria-hidden="true">
+                    •
+                  </span>
                   <span>{post.readTime}</span>
                 </div>
               </a>
@@ -182,10 +196,15 @@ const structuredData = [
 
         <div class="compare-block">
           <h2>Comparing the options?</h2>
-          <p>See how Shellular stacks up against the official mobile tools, feature by feature.</p>
+          <p>
+            See how Shellular stacks up against the official mobile tools,
+            feature by feature.
+          </p>
           <div class="compare-links">
             <a href="/shellular-vs-codex-mobile">Shellular vs Codex Mobile →</a>
-            <a href="/shellular-vs-claude-remote-control">Shellular vs Claude Remote Control →</a>
+            <a href="/shellular-vs-claude-remote-control"
+              >Shellular vs Claude Remote Control →</a
+            >
           </div>
         </div>
       </div>
@@ -203,7 +222,11 @@ const structuredData = [
 
   .blog-hero {
     background:
-      radial-gradient(ellipse 80% 70% at 50% -20%, rgba(255, 240, 210, 0.55) 0%, transparent 60%),
+      radial-gradient(
+        ellipse 80% 70% at 50% -20%,
+        rgba(255, 240, 210, 0.55) 0%,
+        transparent 60%
+      ),
       linear-gradient(180deg, var(--sky-100) 0%, var(--cream-100) 100%);
     border-bottom: 1px solid var(--border);
   }
@@ -276,7 +299,10 @@ const structuredData = [
     box-shadow: var(--shadow-sm);
     position: relative;
     overflow: hidden;
-    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease,
+      box-shadow 0.22s ease;
   }
 
   .post-card::before {
@@ -351,7 +377,11 @@ const structuredData = [
     margin-top: 28px;
     padding: clamp(24px, 4vw, 36px);
     border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, rgba(var(--brand-gold-rgb), 0.16), rgba(var(--brand-gold-rgb), 0.05));
+    background: linear-gradient(
+      135deg,
+      rgba(var(--brand-gold-rgb), 0.16),
+      rgba(var(--brand-gold-rgb), 0.05)
+    );
     border: 1px solid rgba(var(--brand-gold-rgb), 0.3);
   }
 
